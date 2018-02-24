@@ -269,7 +269,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-02T21:11:53+08:00">
                 2018-02-02
@@ -311,7 +311,22 @@
       
         
           
-            <h1 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h1><p>取list或者tuple的部分元素<br>        L = [‘Michael’, ‘Sarah’, ‘Tracy’, ‘Bob’, ‘Jack’]<br>取前3个元素，应该怎么做？笨办法：<br>        [L[0], L[1], L[2]]<br>        [‘Michael’, ‘Sarah’, ‘Tracy’]<br>取前3个元素，用一行代码就可以完成切片：<br>        L[0:3]<br>        [‘Michael’, ‘Sarah’, ‘Tracy’]<br>L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。<br>如果第一个索引是0，还可以省略：<br>        L[:3]<br>        [‘Michael’, ‘Sarah’, ‘Tracy’]<br>类似的，既然Python支持L[-1]取倒数第一个元素，那么它同样支持倒数切片，试试：<br>        L[-2:][‘Bob’, ‘Jack’]<br>        L[-2:-1][‘Bob’]<br>记住倒数第一个元素的索引是-1。<br>切片操作十分有用。我们先创建一个0-99的数列：<br>        L = list(range(100))<br>        L<br>        [0, 1, 2, 3, …, 99]<br>可以通过切片轻松取出某一段数列。比如前10个数：<br>        L[:10]<br>        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]<br>后10个数：</p>
+            <h1 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h1><p>取list或者tuple的部分元素</p>
+<pre><code>&gt;&gt;&gt;L = [&apos;Michael&apos;, &apos;Sarah&apos;, &apos;Tracy&apos;, &apos;Bob&apos;, &apos;Jack&apos;]
+</code></pre><p>取前3个元素，应该怎么做？笨办法：</p>
+<pre><code>&gt;&gt;&gt;[L[0], L[1], L[2]]
+[&apos;Michael&apos;, &apos;Sarah&apos;, &apos;Tracy&apos;]
+</code></pre><p>取前3个元素，用一行代码就可以完成切片：</p>
+<pre><code>&gt;&gt;&gt;L[0:3]
+[&apos;Michael&apos;, &apos;Sarah&apos;, &apos;Tracy&apos;]
+</code></pre><p>L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。<br>如果第一个索引是0，还可以省略：</p>
+<pre><code>&gt;&gt;&gt;L[:3]
+[&apos;Michael&apos;, &apos;Sarah&apos;, &apos;Tracy&apos;]
+</code></pre><p>类似的，既然Python支持L[-1]取倒数第一个元素，那么它同样支持倒数切片，试试：    </p>
+<pre><code>&gt;&gt;&gt;L[-2:][&apos;Bob&apos;, &apos;Jack&apos;]
+&gt;&gt;&gt;L[-2:-1][&apos;Bob&apos;]
+</code></pre><p>记住倒数第一个元素的索引是-1。</p>
+<p>切片操作十分有用。我们先创建一个0-99的数列：<br>        L = list(range(100))<br>        L<br>        [0, 1, 2, 3, …, 99]<br>可以通过切片轻松取出某一段数列。比如前10个数：<br>        L[:10]<br>        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]<br>后10个数：</p>
 <pre><code>&gt;&gt;&gt;L[-10:]
 [90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
 </code></pre><p>前11-20个数：</p>
@@ -429,7 +444,7 @@ except StopIteration:
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-01T21:02:58+08:00">
                 2018-02-01
@@ -557,7 +572,7 @@ except StopIteration:
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T23:14:35+08:00">
                 2017-10-28
@@ -685,7 +700,7 @@ except StopIteration:
                 <a href="/archives">
               
                   <span class="site-state-item-count">3</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -751,7 +766,7 @@ except StopIteration:
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
