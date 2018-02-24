@@ -269,7 +269,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-02T21:11:53+08:00">
                 2018-02-02
@@ -425,26 +425,51 @@ z = C
 &gt;&gt;&gt;g = (x * x for x in range(10))
 &gt;&gt;&gt;g
 &lt;generator object &lt;genexpr&gt; at 0x1022ef630&gt;
-</code></pre><p>创建L和g的区别仅在于最外层的[]和()，L是一个list，而g是一个generator。<br>通过next()函数获得generator的下一个返回值<br>没有更多的元素时抛出StopIteration的错误<br>要把fib函数变成generator，只需要把print(b)改为yield b就可以了<br>    def fib(max):<br>        n, a, b = 0, 0, 1<br>        while n &lt; max:<br>            yield b<br>            a, b = b, a + b<br>            n = n + 1<br>        return ‘done’</p>
-<p>#测试<br>    f = fib(10)<br>    print(‘fib(10):’, f)<br>    for x in f:<br>        print(x)<br>如果一个函数定义中包含yield关键字，则这为generator<br>generator和函数的执行流程不一样。函数是顺序执行，遇到return语句或者最后一行函数语句就返回。而变成generator的函数，在每次调用next()的时候执行，遇到yield语句返回，再次执行时从上次返回的yield语句处继续执行。</p>
+</code></pre><p>创建L和g的区别仅在于最外层的[]和()，L是一个list，而g是一个generator。<br>通过next()函数获得generator的下一个返回值<br>没有更多的元素时抛出StopIteration的错误<br>要把fib函数变成generator，只需要把print(b)改为yield b就可以了<br>        def fib(max):<br>            n, a, b = 0, 0, 1<br>            while n &lt; max:<br>                yield b<br>                a, b = b, a + b<br>                n = n + 1<br>            return ‘done’</p>
+<pre><code>#测试
+    f = fib(10)
+    print(&apos;fib(10):&apos;, f)
+    for x in f:
+        print(x)
+</code></pre><p>如果一个函数定义中包含yield关键字，则这为generator<br>generator和函数的执行流程不一样。函数是顺序执行，遇到return语句或者最后一行函数语句就返回。而变成generator的函数，在每次调用next()的时候执行，遇到yield语句返回，再次执行时从上次返回的yield语句处继续执行。</p>
 <p>我们在循环过程中不断调用yield，就会不断中断。当然要给循环设置一个条件来退出循环，不然就会产生一个无限数列出来。<br>同样的，把函数改成generator后，我们基本上从来不会用next()来获取下一个返回值，而是直接使用for循环来迭代：</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>for n in fib(6):<br>…     print(n)<br>…<br>但是用for循环调用generator时，发现拿不到generator的return语句的返回值。如果想要拿到返回值，必须捕获StopIteration错误，返回值包含在StopIteration的value中：<br>g = fib(6)<br>while True:<br>        …     try:<br>        …         x = next(g)<br>        …         print(‘g:’, x)<br>        …     except StopIteration as e:<br>        …         print(‘Generator return value:’, e.value)<br>        …         break</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>请注意区分普通函数和generator函数，普通函数调用直接返回结果：</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>r = abs(6)<br>r<br>6<br>generator函数的“调用”实际返回一个generator对象：<br>g = fib(6)<br>g</p>
-<p><generator object="" fib="" at="" 0x1022ef948=""><br>练习输出杨辉三角  见yanghuireiangle</generator></p>
-<h1 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h1><p>可作用于for的数据类型，一类为集合数据类型，一类为generator<br>统称为可迭代对象：Iterable 用 isinstance ()判断<br>from collections import Iterator<br>isinstance((x for x in range(10)), Iterator)<br>    True<br>isinstance([], Iterator)<br>    False<br>isinstance({}, Iterator)<br>    False<br>isinstance(‘abc’, Iterator)<br>    False<br>    把list、dict、str等Iterable变成Iterator可以使用iter()函数：<br>isinstance(iter([]), Iterator)<br>    True<br>isinstance(iter(‘abc’), Iterator)<br>    True<br>Iterator对象表示一个数据流，不能提起知道序列的长度，其计算为惰性的，只有在需要下一个返回值的时候才会计算</p>
-</blockquote>
-</blockquote>
-</blockquote>
+<pre><code>&gt;&gt;&gt;for n in fib(6):
+...     print(n)
+...
+</code></pre><p>但是用for循环调用generator时，发现拿不到generator的return语句的返回值。如果想要拿到返回值，必须捕获StopIteration错误，返回值包含在StopIteration的value中：</p>
+<pre><code>&gt;&gt;&gt;g = fib(6)
+&gt;&gt;&gt;while True:
+...     try:
+...         x = next(g)
+...         print(&apos;g:&apos;, x)
+...     except StopIteration as e:
+...         print(&apos;Generator return value:&apos;, e.value)
+...         break
+</code></pre><p>请注意区分普通函数和generator函数，普通函数调用直接返回结果：</p>
+<pre><code>&gt;&gt;&gt;r = abs(6)
+&gt;&gt;&gt;r
+6
+</code></pre><p>generator函数的“调用”实际返回一个generator对象：</p>
+<pre><code>&gt;&gt;&gt;g = fib(6)
+&gt;&gt;&gt;g
+&lt;generator object fib at 0x1022ef948&gt;
+</code></pre><p>练习输出杨辉三角  见yanghuireiangle</p>
+<h1 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h1><p>可作用于for的数据类型，一类为集合数据类型，一类为generator<br>统称为可迭代对象：Iterable 用 isinstance ()判断</p>
+<pre><code>&gt;&gt;&gt;from collections import Iterator
+&gt;&gt;&gt;isinstance((x for x in range(10)), Iterator)
+True
+&gt;&gt;&gt;isinstance([], Iterator)
+False
+&gt;&gt;&gt; isinstance({}, Iterator)
+False
+&gt;&gt;&gt;isinstance(&apos;abc&apos;, Iterator)
+False
+把list、dict、str等Iterable变成Iterator可以使用iter()函数：
+&gt;&gt;&gt;isinstance(iter([]), Iterator)
+True
+&gt;&gt;&gt;isinstance(iter(&apos;abc&apos;), Iterator)
+True
+</code></pre><p>Iterator对象表示一个数据流，不能提起知道序列的长度，其计算为惰性的，只有在需要下一个返回值的时候才会计算</p>
 <p>可作用于for的对象都是Iterable类型<br>可作用于next()的都是Iterator类型<br>for循环本质上就是通过不断调用next()函数实现的<br>    for x in [1, 2, 3, 4, 5]:<br>        pass<br>实际上完全等价于：<br>首先获得Iterator对象:<br>    it = iter([1, 2, 3, 4, 5])<br>循环:<br>    while True:<br>        try:</p>
 <pre><code>    # 获得下一个值:
     x = next(it)
@@ -529,7 +554,7 @@ except StopIteration:
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-01T21:02:58+08:00">
                 2018-02-01
@@ -657,7 +682,7 @@ except StopIteration:
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T23:14:35+08:00">
                 2017-10-28
@@ -785,7 +810,7 @@ except StopIteration:
                 <a href="/archives">
               
                   <span class="site-state-item-count">3</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -851,7 +876,7 @@ except StopIteration:
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
