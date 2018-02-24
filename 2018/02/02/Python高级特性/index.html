@@ -87,7 +87,7 @@
 <meta property="og:url" content="https://twosmi1e.github.io/2018/02/02/Python高级特性/index.html">
 <meta property="og:site_name" content="Two_smi1e">
 <meta property="og:description" content="切片取list或者tuple的部分元素 &amp;gt;&amp;gt;&amp;gt;L = [&amp;apos;Michael&amp;apos;, &amp;apos;Sarah&amp;apos;, &amp;apos;Tracy&amp;apos;, &amp;apos;Bob&amp;apos;, &amp;apos;Jack&amp;apos;] 取前3个元素，应该怎么做？笨办法： &amp;gt;&amp;gt;&amp;gt;[L[0], L[1], L[2]] [&amp;apos;Michael&amp;apos;">
-<meta property="og:updated_time" content="2018-02-24T14:13:51.563Z">
+<meta property="og:updated_time" content="2018-02-24T14:15:52.626Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python高级特性">
 <meta name="twitter:description" content="切片取list或者tuple的部分元素 &amp;gt;&amp;gt;&amp;gt;L = [&amp;apos;Michael&amp;apos;, &amp;apos;Sarah&amp;apos;, &amp;apos;Tracy&amp;apos;, &amp;apos;Bob&amp;apos;, &amp;apos;Jack&amp;apos;] 取前3个元素，应该怎么做？笨办法： &amp;gt;&amp;gt;&amp;gt;[L[0], L[1], L[2]] [&amp;apos;Michael&amp;apos;">
@@ -424,7 +424,7 @@ z = C
 &gt;&gt;&gt;g = (x * x for x in range(10))
 &gt;&gt;&gt;g
 &lt;generator object &lt;genexpr&gt; at 0x1022ef630&gt;
-</code></pre><p>创建L和g的区别仅在于最外层的[]和()，L是一个list，而g是一个generator。<br>通过next()函数获得generator的下一个返回值<br>没有更多的元素时抛出StopIteration的错误<br>要把fib函数变成generator，只需要把print(b)改为yield b就可以了<br>        def fib(max):<br>            n, a, b = 0, 0, 1<br>            while n &lt; max:<br>                yield b<br>                a, b = b, a + b<br>                n = n + 1<br>            return ‘done’</p>
+</code></pre><p>创建L和g的区别仅在于最外层的[]和()，L是一个list，而g是一个generator。<br>通过next()函数获得generator的下一个返回值<br>没有更多的元素时抛出StopIteration的错误<br>要把fib函数变成generator，只需要把print(b)改为yield b就可以了<br>            def fib(max):<br>                n, a, b = 0, 0, 1<br>                while n &lt; max:<br>                    yield b<br>                    a, b = b, a + b<br>                    n = n + 1<br>                return ‘done’</p>
 <pre><code>#测试
     f = fib(10)
     print(&apos;fib(10):&apos;, f)
@@ -469,7 +469,7 @@ True
 &gt;&gt;&gt;isinstance(iter(&apos;abc&apos;), Iterator)
 True
 </code></pre><p>Iterator对象表示一个数据流，不能提起知道序列的长度，其计算为惰性的，只有在需要下一个返回值的时候才会计算</p>
-<p>可作用于for的对象都是Iterable类型<br>可作用于next()的都是Iterator类型<br>for循环本质上就是通过不断调用next()函数实现的<br>    for x in [1, 2, 3, 4, 5]:<br>        pass<br>实际上完全等价于：<br>首先获得Iterator对象:<br>    it = iter([1, 2, 3, 4, 5])<br>循环:<br>    while True:<br>        try:</p>
+<p>可作用于for的对象都是Iterable类型<br>可作用于next()的都是Iterator类型<br>for循环本质上就是通过不断调用next()函数实现的<br>    for x in [1, 2, 3, 4, 5]:<br>        pass<br>实际上完全等价于：<br>首先获得Iterator对象:<br>    it = iter([1, 2, 3, 4, 5])<br>循环:<br>        while True:<br>            try:</p>
 <pre><code>    # 获得下一个值:
     x = next(it)
 except StopIteration:
