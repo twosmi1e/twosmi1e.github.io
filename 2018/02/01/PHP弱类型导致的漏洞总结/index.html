@@ -87,16 +87,16 @@
 <meta property="og:url" content="https://twosmi1e.github.io/2018/02/01/PHP弱类型导致的漏洞总结/index.html">
 <meta property="og:site_name" content="Two_smi1e">
 <meta property="og:description" content="md5()漏洞&amp;nbsp;&amp;nbsp;PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。常见的payload有&amp;nbsp;&amp;nbsp;同时MD5不能处理数组，若有以下判断则可用数组绕过判断代码：if($v1 != $v2 &amp;amp;&amp;">
-<meta property="og:image" content="http://i2.bvimg.com/616806/5e4ef5f2e54ef602.png">
+<meta property="og:image" content="https://twosmi1e.github.io/2018/02/01/PHP弱类型导致的漏洞总结/image1.png">
 <meta property="og:image" content="http://i2.bvimg.com/616806/974aceb1c0cc80ee.png">
 <meta property="og:image" content="http://i2.bvimg.com/616806/b3e7e00d1141563e.png">
 <meta property="og:image" content="http://i2.bvimg.com/616806/7b688f8933689402.png">
 <meta property="og:image" content="http://i2.bvimg.com/616806/f0533fb0ee251fe5.png">
-<meta property="og:updated_time" content="2018-02-27T14:43:30.151Z">
+<meta property="og:updated_time" content="2018-03-13T11:23:42.217Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ctf中遇到关于PHP的漏洞总结">
 <meta name="twitter:description" content="md5()漏洞&amp;nbsp;&amp;nbsp;PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。常见的payload有&amp;nbsp;&amp;nbsp;同时MD5不能处理数组，若有以下判断则可用数组绕过判断代码：if($v1 != $v2 &amp;amp;&amp;">
-<meta name="twitter:image" content="http://i2.bvimg.com/616806/5e4ef5f2e54ef602.png">
+<meta name="twitter:image" content="https://twosmi1e.github.io/2018/02/01/PHP弱类型导致的漏洞总结/image1.png">
 
 
 
@@ -276,7 +276,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-01T21:02:58+08:00">
                 2018-02-01
@@ -316,7 +316,7 @@
       
 
       
-        <h1 id="md5-漏洞"><a href="#md5-漏洞" class="headerlink" title="md5()漏洞"></a>md5()漏洞</h1><p>&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。<br>常见的payload有<br><img src="http://i2.bvimg.com/616806/5e4ef5f2e54ef602.png" alt=""><br>&nbsp;&nbsp;同时MD5不能处理数组，若有以下判断则可用数组绕过<br><img src="http://i2.bvimg.com/616806/974aceb1c0cc80ee.png" alt=""><br>判断代码：<br>if($v1 != $v2 &amp;&amp; md5($v1) == md5($v2))</p>
+        <h1 id="md5-漏洞"><a href="#md5-漏洞" class="headerlink" title="md5()漏洞"></a>md5()漏洞</h1><p>&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。<br>常见的payload有<br><img src="image1.png" alt=""><br>&nbsp;&nbsp;同时MD5不能处理数组，若有以下判断则可用数组绕过<br><img src="http://i2.bvimg.com/616806/974aceb1c0cc80ee.png" alt=""><br>判断代码：<br>if($v1 != $v2 &amp;&amp; md5($v1) == md5($v2))</p>
 <h1 id="strcmp-漏洞"><a href="#strcmp-漏洞" class="headerlink" title="strcmp()漏洞"></a>strcmp()漏洞</h1><p><img src="http://i2.bvimg.com/616806/b3e7e00d1141563e.png" alt=""><br>&nbsp;&nbsp;参数 str1第一个字符串。str2第二个字符串。如果 str1 小于 str2 返回 &lt; 0； 如果 str1 大于 str2 返回 &gt; 0；如果两者相等，返回 0。<br>当这个函数接受到了不符合的类型，这个函数将发生错误，但是在5.3之前的php中，显示了报错的警告信息后，将return 0 !!!! 也就是虽然报了错，但却判定其相等了。这对于使用这个函数来做选择语句中的判断的代码来说简直是一个致命的漏洞，当然，php官方在后面的版本中修复了这个漏洞，使得报错的时候函数不返回任何值。<br><img src="http://i2.bvimg.com/616806/7b688f8933689402.png" alt=""><br>&nbsp;&nbsp;对于这段代码，我们能用什么办法绕过验证呢， 只要我们$_POST[‘password’]是一个数组或者一个object即可，但是上一个问题的时候说到过，只能上传字符串类型，那我们又该如何做呢。<br>其实php为了可以上传一个数组，会把结尾带一对中括号的变量，例如 xxx[]的name（就是$_POST中的key），当作一个名字为xxx的数组构造类似如下的request<br><img src="http://i2.bvimg.com/616806/f0533fb0ee251fe5.png" alt=""></p>
 
       
@@ -402,10 +402,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -426,7 +426,7 @@
                 <a href="/archives">
               
                   <span class="site-state-item-count">3</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -508,7 +508,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
