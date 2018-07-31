@@ -194,10 +194,8 @@
 </head>
 
     
-        <body class="home-body">
     
-    
-<header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
@@ -215,34 +213,21 @@
 
 
 
-height:50vh;
-
 >
     
     <!-- 主页  -->
-    
-    
-    <!-- 文章页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Twosmi1e's Blog.
-            <!-- 文章页  -->
-            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
-            
-            
-                世の中、不利な状况に陥るのは、全て当事者の不十分によるものである
-            
-            <!-- 文章页  -->
             
         </p>
         <!-- 文章页meta -->
@@ -384,194 +369,10 @@ IHDR后的前八个字节为宽度（第二排00 00 02 72），接下来八个�
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/02/10/Mysql写入文件小技巧/" >
-            
-                <span>Mysql写入文件小技巧</span>
-        </a>
-        <div class="abstract-content">
-            1.用UNION写入&nbsp;&nbsp;http://url/?id=1 and 0 union select 1,2 ,’&lt;?php phpinfo(); ?&gt;’ into dumpfile ‘文件绝对路径’&nbsp;&nbsp;采用常规的union写入，可以看到前面的字段占位数肯定也会被写入，替换成null也是一样的结果，这个对于写shell没啥大碍，但是如果用来写bat,mof,vbs等文件就会出问题了，那么怎么去掉这个只写入我们需要的内容呢？采用hex编码就好了。&nbsp;&nbsp;将我们要写入的内容使用hex编码在分段写在每个字段位上，这样就可以只写入我们...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/10</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/02/02/Python高级特性/" >
-            
-                <span>Python高级特性</span>
-        </a>
-        <div class="abstract-content">
-            切片取list或者tuple的部分元素1&gt;&gt;&gt;L = ['Michael', 'Sarah', 'Tracy', 'Bob', 'Jack']
-取前3个元素，应该怎么做？笨办法：12&gt;&gt;&gt;[L[0], L[1], L[2]]['Michael', 'Sarah', 'Tracy']
-取前3个元素，用一行代码就可以完成切片：12&gt;&gt;&gt;L[0:3]['Michael', 'Sarah', 'Tracy']
-L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。如果第一个索引是0，还可以省略：1...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/02</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/02/01/PHP弱类型导致的漏洞总结/" >
-            
-                <span>ctf中遇到关于PHP的漏洞总结</span>
-        </a>
-        <div class="abstract-content">
-            md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。常见的payload有&nbsp;&nbsp;同时MD5不能处理数组，若有以下判断则可用数组绕过判断代码：if($v1 != $v2 &amp;&amp; md5($v1) == md5($v2))
-strcmp()漏洞&nbsp;&nbsp;参数 str1第一个字符串。str2第二个字符串。如果 str1 小于 str2 返回 &lt;...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/01</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2017/10/28/纪念我逝去的青春/" >
-            
-                <span>纪念我逝去的青春</span>
-        </a>
-        <div class="abstract-content">
-              &nbsp;&nbsp;当第五局开场Sliver&nbsp;Scrapes响起的时候，我已经想到了RNG赢下比赛去往鸟巢的场景，我还以为所有那五个满身热血的少年最后能成功饮血屠龙。  &nbsp;&nbsp;看到最后只剩两个人，小狗被追上高地letme最后冲过来两个人死在一起的时候，真的心中一凉，原来真的 青春不一定会圆满啊。
-  &nbsp;&nbsp;这个BO5，看到了小狗的vn，看到了letme的纳尔，看到了虎九万的飞机，看到了香锅两把MVP的表现，真的足够了，唯一遗憾的就是没能打败SKT晋级总决赛吧。
-  &nbsp;&nbsp;从S2到S7，五年了，初中时刚刚知晓英雄联盟，...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/10/28</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
 </main>
             <!-- profile -->
-            
-            <div class="profile">
-    <img class="profile-avatar" src= /avatar/02.jpg >
-    <div class="profile-name">Twosmi1e</div>
-    
-    <div class="profile-signature">
-        write the code, change the world
-    </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
-            
-                <a href="mailto:377746574@qq.com" class="iconfont-archer email" title=email ></a>
-            
-        
-    
-        
-            
-                <a href="//github.com/twosmi1e" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-    </div>
-    
-    
-        <div class="friends">
-            <div>FRIENDS</div>
-            
-                
-                    <span>
-                        <a href= //www.baidu.com target="_black">Baidu</a>
-                    </span>
-                
-            
-                
-                    <span>
-                        <a href= //www.google.com target="_black">Google</a>
-                    </span>
-                
-            
-                
-            
-        </div>
-    
-    
-        <div class="about-me">
-            <a href = "/about" >ABOUT ME</a>
-        </div>
-    
-</div>
             
         </div>
         <footer class="footer footer-unloaded">
