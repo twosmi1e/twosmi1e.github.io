@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Twosmi1e&#39;s Blog</title>
+    <title>CTF中遇到的隐写术总结 · Twosmi1e&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -70,6 +70,8 @@
 
     <link rel="preload" href= /css/style.css?v=20180721 as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= /css/mobile.css?v=20180721 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -194,12 +196,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Twosmi1e&#39;s Blog.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">CTF中遇到的隐写术总结</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>Twosmi1e's Blog.</a>
 </header>
@@ -213,24 +226,74 @@
 
 
 
+height:50vh;
+
 >
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            CTF中遇到的隐写术总结
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count">576</span> / Reading time: <span class="post-count">3 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2018/08/03</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -331,89 +394,73 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/02/10/Mysql写入文件小技巧/" >
-            
-                <span>Mysql写入文件小技巧</span>
-        </a>
-        <div class="abstract-content">
-            1.用UNION写入&nbsp;&nbsp;http://url/?id=1 and 0 union select 1,2 ,’&lt;?php phpinfo(); ?&gt;’ into dumpfile ‘文件绝对路径’&nbsp;&nbsp;采用常规的union写入，可以看到前面的字段占位数肯定也会被写入，替换成null也是一样的结果，这个对于写shell没啥大碍，但是如果用来写bat,mof,vbs等文件就会出问题了，那么怎么去掉这个只写入我们需要的内容呢？采用hex编码就好了。&nbsp;&nbsp;将我们要写入的内容使用hex编码在分段写在每个字段位上，这样就可以只写入我们...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/10</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="F5隐写"><a href="#F5隐写" class="headerlink" title="F5隐写"></a>F5隐写</h2><blockquote>
+<p>安恒杯月赛</p>
+</blockquote>
+<p>题目提示浏览图片的时候能不能F5刷新呢？</p>
+<ol>
+<li>GitHub上的现成工具：git clone <a href="https://github.com/matthewgao/F5-steganography" target="_blank" rel="external">https://github.com/matthewgao/F5-steganography</a></li>
+<li>进入F5_steganography目录 java Extract 图片文件路径 -p password<br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532189155771.png" alt="Alt text"></li>
+</ol>
+<p>然后会出现一个flag.txt但是打开为乱码<br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532189279386.png" alt="Alt text"><br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532189344861.png" alt="Alt text"><br>看文件头是zip 看后缀名解压拿flag<br>flag{96efd0a2037d06f34199e921079778ee}</p>
+<h2 id="xor隐写"><a href="#xor隐写" class="headerlink" title="xor隐写"></a>xor隐写</h2><blockquote>
+<p>巅峰极客 loli</p>
+</blockquote>
+<p>hint:0xFF 想到用0xFF异或整个文件<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># coding=utf-8</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">xor</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">with</span> open(<span class="string">'./1.png'</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> f, open(<span class="string">'xor.png'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> wf:</div><div class="line">        <span class="keyword">for</span> each <span class="keyword">in</span> f.read():</div><div class="line">            wf.write(chr(ord(each) ^ <span class="number">0xff</span>))</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    xor()</div></pre></td></tr></table></figure></p>
+<p>得到新的png文件，用hex看文件有提示<br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532268180784.png" alt="Alt text"><br>将png分离出来可以用foremost或者直接修改16进制文件<br><img src="/2018/08/03/CTF中遇到的隐写术总结/00006777.png" alt="Alt text"><br>观察png文件，可以看到色块分为11列，每列隔行的色块永远是黑色，这说明应该横向读取图片，而列中的横长条由8个小色块组成，显然其代表的是一个字节的数据。<br>提取信息<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> matplotlib.image <span class="keyword">as</span> mpimg</div><div class="line"></div><div class="line">res_str = []</div><div class="line">res = []</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">readpng</span><span class="params">()</span>:</span></div><div class="line">    png = mpimg.imread(<span class="string">'./00006777.png'</span>)</div><div class="line">    yy, xx, depth = png.shape</div><div class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> range(yy):</div><div class="line">        <span class="keyword">if</span> y % <span class="number">2</span> == <span class="number">0</span>:</div><div class="line">            <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>, xx - <span class="number">1</span>, <span class="number">9</span>):</div><div class="line">                _str = <span class="string">"0b"</span> + str(int(png[y][x][<span class="number">0</span>])) + str(int(png[y][x + <span class="number">1</span>][<span class="number">0</span>])) + str(int(png[y][x + <span class="number">2</span>][<span class="number">0</span>])) + str(int(png[y][x + <span class="number">3</span>][<span class="number">0</span>])) + str(int(png[y][x + <span class="number">4</span>][<span class="number">0</span>])) + str(int(png[y][x + <span class="number">5</span>][<span class="number">0</span>])) + str(int(png[y][x + <span class="number">6</span>][<span class="number">0</span>])) + str(int(png[y][x + <span class="number">7</span>][<span class="number">0</span>]))</div><div class="line">                res_str.append(_str)</div><div class="line">                res.append(bin2hex(_str))</div><div class="line">    <span class="keyword">print</span> res_str</div><div class="line">    <span class="keyword">with</span> open(<span class="string">'res.bin'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</div><div class="line">        <span class="keyword">for</span> each <span class="keyword">in</span> res:</div><div class="line">            f.write(chr(each))</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">bin2hex</span><span class="params">(_bin=<span class="string">"0b101"</span>)</span>:</span></div><div class="line">    <span class="keyword">return</span> int(_bin, <span class="number">2</span>) ^ <span class="number">0xFF</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    readpng()</div></pre></td></tr></table></figure></p>
+<p>打开就能看到flag<br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532272225449.png" alt="Alt text"><br>flag{e0754197-e3ab-4d0d-b98f-96174c378a34}</p>
+<h2 id="LSB隐写"><a href="#LSB隐写" class="headerlink" title="LSB隐写"></a>LSB隐写</h2><blockquote>
+<p>巅峰极客 warmup</p>
+</blockquote>
+<p>判断方法大概就是用Stegsolve打开看red plane 0,blue plane 0, green plane 0是不是大致相同，如果是那多半是LSB隐写</p>
+<p>分别提取红绿蓝三个通道的最低位<br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532272546074.png" alt="Alt text"><br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532272557239.png" alt="Alt text"><br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532272567977.png" alt="Alt text"><br>分别是ook 和brainfuck编码 然后解码拼一起就完事<br>flag{db640436-7839-4050-8339-75a972fc553c}</p>
+<blockquote>
+<p>安恒月赛 女神</p>
+</blockquote>
+<p>打开压缩包发现有密码，旁边有备注<br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532352386718.png" alt="Alt text"><br>复制备注到sublime，发现是tab和空格，于是猜测为摩斯码，空格为点，tab为横线<br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532352479146.png" alt="Alt text"><br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532352490146.png" alt="Alt text"><br>解码得到密码，解压后得到图片，用Stegoslove分析应该是LSB隐写，用cloacked-pixel解出flag，密码为弱口令<br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532440300026.png" alt="Alt text"><br>flag{jsy09-wytg5-wius8}</p>
+<p>以后遇到的会继续添加。。。。。。</p>
+
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/02/02/Python高级特性/" >
-            
-                <span>Python高级特性</span>
-        </a>
-        <div class="abstract-content">
-            切片取list或者tuple的部分元素1&gt;&gt;&gt;L = ['Michael', 'Sarah', 'Tracy', 'Bob', 'Jack']
-取前3个元素，应该怎么做？笨办法：12&gt;&gt;&gt;[L[0], L[1], L[2]]['Michael', 'Sarah', 'Tracy']
-取前3个元素，用一行代码就可以完成切片：12&gt;&gt;&gt;L[0:3]['Michael', 'Sarah', 'Tracy']
-L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。如果第一个索引是0，还可以省略：1...
+        <div class="license-wrapper">
+            <p>原文作者: <a href="https://twosmi1e.github.io">two_smi1e</a>
+            <p>原文链接: <a href="https://twosmi1e.github.io/2018/08/03/CTF中遇到的隐写术总结/">https://twosmi1e.github.io/2018/08/03/CTF中遇到的隐写术总结/</a>
+            <p>发表日期: <a href="https://twosmi1e.github.io/2018/08/03/CTF中遇到的隐写术总结/">August 3rd 2018, 1:05:33 am</a>
+            <p>版权声明: 本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/02</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/02/01/PHP弱类型导致的漏洞总结/" >
-            
-                <span>ctf中遇到关于PHP的漏洞总结</span>
-        </a>
-        <div class="abstract-content">
-            md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。常见的payload有&nbsp;&nbsp;同时MD5不能处理数组，若有以下判断则可用数组绕过判断代码：if($v1 != $v2 &amp;&amp; md5($v1) == md5($v2))
-strcmp()漏洞&nbsp;&nbsp;参数 str1第一个字符串。str2第二个字符串。如果 str1 小于 str2 返回 &lt;...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-</div>
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2018/07/01/ISCC-writeup/" title= ISCC writeup >
+                    <div class="prevTitle">ISCC writeup</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!--PC和WAP自适应版-->
+
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -487,6 +534,24 @@ strcmp()漏洞&nbsp;&nbsp;参数 str1第一个字符串。str2第二个字符串
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#F5隐写"><span class="toc-number">1.</span> <span class="toc-text">F5隐写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xor隐写"><span class="toc-number">2.</span> <span class="toc-text">xor隐写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LSB隐写"><span class="toc-number">3.</span> <span class="toc-text">LSB隐写</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -677,6 +742,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

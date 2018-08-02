@@ -339,67 +339,29 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2018/02/10/Mysql写入文件小技巧/" >
+        <a class="abstract-title" href = "/2018/08/03/CTF中遇到的隐写术总结/" >
             
-                <span>Mysql写入文件小技巧</span>
+                <span>CTF中遇到的隐写术总结</span>
         </a>
         <div class="abstract-content">
-            1.用UNION写入&nbsp;&nbsp;http://url/?id=1 and 0 union select 1,2 ,’&lt;?php phpinfo(); ?&gt;’ into dumpfile ‘文件绝对路径’&nbsp;&nbsp;采用常规的union写入，可以看到前面的字段占位数肯定也会被写入，替换成null也是一样的结果，这个对于写shell没啥大碍，但是如果用来写bat,mof,vbs等文件就会出问题了，那么怎么去掉这个只写入我们需要的内容呢？采用hex编码就好了。&nbsp;&nbsp;将我们要写入的内容使用hex编码在分段写在每个字段位上，这样就可以只写入我们...
+            F5隐写
+安恒杯月赛
+
+题目提示浏览图片的时候能不能F5刷新呢？
+
+GitHub上的现成工具：git clone https://github.com/matthewgao/F5-steganography
+进入F5_steganography目录 java Extract 图片文件路径 -p password
+
+然后会出现一个flag.txt但是打开为乱码看文件头是zip 看后缀名解压拿flagflag{96efd0a2037d06f34199e921079778ee}
+xor隐写
+巅峰极客 loli
+
+hint:0xFF 想到用0xFF异或整个文件1234567891011#!/us...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/10</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/02/02/Python高级特性/" >
-            
-                <span>Python高级特性</span>
-        </a>
-        <div class="abstract-content">
-            切片取list或者tuple的部分元素1&gt;&gt;&gt;L = ['Michael', 'Sarah', 'Tracy', 'Bob', 'Jack']
-取前3个元素，应该怎么做？笨办法：12&gt;&gt;&gt;[L[0], L[1], L[2]]['Michael', 'Sarah', 'Tracy']
-取前3个元素，用一行代码就可以完成切片：12&gt;&gt;&gt;L[0:3]['Michael', 'Sarah', 'Tracy']
-L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。如果第一个索引是0，还可以省略：1...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/02</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/02/01/PHP弱类型导致的漏洞总结/" >
-            
-                <span>ctf中遇到关于PHP的漏洞总结</span>
-        </a>
-        <div class="abstract-content">
-            md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。常见的payload有&nbsp;&nbsp;同时MD5不能处理数组，若有以下判断则可用数组绕过判断代码：if($v1 != $v2 &amp;&amp; md5($v1) == md5($v2))
-strcmp()漏洞&nbsp;&nbsp;参数 str1第一个字符串。str2第二个字符串。如果 str1 小于 str2 返回 &lt;...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/01</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/08/03</span>
             </div>
             <!-- tags  -->
             
