@@ -267,7 +267,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count">576</span> / Reading time: <span class="post-count">3 min</span></span>
+                        <span>Word count: <span class="post-count">766</span> / Reading time: <span class="post-count">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -396,7 +396,7 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="F5隐写"><a href="#F5隐写" class="headerlink" title="F5隐写"></a>F5隐写</h2><blockquote>
+        <h2 id="图片隐写"><a href="#图片隐写" class="headerlink" title="图片隐写"></a>图片隐写</h2><h3 id="F5隐写"><a href="#F5隐写" class="headerlink" title="F5隐写"></a>F5隐写</h3><blockquote>
 <p>安恒杯月赛</p>
 </blockquote>
 <p>题目提示浏览图片的时候能不能F5刷新呢？</p>
@@ -405,13 +405,13 @@ height:50vh;
 <li>进入F5_steganography目录 java Extract 图片文件路径 -p password<br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532189155771.png" alt="Alt text"></li>
 </ol>
 <p>然后会出现一个flag.txt但是打开为乱码<br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532189279386.png" alt="Alt text"><br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532189344861.png" alt="Alt text"><br>看文件头是zip 看后缀名解压拿flag<br>flag{96efd0a2037d06f34199e921079778ee}</p>
-<h2 id="xor隐写"><a href="#xor隐写" class="headerlink" title="xor隐写"></a>xor隐写</h2><blockquote>
+<h3 id="xor隐写"><a href="#xor隐写" class="headerlink" title="xor隐写"></a>xor隐写</h3><blockquote>
 <p>巅峰极客 loli</p>
 </blockquote>
 <p>hint:0xFF 想到用0xFF异或整个文件<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># coding=utf-8</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">xor</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">with</span> open(<span class="string">'./1.png'</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> f, open(<span class="string">'xor.png'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> wf:</div><div class="line">        <span class="keyword">for</span> each <span class="keyword">in</span> f.read():</div><div class="line">            wf.write(chr(ord(each) ^ <span class="number">0xff</span>))</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    xor()</div></pre></td></tr></table></figure></p>
 <p>得到新的png文件，用hex看文件有提示<br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532268180784.png" alt="Alt text"><br>将png分离出来可以用foremost或者直接修改16进制文件<br><img src="/2018/08/03/CTF中遇到的隐写术总结/00006777.png" alt="Alt text"><br>观察png文件，可以看到色块分为11列，每列隔行的色块永远是黑色，这说明应该横向读取图片，而列中的横长条由8个小色块组成，显然其代表的是一个字节的数据。<br>提取信息<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> matplotlib.image <span class="keyword">as</span> mpimg</div><div class="line"></div><div class="line">res_str = []</div><div class="line">res = []</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">readpng</span><span class="params">()</span>:</span></div><div class="line">    png = mpimg.imread(<span class="string">'./00006777.png'</span>)</div><div class="line">    yy, xx, depth = png.shape</div><div class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> range(yy):</div><div class="line">        <span class="keyword">if</span> y % <span class="number">2</span> == <span class="number">0</span>:</div><div class="line">            <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>, xx - <span class="number">1</span>, <span class="number">9</span>):</div><div class="line">                _str = <span class="string">"0b"</span> + str(int(png[y][x][<span class="number">0</span>])) + str(int(png[y][x + <span class="number">1</span>][<span class="number">0</span>])) + str(int(png[y][x + <span class="number">2</span>][<span class="number">0</span>])) + str(int(png[y][x + <span class="number">3</span>][<span class="number">0</span>])) + str(int(png[y][x + <span class="number">4</span>][<span class="number">0</span>])) + str(int(png[y][x + <span class="number">5</span>][<span class="number">0</span>])) + str(int(png[y][x + <span class="number">6</span>][<span class="number">0</span>])) + str(int(png[y][x + <span class="number">7</span>][<span class="number">0</span>]))</div><div class="line">                res_str.append(_str)</div><div class="line">                res.append(bin2hex(_str))</div><div class="line">    <span class="keyword">print</span> res_str</div><div class="line">    <span class="keyword">with</span> open(<span class="string">'res.bin'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</div><div class="line">        <span class="keyword">for</span> each <span class="keyword">in</span> res:</div><div class="line">            f.write(chr(each))</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">bin2hex</span><span class="params">(_bin=<span class="string">"0b101"</span>)</span>:</span></div><div class="line">    <span class="keyword">return</span> int(_bin, <span class="number">2</span>) ^ <span class="number">0xFF</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    readpng()</div></pre></td></tr></table></figure></p>
 <p>打开就能看到flag<br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532272225449.png" alt="Alt text"><br>flag{e0754197-e3ab-4d0d-b98f-96174c378a34}</p>
-<h2 id="LSB隐写"><a href="#LSB隐写" class="headerlink" title="LSB隐写"></a>LSB隐写</h2><blockquote>
+<h3 id="LSB隐写"><a href="#LSB隐写" class="headerlink" title="LSB隐写"></a>LSB隐写</h3><blockquote>
 <p>巅峰极客 warmup</p>
 </blockquote>
 <p>判断方法大概就是用Stegsolve打开看red plane 0,blue plane 0, green plane 0是不是大致相同，如果是那多半是LSB隐写</p>
@@ -419,8 +419,17 @@ height:50vh;
 <blockquote>
 <p>安恒月赛 女神</p>
 </blockquote>
+<p>题目提示弱口令，会误以为压缩包密码为弱口令，结果是隐写口令为弱口令</p>
 <p>打开压缩包发现有密码，旁边有备注<br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532352386718.png" alt="Alt text"><br>复制备注到sublime，发现是tab和空格，于是猜测为摩斯码，空格为点，tab为横线<br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532352479146.png" alt="Alt text"><br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532352490146.png" alt="Alt text"><br>解码得到密码，解压后得到图片，用Stegoslove分析应该是LSB隐写，用cloacked-pixel解出flag，密码为弱口令<br><img src="/2018/08/03/CTF中遇到的隐写术总结/1532440300026.png" alt="Alt text"><br>flag{jsy09-wytg5-wius8}</p>
-<p>以后遇到的会继续添加。。。。。。</p>
+<h3 id="反色二维码"><a href="#反色二维码" class="headerlink" title="反色二维码"></a>反色二维码</h3><p>有些简单题目用stegsolve就能出二维码不过是反色的<br>比如这种</p>
+<blockquote>
+<p>whalectf Find<br><img src="/2018/08/03/CTF中遇到的隐写术总结/1533401924732.png" alt="Alt text"></p>
+</blockquote>
+<p>这时候发送到QQ上点击选中就可以扫了<br><img src="/2018/08/03/CTF中遇到的隐写术总结/1533401973178.png" alt="Alt text"></p>
+<h2 id="word隐写"><a href="#word隐写" class="headerlink" title="word隐写"></a>word隐写</h2><p>第一种是在word内容里隐藏文字<br><img src="/2018/08/03/CTF中遇到的隐写术总结/1535368015116.png" alt="Alt text"><br>勾选上隐藏文字就可以看到隐写内容。<br>当然也有把文字颜色改为和背景色一样的，还有用图片覆盖的。</p>
+<p>第二种是在xml文件中隐藏<br>用binwalk查看文件或者将文件后缀名改为zip可以解压出xml文件<br><img src="/2018/08/03/CTF中遇到的隐写术总结/1535368372808.png" alt="Alt text"></p>
+<p>未完待添加。。。。。。</p>
+<h2 id="上述题目文件链接"><a href="#上述题目文件链接" class="headerlink" title="上述题目文件链接"></a>上述题目文件链接</h2><p>链接：<a href="https://pan.baidu.com/s/15-U7XAF21hvr7DBq01Rd_g" target="_blank" rel="external">https://pan.baidu.com/s/15-U7XAF21hvr7DBq01Rd_g</a> 密码：7r3s</p>
 
     </article>
     <!-- license  -->
@@ -555,7 +564,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#F5隐写"><span class="toc-number">1.</span> <span class="toc-text">F5隐写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xor隐写"><span class="toc-number">2.</span> <span class="toc-text">xor隐写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LSB隐写"><span class="toc-number">3.</span> <span class="toc-text">LSB隐写</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#图片隐写"><span class="toc-number">1.</span> <span class="toc-text">图片隐写</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#F5隐写"><span class="toc-number">1.1.</span> <span class="toc-text">F5隐写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xor隐写"><span class="toc-number">1.2.</span> <span class="toc-text">xor隐写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LSB隐写"><span class="toc-number">1.3.</span> <span class="toc-text">LSB隐写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反色二维码"><span class="toc-number">1.4.</span> <span class="toc-text">反色二维码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#word隐写"><span class="toc-number">2.</span> <span class="toc-text">word隐写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#上述题目文件链接"><span class="toc-number">3.</span> <span class="toc-text">上述题目文件链接</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
