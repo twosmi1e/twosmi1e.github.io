@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Twosmi1e&#39;s Blog</title>
+    <title>Crypto中RSA题目总结 · Twosmi1e&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -70,6 +70,8 @@
 
     <link rel="preload" href= /css/style.css?v=20180721 as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= /css/mobile.css?v=20180721 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -194,12 +196,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Twosmi1e&#39;s Blog.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Crypto中RSA题目总结</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>Twosmi1e's Blog.</a>
 </header>
@@ -213,24 +226,74 @@
 
 
 
+height:50vh;
+
 >
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            Crypto中RSA题目总结
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count">927</span> / Reading time: <span class="post-count">4 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2018/08/18</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -331,85 +394,83 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/07/15/SCTF-writeup/" >
-            
-                <span>SCTF writeup</span>
-        </a>
-        <div class="abstract-content">
-            misc签到侧信道初探根据提示用侧信道简单能量分析攻击 SPA 就可以从芯片的功耗曲线中可以读出十六进制的关键数据。因为不知道哪个是0哪个是1 然后试了一下
-SCTF{0110111010}
-神奇的Modbusmodbus协议
-按照网上一道类似题的分析，找TCP/IP协议502,102端口追踪TCP流
-SCTF{Easy_Mdbus}
-神秘的交易百度找到看雪的一篇分析文章logicdata拖进Logic里面,分析嗅探得到的波形图1230x33 0x01 s10x33 0x02 s20x33 0x03 s3
-读出s1, s2, s3
+            <main class="main post-page">
+    <article class="article-entry">
+        <h3 id="0x00-RSA算法简述"><a href="#0x00-RSA算法简述" class="headerlink" title="0x00 RSA算法简述"></a>0x00 RSA算法简述</h3><hr>
+<h4 id="密钥的产生"><a href="#密钥的产生" class="headerlink" title="密钥的产生"></a>密钥的产生</h4><p>① 选择两个满足需要的大素数p和q，计算<strong>n=p×q,φ(n)= (p-1)×(q-1)</strong>，其中φ(n)是n的欧拉函数值。<br>② 选一个整数e,满足1&lt;e&lt;φ(n)，且gcd(φ(n),e)=1。通过<strong>d×e≡1modφ(n)</strong>，计算出d。<br>③ 以{e,n}为公开密钥，{d,n}为秘密密钥。<br>假设Alice是秘密消息的接收方，则只有Alice知道秘密密钥{d,n}，所有人都可以知道公开密钥{e,n}。</p>
+<h4 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h4><p>如果想发送消息m给Alice，就选择Alice的公钥{e,n}，然后计算：$c≡m^e mod n$，然后把c发送给Alice。</p>
+<h4 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h4><p>接收方Alice收到c，用私钥计算：$m≡c^dmodn$</p>
+<p><img src="/2018/08/18/Crypto中RSA题目总结/1526955463464.png" alt="Alt text"></p>
+<ul>
+<li><strong>能够抵御选择明文攻击</strong></li>
+<li><strong>RSA的安全性基于分解大整数难题</strong></li>
+</ul>
+<p>（1）不同的用户不能用相同的模数n. 大素数的个数是十分庞大的资源，不用担心会被用完。<br>（2）p与q的差值要大<br>（3）p-1和q-1都应有大的素因子。<br>（4）私钥d的选择。如果私钥d的值比较小，由RSA的解密算法可知，对数据进行解密的速度越快。但是，私钥d的值不能太小，一般要求d≥n1/4。<br>（5）更换密钥<br>如果私钥d被泄露，则在模n的情况下重新计算一对密钥是不够的，而是必须选择一个新的公钥n.<br>（6）e不可太小，否则不安全。</p>
+<h3 id="0x01-数据处理"><a href="#0x01-数据处理" class="headerlink" title="0x01 数据处理"></a>0x01 数据处理</h3><hr>
+<p>基本上来说，RSA的题目都是围绕着c，m，e，d，n，p，q这几个参数展开的，但是题目一般不会直接给这种样子的参数，而是通过别的方式给出，这里就需要我们使用一些工具或者自己手工将这些参数提取出来。</p>
+<p>pem文件：针对此类文件可以直接使用openssl提取，大概使用过的方式有：</p>
+ <figure class="highlight plain"><figcaption><span>rsautl -encrypt -in FLAG -inkey public.pem -pubin -out flag.enc```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">```openssl   rsa -pubin -text -modulus -in warmup -in public.pem</div></pre></td></tr></table></figure>
+<p>pcap文件：针对此类文件可以使用wireshark follow一下。这种问题一般都是写了一个交互的crypto系统，所以可能产生多轮交互。</p>
+<p>PPC模式：这种模式是上述pcap文件的交互版，会给一个端口进行一些crypto的交互，参数会在交互中给出。</p>
+<h3 id="0x02-模数分解"><a href="#0x02-模数分解" class="headerlink" title="0x02 模数分解"></a>0x02 模数分解</h3><p>  解决RSA题目最简单，最暴力，最好使的方法就是分解模数n。拿到题目先尝试能否将n分解成功，若成功得到p，q的取值，那么可求n的欧拉函数的值。</p>
+<p>$$ varphi(n)=(p-1)(q-1) $$</p>
+<h3 id="0x03-低加密指数攻击"><a href="#0x03-低加密指数攻击" class="headerlink" title="0x03 低加密指数攻击"></a>0x03 低加密指数攻击</h3><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>e又被称为加密指数，选取小一点的e可以缩短加密时间，但是选取不当的话，就会造成安全问题。</p>
+<p><strong>推荐在e=3时首先尝试此方法</strong></p>
+<p>当e=3时，如果明文过小，导致明文的三次方仍然小于n，那么通过直接对密文三次开方，即可得到明文。</p>
+<p>如果e=3，且$ m^e&lt;{n} $，那么$ c= m^e,$ $e=3$，即：<br>$$ m = sqrt[3]{c} $$<br>如果明文的三次方比n大，但是不是足够大，那么设k，有：</p>
+<p>$$ c= m^e+kn $$</p>
+<p>爆破k，如果$ c-kn $能开三次根式，那么可以直接得到明文。</p>
+<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><blockquote>
+<p>安恒月赛<br>e = 3<br>n=0x52d483c27cd806550fbe0e37a61af2e7cf5e0efb723dfc81174c918a27627779b21fa3c851e9e94188eaee3d5cd6f752406a43fbecb53e80836ff1e185d3ccd7782ea846c2e91a7b0808986666e0bdadbfb7bdd65670a589a4d2478e9adcafe97c6ee23614bcb2ecc23580f4d2e3cc1ecfec25c50da4bc754dde6c8bfd8d1fc16956c74d8e9196046a01dc9f3024e11461c294f29d7421140732fedacac97b8fe50999117d27943c953f18c4ff4f8c258d839764078d4b6ef6e8591e0ff5563b31a39e6374d0d41c8c46921c25e5904a817ef8e39e5c9b71225a83269693e0b7e3218fc5e5a1e8412ba16e588b3d6ac536dce39fcdfce81eec79979ea6872793L<br>c=0x10652cdfaa6b63f6d7bd1109da08181e500e5643f5b240a9024bfa84d5f2cac9310562978347bb232d63e7289283871efab83d84ff5a7b64a94a79d34cfbd4ef121723ba1f663e514f83f6f01492b4e13e1bb4296d96ea5a353d3bf2edd2f449c03c4a3e995237985a596908adc741f32365</p>
+</blockquote>
+<h5 id="解密脚本"><a href="#解密脚本" class="headerlink" title="解密脚本"></a>解密脚本</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> gmpy2 </div><div class="line"></div><div class="line">e = <span class="number">3</span></div><div class="line">n = <span class="number">0x52d483c27cd806550fbe0e37a61af2e7cf5e0efb723dfc81174c918a27627779b21fa3c851e9e94188eaee3d5cd6f752406a43fbecb53e80836ff1e185d3ccd7782ea846c2e91a7b0808986666e0bdadbfb7bdd65670a589a4d2478e9adcafe97c6ee23614bcb2ecc23580f4d2e3cc1ecfec25c50da4bc754dde6c8bfd8d1fc16956c74d8e9196046a01dc9f3024e11461c294f29d7421140732fedacac97b8fe50999117d27943c953f18c4ff4f8c258d839764078d4b6ef6e8591e0ff5563b31a39e6374d0d41c8c46921c25e5904a817ef8e39e5c9b71225a83269693e0b7e3218fc5e5a1e8412ba16e588b3d6ac536dce39fcdfce81eec79979ea6872793L</span></div><div class="line">c = <span class="number">0x10652cdfaa6b63f6d7bd1109da08181e500e5643f5b240a9024bfa84d5f2cac9310562978347bb232d63e7289283871efab83d84ff5a7b64a94a79d34cfbd4ef121723ba1f663e514f83f6f01492b4e13e1bb4296d96ea5a353d3bf2edd2f449c03c4a3e995237985a596908adc741f32365</span></div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">'n='</span>, n</div><div class="line"><span class="keyword">print</span> <span class="string">'c='</span>, c</div><div class="line">i = <span class="number">0</span></div><div class="line">result = gmpy2.iroot(c, <span class="number">3</span>)</div><div class="line"><span class="keyword">print</span> result</div><div class="line"><span class="keyword">print</span> (<span class="string">'&#123;:x&#125;'</span>.format(result[<span class="number">0</span>])).decode(<span class="string">'hex'</span>)</div></pre></td></tr></table></figure>
+<p><img src="/2018/08/18/Crypto中RSA题目总结/1533317716345.png" alt="Alt text"></p>
+<p><strong>gmpy2.iroot(m, n)函数</strong>：获取m开n次方的结果，返回一个tuple，第一个数为结果，第二个数为是否为整数的布尔值。</p>
 
-SCTF{403110}
-肥宅快乐题用爱奇艺可以拖fl...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/07/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/07/01/ISCC-writeup/" >
-            
-                <span>ISCC writeup</span>
-        </a>
-        <div class="abstract-content">
-            ISCC WPMiscWhat is that？图片隐写给了一张这个图
-然后看手指指的地方应该就是flag  改高度
-IHDR后的前八个字节为宽度（第二排00 00 02 72），接下来八个为高度，将高度改为和宽度一样得到flag
-秘密电报给了一个txt内容是：秘密电报：知识就是力量 ABAAAABABBABAAAABABAAABAAABAAABAABAAAABAAAABA刚开始以为是摩斯密码结果没有分割符，直接复制百度，是培根密码然后在线解密得到flag
-凯撒十三世凯撒十三世在学会使用键盘后，向你扔了一串字符：“ebdgc697g95w3”，猜猜它吧。一看题目肯定有凯撒密码，移位13得...
+        <div class="license-wrapper">
+            <p>原文作者: <a href="https://www.twosmi1e.com">two_smi1e</a>
+            <p>原文链接: <a href="https://www.twosmi1e.com/2018/08/18/Crypto中RSA题目总结/">https://www.twosmi1e.com/2018/08/18/Crypto中RSA题目总结/</a>
+            <p>发表日期: <a href="https://www.twosmi1e.com/2018/08/18/Crypto中RSA题目总结/">August 18th 2018, 7:50:19 pm</a>
+            <p>版权声明: 本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/07/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
-    
-</div>
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2018/08/21/CTF中遇到的PHP漏洞总结/" title= CTF中遇到的PHP漏洞总结 >
+                    <div class="nextTitle">CTF中遇到的PHP漏洞总结</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2018/08/03/CTF中遇到的隐写术总结/" title= CTF中遇到的隐写术总结 >
+                    <div class="prevTitle">CTF中遇到的隐写术总结</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!--PC和WAP自适应版-->
+
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -483,6 +544,24 @@ IHDR后的前八个字节为宽度（第二排00 00 02 72），接下来八个�
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-RSA算法简述"><span class="toc-number">1.</span> <span class="toc-text">0x00 RSA算法简述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#密钥的产生"><span class="toc-number">1.1.</span> <span class="toc-text">密钥的产生</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#加密"><span class="toc-number">1.2.</span> <span class="toc-text">加密</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解密"><span class="toc-number">1.3.</span> <span class="toc-text">解密</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-数据处理"><span class="toc-number">2.</span> <span class="toc-text">0x01 数据处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-模数分解"><span class="toc-number">3.</span> <span class="toc-text">0x02 模数分解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-低加密指数攻击"><span class="toc-number">4.</span> <span class="toc-text">0x03 低加密指数攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#介绍"><span class="toc-number">4.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#例题"><span class="toc-number">4.2.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#解密脚本"><span class="toc-number">4.2.1.</span> <span class="toc-text">解密脚本</span></a></li></ol></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -705,6 +784,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
