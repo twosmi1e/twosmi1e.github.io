@@ -354,6 +354,130 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2018/07/15/SCTF-writeup/" >
+            
+                <span>SCTF writeup</span>
+        </a>
+        <div class="abstract-content">
+            misc签到侧信道初探根据提示用侧信道简单能量分析攻击 SPA 就可以从芯片的功耗曲线中可以读出十六进制的关键数据。因为不知道哪个是0哪个是1 然后试了一下
+SCTF{0110111010}
+神奇的Modbusmodbus协议
+按照网上一道类似题的分析，找TCP/IP协议502,102端口追踪TCP流
+SCTF{Easy_Mdbus}
+神秘的交易百度找到看雪的一篇分析文章logicdata拖进Logic里面,分析嗅探得到的波形图1230x33 0x01 s10x33 0x02 s20x33 0x03 s3
+读出s1, s2, s3
+
+SCTF{403110}
+肥宅快乐题用爱奇艺可以拖fl...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/07/15</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2018/07/01/ISCC-writeup/" >
+            
+                <span>ISCC writeup</span>
+        </a>
+        <div class="abstract-content">
+            ISCC WPMiscWhat is that？图片隐写给了一张这个图
+然后看手指指的地方应该就是flag  改高度
+IHDR后的前八个字节为宽度（第二排00 00 02 72），接下来八个为高度，将高度改为和宽度一样得到flag
+秘密电报给了一个txt内容是：秘密电报：知识就是力量 ABAAAABABBABAAAABABAAABAAABAAABAABAAAABAAAABA刚开始以为是摩斯密码结果没有分割符，直接复制百度，是培根密码然后在线解密得到flag
+凯撒十三世凯撒十三世在学会使用键盘后，向你扔了一串字符：“ebdgc697g95w3”，猜猜它吧。一看题目肯定有凯撒密码，移位13得...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/07/01</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2018/02/10/Mysql写入文件小技巧/" >
+            
+                <span>Mysql写入文件小技巧</span>
+        </a>
+        <div class="abstract-content">
+            1.用UNION写入&nbsp;&nbsp;http://url/?id=1 and 0 union select 1,2 ,’&lt;?php phpinfo(); ?&gt;’ into dumpfile ‘文件绝对路径’&nbsp;&nbsp;采用常规的union写入，可以看到前面的字段占位数肯定也会被写入，替换成null也是一样的结果，这个对于写shell没啥大碍，但是如果用来写bat,mof,vbs等文件就会出问题了，那么怎么去掉这个只写入我们需要的内容呢？采用hex编码就好了。&nbsp;&nbsp;将我们要写入的内容使用hex编码在分段写在每个字段位上，这样就可以只写入我们...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/10</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2018/02/02/Python高级特性/" >
+            
+                <span>Python高级特性</span>
+        </a>
+        <div class="abstract-content">
+            切片取list或者tuple的部分元素1&gt;&gt;&gt;L = ['Michael', 'Sarah', 'Tracy', 'Bob', 'Jack']
+取前3个元素，应该怎么做？笨办法：12&gt;&gt;&gt;[L[0], L[1], L[2]]['Michael', 'Sarah', 'Tracy']
+取前3个元素，用一行代码就可以完成切片：12&gt;&gt;&gt;L[0:3]['Michael', 'Sarah', 'Tracy']
+L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。如果第一个索引是0，还可以省略：1...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/02</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2017/10/28/纪念我逝去的青春/" >
             
                 <span>纪念我逝去的青春</span>
@@ -670,9 +794,14 @@ height:50vh;
     
     
     
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 11
+        Total : 10
         </div>
         <!-- search  -->
         
@@ -699,11 +828,6 @@ height:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/06</span><a class="archive-post-title" href= "/2018/09/06/密码学/" >密码学</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/21</span><a class="archive-post-title" href= "/2018/08/21/CTF中遇到的PHP漏洞总结/" >CTF中遇到的PHP漏洞总结</a>
         </li>
     
     
@@ -757,17 +881,15 @@ height:50vh;
     
         <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
     
+        <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
+    
         <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
     
         <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
     
-        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
-    
-        <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
+        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
     
         <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
-    
-        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -801,6 +923,8 @@ jsonContent:
 </div>
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
