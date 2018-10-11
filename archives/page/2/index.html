@@ -339,333 +339,36 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2018/10/11/phpmyadmin-getshell姿势/" >
+        <a class="abstract-title" href = "/2017/10/28/纪念我逝去的青春/" >
             
-                <span>phpmyadmin getshell姿势</span>
+                <span>纪念我逝去的青春</span>
         </a>
         <div class="abstract-content">
-            遇到好多题都是找到phpadmin后台是弱口令，可以登进去是root权限，但是有时总是不知道该怎么getshell，这里总结一下。
-0x00 常规方法最常见的应该就是select into outfile写入shell了，但是很有可能失败。
-phpMyadmin执行以下命令：SHOW VARIABLES LIKE &quot;secure_file_priv&quot;;如果值为文件夹目录，则只允许修改目录下的文件，如果值为NULL则为禁止。并且这个值是只读变量，只能通过配置文件修改。
-0x01 利用日志写shell检测全局变量(general_log、general_log file)...
+              &nbsp;&nbsp;当第五局开场Sliver&nbsp;Scrapes响起的时候，我已经想到了RNG赢下比赛去往鸟巢的场景，我还以为所有那五个满身热血的少年最后能成功饮血屠龙。  &nbsp;&nbsp;看到最后只剩两个人，小狗被追上高地letme最后冲过来两个人死在一起的时候，真的心中一凉，原来真的 青春不一定会圆满啊。
+  &nbsp;&nbsp;这个BO5，看到了小狗的vn，看到了letme的纳尔，看到了虎九万的飞机，看到了香锅两把MVP的表现，真的足够了，唯一遗憾的就是没能打败SKT晋级总决赛吧。
+  &nbsp;&nbsp;从S2到S7，五年了，初中时刚刚知晓英雄联盟，...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/11</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/10/28</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "PHP">PHP</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "随笔">随笔</a>
     
 </div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/10/04/WampServer多端口配置/" >
-            
-                <span>WampServer多端口配置</span>
-        </a>
-        <div class="abstract-content">
-            0x00 背景做项目有的文件必须放在网站根目录，于是需要配置多端口，找了网上几种方法都没成功，记下最后成功的办法。
-0x01  修改http.conf在监听端口处加Listen 端口号example:1234#Listen 12.34.56.78:80Listen 0.0.0.0:90Listen [::0]:90Listen 9090
-0x02 开启虚拟站点12# Virtual hosts #Include conf/extra/httpd-vhosts.conf
-去掉注释符  修改为12# Virtual hosts Include conf/extra/httpd-vhosts....
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "编程相关">编程相关</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/09/06/密码学/" >
-            
-                <span>密码学</span>
-        </a>
-        <div class="abstract-content">
-            密码学第一章密码学体制1.明文空间M（全体明文的集合）2.密文空间C（全体密文的集合）3.密钥空间K（全体密钥的集合）4.加密器或加密变换（算法）E5.揭秘其或解密变换（算法）D{M，C，K，E，D}称为一个密码体制
-分类按执行的操作方式不同可分为替换密码体制和换位密码体制按收发双方使用的密钥是否相同可分为对称密码和非对称密码分组密码和序列密码单项变换密码体制和双向变换密码体制确定型密码体制和概率密码体制
-攻击方式
-唯密文攻击：已知一些密文和加密算法
-已知明文攻击：已知一些密文和加密算法以及对应的明文
-选择明文攻击：已知加密算法，选择明文得到相应密文，也可选择被加密的明文推导密钥和算法
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/09/06</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/08/21/CTF中遇到的PHP漏洞总结/" >
-            
-                <span>CTF中遇到的PHP漏洞总结</span>
-        </a>
-        <div class="abstract-content">
-            md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。常见的payload有1234567891011QNKCDZO240610708s878926199as155964671as214587387as214587387a sha1(str)sha1('aaroZmOk')  sha1('aaK1STfY')sha1('aaO8zKZF')sha1('aa3OFF9m')
-&nbsp;&nb...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/08/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/08/18/Crypto中RSA题目总结/" >
-            
-                <span>Crypto中RSA题目总结</span>
-        </a>
-        <div class="abstract-content">
-            0x00 RSA算法简述
-密钥的产生① 选择两个满足需要的大素数p和q，计算n=p×q,φ(n)= (p-1)×(q-1)，其中φ(n)是n的欧拉函数值。② 选一个整数e,满足1&lt;e&lt;φ(n)，且gcd(φ(n),e)=1。通过d×e≡1modφ(n)，计算出d。③ 以{e,n}为公开密钥，{d,n}为秘密密钥。假设Alice是秘密消息的接收方，则只有Alice知道秘密密钥{d,n}，所有人都可以知道公开密钥{e,n}。
-加密如果想发送消息m给Alice，就选择Alice的公钥{e,n}，然后计算：$c≡m^e mod n$，然后把c发送给Alice。
-解密接收方Alice收...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/08/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/08/03/CTF中遇到的隐写术总结/" >
-            
-                <span>CTF中遇到的隐写术总结</span>
-        </a>
-        <div class="abstract-content">
-            图片隐写F5隐写
-安恒杯月赛
-
-题目提示浏览图片的时候能不能F5刷新呢？
-
-GitHub上的现成工具：git clone https://github.com/matthewgao/F5-steganography
-进入F5_steganography目录 java Extract 图片文件路径 -p password
-
-然后会出现一个flag.txt但是打开为乱码看文件头是zip 看后缀名解压拿flagflag{96efd0a2037d06f34199e921079778ee}
-xor隐写
-巅峰极客 loli
-
-hint:0xFF 想到用0xFF异或整个文件1234567891011#...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/08/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/07/15/SCTF-writeup/" >
-            
-                <span>SCTF writeup</span>
-        </a>
-        <div class="abstract-content">
-            misc签到侧信道初探根据提示用侧信道简单能量分析攻击 SPA 就可以从芯片的功耗曲线中可以读出十六进制的关键数据。因为不知道哪个是0哪个是1 然后试了一下
-SCTF{0110111010}
-神奇的Modbusmodbus协议
-按照网上一道类似题的分析，找TCP/IP协议502,102端口追踪TCP流
-SCTF{Easy_Mdbus}
-神秘的交易百度找到看雪的一篇分析文章logicdata拖进Logic里面,分析嗅探得到的波形图1230x33 0x01 s10x33 0x02 s20x33 0x03 s3
-读出s1, s2, s3
-
-SCTF{403110}
-肥宅快乐题用爱奇艺可以拖fl...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/07/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/07/01/ISCC-writeup/" >
-            
-                <span>ISCC writeup</span>
-        </a>
-        <div class="abstract-content">
-            ISCC WPMiscWhat is that？图片隐写给了一张这个图
-然后看手指指的地方应该就是flag  改高度
-IHDR后的前八个字节为宽度（第二排00 00 02 72），接下来八个为高度，将高度改为和宽度一样得到flag
-秘密电报给了一个txt内容是：秘密电报：知识就是力量 ABAAAABABBABAAAABABAAABAAABAAABAABAAAABAAAABA刚开始以为是摩斯密码结果没有分割符，直接复制百度，是培根密码然后在线解密得到flag
-凯撒十三世凯撒十三世在学会使用键盘后，向你扔了一串字符：“ebdgc697g95w3”，猜猜它吧。一看题目肯定有凯撒密码，移位13得...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/07/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/02/10/Mysql写入文件小技巧/" >
-            
-                <span>Mysql写入文件小技巧</span>
-        </a>
-        <div class="abstract-content">
-            1.用UNION写入&nbsp;&nbsp;http://url/?id=1 and 0 union select 1,2 ,’&lt;?php phpinfo(); ?&gt;’ into dumpfile ‘文件绝对路径’&nbsp;&nbsp;采用常规的union写入，可以看到前面的字段占位数肯定也会被写入，替换成null也是一样的结果，这个对于写shell没啥大碍，但是如果用来写bat,mof,vbs等文件就会出问题了，那么怎么去掉这个只写入我们需要的内容呢？采用hex编码就好了。&nbsp;&nbsp;将我们要写入的内容使用hex编码在分段写在每个字段位上，这样就可以只写入我们...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/10</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/02/02/Python高级特性/" >
-            
-                <span>Python高级特性</span>
-        </a>
-        <div class="abstract-content">
-            切片取list或者tuple的部分元素1&gt;&gt;&gt;L = ['Michael', 'Sarah', 'Tracy', 'Bob', 'Jack']
-取前3个元素，应该怎么做？笨办法：12&gt;&gt;&gt;[L[0], L[1], L[2]]['Michael', 'Sarah', 'Tracy']
-取前3个元素，用一行代码就可以完成切片：12&gt;&gt;&gt;L[0:3]['Michael', 'Sarah', 'Tracy']
-L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。如果第一个索引是0，还可以省略：1...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/02</span>
-            </div>
-            <!-- tags  -->
             
         </div>
     </article>
     
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/archives/">&#60; PREV</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
+    </nav>
     
 </main>
             <!-- profile -->

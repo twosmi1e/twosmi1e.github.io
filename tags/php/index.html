@@ -339,52 +339,20 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2018/10/04/WampServer多端口配置/" >
+        <a class="abstract-title" href = "/2018/10/11/phpmyadmin-getshell姿势/" >
             
-                <span>WampServer多端口配置</span>
+                <span>phpmyadmin getshell姿势</span>
         </a>
         <div class="abstract-content">
-            0x00 背景做项目有的文件必须放在网站根目录，于是需要配置多端口，找了网上几种方法都没成功，记下最后成功的办法。
-0x01  修改http.conf在监听端口处加Listen 端口号example:1234#Listen 12.34.56.78:80Listen 0.0.0.0:90Listen [::0]:90Listen 9090
-0x02 开启虚拟站点12# Virtual hosts #Include conf/extra/httpd-vhosts.conf
-去掉注释符  修改为12# Virtual hosts Include conf/extra/httpd-vhosts....
+            遇到好多题都是找到phpadmin后台是弱口令，可以登进去是root权限，但是有时总是不知道该怎么getshell，这里总结一下。
+0x00 常规方法最常见的应该就是select into outfile写入shell了，但是很有可能失败。
+phpMyadmin执行以下命令：SHOW VARIABLES LIKE &quot;secure_file_priv&quot;;如果值为文件夹目录，则只允许修改目录下的文件，如果值为NULL则为禁止。并且这个值是只读变量，只能通过配置文件修改。
+0x01 利用日志写shell检测全局变量(general_log、general_log file)...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "编程相关">编程相关</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/08/21/CTF中遇到的PHP漏洞总结/" >
-            
-                <span>CTF中遇到的PHP漏洞总结</span>
-        </a>
-        <div class="abstract-content">
-            md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。常见的payload有1234567891011QNKCDZO240610708s878926199as155964671as214587387as214587387a sha1(str)sha1('aaroZmOk')  sha1('aaK1STfY')sha1('aaO8zKZF')sha1('aa3OFF9m')
-&nbsp;&nb...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/08/21</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/11</span>
             </div>
             <!-- tags  -->
             
@@ -392,7 +360,7 @@
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "PHP">PHP</a>
     
 </div>
             
@@ -589,9 +557,20 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 10
+        Total : 11
         </div>
         <!-- search  -->
         
@@ -604,6 +583,11 @@
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/11</span><a class="archive-post-title" href= "/2018/10/11/phpmyadmin-getshell姿势/" >phpmyadmin getshell姿势</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -673,9 +657,11 @@
     
         <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
     
-        <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
-    
         <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
+    
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+    
+        <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
     
         <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
     
@@ -700,6 +686,58 @@ jsonContent:
     text: false
     raw: false
     content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "two_smi1e"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+     
+    </body>
+</html>
+
+
+e
     slug: false
     updated: false
     comments: false

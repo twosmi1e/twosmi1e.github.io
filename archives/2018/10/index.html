@@ -339,6 +339,40 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2018/10/11/phpmyadmin-getshell姿势/" >
+            
+                <span>phpmyadmin getshell姿势</span>
+        </a>
+        <div class="abstract-content">
+            遇到好多题都是找到phpadmin后台是弱口令，可以登进去是root权限，但是有时总是不知道该怎么getshell，这里总结一下。
+0x00 常规方法最常见的应该就是select into outfile写入shell了，但是很有可能失败。
+phpMyadmin执行以下命令：SHOW VARIABLES LIKE &quot;secure_file_priv&quot;;如果值为文件夹目录，则只允许修改目录下的文件，如果值为NULL则为禁止。并且这个值是只读变量，只能通过配置文件修改。
+0x01 利用日志写shell检测全局变量(general_log、general_log file)...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/11</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "PHP">PHP</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2018/10/04/WampServer多端口配置/" >
             
                 <span>WampServer多端口配置</span>
@@ -557,9 +591,20 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 10
+        Total : 11
         </div>
         <!-- search  -->
         
@@ -572,6 +617,11 @@
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/11</span><a class="archive-post-title" href= "/2018/10/11/phpmyadmin-getshell姿势/" >phpmyadmin getshell姿势</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -641,9 +691,11 @@
     
         <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
     
-        <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
-    
         <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
+    
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+    
+        <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
     
         <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
     
