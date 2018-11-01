@@ -354,6 +354,48 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2018/11/01/uint8-t-uint16-t-uint32-t-uint64-t数据类型详解/" >
+            
+                <span>uint8_t / uint16_t / uint32_t /uint64_t数据类型详解</span>
+        </a>
+        <div class="abstract-content">
+            在linux下的C语言编程中会出现题目中这些数据类型。初学的时候不知道是什么类型，只知道int，char这种。其实就是以前基本类型的别名，为了方便跨平台而使用。
+C语言基本数据类型在C语言中有6种基本数据类型：short、int、long、float、double、char
+
+数值类型
+
+
+整型：short、int、long
+浮点型：float、double
+
+
+字符类型：charuint*_t数据类型
+
+1、这些类型的来源：这些数据类型中都带有_t, _t 表示这些数据类型是通过typedef定义的，而不是新的数据类型。也就是说，它们其实是我们已知的类型的别名。
+2、使用这些类型的原因...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/01</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "编程相关">编程相关</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2018/10/11/phpmyadmin-getshell姿势/" >
             
                 <span>phpmyadmin getshell姿势</span>
@@ -476,38 +518,6 @@ phpMyadmin执行以下命令：SHOW VARIABLES LIKE &quot;secure_file_priv&quot;;
         <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/08/18/Crypto中RSA题目总结/" >
-            
-                <span>Crypto中RSA题目总结</span>
-        </a>
-        <div class="abstract-content">
-            0x00 RSA算法简述
-密钥的产生① 选择两个满足需要的大素数p和q，计算n=p×q,φ(n)= (p-1)×(q-1)，其中φ(n)是n的欧拉函数值。② 选一个整数e,满足1&lt;e&lt;φ(n)，且gcd(φ(n),e)=1。通过d×e≡1modφ(n)，计算出d。③ 以{e,n}为公开密钥，{d,n}为秘密密钥。假设Alice是秘密消息的接收方，则只有Alice知道秘密密钥{d,n}，所有人都可以知道公开密钥{e,n}。
-加密如果想发送消息m给Alice，就选择Alice的公钥{e,n}，然后计算：$c≡m^e mod n$，然后把c发送给Alice。
-解密接收方Alice收...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/08/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
     
 </div>
             
@@ -802,12 +812,9 @@ phpMyadmin执行以下命令：SHOW VARIABLES LIKE &quot;secure_file_priv&quot;;
     
     
     
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 11
+        Total : 12
         </div>
         <!-- search  -->
         
@@ -820,6 +827,11 @@ phpMyadmin执行以下命令：SHOW VARIABLES LIKE &quot;secure_file_priv&quot;;
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/01</span><a class="archive-post-title" href= "/2018/11/01/uint8-t-uint16-t-uint32-t-uint64-t数据类型详解/" >uint8_t / uint16_t / uint32_t /uint64_t数据类型详解</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -896,11 +908,11 @@ phpMyadmin执行以下命令：SHOW VARIABLES LIKE &quot;secure_file_priv&quot;;
     
         <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
     
-        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
-    
         <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
     
         <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Twosmi1e&#39;s Blog</title>
+    <title>uint8_t / uint16_t / uint32_t /uint64_t数据类型详解 · Twosmi1e&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -70,6 +70,8 @@
 
     <link rel="preload" href= /css/style.css?v=20180721 as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= /css/mobile.css?v=20180721 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -194,12 +196,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Twosmi1e&#39;s Blog.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">uint8_t / uint16_t / uint32_t /uint64_t数据类型详解</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>Twosmi1e's Blog.</a>
 </header>
@@ -213,24 +226,74 @@
 
 
 
+height:50vh;
+
 >
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            uint8_t / uint16_t / uint32_t /uint64_t数据类型详解
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "编程相关">编程相关</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count">387</span> / Reading time: <span class="post-count">2 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2018/11/01</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -331,59 +394,65 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/02/10/Mysql写入文件小技巧/" >
-            
-                <span>Mysql写入文件小技巧</span>
-        </a>
-        <div class="abstract-content">
-            1.用UNION写入&nbsp;&nbsp;http://url/?id=1 and 0 union select 1,2 ,’&lt;?php phpinfo(); ?&gt;’ into dumpfile ‘文件绝对路径’&nbsp;&nbsp;采用常规的union写入，可以看到前面的字段占位数肯定也会被写入，替换成null也是一样的结果，这个对于写shell没啥大碍，但是如果用来写bat,mof,vbs等文件就会出问题了，那么怎么去掉这个只写入我们需要的内容呢？采用hex编码就好了。&nbsp;&nbsp;将我们要写入的内容使用hex编码在分段写在每个字段位上，这样就可以只写入我们...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/10</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>在linux下的C语言编程中会出现题目中这些数据类型。初学的时候不知道是什么类型，只知道int，char这种。<br>其实就是以前基本类型的别名，为了方便跨平台而使用。</p>
+<h2 id="C语言基本数据类型"><a href="#C语言基本数据类型" class="headerlink" title="C语言基本数据类型"></a>C语言基本数据类型</h2><p>在C语言中有6种基本数据类型：short、int、long、float、double、char</p>
+<ol>
+<li>数值类型</li>
+</ol>
+<ul>
+<li>整型：short、int、long</li>
+<li>浮点型：float、double</li>
+</ul>
+<ol>
+<li>字符类型：char<h2 id="uint-t数据类型"><a href="#uint-t数据类型" class="headerlink" title="uint*_t数据类型"></a>uint*_t数据类型</h2></li>
+</ol>
+<p>1、这些类型的来源：这些数据类型中都带有_t, _t 表示这些数据类型是通过typedef定义的，而不是新的数据类型。也就是说，它们其实是我们已知的类型的别名。</p>
+<p>2、使用这些类型的原因：方便代码的维护。比如，在C中没有bool型，于是在一个软件中，一个程序员使用int，一个程序员使用short，会比较混乱。最好用一个typedef来定义一个统一的bool：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> <span class="keyword">bool</span>;</div></pre></td></tr></table></figure></p>
+<p>在涉及到跨平台时，不同的平台会有不同的字长，所以利用预编译和typedef可以方便的维护代码。</p>
+<h3 id="C99标准"><a href="#C99标准" class="headerlink" title="C99标准"></a>C99标准</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* There is some amount of overlap with &lt;sys/types.h&gt; as known by inet code */</span>  </div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __int8_t_defined  </span></div><div class="line"><span class="meta"># <span class="meta-keyword">define</span> __int8_t_defined  </span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">signed</span> <span class="keyword">char</span>             <span class="keyword">int8_t</span>;   </div><div class="line"><span class="keyword">typedef</span> <span class="keyword">short</span> <span class="keyword">int</span>               <span class="keyword">int16_t</span>;  </div><div class="line"><span class="keyword">typedef</span> <span class="keyword">int</span>                     <span class="keyword">int32_t</span>;  </div><div class="line"><span class="meta"># <span class="meta-keyword">if</span> __WORDSIZE == 64  </span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">int</span>                <span class="keyword">int64_t</span>;  </div><div class="line"><span class="meta"># <span class="meta-keyword">else</span>  </span></div><div class="line">__extension__  </div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span>           <span class="keyword">int64_t</span>;  </div><div class="line"><span class="meta"># <span class="meta-keyword">endif</span>  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span>  </span></div><div class="line">  </div><div class="line"><span class="comment">/* Unsigned.  */</span>  </div><div class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span>           <span class="keyword">uint8_t</span>;  </div><div class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="keyword">int</span>      <span class="keyword">uint16_t</span>;  </div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __uint32_t_defined  </span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span>            <span class="keyword">uint32_t</span>;  </div><div class="line"><span class="meta"># <span class="meta-keyword">define</span> __uint32_t_defined  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span>  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> __WORDSIZE == 64  </span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span>       <span class="keyword">uint64_t</span>;  </div><div class="line"><span class="meta">#<span class="meta-keyword">else</span>  </span></div><div class="line">__extension__  </div><div class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span>  <span class="keyword">uint64_t</span>;  </div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+<h3 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">uint16_t</span> %hu</div><div class="line"><span class="keyword">uint32_t</span> %u</div><div class="line"><span class="keyword">uint64_t</span> %llu</div></pre></td></tr></table></figure>
+
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/02/02/Python高级特性/" >
-            
-                <span>Python高级特性</span>
-        </a>
-        <div class="abstract-content">
-            切片取list或者tuple的部分元素1&gt;&gt;&gt;L = ['Michael', 'Sarah', 'Tracy', 'Bob', 'Jack']
-取前3个元素，应该怎么做？笨办法：12&gt;&gt;&gt;[L[0], L[1], L[2]]['Michael', 'Sarah', 'Tracy']
-取前3个元素，用一行代码就可以完成切片：12&gt;&gt;&gt;L[0:3]['Michael', 'Sarah', 'Tracy']
-L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。如果第一个索引是0，还可以省略：1...
+        <div class="license-wrapper">
+            <p>原文作者: <a href="https://www.twosmi1e.com">two_smi1e</a>
+            <p>原文链接: <a href="https://www.twosmi1e.com/2018/11/01/uint8-t-uint16-t-uint32-t-uint64-t数据类型详解/">https://www.twosmi1e.com/2018/11/01/uint8-t-uint16-t-uint32-t-uint64-t数据类型详解/</a>
+            <p>发表日期: <a href="https://www.twosmi1e.com/2018/11/01/uint8-t-uint16-t-uint32-t-uint64-t数据类型详解/">November 1st 2018, 9:48:13 pm</a>
+            <p>版权声明: 本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/02</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2018/10/11/phpmyadmin-getshell姿势/" title= phpmyadmin getshell姿势 >
+                    <div class="prevTitle">phpmyadmin getshell姿势</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!--PC和WAP自适应版-->
+
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -457,6 +526,24 @@ L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3�
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#C语言基本数据类型"><span class="toc-number">1.</span> <span class="toc-text">C语言基本数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#uint-t数据类型"><span class="toc-number">2.</span> <span class="toc-text">uint*_t数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#C99标准"><span class="toc-number">2.1.</span> <span class="toc-text">C99标准</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#格式化输出"><span class="toc-number">2.2.</span> <span class="toc-text">格式化输出</span></a></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -749,6 +836,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/miku.model.json"},"display":{"position":"right","width":120,"height":200},"mobile":{"show":false,"opacityOnHover":0.2},"log":false});</script></body>
 </html>

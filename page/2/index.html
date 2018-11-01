@@ -354,6 +354,38 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2018/08/18/Crypto中RSA题目总结/" >
+            
+                <span>Crypto中RSA题目总结</span>
+        </a>
+        <div class="abstract-content">
+            0x00 RSA算法简述
+密钥的产生① 选择两个满足需要的大素数p和q，计算n=p×q,φ(n)= (p-1)×(q-1)，其中φ(n)是n的欧拉函数值。② 选一个整数e,满足1&lt;e&lt;φ(n)，且gcd(φ(n),e)=1。通过d×e≡1modφ(n)，计算出d。③ 以{e,n}为公开密钥，{d,n}为秘密密钥。假设Alice是秘密消息的接收方，则只有Alice知道秘密密钥{d,n}，所有人都可以知道公开密钥{e,n}。
+加密如果想发送消息m给Alice，就选择Alice的公钥{e,n}，然后计算：$c≡m^e mod n$，然后把c发送给Alice。
+解密接收方Alice收...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/08/18</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2018/08/03/CTF中遇到的隐写术总结/" >
             
                 <span>CTF中遇到的隐写术总结</span>
@@ -481,32 +513,6 @@ IHDR后的前八个字节为宽度（第二排00 00 02 72），接下来八个�
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/10</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/02/02/Python高级特性/" >
-            
-                <span>Python高级特性</span>
-        </a>
-        <div class="abstract-content">
-            切片取list或者tuple的部分元素1&gt;&gt;&gt;L = ['Michael', 'Sarah', 'Tracy', 'Bob', 'Jack']
-取前3个元素，应该怎么做？笨办法：12&gt;&gt;&gt;[L[0], L[1], L[2]]['Michael', 'Sarah', 'Tracy']
-取前3个元素，用一行代码就可以完成切片：12&gt;&gt;&gt;L[0:3]['Michael', 'Sarah', 'Tracy']
-L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。如果第一个索引是0，还可以省略：1...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/02</span>
             </div>
             <!-- tags  -->
             
@@ -801,12 +807,9 @@ L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3�
     
     
     
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 11
+        Total : 12
         </div>
         <!-- search  -->
         
@@ -819,6 +822,11 @@ L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3�
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/01</span><a class="archive-post-title" href= "/2018/11/01/uint8-t-uint16-t-uint32-t-uint64-t数据类型详解/" >uint8_t / uint16_t / uint32_t /uint64_t数据类型详解</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -895,11 +903,11 @@ L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3�
     
         <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
     
-        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
-    
         <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
     
         <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

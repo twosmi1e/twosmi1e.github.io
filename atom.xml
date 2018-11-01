@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.twosmi1e.com/"/>
-  <updated>2018-10-11T08:07:57.863Z</updated>
+  <updated>2018-11-01T13:54:33.407Z</updated>
   <id>https://www.twosmi1e.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>uint8_t / uint16_t / uint32_t /uint64_t数据类型详解</title>
+    <link href="https://www.twosmi1e.com/2018/11/01/uint8-t-uint16-t-uint32-t-uint64-t%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%AF%A6%E8%A7%A3/"/>
+    <id>https://www.twosmi1e.com/2018/11/01/uint8-t-uint16-t-uint32-t-uint64-t数据类型详解/</id>
+    <published>2018-11-01T13:48:13.000Z</published>
+    <updated>2018-11-01T13:54:33.407Z</updated>
+    
+    <content type="html"><![CDATA[<p>在linux下的C语言编程中会出现题目中这些数据类型。初学的时候不知道是什么类型，只知道int，char这种。<br>其实就是以前基本类型的别名，为了方便跨平台而使用。</p><h2 id="C语言基本数据类型"><a href="#C语言基本数据类型" class="headerlink" title="C语言基本数据类型"></a>C语言基本数据类型</h2><p>在C语言中有6种基本数据类型：short、int、long、float、double、char</p><ol><li>数值类型</li></ol><ul><li>整型：short、int、long</li><li>浮点型：float、double</li></ul><ol><li>字符类型：char<h2 id="uint-t数据类型"><a href="#uint-t数据类型" class="headerlink" title="uint*_t数据类型"></a>uint*_t数据类型</h2></li></ol><p>1、这些类型的来源：这些数据类型中都带有_t, _t 表示这些数据类型是通过typedef定义的，而不是新的数据类型。也就是说，它们其实是我们已知的类型的别名。</p><p>2、使用这些类型的原因：方便代码的维护。比如，在C中没有bool型，于是在一个软件中，一个程序员使用int，一个程序员使用short，会比较混乱。最好用一个typedef来定义一个统一的bool：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> <span class="keyword">bool</span>;</div></pre></td></tr></table></figure></p><p>在涉及到跨平台时，不同的平台会有不同的字长，所以利用预编译和typedef可以方便的维护代码。</p><h3 id="C99标准"><a href="#C99标准" class="headerlink" title="C99标准"></a>C99标准</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* There is some amount of overlap with &lt;sys/types.h&gt; as known by inet code */</span>  </div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __int8_t_defined  </span></div><div class="line"><span class="meta"># <span class="meta-keyword">define</span> __int8_t_defined  </span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">signed</span> <span class="keyword">char</span>             <span class="keyword">int8_t</span>;   </div><div class="line"><span class="keyword">typedef</span> <span class="keyword">short</span> <span class="keyword">int</span>               <span class="keyword">int16_t</span>;  </div><div class="line"><span class="keyword">typedef</span> <span class="keyword">int</span>                     <span class="keyword">int32_t</span>;  </div><div class="line"><span class="meta"># <span class="meta-keyword">if</span> __WORDSIZE == 64  </span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">int</span>                <span class="keyword">int64_t</span>;  </div><div class="line"><span class="meta"># <span class="meta-keyword">else</span>  </span></div><div class="line">__extension__  </div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span>           <span class="keyword">int64_t</span>;  </div><div class="line"><span class="meta"># <span class="meta-keyword">endif</span>  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span>  </span></div><div class="line">  </div><div class="line"><span class="comment">/* Unsigned.  */</span>  </div><div class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span>           <span class="keyword">uint8_t</span>;  </div><div class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="keyword">int</span>      <span class="keyword">uint16_t</span>;  </div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __uint32_t_defined  </span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span>            <span class="keyword">uint32_t</span>;  </div><div class="line"><span class="meta"># <span class="meta-keyword">define</span> __uint32_t_defined  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span>  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> __WORDSIZE == 64  </span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span>       <span class="keyword">uint64_t</span>;  </div><div class="line"><span class="meta">#<span class="meta-keyword">else</span>  </span></div><div class="line">__extension__  </div><div class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span>  <span class="keyword">uint64_t</span>;  </div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure><h3 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">uint16_t</span> %hu</div><div class="line"><span class="keyword">uint32_t</span> %u</div><div class="line"><span class="keyword">uint64_t</span> %llu</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在linux下的C语言编程中会出现题目中这些数据类型。初学的时候不知道是什么类型，只知道int，char这种。&lt;br&gt;其实就是以前基本类型的别名，为了方便跨平台而使用。&lt;/p&gt;
+&lt;h2 id=&quot;C语言基本数据类型&quot;&gt;&lt;a href=&quot;#C语言基本数据类型&quot; class=&quot;h
+      
+    
+    </summary>
+    
+    
+      <category term="编程相关" scheme="https://www.twosmi1e.com/tags/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/"/>
+    
+  </entry>
   
   <entry>
     <title>phpmyadmin getshell姿势</title>

@@ -339,45 +339,38 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2018/02/10/Mysql写入文件小技巧/" >
+        <a class="abstract-title" href = "/2018/11/01/uint8-t-uint16-t-uint32-t-uint64-t数据类型详解/" >
             
-                <span>Mysql写入文件小技巧</span>
+                <span>uint8_t / uint16_t / uint32_t /uint64_t数据类型详解</span>
         </a>
         <div class="abstract-content">
-            1.用UNION写入&nbsp;&nbsp;http://url/?id=1 and 0 union select 1,2 ,’&lt;?php phpinfo(); ?&gt;’ into dumpfile ‘文件绝对路径’&nbsp;&nbsp;采用常规的union写入，可以看到前面的字段占位数肯定也会被写入，替换成null也是一样的结果，这个对于写shell没啥大碍，但是如果用来写bat,mof,vbs等文件就会出问题了，那么怎么去掉这个只写入我们需要的内容呢？采用hex编码就好了。&nbsp;&nbsp;将我们要写入的内容使用hex编码在分段写在每个字段位上，这样就可以只写入我们...
+            在linux下的C语言编程中会出现题目中这些数据类型。初学的时候不知道是什么类型，只知道int，char这种。其实就是以前基本类型的别名，为了方便跨平台而使用。
+C语言基本数据类型在C语言中有6种基本数据类型：short、int、long、float、double、char
+
+数值类型
+
+
+整型：short、int、long
+浮点型：float、double
+
+
+字符类型：charuint*_t数据类型
+
+1、这些类型的来源：这些数据类型中都带有_t, _t 表示这些数据类型是通过typedef定义的，而不是新的数据类型。也就是说，它们其实是我们已知的类型的别名。
+2、使用这些类型的原因...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/10</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/01</span>
             </div>
             <!-- tags  -->
             
-        </div>
-    </article>
+            <div class= abstract-tags >
     
+        <a class="post-tag" href="javascript:void(0);" data-tags = "编程相关">编程相关</a>
     
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/02/02/Python高级特性/" >
-            
-                <span>Python高级特性</span>
-        </a>
-        <div class="abstract-content">
-            切片取list或者tuple的部分元素1&gt;&gt;&gt;L = ['Michael', 'Sarah', 'Tracy', 'Bob', 'Jack']
-取前3个元素，应该怎么做？笨办法：12&gt;&gt;&gt;[L[0], L[1], L[2]]['Michael', 'Sarah', 'Tracy']
-取前3个元素，用一行代码就可以完成切片：12&gt;&gt;&gt;L[0:3]['Michael', 'Sarah', 'Tracy']
-L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。如果第一个索引是0，还可以省略：1...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/02</span>
-            </div>
-            <!-- tags  -->
+</div>
             
         </div>
     </article>
