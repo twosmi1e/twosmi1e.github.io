@@ -4,6 +4,25 @@
 
     
   <url>
+    <loc>https://www.twosmi1e.com/2018/11/07/CTF%E4%B8%AD%E7%9A%84%E5%B8%B8%E8%A7%81PHP%E6%BC%8F%E6%B4%9E/</loc>
+    <lastmod>2018-11-07T13:08:05.422Z</lastmod>
+    <data>
+        <display>
+        <title>CTF中的常见PHP漏洞</title>
+        <pubTime>2018-11-07T13:05:05.000Z</pubTime>
+        
+        <tag>ctf</tag>
+         
+        <tag>php</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://www.twosmi1e.com/2018/11/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>2018-11-07T11:31:37.436Z</lastmod>
     <data>
@@ -101,9 +120,9 @@
         <title>WampServer多端口配置</title>
         <pubTime>2018-10-03T16:49:05.000Z</pubTime>
         
-        <tag>编程相关</tag>
-         
         <tag>php</tag>
+         
+        <tag>编程相关</tag>
          
          
            

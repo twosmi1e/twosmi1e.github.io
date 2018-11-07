@@ -339,6 +339,39 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2018/11/07/CTF中的常见PHP漏洞/" >
+            
+                <span>CTF中的常见PHP漏洞</span>
+        </a>
+        <div class="abstract-content">
+            文章首发于先知社区，转载请注明来源。
+在做ctf题的时候经常会遇到一些PHP代码审计的题目，这里将我遇到过的常见漏洞做一个小结。
+md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。常见的payload有1234567891011QNKCDZO240610708s878926199as155964671as214587387as214587387a sha1(str)sha1('aaroZ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2018/11/07/计算机网络/" >
             
                 <span>计算机网络</span>
@@ -480,9 +513,9 @@ phpMyadmin执行以下命令：SHOW VARIABLES LIKE &quot;secure_file_priv&quot;;
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "编程相关">编程相关</a>
-    
         <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "编程相关">编程相关</a>
     
 </div>
             
@@ -667,29 +700,6 @@ IHDR后的前八个字节为宽度（第二排00 00 02 72），接下来八个�
         <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
     
 </div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/02/10/Mysql写入文件小技巧/" >
-            
-                <span>Mysql写入文件小技巧</span>
-        </a>
-        <div class="abstract-content">
-            1.用UNION写入&nbsp;&nbsp;http://url/?id=1 and 0 union select 1,2 ,’&lt;?php phpinfo(); ?&gt;’ into dumpfile ‘文件绝对路径’&nbsp;&nbsp;采用常规的union写入，可以看到前面的字段占位数肯定也会被写入，替换成null也是一样的结果，这个对于写shell没啥大碍，但是如果用来写bat,mof,vbs等文件就会出问题了，那么怎么去掉这个只写入我们需要的内容呢？采用hex编码就好了。&nbsp;&nbsp;将我们要写入的内容使用hex编码在分段写在每个字段位上，这样就可以只写入我们...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/10</span>
-            </div>
-            <!-- tags  -->
             
         </div>
     </article>
@@ -912,9 +922,30 @@ IHDR后的前八个字节为宽度（第二排00 00 02 72），接下来八个�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 12
+        Total : 13
         </div>
         <!-- search  -->
         
@@ -927,6 +958,11 @@ IHDR后的前八个字节为宽度（第二排00 00 02 72），接下来八个�
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href= "/2018/11/07/CTF中的常见PHP漏洞/" >CTF中的常见PHP漏洞</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1004,11 +1040,11 @@ IHDR后的前八个字节为宽度（第二排00 00 02 72），接下来八个�
     
         <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
     
+        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
+    
         <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
     
         <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
-    
-        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
     
         <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
     
