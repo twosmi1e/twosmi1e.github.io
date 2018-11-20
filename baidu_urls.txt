@@ -1,4 +1,4 @@
-https://www.twosmi1e.com/2019/11/20/linux网络编程基础/
+https://www.twosmi1e.com/2018/11/20/Linux网络编程基础/
 https://www.twosmi1e.com/2018/11/07/CTF中的常见PHP漏洞/
 https://www.twosmi1e.com/2018/11/07/计算机网络/
 https://www.twosmi1e.com/2018/11/01/uint8-t-uint16-t-uint32-t-uint64-t数据类型详解/
