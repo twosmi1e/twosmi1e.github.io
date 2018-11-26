@@ -267,7 +267,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count">927</span> / Reading time: <span class="post-count">4 min</span></span>
+                        <span>Word count: <span class="post-count">945</span> / Reading time: <span class="post-count">4 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -409,7 +409,7 @@ height:50vh;
 <h3 id="0x01-数据处理"><a href="#0x01-数据处理" class="headerlink" title="0x01 数据处理"></a>0x01 数据处理</h3><hr>
 <p>基本上来说，RSA的题目都是围绕着c，m，e，d，n，p，q这几个参数展开的，但是题目一般不会直接给这种样子的参数，而是通过别的方式给出，这里就需要我们使用一些工具或者自己手工将这些参数提取出来。</p>
 <p>pem文件：针对此类文件可以直接使用openssl提取，大概使用过的方式有：</p>
- <figure class="highlight plain"><figcaption><span>rsautl -encrypt -in FLAG -inkey public.pem -pubin -out flag.enc```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">```openssl   rsa -pubin -text -modulus -in warmup -in public.pem</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><figcaption><span>rsautl -encrypt -in FLAG -inkey public.pem -pubin -out flag.enc```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```openssl   rsa -pubin -text -modulus -in warmup -in public.pem</span><br></pre></td></tr></table></figure>
 <p>pcap文件：针对此类文件可以使用wireshark follow一下。这种问题一般都是写了一个交互的crypto系统，所以可能产生多轮交互。</p>
 <p>PPC模式：这种模式是上述pcap文件的交互版，会给一个端口进行一些crypto的交互，参数会在交互中给出。</p>
 <h3 id="0x02-模数分解"><a href="#0x02-模数分解" class="headerlink" title="0x02 模数分解"></a>0x02 模数分解</h3><p>  解决RSA题目最简单，最暴力，最好使的方法就是分解模数n。拿到题目先尝试能否将n分解成功，若成功得到p，q的取值，那么可求n的欧拉函数的值。</p>
@@ -423,7 +423,7 @@ height:50vh;
 <h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><blockquote>
 <p>安恒月赛<br>e = 3<br>n=0x52d483c27cd806550fbe0e37a61af2e7cf5e0efb723dfc81174c918a27627779b21fa3c851e9e94188eaee3d5cd6f752406a43fbecb53e80836ff1e185d3ccd7782ea846c2e91a7b0808986666e0bdadbfb7bdd65670a589a4d2478e9adcafe97c6ee23614bcb2ecc23580f4d2e3cc1ecfec25c50da4bc754dde6c8bfd8d1fc16956c74d8e9196046a01dc9f3024e11461c294f29d7421140732fedacac97b8fe50999117d27943c953f18c4ff4f8c258d839764078d4b6ef6e8591e0ff5563b31a39e6374d0d41c8c46921c25e5904a817ef8e39e5c9b71225a83269693e0b7e3218fc5e5a1e8412ba16e588b3d6ac536dce39fcdfce81eec79979ea6872793L<br>c=0x10652cdfaa6b63f6d7bd1109da08181e500e5643f5b240a9024bfa84d5f2cac9310562978347bb232d63e7289283871efab83d84ff5a7b64a94a79d34cfbd4ef121723ba1f663e514f83f6f01492b4e13e1bb4296d96ea5a353d3bf2edd2f449c03c4a3e995237985a596908adc741f32365</p>
 </blockquote>
-<h5 id="解密脚本"><a href="#解密脚本" class="headerlink" title="解密脚本"></a>解密脚本</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> gmpy2 </div><div class="line"></div><div class="line">e = <span class="number">3</span></div><div class="line">n = <span class="number">0x52d483c27cd806550fbe0e37a61af2e7cf5e0efb723dfc81174c918a27627779b21fa3c851e9e94188eaee3d5cd6f752406a43fbecb53e80836ff1e185d3ccd7782ea846c2e91a7b0808986666e0bdadbfb7bdd65670a589a4d2478e9adcafe97c6ee23614bcb2ecc23580f4d2e3cc1ecfec25c50da4bc754dde6c8bfd8d1fc16956c74d8e9196046a01dc9f3024e11461c294f29d7421140732fedacac97b8fe50999117d27943c953f18c4ff4f8c258d839764078d4b6ef6e8591e0ff5563b31a39e6374d0d41c8c46921c25e5904a817ef8e39e5c9b71225a83269693e0b7e3218fc5e5a1e8412ba16e588b3d6ac536dce39fcdfce81eec79979ea6872793L</span></div><div class="line">c = <span class="number">0x10652cdfaa6b63f6d7bd1109da08181e500e5643f5b240a9024bfa84d5f2cac9310562978347bb232d63e7289283871efab83d84ff5a7b64a94a79d34cfbd4ef121723ba1f663e514f83f6f01492b4e13e1bb4296d96ea5a353d3bf2edd2f449c03c4a3e995237985a596908adc741f32365</span></div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">'n='</span>, n</div><div class="line"><span class="keyword">print</span> <span class="string">'c='</span>, c</div><div class="line">i = <span class="number">0</span></div><div class="line">result = gmpy2.iroot(c, <span class="number">3</span>)</div><div class="line"><span class="keyword">print</span> result</div><div class="line"><span class="keyword">print</span> (<span class="string">'&#123;:x&#125;'</span>.format(result[<span class="number">0</span>])).decode(<span class="string">'hex'</span>)</div></pre></td></tr></table></figure>
+<h5 id="解密脚本"><a href="#解密脚本" class="headerlink" title="解密脚本"></a>解密脚本</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2 </span><br><span class="line"></span><br><span class="line">e = <span class="number">3</span></span><br><span class="line">n = <span class="number">0x52d483c27cd806550fbe0e37a61af2e7cf5e0efb723dfc81174c918a27627779b21fa3c851e9e94188eaee3d5cd6f752406a43fbecb53e80836ff1e185d3ccd7782ea846c2e91a7b0808986666e0bdadbfb7bdd65670a589a4d2478e9adcafe97c6ee23614bcb2ecc23580f4d2e3cc1ecfec25c50da4bc754dde6c8bfd8d1fc16956c74d8e9196046a01dc9f3024e11461c294f29d7421140732fedacac97b8fe50999117d27943c953f18c4ff4f8c258d839764078d4b6ef6e8591e0ff5563b31a39e6374d0d41c8c46921c25e5904a817ef8e39e5c9b71225a83269693e0b7e3218fc5e5a1e8412ba16e588b3d6ac536dce39fcdfce81eec79979ea6872793L</span></span><br><span class="line">c = <span class="number">0x10652cdfaa6b63f6d7bd1109da08181e500e5643f5b240a9024bfa84d5f2cac9310562978347bb232d63e7289283871efab83d84ff5a7b64a94a79d34cfbd4ef121723ba1f663e514f83f6f01492b4e13e1bb4296d96ea5a353d3bf2edd2f449c03c4a3e995237985a596908adc741f32365</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">'n='</span>, n</span><br><span class="line"><span class="keyword">print</span> <span class="string">'c='</span>, c</span><br><span class="line">i = <span class="number">0</span></span><br><span class="line">result = gmpy2.iroot(c, <span class="number">3</span>)</span><br><span class="line"><span class="keyword">print</span> result</span><br><span class="line"><span class="keyword">print</span> (<span class="string">'&#123;:x&#125;'</span>.format(result[<span class="number">0</span>])).decode(<span class="string">'hex'</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="/2018/08/18/Crypto中RSA题目总结/1533317716345.png" alt="Alt text"></p>
 <p><strong>gmpy2.iroot(m, n)函数</strong>：获取m开n次方的结果，返回一个tuple，第一个数为结果，第二个数为是否为整数的布尔值。</p>
 
@@ -743,9 +743,16 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 14
+        Total : 15
         </div>
         <!-- search  -->
         
@@ -758,6 +765,11 @@ top:50vh;
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/26</span><a class="archive-post-title" href= "/2018/11/26/安洵杯writewp/" >安洵杯writewp</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -847,9 +859,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
     
-        <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
-    
         <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
     
         <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
     

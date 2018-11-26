@@ -267,7 +267,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count">6,790</span> / Reading time: <span class="post-count">25 min</span></span>
+                        <span>Word count: <span class="post-count">6,986</span> / Reading time: <span class="post-count">26 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -411,7 +411,7 @@ height:50vh;
 <p>i为明文 j为明文<br>（1）加密变换为：Ek0，k1（ai）=aj，j=（ik1+ k0）（mod n），k0 ,k1∈Zn，gcd(k1，n)=1；<br>（2）解密变换为：Dk0，k1（aj）=ai，i= k1<sup>-1</sup>（j-k0）（mod n），k0 ,k1∈Zn，gcd(k1，n)=1，其中：k1-1是k1关于n的逆元，即k1-1×k1＝1 (mod n)<br>（3）k1，k0为该算法的密钥。当k0=0时，仿射密码技术退化为乘法密码技术；当k0=1时，仿射密码技术退化为移位替换密码技术。<br><img src="/2018/09/06/密码学/1526881719267.png" alt="Alt text"></p>
 <h4 id="维吉尼亚密码"><a href="#维吉尼亚密码" class="headerlink" title="维吉尼亚密码"></a>维吉尼亚密码</h4><p>（1）加密<br>明文M=(m1, m2, …, mn)被分为长度为d的字母段，如果消息的长度恰好不是d的倍数，则在末尾填充随机字符。加密函数为：<br>Ek(m1, m2, …, mn)=((m1+k1) mod 26，(m2+k2) mod 26，…， (mn+kn)) mod 26  = c1, c2, …, cn</p>
 <p>（2）解密<br>解密函数Dk和加密函数Ek一样，只是运算时使用的是减法而不是加法，假设密文C=(c1, c2, …, cn)，则解密函数为：<br>Dk(c1, c2, …, cn)=((c1-k1) mod 26，(c2-k2) mod 26，…，(cn-kn) mod 26 = m1, m2, …, mn<br><img src="/2018/09/06/密码学/1526882755939.png" alt="Alt text"><br>（3）密钥<br>对于Vigenere密码，密钥是一个字符序列k=( k1, k2, …, kn)，其中k1=k2= …= kn（它们是长度为d的英文字串），n为任意值。因此，在原理上存在无限多个密钥。在实际应用中，当密钥的长度比明文短时，密钥可以周期性地重复使用（即k=( k1, k2, …, kn)），直至完成明文中每个字母的加密。<br><img src="/2018/09/06/密码学/1526882774380.png" alt="Alt text"><br><img src="/2018/09/06/密码学/1526882789986.png" alt="Alt text"></p>
-<h2 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h2><h3 id="DES算法"><a href="#DES算法" class="headerlink" title="DES算法"></a>DES算法</h3><p>DES加密和解密是互逆的<br>DES的<strong>明文分组长度64 bits</strong>，密钥长度为64 bits，其中密钥有8 bits奇偶校验，因此<strong>有效密钥</strong>长度为<strong>56 bits</strong>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">st=&gt;start: 64位明文</div><div class="line">e=&gt;end: 64位密文</div><div class="line">op1=&gt;operation: 初始置换IP</div><div class="line">op2=&gt;operation: 16轮乘积变换</div><div class="line">op3=&gt;operation: 逆初始置换IP^-1</div><div class="line"></div><div class="line"></div><div class="line">st-&gt;op1-&gt;op2-&gt;op3-&gt;e</div></pre></td></tr></table></figure></p>
+<h2 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h2><h3 id="DES算法"><a href="#DES算法" class="headerlink" title="DES算法"></a>DES算法</h3><p>DES加密和解密是互逆的<br>DES的<strong>明文分组长度64 bits</strong>，密钥长度为64 bits，其中密钥有8 bits奇偶校验，因此<strong>有效密钥</strong>长度为<strong>56 bits</strong>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: 64位明文</span><br><span class="line">e=&gt;end: 64位密文</span><br><span class="line">op1=&gt;operation: 初始置换IP</span><br><span class="line">op2=&gt;operation: 16轮乘积变换</span><br><span class="line">op3=&gt;operation: 逆初始置换IP^-1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">st-&gt;op1-&gt;op2-&gt;op3-&gt;e</span><br></pre></td></tr></table></figure></p>
 <p><img src="/2018/09/06/密码学/1526902503466.png" alt="Alt text"></p>
 <h4 id="IP置换"><a href="#IP置换" class="headerlink" title="IP置换"></a>IP置换</h4><p>IP置换表：<br><img src="/2018/09/06/密码学/1527074953574.png" alt="Alt text"></p>
 <p><img src="/2018/09/06/密码学/1527074924697.png" alt="Alt text"></p>
@@ -469,7 +469,7 @@ height:50vh;
 <h2 id="第八章"><a href="#第八章" class="headerlink" title="第八章"></a>第八章</h2><h3 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h3><p>数字签名是在密码学理论的基础上发展起来的，基于公钥密码体制和私钥密码体制都可以获得数字签名，每种签名方案都与某一种或多种密码体制紧密联系在一起。目前<strong>主要集中在基于公钥密码体制</strong>的数字签名技术的研究。<strong>多以非对称密码体制</strong>为基础提出数字签名方案。</p>
 <h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>RSA算法中，一个私钥&#123;d, n&#125;只有唯一的&#123;e, n&#125;与之对应。&#123;e, n&#125;表示了秘密密钥&#123;d, n&#125;的持有者的身份。<br>让消息发布者Bob先计算s≡m<sup>d</sup> mod n，然后把s附于消息m之后即&#123;m, s&#125;一起放到公共媒介上。<br>可以通过计算m≡s<sup>e</sup> mod n成立与否，来判定消息是不是Bob发布的消息，以及消息是否被篡改。</p>
 <h4 id="分类-1"><a href="#分类-1" class="headerlink" title="分类"></a>分类</h4><p>按数字签名的所依赖的理论基础分，主要可以分为：<br>（1）基于<strong>大数分解难题</strong>的数字签名，如8.3.1节<strong>RSA</strong>数字签名方案；<br>（2）基于<strong>离散对数难题</strong>的数字签名，如8.3.2节介绍的<strong>ElGamal</strong>数字签名方案，8.4.1和8.4.3节介绍的美国的数字签名方案；<br>（3）基于<strong>椭圆曲线离散对数</strong>的数字签名，这类签名往往由基于离散对数的数字签名改进而来,如8.4.2节、8.4.4节和8.4.5节介绍的数字签名方案。<br>数字签名的用途分，可以把数字签名分为普通的数字签名和特殊用途的数字签名。</p>
-<h3 id="RSA数字签名算法"><a href="#RSA数字签名算法" class="headerlink" title="RSA数字签名算法"></a>RSA数字签名算法</h3><p>（1）参数产生<br>①选择两个满足需要的大素数p和q，计算n=p×q, φ(n)= (p-1)×(q-1)，其中φ(n)是n的欧拉函数值。<br>②选一个整数e, 满足1<e<φ(n)，且gcd(φ(n),e)=1。通过d×e≡1modφ(n)，计算出d。 ③以&#123;e,n&#125;为公开密钥，&#123;d,n&#125;为秘密密钥。="" （2）签名过程="" 假设签名者为bob，则只有bob知道秘密密钥&#123;d,="" n&#125;。="" 设需要签名的消息为m，则签名者bob通过如下计算对m签名：s≡md="" mod="" n="" （m,="" s）为对消息m的签名。bob在公共媒体上宣称他发布了消息m，同时把对m的签名s置于消息后用于公众验证签名。="" （3）验证过程。="" 公众在看到消息m和对其签名s后，利用bob的公开验证密钥&#123;e,="" n&#125;对消息进行验证。公众计算：m≡s<sup="">e mod n是否成立，若成立，则Bob的签名有效。公众认为消息m的确是Bob所发布，且消息内容没有被篡改。也就是说，公众可以容易鉴别发布人发布的消息的完整性。</e<φ(n)，且gcd(φ(n),e)=1。通过d×e≡1modφ(n)，计算出d。></p>
+<h3 id="RSA数字签名算法"><a href="#RSA数字签名算法" class="headerlink" title="RSA数字签名算法"></a>RSA数字签名算法</h3><p>（1）参数产生<br>①选择两个满足需要的大素数p和q，计算n=p×q, φ(n)= (p-1)×(q-1)，其中φ(n)是n的欧拉函数值。<br>②选一个整数e, 满足1&lt;e&lt;φ(n)，且gcd(φ(n),e)=1。通过d×e≡1modφ(n)，计算出d。<br>③以&#123;e,n&#125;为公开密钥，&#123;d,n&#125;为秘密密钥。<br>（2）签名过程<br>假设签名者为Bob，则只有Bob知道秘密密钥&#123;d, n&#125;。<br>设需要签名的消息为m，则签名者Bob通过如下计算对m签名：s≡md mod n<br>（m, s）为对消息m的签名。Bob在公共媒体上宣称他发布了消息m，同时把对m的签名s置于消息后用于公众验证签名。<br>（3）验证过程。<br>公众在看到消息m和对其签名s后，利用Bob的公开验证密钥&#123;e, n&#125;对消息进行验证。公众计算：m≡s<sup>e</sup> mod n是否成立，若成立，则Bob的签名有效。公众认为消息m的确是Bob所发布，且消息内容没有被篡改。也就是说，公众可以容易鉴别发布人发布的消息的完整性。</p>
 <ul>
 <li><strong>RSA加密算法:公钥加密，私钥解密</strong></li>
 <li><strong>RSA签名算法:私钥签名，公钥验证</strong><h3 id="改进算法"><a href="#改进算法" class="headerlink" title="改进算法"></a>改进算法</h3><strong>公开的安全哈希函数为H(·)</strong>，签名算法的参数选择如前所述，改进后签名方案的签名过程和验证过程如下：<br>（1）签名过程<br>设需要签名的消息为m，签名者Bob通过如下计算完成签名：s≡H(m)<sup>d</sup> mod n<br>（m, s）为对消息m的签名。</li>
@@ -490,7 +490,7 @@ height:50vh;
 </ul>
 <h3 id="DH密钥交换协议"><a href="#DH密钥交换协议" class="headerlink" title="DH密钥交换协议"></a>DH密钥交换协议</h3><p>Diffie-Hellman算法的<strong>惟一目的</strong>就是使两个用户能安全地交换密钥，从而得到一个共享的会话密钥（秘密密钥）。需要注意的是<strong>该算法本身不能用于加、解密</strong>。</p>
 <p><strong>算法的安全性是基于Zp上的离散对数问题。</strong></p>
-<h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><p>（1）用户A选取一个大的随机数r<sub>A</sub>(0&lt; r<sub>A</sub> <p-2 )，计算𝑆<sub="">𝐴=𝑎<sup>𝑟<sub>𝐴</sub> </sup> (𝑚𝑜𝑑𝑝) ，并且把 𝑆<sub>𝐴</sub>发送给用户B。<br>（2）用户B选取一个随机数 r<sub>B</sub>(0&lt; r<sub>B </sub><p-2 )="" ，计算𝑆<sub="">B=𝑎<sup>𝑟<sub>B</sub> </sup> (𝑚𝑜𝑑𝑝)  。并且把 𝑆<sub>B</sub>发送给用户A。<br>（3）用户A计算 <strong>K=S<sub>B</sub><sup>r<sub>A</sub></sup> (𝑚𝑜𝑑𝑝)</strong>，用户B计算<strong>K’=S<sub>A</sub><sup>r<sub>B</sub></sup> (𝑚𝑜𝑑𝑝)</strong><br><strong>K=a<sup>r<sub>A</sub>r<sub>B</sub></sup> (𝑚𝑜𝑑𝑝)</strong> </p-2></p-2></p>
+<h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><p>（1）用户A选取一个大的随机数r<sub>A</sub>(0&lt; r<sub>A</sub> &lt;p-2 )，计算𝑆<sub>𝐴</sub>=𝑎<sup>𝑟<sub>𝐴</sub> </sup> (𝑚𝑜𝑑𝑝) ，并且把 𝑆<sub>𝐴</sub>发送给用户B。<br>（2）用户B选取一个随机数 r<sub>B</sub>(0&lt; r<sub>B </sub>&lt;p-2 ) ，计算𝑆<sub>B</sub>=𝑎<sup>𝑟<sub>B</sub> </sup> (𝑚𝑜𝑑𝑝)  。并且把 𝑆<sub>B</sub>发送给用户A。<br>（3）用户A计算 <strong>K=S<sub>B</sub><sup>r<sub>A</sub></sup> (𝑚𝑜𝑑𝑝)</strong>，用户B计算<strong>K’=S<sub>A</sub><sup>r<sub>B</sub></sup> (𝑚𝑜𝑑𝑝)</strong><br><strong>K=a<sup>r<sub>A</sub>r<sub>B</sub></sup> (𝑚𝑜𝑑𝑝)</strong> </p>
 <p><strong>计算时使用欧拉定理和模重复平方剩余定理简化计算</strong></p>
 <h4 id="中间人攻击"><a href="#中间人攻击" class="headerlink" title="中间人攻击"></a>中间人攻击</h4><p><img src="/2018/09/06/密码学/1526975077622.png" alt="Alt text"></p>
 
@@ -810,9 +810,16 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 14
+        Total : 15
         </div>
         <!-- search  -->
         
@@ -825,6 +832,11 @@ top:50vh;
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/26</span><a class="archive-post-title" href= "/2018/11/26/安洵杯writewp/" >安洵杯writewp</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -914,9 +926,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
     
-        <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
-    
         <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
     
         <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
     
