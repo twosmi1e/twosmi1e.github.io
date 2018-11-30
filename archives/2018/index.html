@@ -339,6 +339,47 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2018/11/30/汇编基础/" >
+            
+                <span>汇编基础</span>
+        </a>
+        <div class="abstract-content">
+            IA32处理器体系结构微机的基本结构
+指令执行周期当指令使用了内存操作数时还需要两个额外的步骤：取操作数和存储输出操作数。机器指令的执行;
+
+取指令
+解码
+执行操作模式保护模式：处理器的基本模式。虚拟8086模式：多任务环境中执行是地址模式的软件。实地址模式：用于运行那些需要直接访问系统内存和硬件设备的MS-DOS程序。系统管理模式：实现电源管理和系统安全等功能的机智。基本执行环境基本寄存器寄存器中数据在内存中存放数据遵循高高低低的原则
+
+8个通用寄存器
+
+EAX EBX ECX EDXEBP ESP ESI EDI
+
+6个段寄存器
+一个处理器状态标志寄存器(EFLAGS)和一个指令指针...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/30</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2018/11/26/安洵杯writewp/" >
             
                 <span>安洵杯writewp</span>
@@ -659,47 +700,6 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/08/03/CTF中遇到的隐写术总结/" >
-            
-                <span>CTF中遇到的隐写术总结</span>
-        </a>
-        <div class="abstract-content">
-            图片隐写F5隐写
-安恒杯月赛
-
-题目提示浏览图片的时候能不能F5刷新呢？
-
-GitHub上的现成工具：git clone https://github.com/matthewgao/F5-steganography
-进入F5_steganography目录 java Extract 图片文件路径 -p password
-
-然后会出现一个flag.txt但是打开为乱码看文件头是zip 看后缀名解压拿flagflag{96efd0a2037d06f34199e921079778ee}
-xor隐写
-巅峰极客 loli
-
-hint:0xFF 想到用0xFF异或整个文件1234567891011#...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/08/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
@@ -963,9 +963,18 @@ hint:0xFF 想到用0xFF异或整个文件1234567891011#...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 15
+        Total : 16
         </div>
         <!-- search  -->
         
@@ -978,6 +987,11 @@ hint:0xFF 想到用0xFF异或整个文件1234567891011#...
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/30</span><a class="archive-post-title" href= "/2018/11/30/汇编基础/" >汇编基础</a>
+        </li>
     
     
         <li class="archive-post-item">
