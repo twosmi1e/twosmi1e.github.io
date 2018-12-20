@@ -354,6 +354,52 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2018/11/07/计算机网络/" >
+            
+                <span>计算机网络</span>
+        </a>
+        <div class="abstract-content">
+            概述因特网发展的三个阶段
+从单个网络APRANET向互联网发展
+建成了三级结构的因特网(主干网，地区网，校园网)
+形成了多层次ISP(Internet Service Provider)的结构的因特网
+
+传统三网电信网、有线电视网、计算机网络
+因特网的组成
+边缘部分(用户直接使用的)
+客户-服务器方式(Client/Server)：客户是服务的请求方，服务器是服务的提供方
+对等方式(Peer-to-Peer)：不区分
+
+
+核心部分(为边缘部分提供服务的)
+电路交换：在通话时间内，两个用户始终占用端到端的通信资源，线路传输效率很低。
+分组交换：采用存储转发技术。
+基于标记
+无连接
+由节点交...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2018/11/01/uint8-t-uint16-t-uint32-t-uint64-t数据类型详解/" >
             
                 <span>uint8_t / uint16_t / uint32_t /uint64_t数据类型详解</span>
@@ -491,38 +537,6 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/08/18/Crypto中RSA题目总结/" >
-            
-                <span>Crypto中RSA题目总结</span>
-        </a>
-        <div class="abstract-content">
-            0x00 RSA算法简述
-密钥的产生① 选择两个满足需要的大素数p和q，计算n=p×q,φ(n)= (p-1)×(q-1)，其中φ(n)是n的欧拉函数值。② 选一个整数e,满足1&lt;e&lt;φ(n)，且gcd(φ(n),e)=1。通过d×e≡1modφ(n)，计算出d。③ 以{e,n}为公开密钥，{d,n}为秘密密钥。假设Alice是秘密消息的接收方，则只有Alice知道秘密密钥{d,n}，所有人都可以知道公开密钥{e,n}。
-加密如果想发送消息m给Alice，就选择Alice的公钥{e,n}，然后计算：$c≡m^e mod n$，然后把c发送给Alice。
-解密接收方Alice收...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/08/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
     
 </div>
             
@@ -891,9 +905,20 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 16
+        Total : 17
         </div>
         <!-- search  -->
         
@@ -906,6 +931,11 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/20</span><a class="archive-post-title" href= "/2018/12/20/PHP反序列化/" >PHP反序列化</a>
+        </li>
     
     
         <li class="archive-post-item">
