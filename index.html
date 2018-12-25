@@ -359,7 +359,10 @@ height:50vh;
                 <span>PHP反序列化</span>
         </a>
         <div class="abstract-content">
-            
+            从浅至深来记录一下PHP反序列化的知识。本文首发于先知社区,转载请注明来源
+0x00 PHP序列化是什么两个函数12serialize()    	//将一个对象转换成一个字符串unserialize()	//将字符串还原成一个对象
+通过序列化与反序列化我们可以很方便的在PHP中进行对象的传递。本质上反序列化是没有危害的。但是如果用户对数据可控那就可以利用反序列化构造payload攻击。
+示例序列化123456789101112&lt;?php 	class test	&#123;		private $flag = "flag&#123;233&#125;";		public $a = ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -367,6 +370,12 @@ height:50vh;
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/12/20</span>
             </div>
             <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
+    
+</div>
             
         </div>
     </article>
