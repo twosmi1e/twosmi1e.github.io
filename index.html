@@ -354,6 +354,40 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/16/DC-1渗透报告/" >
+            
+                <span>DC-1渗透报告</span>
+        </a>
+        <div class="abstract-content">
+            前言做了一下DC1到DC6的靶机渗透，简单记录一下过程
+知识点CVE-2018-7600 Drupal核心远程代码执行漏洞drupal配置文件和重置管理员密码suid提权
+信息收集Nmap扫一下端口发现80端口是drupal 7 服务111 端口是 rpcbind服务
+web渗透用msf开始搜一下drupal漏洞选一个漏洞设置远程IP地址开始攻击反弹回一个msf的shell  目录下有flag1在/sites/default目录下有数据库配置文件 有flag2和数据库用户名密码登入数据库  有管理员用户名及密码hash这里有两种方法第一种使用hashcat暴力破解，使用网上的常用密码字典...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/16</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "靶机渗透">靶机渗透</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >
             
                 <span>CVE-2019-10392：Jenkins Git client插件RCE复现</span>
@@ -479,42 +513,6 @@ EAX EBX ECX EDXEBP ESP ESI EDI
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/11/20/Linux网络编程基础/" >
-            
-                <span>Linux网络编程基础</span>
-        </a>
-        <div class="abstract-content">
-            套接字编程 套接字是一种网络API，用来开发网络程序。套接字接口提供一种进程间通信的方法，使得在相同或不同的主机上的进程能以相同的规范进行双向信息传送。
-套接字类型常用协议：
-
-INET ipv4
-INET6 ipv6类型：
-SOCK_STREAM ：提供面向连接、可靠的数据传输服务。TCP协议支持。
-SOCK_DGRAM ：提供面向无连接的服务。UDP协议支持。
-SOCK_RAW：原始套接字，常用于检测新的协议。套接字地址结构套接字地址结构定义在头文件&lt;netinet/in.h&gt;中IPv412345678910111213141516typedef uint32_t in_...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
     
 </div>
             
@@ -911,9 +909,24 @@ SOCK_RAW：原始套接字，常用于检测新的协议。套接字地址结构
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 18
+        Total : 19
         </div>
         <!-- search  -->
         
@@ -926,6 +939,11 @@ SOCK_RAW：原始套接字，常用于检测新的协议。套接字地址结构
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1045,6 +1063,8 @@ SOCK_RAW：原始套接字，常用于检测新的协议。套接字地址结构
         <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
     
         <span class="sidebar-tag-name" data-tags="漏洞复现"><span class="iconfont-archer">&#xe606;</span>漏洞复现</span>
+    
+        <span class="sidebar-tag-name" data-tags="靶机渗透"><span class="iconfont-archer">&#xe606;</span>靶机渗透</span>
     
         <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
     
