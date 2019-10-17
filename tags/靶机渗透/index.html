@@ -339,6 +339,47 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/17/DC-2渗透报告/" >
+            
+                <span>DC-2渗透报告</span>
+        </a>
+        <div class="abstract-content">
+            信息收集浏览一下就有flag1nmap扫描一下端口信息收集
+
+Wordpress 4.7.10
+Apache/2.4.10
+
+用cewl生成密码
+密码爆破用WPscan(扫描WordPress的工具)发现用户，和可利用的漏洞用之前生成的字典爆破一下
+jerry – adipiscing
+tom – parturient登入后台flag2就在后台
+提权然后ssh连上去jerry的用户用不了，用Tom的登上去发现有rbash限制用SUID提权参考链接：https://www.anquanke.com/post/id/86979https://xz.aliyun.com/t/2767
+提权后就...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "靶机渗透">靶机渗透</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/10/16/DC-1渗透报告/" >
             
                 <span>DC-1渗透报告</span>
@@ -678,9 +719,12 @@ web渗透用msf开始搜一下drupal漏洞选一个漏洞设置远程IP地址开
     
     
     
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 19
+        Total : 20
         </div>
         <!-- search  -->
         
@@ -696,12 +740,17 @@ web渗透用msf开始搜一下drupal漏洞选一个漏洞设置远程IP地址开
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
+            <span class="archive-post-date">10/17</span><a class="archive-post-title" href= "/2019/10/17/DC-2渗透报告/" >DC-2渗透报告</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
         </li>
     
     
@@ -812,15 +861,15 @@ web渗透用msf开始搜一下drupal漏洞选一个漏洞设置远程IP地址开
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
-    
-        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
-    
-        <span class="sidebar-tag-name" data-tags="漏洞复现"><span class="iconfont-archer">&#xe606;</span>漏洞复现</span>
-    
         <span class="sidebar-tag-name" data-tags="靶机渗透"><span class="iconfont-archer">&#xe606;</span>靶机渗透</span>
     
         <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
+    
+        <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞复现"><span class="iconfont-archer">&#xe606;</span>漏洞复现</span>
+    
+        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
     
         <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
     

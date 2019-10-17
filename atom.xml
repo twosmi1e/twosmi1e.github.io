@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.twosmi1e.com/"/>
-  <updated>2019-10-16T06:20:23.491Z</updated>
+  <updated>2019-10-17T02:27:54.937Z</updated>
   <id>https://www.twosmi1e.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DC-2渗透报告</title>
+    <link href="https://www.twosmi1e.com/2019/10/17/DC-2%E6%B8%97%E9%80%8F%E6%8A%A5%E5%91%8A/"/>
+    <id>https://www.twosmi1e.com/2019/10/17/DC-2渗透报告/</id>
+    <published>2019-10-17T10:27:58.000Z</published>
+    <updated>2019-10-17T02:27:54.937Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>浏览一下就有flag1<br><img src="/2019/10/17/DC-2渗透报告/1562317665072.png" alt="Alt text"><br>nmap扫描一下端口信息收集<br><img src="/2019/10/17/DC-2渗透报告/1562317886315.png" alt="Alt text"></p><ul><li>Wordpress 4.7.10</li><li>Apache/2.4.10</li></ul><p>用cewl生成密码<br><img src="/2019/10/17/DC-2渗透报告/1562318263941.png" alt="Alt text"></p><h2 id="密码爆破"><a href="#密码爆破" class="headerlink" title="密码爆破"></a>密码爆破</h2><p>用WPscan(扫描WordPress的工具)<br><img src="/2019/10/17/DC-2渗透报告/1562318778841.png" alt="Alt text"><br>发现用户，和可利用的漏洞<br><img src="/2019/10/17/DC-2渗透报告/1562318824473.png" alt="Alt text"><br><img src="/2019/10/17/DC-2渗透报告/1562318837363.png" alt="Alt text"><br>用之前生成的字典爆破一下</p><p><img src="/2019/10/17/DC-2渗透报告/1562318980682.png" alt="Alt text"><br>jerry – adipiscing</p><p>tom – parturient<br>登入后台<br><img src="/2019/10/17/DC-2渗透报告/1562319472770.png" alt="Alt text"><br>flag2就在后台<br><img src="/2019/10/17/DC-2渗透报告/1562566563874.png" alt="Alt text"></p><h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><p>然后ssh连上去<br>jerry的用户用不了，用Tom的登上去<br><img src="/2019/10/17/DC-2渗透报告/1562567231821.png" alt="Alt text"><br>发现有rbash限制<br><img src="/2019/10/17/DC-2渗透报告/1562567316586.png" alt="Alt text"><br>用SUID提权<br>参考链接：<br><a href="https://www.anquanke.com/post/id/86979" target="_blank" rel="external">https://www.anquanke.com/post/id/86979</a><br><a href="https://xz.aliyun.com/t/2767" target="_blank" rel="external">https://xz.aliyun.com/t/2767</a></p><p><img src="/2019/10/17/DC-2渗透报告/1562567721950.png" alt="Alt text"><br>提权后就可以看flag3了<br>切换成jerry用户<br><img src="/2019/10/17/DC-2渗透报告/1562567815309.png" alt="Alt text"><br>再提一次权<br>参考链接：<br><a href="http://blog.securelayer7.net/abusing-sudo-advance-linux-privilege-escalation/" target="_blank" rel="external">http://blog.securelayer7.net/abusing-sudo-advance-linux-privilege-escalation/</a><br>然后就有最后的flag了<br><img src="/2019/10/17/DC-2渗透报告/1562568026143.png" alt="Alt text"><br>完成</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;信息收集&quot;&gt;&lt;a href=&quot;#信息收集&quot; class=&quot;headerlink&quot; title=&quot;信息收集&quot;&gt;&lt;/a&gt;信息收集&lt;/h2&gt;&lt;p&gt;浏览一下就有flag1&lt;br&gt;&lt;img src=&quot;/2019/10/17/DC-2渗透报告/1562317665072.pn
+      
+    
+    </summary>
+    
+    
+      <category term="靶机渗透" scheme="https://www.twosmi1e.com/tags/%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F/"/>
+    
+      <category term="wp" scheme="https://www.twosmi1e.com/tags/wp/"/>
+    
+  </entry>
   
   <entry>
     <title>DC-1渗透报告</title>
@@ -371,9 +396,9 @@
     </summary>
     
     
-      <category term="ctf" scheme="https://www.twosmi1e.com/tags/ctf/"/>
-    
       <category term="wp" scheme="https://www.twosmi1e.com/tags/wp/"/>
+    
+      <category term="ctf" scheme="https://www.twosmi1e.com/tags/ctf/"/>
     
   </entry>
   
@@ -396,9 +421,9 @@
     </summary>
     
     
-      <category term="ctf" scheme="https://www.twosmi1e.com/tags/ctf/"/>
-    
       <category term="wp" scheme="https://www.twosmi1e.com/tags/wp/"/>
+    
+      <category term="ctf" scheme="https://www.twosmi1e.com/tags/ctf/"/>
     
   </entry>
   

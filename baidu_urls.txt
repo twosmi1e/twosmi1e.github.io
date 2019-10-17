@@ -1,3 +1,4 @@
+https://www.twosmi1e.com/2019/10/17/DC-2渗透报告/
 https://www.twosmi1e.com/2019/10/16/DC-1渗透报告/
 https://www.twosmi1e.com/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/
 https://www.twosmi1e.com/2018/12/20/PHP反序列化/

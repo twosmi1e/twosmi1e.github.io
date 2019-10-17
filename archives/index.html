@@ -339,6 +339,47 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/17/DC-2渗透报告/" >
+            
+                <span>DC-2渗透报告</span>
+        </a>
+        <div class="abstract-content">
+            信息收集浏览一下就有flag1nmap扫描一下端口信息收集
+
+Wordpress 4.7.10
+Apache/2.4.10
+
+用cewl生成密码
+密码爆破用WPscan(扫描WordPress的工具)发现用户，和可利用的漏洞用之前生成的字典爆破一下
+jerry – adipiscing
+tom – parturient登入后台flag2就在后台
+提权然后ssh连上去jerry的用户用不了，用Tom的登上去发现有rbash限制用SUID提权参考链接：https://www.anquanke.com/post/id/86979https://xz.aliyun.com/t/2767
+提权后就...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "靶机渗透">靶机渗透</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/10/16/DC-1渗透报告/" >
             
                 <span>DC-1渗透报告</span>
@@ -661,45 +702,6 @@ C语言基本数据类型在C语言中有6种基本数据类型：short、int、
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/10/11/phpmyadmin-getshell姿势/" >
-            
-                <span>phpmyadmin getshell姿势</span>
-        </a>
-        <div class="abstract-content">
-            本文首发于先知社区,转载请注明来源
-phpmyadmin常被用来管理mysql数据库。在ctf比赛和实战中都可能会遇到phpmyadmin弱口令或者空密码的情况，这个时候就需要从phpmyadmin来getshell了，这里总结一下getshell的姿势。
-0x00 前言此次是在虚拟机中用wampserver搭了一个实验环境，然后在本机上执行操作。
-
-靶机：Windows7 x64    IP 192.168.129.129
-攻击机： Windows10 x64
-PHP版本：5.6
-Mysql版本：5.7
-Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
-
-0x0...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/11</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
@@ -1015,9 +1017,12 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
     
     
     
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 19
+        Total : 20
         </div>
         <!-- search  -->
         
@@ -1033,12 +1038,17 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
+            <span class="archive-post-date">10/17</span><a class="archive-post-title" href= "/2019/10/17/DC-2渗透报告/" >DC-2渗透报告</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
         </li>
     
     
@@ -1149,15 +1159,15 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
-    
-        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
-    
-        <span class="sidebar-tag-name" data-tags="漏洞复现"><span class="iconfont-archer">&#xe606;</span>漏洞复现</span>
-    
         <span class="sidebar-tag-name" data-tags="靶机渗透"><span class="iconfont-archer">&#xe606;</span>靶机渗透</span>
     
         <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
+    
+        <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞复现"><span class="iconfont-archer">&#xe606;</span>漏洞复现</span>
+    
+        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
     
         <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
     

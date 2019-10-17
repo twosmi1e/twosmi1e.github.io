@@ -4,6 +4,25 @@
 
     
   <url>
+    <loc>https://www.twosmi1e.com/2019/10/17/DC-2%E6%B8%97%E9%80%8F%E6%8A%A5%E5%91%8A/</loc>
+    <lastmod>2019-10-17T02:27:54.937Z</lastmod>
+    <data>
+        <display>
+        <title>DC-2渗透报告</title>
+        <pubTime>2019-10-17T10:27:58.000Z</pubTime>
+        
+        <tag>靶机渗透</tag>
+         
+        <tag>wp</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://www.twosmi1e.com/2019/10/16/DC-1%E6%B8%97%E9%80%8F%E6%8A%A5%E5%91%8A/</loc>
     <lastmod>2019-10-16T06:20:23.491Z</lastmod>
     <data>
@@ -258,9 +277,9 @@
         <title>SCTF writeup</title>
         <pubTime>2018-07-14T17:25:28.000Z</pubTime>
         
-        <tag>ctf</tag>
-         
         <tag>wp</tag>
+         
+        <tag>ctf</tag>
          
          
            
@@ -277,9 +296,9 @@
         <title>ISCC writeup</title>
         <pubTime>2018-07-01T09:45:32.000Z</pubTime>
         
-        <tag>ctf</tag>
-         
         <tag>wp</tag>
+         
+        <tag>ctf</tag>
          
          
            

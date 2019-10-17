@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Twosmi1e&#39;s Blog</title>
+    <title>DC-2渗透报告 · Twosmi1e&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -70,6 +70,8 @@
 
     <link rel="preload" href= /css/style.css?v=20180721 as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= /css/mobile.css?v=20180721 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -194,12 +196,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Twosmi1e&#39;s Blog.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">DC-2渗透报告</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>Twosmi1e's Blog.</a>
 </header>
@@ -213,24 +226,76 @@
 
 
 
+height:50vh;
+
 >
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            DC-2渗透报告
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "靶机渗透">靶机渗透</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count">177</span> / Reading time: <span class="post-count">1 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/10/17</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -331,260 +396,59 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/11/26/安洵杯writewp/" >
-            
-                <span>安洵杯writewp</span>
-        </a>
-        <div class="abstract-content">
-            MISCCRC第一个压缩包，提示CRC爆破结果是纯数字，直接爆破里面三个文件，看了一下大概是要先解压password然后运行.py计算flag.zip的解压密码。然后crc32碰撞，直接爆破password.txt的内容123456import zlibfor i in xrange(0,100000000):	buf = str(i).rjust(8,'0')	#print buf    if zlib.crc32(buf) &amp; 0xffffffff == 0x0cd95dac:		print '',buf
-然后再用.py跑12345678910import base64imp...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/26</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/11/07/CTF中的常见PHP漏洞/" >
-            
-                <span>CTF中的常见PHP漏洞</span>
-        </a>
-        <div class="abstract-content">
-            文章首发于先知社区，转载请注明来源。
-在做ctf题的时候经常会遇到一些PHP代码审计的题目，这里将我遇到过的常见漏洞做一个小结。
-md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。常见的payload有1234567891011QNKCDZO240610708s878926199as155964671as214587387as214587387a sha1(str)sha1('aaroZ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/10/11/phpmyadmin-getshell姿势/" >
-            
-                <span>phpmyadmin getshell姿势</span>
-        </a>
-        <div class="abstract-content">
-            本文首发于先知社区,转载请注明来源
-phpmyadmin常被用来管理mysql数据库。在ctf比赛和实战中都可能会遇到phpmyadmin弱口令或者空密码的情况，这个时候就需要从phpmyadmin来getshell了，这里总结一下getshell的姿势。
-0x00 前言此次是在虚拟机中用wampserver搭了一个实验环境，然后在本机上执行操作。
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>浏览一下就有flag1<br><img src="/2019/10/17/DC-2渗透报告/1562317665072.png" alt="Alt text"><br>nmap扫描一下端口信息收集<br><img src="/2019/10/17/DC-2渗透报告/1562317886315.png" alt="Alt text"></p>
+<ul>
+<li>Wordpress 4.7.10</li>
+<li>Apache/2.4.10</li>
+</ul>
+<p>用cewl生成密码<br><img src="/2019/10/17/DC-2渗透报告/1562318263941.png" alt="Alt text"></p>
+<h2 id="密码爆破"><a href="#密码爆破" class="headerlink" title="密码爆破"></a>密码爆破</h2><p>用WPscan(扫描WordPress的工具)<br><img src="/2019/10/17/DC-2渗透报告/1562318778841.png" alt="Alt text"><br>发现用户，和可利用的漏洞<br><img src="/2019/10/17/DC-2渗透报告/1562318824473.png" alt="Alt text"><br><img src="/2019/10/17/DC-2渗透报告/1562318837363.png" alt="Alt text"><br>用之前生成的字典爆破一下</p>
+<p><img src="/2019/10/17/DC-2渗透报告/1562318980682.png" alt="Alt text"><br>jerry – adipiscing</p>
+<p>tom – parturient<br>登入后台<br><img src="/2019/10/17/DC-2渗透报告/1562319472770.png" alt="Alt text"><br>flag2就在后台<br><img src="/2019/10/17/DC-2渗透报告/1562566563874.png" alt="Alt text"></p>
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><p>然后ssh连上去<br>jerry的用户用不了，用Tom的登上去<br><img src="/2019/10/17/DC-2渗透报告/1562567231821.png" alt="Alt text"><br>发现有rbash限制<br><img src="/2019/10/17/DC-2渗透报告/1562567316586.png" alt="Alt text"><br>用SUID提权<br>参考链接：<br><a href="https://www.anquanke.com/post/id/86979" target="_blank" rel="external">https://www.anquanke.com/post/id/86979</a><br><a href="https://xz.aliyun.com/t/2767" target="_blank" rel="external">https://xz.aliyun.com/t/2767</a></p>
+<p><img src="/2019/10/17/DC-2渗透报告/1562567721950.png" alt="Alt text"><br>提权后就可以看flag3了<br>切换成jerry用户<br><img src="/2019/10/17/DC-2渗透报告/1562567815309.png" alt="Alt text"><br>再提一次权<br>参考链接：<br><a href="http://blog.securelayer7.net/abusing-sudo-advance-linux-privilege-escalation/" target="_blank" rel="external">http://blog.securelayer7.net/abusing-sudo-advance-linux-privilege-escalation/</a><br>然后就有最后的flag了<br><img src="/2019/10/17/DC-2渗透报告/1562568026143.png" alt="Alt text"><br>完成</p>
 
-靶机：Windows7 x64    IP 192.168.129.129
-攻击机： Windows10 x64
-PHP版本：5.6
-Mysql版本：5.7
-Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
-
-0x0...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/11</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/08/18/Crypto中RSA题目总结/" >
-            
-                <span>Crypto中RSA题目总结</span>
-        </a>
-        <div class="abstract-content">
-            0x00 RSA算法简述
-密钥的产生① 选择两个满足需要的大素数p和q，计算n=p×q,φ(n)= (p-1)×(q-1)，其中φ(n)是n的欧拉函数值。② 选一个整数e,满足1&lt;e&lt;φ(n)，且gcd(φ(n),e)=1。通过d×e≡1modφ(n)，计算出d。③ 以{e,n}为公开密钥，{d,n}为秘密密钥。假设Alice是秘密消息的接收方，则只有Alice知道秘密密钥{d,n}，所有人都可以知道公开密钥{e,n}。
-加密如果想发送消息m给Alice，就选择Alice的公钥{e,n}，然后计算：$c≡m^e mod n$，然后把c发送给Alice。
-解密接收方Alice收...
+        <div class="license-wrapper">
+            <p>原文作者: <a href="https://www.twosmi1e.com">two_smi1e</a>
+            <p>原文链接: <a href="https://www.twosmi1e.com/2019/10/17/DC-2渗透报告/">https://www.twosmi1e.com/2019/10/17/DC-2渗透报告/</a>
+            <p>发表日期: <a href="https://www.twosmi1e.com/2019/10/17/DC-2渗透报告/">October 17th 2019, 6:27:58 pm</a>
+            <p>版权声明: 本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/08/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/08/03/CTF中遇到的隐写术总结/" >
-            
-                <span>CTF中遇到的隐写术总结</span>
-        </a>
-        <div class="abstract-content">
-            图片隐写F5隐写
-安恒杯月赛
-
-题目提示浏览图片的时候能不能F5刷新呢？
-
-GitHub上的现成工具：git clone https://github.com/matthewgao/F5-steganography
-进入F5_steganography目录 java Extract 图片文件路径 -p password
-
-然后会出现一个flag.txt但是打开为乱码看文件头是zip 看后缀名解压拿flagflag{96efd0a2037d06f34199e921079778ee}
-xor隐写
-巅峰极客 loli
-
-hint:0xFF 想到用0xFF异或整个文件1234567891011#...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/08/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/07/15/SCTF-writeup/" >
-            
-                <span>SCTF writeup</span>
-        </a>
-        <div class="abstract-content">
-            misc签到侧信道初探根据提示用侧信道简单能量分析攻击 SPA 就可以从芯片的功耗曲线中可以读出十六进制的关键数据。因为不知道哪个是0哪个是1 然后试了一下
-SCTF{0110111010}
-神奇的Modbusmodbus协议
-按照网上一道类似题的分析，找TCP/IP协议502,102端口追踪TCP流
-SCTF{Easy_Mdbus}
-神秘的交易百度找到看雪的一篇分析文章logicdata拖进Logic里面,分析嗅探得到的波形图1230x33 0x01 s10x33 0x02 s20x33 0x03 s3
-读出s1, s2, s3
-
-SCTF{403110}
-肥宅快乐题用爱奇艺可以拖fl...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/07/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/07/01/ISCC-writeup/" >
-            
-                <span>ISCC writeup</span>
-        </a>
-        <div class="abstract-content">
-            ISCC WPMiscWhat is that？图片隐写给了一张这个图
-然后看手指指的地方应该就是flag  改高度
-IHDR后的前八个字节为宽度（第二排00 00 02 72），接下来八个为高度，将高度改为和宽度一样得到flag
-秘密电报给了一个txt内容是：秘密电报：知识就是力量 ABAAAABABBABAAAABABAAABAAABAAABAABAAAABAAAABA刚开始以为是摩斯密码结果没有分割符，直接复制百度，是培根密码然后在线解密得到flag
-凯撒十三世凯撒十三世在学会使用键盘后，向你扔了一串字符：“ebdgc697g95w3”，猜猜它吧。一看题目肯定有凯撒密码，移位13得...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/07/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-</div>
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/10/16/DC-1渗透报告/" title= DC-1渗透报告 >
+                    <div class="prevTitle">DC-1渗透报告</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!--PC和WAP自适应版-->
+
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -658,6 +522,24 @@ IHDR后的前八个字节为宽度（第二排00 00 02 72），接下来八个�
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#信息收集"><span class="toc-number">1.</span> <span class="toc-text">信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#密码爆破"><span class="toc-number">2.</span> <span class="toc-text">密码爆破</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提权"><span class="toc-number">3.</span> <span class="toc-text">提权</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1119,6 +1001,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/miku.model.json"},"display":{"position":"right","width":120,"height":200},"mobile":{"show":false,"opacityOnHover":0.2},"log":false});</script></body>
 </html>
