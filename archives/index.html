@@ -339,6 +339,39 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/21/DC-3渗透报告/" >
+            
+                <span>DC-3渗透报告</span>
+        </a>
+        <div class="abstract-content">
+            扫一下IP找到DC-3IP
+信息收集
+nmap1nmap -A 192.168.61.144 -p 1-65535
+
+
+80web服务 Joomla
+
+whatweb1whatweb http://192.168.61.144/
+
+
+1http://192.168.61.144 [200 OK] Apache[2.4.18], Cookies[460ada11b31d3c5e5ca6e58fd5d3de27], Country[RESERVED][ZZ], HTML5, HTTPServer[Ubuntu Linux][Apache/2.4.18 (Ubuntu)], HttpOnly[...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/21</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/10/17/DC-2渗透报告/" >
             
                 <span>DC-2渗透报告</span>
@@ -660,52 +693,10 @@ md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”=
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/11/01/uint8-t-uint16-t-uint32-t-uint64-t数据类型详解/" >
-            
-                <span>uint8_t / uint16_t / uint32_t /uint64_t数据类型详解</span>
-        </a>
-        <div class="abstract-content">
-            在linux下的C语言编程中会出现题目中这些数据类型。初学的时候不知道是什么类型，只知道int，char这种。其实就是以前基本类型的别名，为了方便跨平台而使用。
-C语言基本数据类型在C语言中有6种基本数据类型：short、int、long、float、double、char
-
-数值类型
-
-
-整型：short、int、long
-浮点型：float、double
-
-
-字符类型：charuint*_t数据类型
-
-1、这些类型的来源：这些数据类型中都带有_t, _t 表示这些数据类型是通过typedef定义的，而不是新的数据类型。也就是说，它们其实是我们已知的类型的别名。
-2、使用这些类型的原因...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "编程相关">编程相关</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &#62;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -1020,9 +1011,16 @@ C语言基本数据类型在C语言中有6种基本数据类型：short、int、
     
     
     
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 20
+        Total : 21
         </div>
         <!-- search  -->
         
@@ -1038,17 +1036,22 @@ C语言基本数据类型在C语言中有6种基本数据类型：short、int、
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">10/21</span><a class="archive-post-title" href= "/2019/10/21/DC-3渗透报告/" >DC-3渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">10/17</span><a class="archive-post-title" href= "/2019/10/17/DC-2渗透报告/" >DC-2渗透报告</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
         </li>
     
     
@@ -1159,15 +1162,15 @@ C语言基本数据类型在C语言中有6种基本数据类型：short、int、
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="靶机渗透"><span class="iconfont-archer">&#xe606;</span>靶机渗透</span>
-    
-        <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
-    
         <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
+    
+        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
     
         <span class="sidebar-tag-name" data-tags="漏洞复现"><span class="iconfont-archer">&#xe606;</span>漏洞复现</span>
     
-        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
+        <span class="sidebar-tag-name" data-tags="靶机渗透"><span class="iconfont-archer">&#xe606;</span>靶机渗透</span>
+    
+        <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
     
         <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
     

