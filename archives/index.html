@@ -339,6 +339,43 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/23/DC-4渗透报告/" >
+            
+                <span>DC-4渗透报告</span>
+        </a>
+        <div class="abstract-content">
+            信息收集1nmap -sn 192.168.61.0/24
+
+1nmap -A 192.168.61.145 -p 1-65535
+
+
+22 ssh服务
+80 web服务 中间件nginx访问发现一个登录页面暴力破解抓包，尝试爆破得到用户名admin 密码happy登入网站发现有个执行命令的页面抓包看一下 里面有命令 修改命令 尝试命令执行shell反弹反弹一个shell到kali看看系统信息翻目录 在/home/jim/backups下找到一个旧密码备份文件复制保存然后用jim的用户名去爆破ssh端口hydra -L dc4user.txt -P dc4pass.txt -t 10 s...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "靶机渗透">靶机渗透</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/10/21/DC-3渗透报告/" >
             
                 <span>DC-3渗透报告</span>
@@ -362,6 +399,14 @@ whatweb1whatweb http://192.168.61.144/
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/21</span>
             </div>
             <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "靶机渗透">靶机渗透</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
+    
+</div>
             
         </div>
     </article>
@@ -641,52 +686,6 @@ md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”=
         <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/11/07/计算机网络/" >
-            
-                <span>计算机网络</span>
-        </a>
-        <div class="abstract-content">
-            概述因特网发展的三个阶段
-从单个网络APRANET向互联网发展
-建成了三级结构的因特网(主干网，地区网，校园网)
-形成了多层次ISP(Internet Service Provider)的结构的因特网
-
-传统三网电信网、有线电视网、计算机网络
-因特网的组成
-边缘部分(用户直接使用的)
-客户-服务器方式(Client/Server)：客户是服务的请求方，服务器是服务的提供方
-对等方式(Peer-to-Peer)：不区分
-
-
-核心部分(为边缘部分提供服务的)
-电路交换：在通话时间内，两个用户始终占用端到端的通信资源，线路传输效率很低。
-分组交换：采用存储转发技术。
-基于标记
-无连接
-由节点交...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
     
 </div>
             
@@ -1018,9 +1017,60 @@ md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”=
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 21
+        Total : 22
         </div>
         <!-- search  -->
         
@@ -1033,6 +1083,11 @@ md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”=
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/23</span><a class="archive-post-title" href= "/2019/10/23/DC-4渗透报告/" >DC-4渗透报告</a>
+        </li>
     
     
         <li class="archive-post-item">

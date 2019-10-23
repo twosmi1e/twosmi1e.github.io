@@ -354,6 +354,43 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/23/DC-4渗透报告/" >
+            
+                <span>DC-4渗透报告</span>
+        </a>
+        <div class="abstract-content">
+            信息收集1nmap -sn 192.168.61.0/24
+
+1nmap -A 192.168.61.145 -p 1-65535
+
+
+22 ssh服务
+80 web服务 中间件nginx访问发现一个登录页面暴力破解抓包，尝试爆破得到用户名admin 密码happy登入网站发现有个执行命令的页面抓包看一下 里面有命令 修改命令 尝试命令执行shell反弹反弹一个shell到kali看看系统信息翻目录 在/home/jim/backups下找到一个旧密码备份文件复制保存然后用jim的用户名去爆破ssh端口hydra -L dc4user.txt -P dc4pass.txt -t 10 s...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "靶机渗透">靶机渗透</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/10/21/DC-3渗透报告/" >
             
                 <span>DC-3渗透报告</span>
@@ -377,6 +414,14 @@ whatweb1whatweb http://192.168.61.144/
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/21</span>
             </div>
             <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "靶机渗透">靶机渗透</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
+    
+</div>
             
         </div>
     </article>
@@ -481,38 +526,6 @@ web渗透用msf开始搜一下drupal漏洞选一个漏洞设置远程IP地址开
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "漏洞复现">漏洞复现</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/12/20/PHP反序列化/" >
-            
-                <span>PHP反序列化</span>
-        </a>
-        <div class="abstract-content">
-            从浅至深来记录一下PHP反序列化的知识。本文首发于先知社区,转载请注明来源
-0x00 PHP序列化是什么两个函数12serialize()    	//将一个对象转换成一个字符串unserialize()	//将字符串还原成一个对象
-通过序列化与反序列化我们可以很方便的在PHP中进行对象的传递。本质上反序列化是没有危害的。但是如果用户对数据可控那就可以利用反序列化构造payload攻击。
-示例序列化123456789101112&lt;?php 	class test	&#123;		private $flag = "flag&#123;233&#125;";		public $a = ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/12/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
     
 </div>
             
@@ -934,9 +947,60 @@ web渗透用msf开始搜一下drupal漏洞选一个漏洞设置远程IP地址开
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 21
+        Total : 22
         </div>
         <!-- search  -->
         
@@ -949,6 +1013,11 @@ web渗透用msf开始搜一下drupal漏洞选一个漏洞设置远程IP地址开
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/23</span><a class="archive-post-title" href= "/2019/10/23/DC-4渗透报告/" >DC-4渗透报告</a>
+        </li>
     
     
         <li class="archive-post-item">
