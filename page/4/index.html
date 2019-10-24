@@ -354,6 +354,74 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2018/10/04/WampServer多端口配置/" >
+            
+                <span>WampServer多端口配置</span>
+        </a>
+        <div class="abstract-content">
+            0x00 背景做项目有的文件必须放在网站根目录，于是需要配置多端口，找了网上几种方法都没成功，记下最后成功的办法。
+0x01  修改http.conf在监听端口处加Listen 端口号example:1234#Listen 12.34.56.78:80Listen 0.0.0.0:90Listen [::0]:90Listen 9090
+0x02 开启虚拟站点12# Virtual hosts #Include conf/extra/httpd-vhosts.conf
+去掉注释符  修改为12# Virtual hosts Include conf/extra/httpd-vhosts....
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "编程相关">编程相关</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2018/09/06/密码学/" >
+            
+                <span>密码学</span>
+        </a>
+        <div class="abstract-content">
+            密码学第一章密码学体制1.明文空间M（全体明文的集合）2.密文空间C（全体密文的集合）3.密钥空间K（全体密钥的集合）4.加密器或加密变换（算法）E5.揭秘其或解密变换（算法）D&#123;M，C，K，E，D&#125;称为一个密码体制
+分类按执行的操作方式不同可分为替换密码体制和换位密码体制按收发双方使用的密钥是否相同可分为对称密码和非对称密码分组密码和序列密码单项变换密码体制和双向变换密码体制确定型密码体制和概率密码体制
+攻击方式
+唯密文攻击：已知一些密文和加密算法
+已知明文攻击：已知一些密文和加密算法以及对应的明文
+选择明文攻击：已知加密算法，选择明文得到相应密文，也可选择被加密的...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/09/06</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2018/08/18/Crypto中RSA题目总结/" >
             
                 <span>Crypto中RSA题目总结</span>
@@ -457,64 +525,6 @@ SCTF{403110}
         <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
     
 </div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/07/01/ISCC-writeup/" >
-            
-                <span>ISCC writeup</span>
-        </a>
-        <div class="abstract-content">
-            ISCC WPMiscWhat is that？图片隐写给了一张这个图
-然后看手指指的地方应该就是flag  改高度
-IHDR后的前八个字节为宽度（第二排00 00 02 72），接下来八个为高度，将高度改为和宽度一样得到flag
-秘密电报给了一个txt内容是：秘密电报：知识就是力量 ABAAAABABBABAAAABABAAABAAABAAABAABAAAABAAAABA刚开始以为是摩斯密码结果没有分割符，直接复制百度，是培根密码然后在线解密得到flag
-凯撒十三世凯撒十三世在学会使用键盘后，向你扔了一串字符：“ebdgc697g95w3”，猜猜它吧。一看题目肯定有凯撒密码，移位13得...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/07/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/02/10/Mysql写入文件小技巧/" >
-            
-                <span>Mysql写入文件小技巧</span>
-        </a>
-        <div class="abstract-content">
-            1.用UNION写入&nbsp;&nbsp;http://url/?id=1 and 0 union select 1,2 ,’&lt;?php phpinfo(); ?&gt;’ into dumpfile ‘文件绝对路径’&nbsp;&nbsp;采用常规的union写入，可以看到前面的字段占位数肯定也会被写入，替换成null也是一样的结果，这个对于写shell没啥大碍，但是如果用来写bat,mof,vbs等文件就会出问题了，那么怎么去掉这个只写入我们需要的内容呢？采用hex编码就好了。&nbsp;&nbsp;将我们要写入的内容使用hex编码在分段写在每个字段位上，这样就可以只写入我们...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/10</span>
-            </div>
-            <!-- tags  -->
             
         </div>
     </article>
@@ -985,9 +995,25 @@ IHDR后的前八个字节为宽度（第二排00 00 02 72），接下来八个�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 22
+        Total : 24
         </div>
         <!-- search  -->
         
@@ -1000,6 +1026,16 @@ IHDR后的前八个字节为宽度（第二排00 00 02 72），接下来八个�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1018,12 +1054,12 @@ IHDR后的前八个字节为宽度（第二排00 00 02 72），接下来八个�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
         </li>
     
     

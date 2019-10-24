@@ -339,6 +339,87 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/24/DC-6渗透报告/" >
+            
+                <span>DC-6渗透报告</span>
+        </a>
+        <div class="abstract-content">
+            信息收集靶机IP：192.168.61.147nmap扫描
+
+80 web服务 WordPress站点
+22 ssh服务
+
+wpscan扫描
+1wpscan --url http://wordy/ --enumerate p --enumerate t --enumerate u
+发现了用户名1cat /usr/share/wordlists/rockyou.txt | grep k01 &gt; dc6pass.txt
+然后开始爆破
+暴力破解1wpscan --url http://wordy/ -U dc6user.txt -P dc6pass.txt
+找到密码Username: m...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/24</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "靶机渗透">靶机渗透</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/24/DC-5渗透报告/" >
+            
+                <span>DC-5渗透报告</span>
+        </a>
+        <div class="abstract-content">
+            信息收集1netdiscover -r 192.168.61.0
+靶机IP 192.168.61.1461nmap -A 192.168.61.146 -p 1-65535
+
+
+80 web服务 容器nginx 1.6.2
+111 rpc
+
+contact的页面提交参数可控
+而且不停刷新下面的年份会变
+FUZZfuzz一下字典wfuzz中就有 网上也有一些https://github.com/tennc/fuzzdb/tree/master/dict/BURP-PayLoad/LFIhttps://github.com/tennc/fuzzdb发现接受file这个参数有LFI/etc/p...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/24</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "靶机渗透">靶机渗透</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/10/23/DC-4渗透报告/" >
             
                 <span>DC-4渗透报告</span>
@@ -617,75 +698,6 @@ EAX EBX ECX EDXEBP ESP ESI EDI
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/11/20/Linux网络编程基础/" >
-            
-                <span>Linux网络编程基础</span>
-        </a>
-        <div class="abstract-content">
-            套接字编程 套接字是一种网络API，用来开发网络程序。套接字接口提供一种进程间通信的方法，使得在相同或不同的主机上的进程能以相同的规范进行双向信息传送。
-套接字类型常用协议：
-
-INET ipv4
-INET6 ipv6类型：
-SOCK_STREAM ：提供面向连接、可靠的数据传输服务。TCP协议支持。
-SOCK_DGRAM ：提供面向无连接的服务。UDP协议支持。
-SOCK_RAW：原始套接字，常用于检测新的协议。套接字地址结构套接字地址结构定义在头文件&lt;netinet/in.h&gt;中IPv412345678910111213141516typedef uint32_t in_...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/11/07/CTF中的常见PHP漏洞/" >
-            
-                <span>CTF中的常见PHP漏洞</span>
-        </a>
-        <div class="abstract-content">
-            文章首发于先知社区，转载请注明来源。
-在做ctf题的时候经常会遇到一些PHP代码审计的题目，这里将我遇到过的常见漏洞做一个小结。
-md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。常见的payload有1234567891011QNKCDZO240610708s878926199as155964671as214587387as214587387a sha1(str)sha1('aaroZ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
     
 </div>
             
@@ -1068,9 +1080,25 @@ md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”=
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 22
+        Total : 24
         </div>
         <!-- search  -->
         
@@ -1083,6 +1111,16 @@ md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”=
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1101,12 +1139,12 @@ md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”=
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
         </li>
     
     
