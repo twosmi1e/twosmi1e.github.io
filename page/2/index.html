@@ -354,6 +354,47 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/17/DC-2渗透报告/" >
+            
+                <span>DC-2渗透报告</span>
+        </a>
+        <div class="abstract-content">
+            信息收集浏览一下就有flag1nmap扫描一下端口信息收集
+
+Wordpress 4.7.10
+Apache/2.4.10
+
+用cewl生成密码
+密码爆破用WPscan(扫描WordPress的工具)发现用户，和可利用的漏洞用之前生成的字典爆破一下
+jerry – adipiscing
+tom – parturient登入后台flag2就在后台
+提权然后ssh连上去jerry的用户用不了，用Tom的登上去发现有rbash限制用SUID提权参考链接：https://www.anquanke.com/post/id/86979https://xz.aliyun.com/t/2767
+提权后就...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "靶机渗透">靶机渗透</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/10/16/DC-1渗透报告/" >
             
                 <span>DC-1渗透报告</span>
@@ -483,36 +524,6 @@ EAX EBX ECX EDXEBP ESP ESI EDI
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/11/26/安洵杯writewp/" >
-            
-                <span>安洵杯writewp</span>
-        </a>
-        <div class="abstract-content">
-            MISCCRC第一个压缩包，提示CRC爆破结果是纯数字，直接爆破里面三个文件，看了一下大概是要先解压password然后运行.py计算flag.zip的解压密码。然后crc32碰撞，直接爆破password.txt的内容123456import zlibfor i in xrange(0,100000000):	buf = str(i).rjust(8,'0')	#print buf    if zlib.crc32(buf) &amp; 0xffffffff == 0x0cd95dac:		print '',buf
-然后再用.py跑12345678910import base64imp...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/26</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
     
 </div>
             
@@ -1001,9 +1012,62 @@ EAX EBX ECX EDXEBP ESP ESI EDI
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 24
+        Total : 25
         </div>
         <!-- search  -->
         
@@ -1016,6 +1080,11 @@ EAX EBX ECX EDXEBP ESP ESI EDI
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/25</span><a class="archive-post-title" href= "/2019/10/25/thinkCMF任意内容包含漏洞分析/" >thinkCMF任意内容包含漏洞分析</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1044,12 +1113,12 @@ EAX EBX ECX EDXEBP ESP ESI EDI
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
         </li>
     
     
@@ -1173,6 +1242,8 @@ EAX EBX ECX EDXEBP ESP ESI EDI
         <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
     
         <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞分析"><span class="iconfont-archer">&#xe606;</span>漏洞分析</span>
     
         <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
     
