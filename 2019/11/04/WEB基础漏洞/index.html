@@ -271,7 +271,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count">3,431</span> / Reading time: <span class="post-count">13 min</span></span>
+                        <span>Word count: <span class="post-count">3,427</span> / Reading time: <span class="post-count">13 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -410,22 +410,50 @@ height:50vh;
 <li>URL参数</li>
 <li>POST参数</li>
 <li>Referer</li>
-<li>Cookie<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3>|类型|存储区|插入点|<br>|:–:|:–:|:–:|<br>|反射型|URL|HTML|<br>|存储型|后端数据库|HTML|<br>|DOM型|后端数据库/前端存储/URL|JavaScript|<h4 id="反射型"><a href="#反射型" class="headerlink" title="反射型"></a>反射型</h4>常见于通过URL传递参数的功能，如网站搜索、跳转等。<br>由于需要用户主动打开恶意的 URL 才能生效，攻击者往往会结合多种手段诱导用户点击。</li>
+<li>Cookie</li>
 </ul>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">存储区</th>
+<th style="text-align:center">插入点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">反射型</td>
+<td style="text-align:center">URL</td>
+<td style="text-align:center">HTML</td>
+</tr>
+<tr>
+<td style="text-align:center">存储型</td>
+<td style="text-align:center">后端数据库</td>
+<td style="text-align:center">HTML</td>
+</tr>
+<tr>
+<td style="text-align:center">DOM型</td>
+<td style="text-align:center">后端数据库/前端存储/URL</td>
+<td style="text-align:center">JavaScript</td>
+</tr>
+</tbody>
+</table>
+<h4 id="反射型"><a href="#反射型" class="headerlink" title="反射型"></a>反射型</h4><p>常见于通过URL传递参数的功能，如网站搜索、跳转等。<br>由于需要用户主动打开恶意的 URL 才能生效，攻击者往往会结合多种手段诱导用户点击。</p>
 <h4 id="存储型"><a href="#存储型" class="headerlink" title="存储型"></a>存储型</h4><p>常见于带用户保存数据的网站功能，如论坛留言板，商品评论等<br><strong>存储型 XSS 的恶意代码存在数据库里，反射型 XSS 的恶意代码存在 URL 里。</strong></p>
 <h4 id="DOM型"><a href="#DOM型" class="headerlink" title="DOM型"></a>DOM型</h4><p>DOM 型 XSS 攻击中，取出和执行恶意代码由浏览器端完成，属于<strong>前端 JavaScript 自身的安全漏洞</strong>，而其他两种 XSS 都属于<strong>服务端的安全漏洞</strong>。</p>
 <h3 id="常用绕过"><a href="#常用绕过" class="headerlink" title="常用绕过"></a>常用绕过</h3><ul>
 <li>大小写</li>
 <li>多重嵌套</li>
 <li>宽字节绕过 </li>
-<li><p>href属性中的伪协议</p>
+<li>href属性中的伪协议</li>
+</ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=javascript:alert(&apos;/a/&apos;)&gt;adas&lt;/a&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>HTML5新标签</p>
+<ul>
+<li>HTML5新标签</li>
+</ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;math&gt;标签</span><br><span class="line">&lt;embed&gt;标签</span><br><span class="line">&lt;svg&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>DataUrl协议</p>
-</li>
+<ul>
+<li>DataUrl协议</li>
 </ul>
 <h4 id="Content-Security-Policy"><a href="#Content-Security-Policy" class="headerlink" title="Content Security Policy"></a>Content Security Policy</h4><p>严格的 CSP 在 XSS 的防范中可以起到以下的作用：</p>
 <ul>
@@ -433,8 +461,9 @@ height:50vh;
 <li>禁止外域提交，网站被攻击后，用户的数据不会泄露到外域。</li>
 <li>禁止内联脚本执行（规则较严格，目前发现 GitHub 使用）。</li>
 <li>禁止未授权的脚本执行（新特性，Google Map 移动版在使用）。</li>
-<li>合理使用上报可以及时发现 XSS，利于尽快修复问题。<h4 id="输入长度控制"><a href="#输入长度控制" class="headerlink" title="输入长度控制"></a>输入长度控制</h4><h4 id="Http-Only"><a href="#Http-Only" class="headerlink" title="Http-Only"></a>Http-Only</h4>HTTP-only Cookie: 禁止 JavaScript 读取某些敏感 Cookie，攻击者完成 XSS 注入后也无法窃取此 Cookie。</li>
+<li>合理使用上报可以及时发现 XSS，利于尽快修复问题。</li>
 </ul>
+<h4 id="输入长度控制"><a href="#输入长度控制" class="headerlink" title="输入长度控制"></a>输入长度控制</h4><h4 id="Http-Only"><a href="#Http-Only" class="headerlink" title="Http-Only"></a>Http-Only</h4><p>HTTP-only Cookie: 禁止 JavaScript 读取某些敏感 Cookie，攻击者完成 XSS 注入后也无法窃取此 Cookie。</p>
 <h2 id="SQLI"><a href="#SQLI" class="headerlink" title="SQLI"></a>SQLI</h2><h3 id="产生原因"><a href="#产生原因" class="headerlink" title="产生原因"></a>产生原因</h3><p>脚本在接收前台传过来的数据时,没有对该数据进行很好的安全检查就直接丢到数据库中去操作,导致入侵者在前台随正常数据一起提交过来的恶意sql语句也被一并带入数据库中执行[各种子查询,联合查询…],也就是说,注入的本质,只是数据库本身,与后端脚本,系统平台无关。</p>
 <h3 id="可能存在的地方"><a href="#可能存在的地方" class="headerlink" title="可能存在的地方"></a>可能存在的地方</h3><p><strong>任何与后端数据库交互的地方</strong><br>黑盒思路：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">get请求的url,正常情况下这里应该是最先会尝试的地方</span><br><span class="line">post数据字段中,数据较多时一般都会用post传,会是个不错的入手点</span><br><span class="line">cookie中传的数据,有些还可能会把一些参数放在cookie中传,所以这儿也会是个不错的入手点</span><br><span class="line">Referer本身用来记录上一个页面的url,但一旦被存到数据库中之后又被带入查询,你懂的 </span><br><span class="line">User-agent 本身用来记录客户端信息,只要被记录到数据库之后又被带入查询一样可被利用</span><br><span class="line">X-Forwarded-For 本身专门用来记录客户端真实ip,如果脚本在处理时把它也带到数据库中去查询...</span><br><span class="line">宽字节[双字节],	主要是由于前后端编码不统一造成理解歧义</span><br></pre></td></tr></table></figure>
@@ -447,9 +476,11 @@ height:50vh;
 </li>
 <li>在当前数据库用户权限一般的时候,比如,只能在指定的库中进行正常的增删改查。<ul>
 <li>像这种情况,一般我们可能会尝试查出目标网站管理员的账号和密码hash,然后再登到后台传webshell。</li>
-<li>或者搜集各种能搜集到[有权限]的各类用户密码数据,时刻为后面的字典作准备,以备不时之需。<h3 id="分类-1"><a href="#分类-1" class="headerlink" title="分类"></a>分类</h3></li>
+<li>或者搜集各种能搜集到[有权限]的各类用户密码数据,时刻为后面的字典作准备,以备不时之需。</li>
 </ul>
 </li>
+</ol>
+<h3 id="分类-1"><a href="#分类-1" class="headerlink" title="分类"></a>分类</h3><ol>
 <li>主要分为以下两类：</li>
 </ol>
 <ul>
@@ -466,14 +497,16 @@ height:50vh;
 <li>布尔型注入</li>
 <li>基于时间延迟注入</li>
 <li>宽字节注入</li>
-<li>等等<h3 id="基于时间盲注"><a href="#基于时间盲注" class="headerlink" title="基于时间盲注"></a>基于时间盲注</h3><img src="/2019/11/04/WEB基础漏洞/1571282212656.png" alt="Alt text"><br><img src="/2019/11/04/WEB基础漏洞/1571282228237.png" alt="Alt text"><h3 id="二次注入"><a href="#二次注入" class="headerlink" title="二次注入"></a>二次注入</h3><img src="/2019/11/04/WEB基础漏洞/1571282717191.png" alt="Alt text"></li>
+<li>等等</li>
 </ul>
+<h3 id="基于时间盲注"><a href="#基于时间盲注" class="headerlink" title="基于时间盲注"></a>基于时间盲注</h3><p><img src="/2019/11/04/WEB基础漏洞/1571282212656.png" alt="Alt text"><br><img src="/2019/11/04/WEB基础漏洞/1571282228237.png" alt="Alt text"></p>
+<h3 id="二次注入"><a href="#二次注入" class="headerlink" title="二次注入"></a>二次注入</h3><p><img src="/2019/11/04/WEB基础漏洞/1571282717191.png" alt="Alt text"></p>
 <h3 id="报错注入"><a href="#报错注入" class="headerlink" title="报错注入"></a>报错注入</h3><h4 id="使用条件"><a href="#使用条件" class="headerlink" title="使用条件"></a>使用条件</h4><ol>
 <li>floor方式<br>需要同时满足floor(rand(0)<em>2)，count(</em>)，group by这三个函数</li>
 <li>updateaxml(),extractvalue()函数<br>mysql5.1.5，最多爆出32位的</li>
-<li>exp()函数<br>在MySQL版本大于等于5.5.5的的时候才能用<h4 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h4><h5 id="floor"><a href="#floor" class="headerlink" title="floor()"></a>floor()</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from users where id = 1 and (select 1 from (select count(*),concat(0x7e,database(),0x7e,floor(rand(0)*2))a from information_schema.tables group by a)b);</span><br></pre></td></tr></table></figure>
-</li>
+<li>exp()函数<br>在MySQL版本大于等于5.5.5的的时候才能用</li>
 </ol>
+<h4 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h4><h5 id="floor"><a href="#floor" class="headerlink" title="floor()"></a>floor()</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from users where id = 1 and (select 1 from (select count(*),concat(0x7e,database(),0x7e,floor(rand(0)*2))a from information_schema.tables group by a)b);</span><br></pre></td></tr></table></figure>
 <h5 id="updatexml"><a href="#updatexml" class="headerlink" title="updatexml()"></a>updatexml()</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from users where id = 1 and updatexml(1,concat(0x7e,database(),0x7e),1);</span><br></pre></td></tr></table></figure>
 <h5 id="extractvalue"><a href="#extractvalue" class="headerlink" title="extractvalue()"></a>extractvalue()</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from users where id = 1 and extractvalue(1,concat(0x7e,database(),0x7e));</span><br></pre></td></tr></table></figure>
 <p>如果<code>concat</code>被过滤，可使用<code>make_set</code>代替<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from users where id = 1 and updatexml(1,make_set(3,0x7e,database()),1);</span><br><span class="line">mysql&gt; select * from users where id = 1 and extractvalue(1,make_set(3,0x7e,database()));</span><br></pre></td></tr></table></figure></p>
@@ -507,8 +540,12 @@ height:50vh;
 <h4 id="等号"><a href="#等号" class="headerlink" title="等号"></a>等号</h4><ul>
 <li>like</li>
 <li>in</li>
-<li><code>&lt;</code>或者<code>&gt;</code><h4 id="引号"><a href="#引号" class="headerlink" title="引号"></a>引号</h4></li>
-<li>引号内容加上引号使用十六进制<h4 id="尖括号"><a href="#尖括号" class="headerlink" title="尖括号"></a>尖括号</h4></li>
+<li><code>&lt;</code>或者<code>&gt;</code></li>
+</ul>
+<h4 id="引号"><a href="#引号" class="headerlink" title="引号"></a>引号</h4><ul>
+<li>引号内容加上引号使用十六进制</li>
+</ul>
+<h4 id="尖括号"><a href="#尖括号" class="headerlink" title="尖括号"></a>尖括号</h4><ul>
 <li>between</li>
 <li>greatest</li>
 <li>leatest</li>
@@ -518,8 +555,9 @@ height:50vh;
 <li>知道网站绝对路径  </li>
 <li>要能用union  </li>
 <li>对web目录有写权限  </li>
-<li>没有过滤单引号<h4 id="udf提权"><a href="#udf提权" class="headerlink" title="udf提权"></a>udf提权</h4><strong>前提是已知mysql中root的账号密码</strong></li>
+<li>没有过滤单引号</li>
 </ol>
+<h4 id="udf提权"><a href="#udf提权" class="headerlink" title="udf提权"></a>udf提权</h4><p><strong>前提是已知mysql中root的账号密码</strong></p>
 <p>UDF(user-defined function)是MySQL的一个拓展接口，也可称之为用户自定义函数，它是用来拓展MySQL的技术手段，可以说是数据库功能的一种扩展，用户通过自定义函数来实现在MySQL中无法方便实现的功能，其添加的新函数都可以在SQL语句中调用，就像本机函数如ABS()或SOUNDEX()一样方便。</p>
 <h4 id="mof提权"><a href="#mof提权" class="headerlink" title="mof提权"></a>mof提权</h4><p>MOF提权的条件要求十分严苛：</p>
 <ol>
@@ -586,9 +624,9 @@ height:50vh;
 <li><p>限制请求的端口为http常用的端口，比如 80、443、8080、8090</p>
 </li>
 <li><p>统一错误信息，避免用户可以根据错误信息来判断远端服务器的端口状态。</p>
-<h2 id="SSTI"><a href="#SSTI" class="headerlink" title="SSTI"></a>SSTI</h2><p>服务端模板注入</p>
 </li>
 </ol>
+<h2 id="SSTI"><a href="#SSTI" class="headerlink" title="SSTI"></a>SSTI</h2><p>服务端模板注入</p>
 <h2 id="代码执行和命令执行"><a href="#代码执行和命令执行" class="headerlink" title="代码执行和命令执行"></a>代码执行和命令执行</h2><p>远程代码执行(Remote Command Execution)<br>远程命令执行(Remote Command Execution)</p>
 <p>区别在于执行的是操作系统命令还是脚本代码。</p>
 <h2 id="redis未授权"><a href="#redis未授权" class="headerlink" title="redis未授权"></a>redis未授权</h2><h3 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h3><p>计划任务<br>写SSHkey</p>
