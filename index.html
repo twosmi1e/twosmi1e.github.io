@@ -354,6 +354,61 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/11/05/同源策略那些事/" >
+            
+                <span>同源策略那些事</span>
+        </a>
+        <div class="abstract-content">
+            本文首发于先知社区,转载请注明来源。
+同源策略什么是同源策略 同源策略(Same Origin Policy)是一种约定，是浏览器最基本也是最核心的安全功能。可以说Web是构建在同源策略的一种实现。
+浏览器的同源策略，限制了来自不同源的“document”或脚本，对当前“document”读取或设置某些属性。SOP影响范围包括：普通的HTTP请求、XMLHttpRequest、XSLT、XBL。
+判断是否同源影响源的因素：
+
+HOST
+域名或IP地址
+子域名
+端口
+协议
+
+文件所在域不重要，重要的是文件解析加载所在的域。
+
+
+
+URL
+Outcome
+Reason
+
+
+
+
+http://...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/05</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "web安全">web安全</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "同源策略">同源策略</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "前端安全">前端安全</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/11/04/WEB基础漏洞/" >
             
                 <span>WEB基础漏洞</span>
@@ -504,43 +559,6 @@ FUZZfuzz一下字典wfuzz中就有 网上也有一些https://github.com/tennc/fu
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "靶机渗透">靶机渗透</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/10/23/DC-4渗透报告/" >
-            
-                <span>DC-4渗透报告</span>
-        </a>
-        <div class="abstract-content">
-            信息收集1nmap -sn 192.168.61.0/24
-
-1nmap -A 192.168.61.145 -p 1-65535
-
-
-22 ssh服务
-80 web服务 中间件nginx访问发现一个登录页面暴力破解抓包，尝试爆破得到用户名admin 密码happy登入网站发现有个执行命令的页面抓包看一下 里面有命令 修改命令 尝试命令执行shell反弹反弹一个shell到kali看看系统信息翻目录 在/home/jim/backups下找到一个旧密码备份文件复制保存然后用jim的用户名去爆破ssh端口hydra -L dc4user.txt -P dc4pass.txt -t 10 s...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/23</span>
             </div>
             <!-- tags  -->
             
@@ -1069,9 +1087,12 @@ FUZZfuzz一下字典wfuzz中就有 网上也有一些https://github.com/tennc/fu
     
     
     
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 26
+        Total : 27
         </div>
         <!-- search  -->
         
@@ -1087,6 +1108,11 @@ FUZZfuzz一下字典wfuzz中就有 网上也有一些https://github.com/tennc/fu
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">11/05</span><a class="archive-post-title" href= "/2019/11/05/同源策略那些事/" >同源策略那些事</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">11/04</span><a class="archive-post-title" href= "/2019/11/04/WEB基础漏洞/" >WEB基础漏洞</a>
         </li>
     
@@ -1097,12 +1123,12 @@ FUZZfuzz一下字典wfuzz中就有 网上也有一些https://github.com/tennc/fu
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
         </li>
     
     
@@ -1122,12 +1148,12 @@ FUZZfuzz一下字典wfuzz中就有 网上也有一些https://github.com/tennc/fu
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
         </li>
     
     
@@ -1255,6 +1281,10 @@ FUZZfuzz一下字典wfuzz中就有 网上也有一些https://github.com/tennc/fu
         <span class="sidebar-tag-name" data-tags="总结"><span class="iconfont-archer">&#xe606;</span>总结</span>
     
         <span class="sidebar-tag-name" data-tags="OWASP10"><span class="iconfont-archer">&#xe606;</span>OWASP10</span>
+    
+        <span class="sidebar-tag-name" data-tags="同源策略"><span class="iconfont-archer">&#xe606;</span>同源策略</span>
+    
+        <span class="sidebar-tag-name" data-tags="前端安全"><span class="iconfont-archer">&#xe606;</span>前端安全</span>
     
         <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
     

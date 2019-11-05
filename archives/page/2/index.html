@@ -339,6 +339,38 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2018/12/20/PHP反序列化/" >
+            
+                <span>PHP反序列化</span>
+        </a>
+        <div class="abstract-content">
+            从浅至深来记录一下PHP反序列化的知识。本文首发于先知社区,转载请注明来源
+0x00 PHP序列化是什么两个函数12serialize()    	//将一个对象转换成一个字符串unserialize()	//将字符串还原成一个对象
+通过序列化与反序列化我们可以很方便的在PHP中进行对象的传递。本质上反序列化是没有危害的。但是如果用户对数据可控那就可以利用反序列化构造payload攻击。
+示例序列化123456789101112&lt;?php 	class test	&#123;		private $flag = "flag&#123;233&#125;";		public $a = ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/12/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2018/11/30/汇编基础/" >
             
                 <span>汇编基础</span>
@@ -665,38 +697,6 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/08/18/Crypto中RSA题目总结/" >
-            
-                <span>Crypto中RSA题目总结</span>
-        </a>
-        <div class="abstract-content">
-            0x00 RSA算法简述
-密钥的产生① 选择两个满足需要的大素数p和q，计算n=p×q,φ(n)= (p-1)×(q-1)，其中φ(n)是n的欧拉函数值。② 选一个整数e,满足1&lt;e&lt;φ(n)，且gcd(φ(n),e)=1。通过d×e≡1modφ(n)，计算出d。③ 以{e,n}为公开密钥，{d,n}为秘密密钥。假设Alice是秘密消息的接收方，则只有Alice知道秘密密钥{d,n}，所有人都可以知道公开密钥{e,n}。
-加密如果想发送消息m给Alice，就选择Alice的公钥{e,n}，然后计算：$c≡m^e mod n$，然后把c发送给Alice。
-解密接收方Alice收...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/08/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
     
 </div>
             
@@ -1127,9 +1127,12 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
     
     
     
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 26
+        Total : 27
         </div>
         <!-- search  -->
         
@@ -1145,6 +1148,11 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">11/05</span><a class="archive-post-title" href= "/2019/11/05/同源策略那些事/" >同源策略那些事</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">11/04</span><a class="archive-post-title" href= "/2019/11/04/WEB基础漏洞/" >WEB基础漏洞</a>
         </li>
     
@@ -1155,12 +1163,12 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
         </li>
     
     
@@ -1180,12 +1188,12 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
         </li>
     
     
@@ -1313,6 +1321,10 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
         <span class="sidebar-tag-name" data-tags="总结"><span class="iconfont-archer">&#xe606;</span>总结</span>
     
         <span class="sidebar-tag-name" data-tags="OWASP10"><span class="iconfont-archer">&#xe606;</span>OWASP10</span>
+    
+        <span class="sidebar-tag-name" data-tags="同源策略"><span class="iconfont-archer">&#xe606;</span>同源策略</span>
+    
+        <span class="sidebar-tag-name" data-tags="前端安全"><span class="iconfont-archer">&#xe606;</span>前端安全</span>
     
         <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
     
