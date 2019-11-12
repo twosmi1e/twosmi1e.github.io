@@ -354,6 +354,39 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2018/11/07/CTF中的常见PHP漏洞/" >
+            
+                <span>CTF中的常见PHP漏洞</span>
+        </a>
+        <div class="abstract-content">
+            文章首发于先知社区，转载请注明来源。
+在做ctf题的时候经常会遇到一些PHP代码审计的题目，这里将我遇到过的常见漏洞做一个小结。
+md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。常见的payload有1234567891011QNKCDZO240610708s878926199as155964671as214587387as214587387a sha1(str)sha1('aaroZ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2018/11/07/计算机网络/" >
             
                 <span>计算机网络</span>
@@ -503,40 +536,6 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
         <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "编程相关">编程相关</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/09/06/密码学/" >
-            
-                <span>密码学</span>
-        </a>
-        <div class="abstract-content">
-            密码学第一章密码学体制1.明文空间M（全体明文的集合）2.密文空间C（全体密文的集合）3.密钥空间K（全体密钥的集合）4.加密器或加密变换（算法）E5.揭秘其或解密变换（算法）D&#123;M，C，K，E，D&#125;称为一个密码体制
-分类按执行的操作方式不同可分为替换密码体制和换位密码体制按收发双方使用的密钥是否相同可分为对称密码和非对称密码分组密码和序列密码单项变换密码体制和双向变换密码体制确定型密码体制和概率密码体制
-攻击方式
-唯密文攻击：已知一些密文和加密算法
-已知明文攻击：已知一些密文和加密算法以及对应的明文
-选择明文攻击：已知加密算法，选择明文得到相应密文，也可选择被加密的...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/09/06</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
     
 </div>
             
@@ -1060,9 +1059,28 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 27
+        Total : 28
         </div>
         <!-- search  -->
         
@@ -1075,6 +1093,11 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/12</span><a class="archive-post-title" href= "/2019/11/12/中间人攻击/" >中间人攻击</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1093,12 +1116,12 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
         </li>
     
     
@@ -1246,21 +1269,23 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
     
         <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
     
+        <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞分析"><span class="iconfont-archer">&#xe606;</span>漏洞分析</span>
+    
         <span class="sidebar-tag-name" data-tags="web安全"><span class="iconfont-archer">&#xe606;</span>web安全</span>
     
-        <span class="sidebar-tag-name" data-tags="总结"><span class="iconfont-archer">&#xe606;</span>总结</span>
-    
-        <span class="sidebar-tag-name" data-tags="OWASP10"><span class="iconfont-archer">&#xe606;</span>OWASP10</span>
+        <span class="sidebar-tag-name" data-tags="中间人攻击"><span class="iconfont-archer">&#xe606;</span>中间人攻击</span>
     
         <span class="sidebar-tag-name" data-tags="同源策略"><span class="iconfont-archer">&#xe606;</span>同源策略</span>
     
         <span class="sidebar-tag-name" data-tags="前端安全"><span class="iconfont-archer">&#xe606;</span>前端安全</span>
     
-        <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
-    
-        <span class="sidebar-tag-name" data-tags="漏洞分析"><span class="iconfont-archer">&#xe606;</span>漏洞分析</span>
-    
         <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
+    
+        <span class="sidebar-tag-name" data-tags="总结"><span class="iconfont-archer">&#xe606;</span>总结</span>
+    
+        <span class="sidebar-tag-name" data-tags="OWASP10"><span class="iconfont-archer">&#xe606;</span>OWASP10</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

@@ -354,6 +354,29 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2018/02/10/Mysql写入文件小技巧/" >
+            
+                <span>Mysql写入文件小技巧</span>
+        </a>
+        <div class="abstract-content">
+            1.用UNION写入&nbsp;&nbsp;http://url/?id=1 and 0 union select 1,2 ,’&lt;?php phpinfo(); ?&gt;’ into dumpfile ‘文件绝对路径’&nbsp;&nbsp;采用常规的union写入，可以看到前面的字段占位数肯定也会被写入，替换成null也是一样的结果，这个对于写shell没啥大碍，但是如果用来写bat,mof,vbs等文件就会出问题了，那么怎么去掉这个只写入我们需要的内容呢？采用hex编码就好了。&nbsp;&nbsp;将我们要写入的内容使用hex编码在分段写在每个字段位上，这样就可以只写入我们...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/10</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2018/02/02/Python高级特性/" >
             
                 <span>Python高级特性</span>
@@ -922,9 +945,28 @@ L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 27
+        Total : 28
         </div>
         <!-- search  -->
         
@@ -937,6 +979,11 @@ L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/12</span><a class="archive-post-title" href= "/2019/11/12/中间人攻击/" >中间人攻击</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -955,12 +1002,12 @@ L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
         </li>
     
     
@@ -1108,21 +1155,23 @@ L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3�
     
         <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
     
+        <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞分析"><span class="iconfont-archer">&#xe606;</span>漏洞分析</span>
+    
         <span class="sidebar-tag-name" data-tags="web安全"><span class="iconfont-archer">&#xe606;</span>web安全</span>
     
-        <span class="sidebar-tag-name" data-tags="总结"><span class="iconfont-archer">&#xe606;</span>总结</span>
-    
-        <span class="sidebar-tag-name" data-tags="OWASP10"><span class="iconfont-archer">&#xe606;</span>OWASP10</span>
+        <span class="sidebar-tag-name" data-tags="中间人攻击"><span class="iconfont-archer">&#xe606;</span>中间人攻击</span>
     
         <span class="sidebar-tag-name" data-tags="同源策略"><span class="iconfont-archer">&#xe606;</span>同源策略</span>
     
         <span class="sidebar-tag-name" data-tags="前端安全"><span class="iconfont-archer">&#xe606;</span>前端安全</span>
     
-        <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
-    
-        <span class="sidebar-tag-name" data-tags="漏洞分析"><span class="iconfont-archer">&#xe606;</span>漏洞分析</span>
-    
         <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
+    
+        <span class="sidebar-tag-name" data-tags="总结"><span class="iconfont-archer">&#xe606;</span>总结</span>
+    
+        <span class="sidebar-tag-name" data-tags="OWASP10"><span class="iconfont-archer">&#xe606;</span>OWASP10</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

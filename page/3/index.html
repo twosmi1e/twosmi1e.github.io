@@ -354,6 +354,37 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >
+            
+                <span>CVE-2019-10392：Jenkins Git client插件RCE复现</span>
+        </a>
+        <div class="abstract-content">
+            漏洞描述https://jenkins.io/security/advisory/2019-09-12/Git客户端插件接受用户指定的值作为git ls-remote调用的参数，以验证指定URL处是否存在Git存储库。 这种方式允许具有Job / Configure权限的攻击者，以运行Jenkins进程的OS用户的权限在Jenkins主服务器上执行任意系统命令。当以root权限运行Jenkins时，攻击者将会通过攻击得到root权限。
+影响范围Git client Plugin &lt;= 2.8.4
+环境搭建使用docker搭建1234docker search jenkinsdock...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/16</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "漏洞复现">漏洞复现</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2018/12/20/PHP反序列化/" >
             
                 <span>PHP反序列化</span>
@@ -484,39 +515,6 @@ SOCK_RAW：原始套接字，常用于检测新的协议。套接字地址结构
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/11/07/CTF中的常见PHP漏洞/" >
-            
-                <span>CTF中的常见PHP漏洞</span>
-        </a>
-        <div class="abstract-content">
-            文章首发于先知社区，转载请注明来源。
-在做ctf题的时候经常会遇到一些PHP代码审计的题目，这里将我遇到过的常见漏洞做一个小结。
-md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。常见的payload有1234567891011QNKCDZO240610708s878926199as155964671as214587387as214587387a sha1(str)sha1('aaroZ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
     
 </div>
             
@@ -1040,9 +1038,28 @@ md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”=
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 27
+        Total : 28
         </div>
         <!-- search  -->
         
@@ -1055,6 +1072,11 @@ md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”=
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/12</span><a class="archive-post-title" href= "/2019/11/12/中间人攻击/" >中间人攻击</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1073,12 +1095,12 @@ md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”=
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
         </li>
     
     
@@ -1226,21 +1248,23 @@ md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”=
     
         <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
     
+        <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞分析"><span class="iconfont-archer">&#xe606;</span>漏洞分析</span>
+    
         <span class="sidebar-tag-name" data-tags="web安全"><span class="iconfont-archer">&#xe606;</span>web安全</span>
     
-        <span class="sidebar-tag-name" data-tags="总结"><span class="iconfont-archer">&#xe606;</span>总结</span>
-    
-        <span class="sidebar-tag-name" data-tags="OWASP10"><span class="iconfont-archer">&#xe606;</span>OWASP10</span>
+        <span class="sidebar-tag-name" data-tags="中间人攻击"><span class="iconfont-archer">&#xe606;</span>中间人攻击</span>
     
         <span class="sidebar-tag-name" data-tags="同源策略"><span class="iconfont-archer">&#xe606;</span>同源策略</span>
     
         <span class="sidebar-tag-name" data-tags="前端安全"><span class="iconfont-archer">&#xe606;</span>前端安全</span>
     
-        <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
-    
-        <span class="sidebar-tag-name" data-tags="漏洞分析"><span class="iconfont-archer">&#xe606;</span>漏洞分析</span>
-    
         <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
+    
+        <span class="sidebar-tag-name" data-tags="总结"><span class="iconfont-archer">&#xe606;</span>总结</span>
+    
+        <span class="sidebar-tag-name" data-tags="OWASP10"><span class="iconfont-archer">&#xe606;</span>OWASP10</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

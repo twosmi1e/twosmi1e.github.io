@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html>
+    <!-- title -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="two_smi1e">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="two_smi1e">
+    <meta name="keywords" content="Two_smi1e | two_smi1e">
+    <meta name="description" content="">
+    <meta name="Cache-Control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>中间人攻击 · Twosmi1e&#39;s Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s 1;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= /css/style.css?v=20180721 as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= /css/mobile.css?v=20180721 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Twosmi1e&#39;s Blog.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">中间人攻击</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Twosmi1e's Blog.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style=
+
+
+
+
+
+
+
+
+height:50vh;
+
+>
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            中间人攻击
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "web安全">web安全</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "中间人攻击">中间人攻击</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count">4,776</span> / Reading time: <span class="post-count">17 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/11/12</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>中间人攻击(man-in-the-middle attack, abbreviated to MITM)，简单的讲，就是黑客悄悄的躲在通信双方之间，窃听甚至篡改通信信息。而通信双方并不知道消息已经被截获甚至篡改了。</p>
+<p>举个例子，小明用微信发一条消息给小红，这条消息会从小明的手机发送到微信的服务器，再由微信服务器转发给小红，理论上讲，微信服务器是可以查看或者修改小明发送的信息的。这个时候，微信服务器就可以是实施攻击的中间人。<br><img src="/2019/11/12/中间人攻击/1572860932811.png" alt="Alt text"></p>
+<p>wiki百科上也有一个生动的例子：</p>
+<blockquote>
+<p>假设爱丽丝（Alice）希望与鲍伯（Bob）通信。同时，马洛里（Mallory）希望拦截窃会话以进行窃听并可能在某些时候传送给鲍伯一个虚假的消息。</p>
+</blockquote>
+<blockquote>
+<p>首先，爱丽丝会向鲍勃索取他的公钥。如果Bob将他的公钥发送给Alice，并且此时马洛里能够拦截到这个公钥，就可以实施中间人攻击。马洛里发送给爱丽丝一个伪造的消息，声称自己是鲍伯，并且附上了马洛里自己的公钥（而不是鲍伯的）。<br>爱丽丝收到公钥后相信这个公钥是鲍伯的，于是爱丽丝将她的消息用马洛里的公钥（爱丽丝以为是鲍伯的）加密，并将加密后的消息回给鲍伯。马洛里再次截获爱丽丝回给鲍伯的消息，并使用马洛里自己的私钥对消息进行解密，如果马洛里愿意，她也可以对消息进行修改，然后马洛里使用鲍伯原先发给爱丽丝的公钥对消息再次加密。当鲍伯收到新加密后的消息时，他会相信这是从爱丽丝那里发来的消息。<br>我们的身份就是Mallory，我们希望欺骗Alice和Bob，让其认为我们是交互的正确目标，从而来获取他们之间交流的信息。<br><img src="/2019/11/12/中间人攻击/1572861192084.png" alt="Alt text"></p>
+</blockquote>
+<h2 id="攻击方式"><a href="#攻击方式" class="headerlink" title="攻击方式"></a>攻击方式</h2><ol>
+<li>数据包嗅探<br> 1) 明文嗅探<br> 2) 借助中间人代理进行密文嗅探</li>
+<li>数据注入<br> 1) CRIME中在数据包中注入javascript代码实现攻击目的</li>
+<li>数据流量劫持<br> 1) 使用iptables工具对数据包的IP地址进行强制重定向</li>
+<li>数据包篡改<br> 1) DNS劫持中篡改DNS返回数据包的IP地址，达到DNS劫持的目的<h2 id="攻击场景"><a href="#攻击场景" class="headerlink" title="攻击场景"></a>攻击场景</h2></li>
+</ol>
+<h3 id="0x00-ARP投毒"><a href="#0x00-ARP投毒" class="headerlink" title="0x00 ARP投毒"></a>0x00 ARP投毒</h3><h4 id="Arp协议"><a href="#Arp协议" class="headerlink" title="Arp协议"></a>Arp协议</h4><p>ARP（Address Resolution Protocol，地址解析协议）是一个位于TCP/IP协议栈中的网络层，负责将某个IP地址解析成对应的MAC地址。</p>
+<p>以太网（局域网）进行信息传输时，不是根据IP地址进行通信，因为IP地址是可变的，用于通信是不安全的。然而MAC地址是网卡的硬件地址，一般出厂后就具有唯一性。ARP协议就是将目标IP地址解析成MAC地址进行验证通信。</p>
+<h4 id="ARP欺骗的三种方式"><a href="#ARP欺骗的三种方式" class="headerlink" title="ARP欺骗的三种方式"></a>ARP欺骗的三种方式</h4><blockquote>
+<ol>
+<li>攻击者仅仅欺骗被攻击主机(单向):<br>主机C向主机B发送伪造的ARP回应包，声称自己的MAC地址就是网关对应的IP，这样，主机B就会将所有的流量发送主机C(攻击者)，主机C开启ip_forward路由转发功能将数据包进行转发</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>攻击者仅仅欺骗被攻击主机、同时在本地进行Iptable NAT转发(双向)<br>主机C向主机B发送伪造的ARP回应包，声称自己的MAC地址就是网关对应的IP，这样，主机B就会将所有的流量发送主机C(攻击者)，同时，攻击者在本地使用Iptables进行NAT转换，这样就可以<br>接收到网关返回的数据包，完成双向流量窃取的目的</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li>攻击者同时欺骗被攻击主机和网关(双向)<br>主机C同时欺骗主机B和网关，实现数据中转，并监听到所有主机B的数据(双向)<br>主机C向网关发送ARP回应包，声称自己是主机B，同时向主机B发送ARP回应包，声称自己是网关，这样，网关和主机B两边的流量都会发往主机C，主机C并不需要使用Iptables做特殊的转发，只需要打开ip_forward路由开关(即打开转发功能)，是主机C具有数据包转发的功能即可，就可以成功劫持主机B的流量数据</li>
+</ol>
+</blockquote>
+<h4 id="1-主机C冒充网关欺骗主机B"><a href="#1-主机C冒充网关欺骗主机B" class="headerlink" title="1.主机C冒充网关欺骗主机B"></a>1.主机C冒充网关欺骗主机B</h4><p><img src="/2019/11/12/中间人攻击/1572920755954.png" alt="Alt text"><br>可以看到，攻击者只污染了受攻击主机的ARP缓存表，所以受攻击主机的原本发往网关的数据包都会发送到攻击者的主机中，但是网关的ARP表是正常的，网关会根据当前数据包的目的IP地址(受攻击主机的IP地址)进行正确的ARP解析，从而将数据包发送到受攻击主机上。</p>
+<p>这种方式的直接后果就是我们只能窃取到受攻击主机的”外发数据包”，无法接收到从远程服务端返回的”返回数据包”，自然也就无法进行流量内容修改、流量注入的目的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 开启端口转发，允许本机像路由器那样转发数据包</span><br><span class="line">echo 1 &gt; /proc/sys/net/ipv4/ip_forward</span><br><span class="line">2. ARP投毒，向主机B声称自己(攻击者)就是网关</span><br><span class="line">arpspoof -h</span><br><span class="line">Usage: arpspoof [-i interface] [-t target] host</span><br><span class="line">arpspoof -i eth0 -t 192.168.159.132 192.168.159.2 </span><br><span class="line">(192.168.159.132是我们的攻击目标、192.168.159.2是网关IP地址)</span><br></pre></td></tr></table></figure>
+<p>攻击的原理是攻击者不断向受攻击目标(192.168.159.132)发送”ARP回应包”，声称自己就是网关，因为ARP机制没有身份验证，所以受攻击目标会把接收到的ARP回应包保存进自己的ARP缓存中，从而达到ARP污染的目的。</p>
+<h4 id="2-攻击者仅仅欺骗被攻击主机、同时在本地进行Iptable-NAT转发-双向"><a href="#2-攻击者仅仅欺骗被攻击主机、同时在本地进行Iptable-NAT转发-双向" class="headerlink" title="2. 攻击者仅仅欺骗被攻击主机、同时在本地进行Iptable NAT转发(双向)"></a>2. 攻击者仅仅欺骗被攻击主机、同时在本地进行Iptable NAT转发(双向)</h4><p><img src="/2019/11/12/中间人攻击/1572922032030.png" alt="Alt text"><br>从图中可以看到，由于使用了NAT技术，从服务端返回的数据包也会经过攻击者的主机了，这样，攻击者就可以在本地进行流量内容的修改、流量注入了</p>
+<h4 id="3-攻击者同时欺骗被攻击主机和网关-双向"><a href="#3-攻击者同时欺骗被攻击主机和网关-双向" class="headerlink" title="3. 攻击者同时欺骗被攻击主机和网关(双向)"></a>3. 攻击者同时欺骗被攻击主机和网关(双向)</h4><p><img src="/2019/11/12/中间人攻击/1572922134977.png" alt="Alt text"><br>在双向ARP欺骗中，攻击者仅仅充当了一个”数据包路由转发”的角色，将两个方向的数据包都进行转发</p>
+<h4 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h4><p>(1)如何清空B中的ARP Table？不然它一查询，直接发包给网关。</p>
+<blockquote>
+<p>ARP Table采用老化机制，某一行一段时间不用就被删除，提速。<br>hacker大量发ARP包产生大量ARP通信量使通络堵塞，A就找不到B，A必然会发ARP Request包问：B是谁，<br>此时hacker的伪造包，也就改变了A中的ARP Table。</p>
+</blockquote>
+<p>(2)如何保证在网关前响应B的请求查询？</p>
+<blockquote>
+<p>因为(1)中已经提到，局域网中充斥着大量hacker伪造B的ARP响应包，B竞争不过hacker，所以hacker会比B更快响应</p>
+</blockquote>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>上述三种方式从本质上来说是一样的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">网络数据包的通信是通过MAC地址来连接的，数据包只会根据MAC进行点对点的发送和接收</span><br><span class="line">为了解决跨局域网、跨域发送的问题，所以有了IP层，IP负责对数据包进行路由</span><br><span class="line">数据包在发送的过程中，MAC会在不同的&quot;跳&quot;中变化，而源、目的IP地址是不会变的，它负责路由的功能</span><br><span class="line">我们在设置网卡参数的网关GetWay时填写的IP，其实只是为了获取网关的MAC而存在的，默认网关也因此得名，即当我们发送的目的IP不在当前局域网范围内，这个数据包就会被发送网关(即目的MAC地址填写网关的MAC地址)</span><br></pre></td></tr></table></figure></p>
+<h3 id="0x01-SSL证书伪造"><a href="#0x01-SSL证书伪造" class="headerlink" title="0x01 SSL证书伪造"></a>0x01 SSL证书伪造</h3><p>SSL通信原理：<a href="http://www.cnblogs.com/LittleHann/p/3733469.html" target="_blank" rel="external">http://www.cnblogs.com/LittleHann/p/3733469.html</a><br>攻击思路：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1. 攻击者对目标客户端和网关发送ARP投毒攻击，污染它们的ARP缓存表</span><br><span class="line">2. 客户端在浏览器中输入&quot;https://mail.google.com/&quot;的网址，浏览器会尝试和&quot;https://mail.google.com/&quot;的443端口建立SSL连接，但是因为客户端受到了ARP投毒攻击，原本发往</span><br><span class="line">网关的数据包被发往了攻击者的主机</span><br><span class="line">3. 攻击者在本机使用iptables将接收到的443目的端口的数据包重定向到本机的IP地址</span><br><span class="line">4. 这样，受攻击者客户端的浏览器就只会和攻击者主机进行SSL连接</span><br><span class="line">5. 攻击者在本机使用监听443端口，并且伪造一个假的SSL证书，用于和客户端的连接，同时，提取客户端发送的数据包的原始目的IP地址，用于和客户端原始请求的服务器建立另一个SSL连接</span><br><span class="line">6. 中间人攻击者在双向的SSL Socket通信都建立完成后，对两边的socket进行数据读写同步，将数据通道打通，使客户端的浏览器能够正常访问(受攻击者不会察觉到已经收到SSL中间人攻击)</span><br><span class="line">7. 在数据同步的同时，记录下明文数据，达到SSL中间人攻击的目的</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/11/12/中间人攻击/1572923445097.png" alt="Alt text"></p>
+<h3 id="0x02-SSL卸载攻击"><a href="#0x02-SSL卸载攻击" class="headerlink" title="0x02 SSL卸载攻击"></a>0x02 SSL卸载攻击</h3><p>攻击思路：</p>
+<ol>
+<li>ARP欺骗，使得攻击者能截获所有目标主机的网络流量</li>
+<li>攻击者利用用户对于地址栏中HTTPS与HTTP的疏忽，将所有的HTTPS连接都用HTTP来代替</li>
+<li>同时，与目标服务器建立正常的HTTPS连接</li>
+<li>由于HTTP通信是明文传输，攻击者能轻松实施嗅探</li>
+<li>受攻击客户端与原始请求服务器之间的全部通信经过了代理转发。 </li>
+<li>其中，出现的图标被替换成为用户熟悉的”小黄锁”图标，以建立信任。 </li>
+<li>这样，中间人攻击就成功骗取了密码、账号等信息，而受害者一无所知</li>
+</ol>
+<p>产生原因：</p>
+<blockquote>
+<ol>
+<li>大部分使用SSL的网站并非”全站加密”，仅对部分重要的网页使用SSL，这就给攻击者以可乘之机。可以简单地理解为:<br>网站在普通页面、非机密页面都是采用HTTP方式访问的，而在进入登录页面的时候才会采用HTTPS加密处理</li>
+<li>大多数网站为了保证用户习惯的兼容性，都同时支持HTTP、HTTPS的访问，大多数情况下，这两种访问方式并没有太大的安全问题，但是当用户访问的页面是涉及机密信息的登录页面时，<br>服务端往往会采用”重定向”的方式，”强制”用户的浏览器以HTTPS的方式来访问登录页面，为的是保证密钥信息的安全传输</li>
+</ol>
+</blockquote>
+<p>其中原因(2)是我们能够利用SSLStrip发动攻击的关键，服务端为了”强制”用户以HTTPS方式进行登录，会向浏览器返回重定向数据包，即”302 Moved Temporarily”，正常情况下，浏览器收到这个数据包之后，就会重新使用新的URL发起一个新的HTTPS连接。</p>
+<p>而SSLStrip就是盯准了这个时机，当发现浏览器试图加密即采用https传输数据时，它就适时的介入中间，充当代理作用，然后主机认为安全会话开始，这是上文中的被动加密的提示就不会出现了，SSLstrip也通过https连接了安全服务器。那么所有用户到SSLstrip的连接时http，所有的传输数据就能被拦截。<br><img src="/2019/11/12/中间人攻击/1572924620793.png" alt="Alt text"></p>
+<h3 id="0x03-基于中间人攻击的SSL-BEAST攻击"><a href="#0x03-基于中间人攻击的SSL-BEAST攻击" class="headerlink" title="0x03 基于中间人攻击的SSL BEAST攻击"></a>0x03 基于中间人攻击的SSL BEAST攻击</h3><p>攻击原理：</p>
+<blockquote>
+<ol>
+<li>SSL/TLS中使用”记录协议数据包”来封装上层的应用数据</li>
+<li>SSL/TLS使用CBC加密模式进行分组对称加密，并且不同”记录协议数据包”之间并不是独立的IV，不同的数据包之间形成一个整体的CBC模式</li>
+<li>中间人攻击者可以在返回流量中注入javascript代码，根据攻击者已知的IV和Ciper，来穷举出下一个数据包中包含的cookie信息</li>
+</ol>
+</blockquote>
+<p>相关链接：<br><a href="http://blog.ivanristic.com/2011/10/mitigating-the-beast-attack-on-tls.html" target="_blank" rel="external">http://blog.ivanristic.com/2011/10/mitigating-the-beast-attack-on-tls.html</a><br><a href="http://blog.csdn.net/jimmyleeee/article/details/7029435" target="_blank" rel="external">http://blog.csdn.net/jimmyleeee/article/details/7029435</a><br><a href="http://www.butian.org/server/2543.html" target="_blank" rel="external">http://www.butian.org/server/2543.html</a><br><a href="http://www.educatedguesswork.org/2011/09/security_impact_of_the_rizzodu.html" target="_blank" rel="external">http://www.educatedguesswork.org/2011/09/security_impact_of_the_rizzodu.html</a><br><a href="http://www.freebuf.com/articles/web/5636.html" target="_blank" rel="external">http://www.freebuf.com/articles/web/5636.html</a></p>
+<h3 id="0x04-基于中间人攻击的DNS劫持"><a href="#0x04-基于中间人攻击的DNS劫持" class="headerlink" title="0x04 基于中间人攻击的DNS劫持"></a>0x04 基于中间人攻击的DNS劫持</h3><blockquote>
+<p>DNS劫持是指在劫持的网络范围内拦截域名解析的请求，分析请求的域名，把审查范围以外的请求放行，否则返回假的IP地址或者什么都不做使请求失去响应，其效果就是对特定的网络不能反应或访问的是假网址。</p>
+</blockquote>
+<p>属于数据包篡改的一种。用自己的伪造的IP冒名顶替正常的DNS服务器的IP，让受攻击者访问到你的服务器。</p>
+<p>攻击思路：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1. ARP投毒，进行中间人攻击劫持流量 </span><br><span class="line">echo 1 &gt; /proc/sys/net/ipv4/ip_forward </span><br><span class="line">arpspoof -i eth0 -t 192.168.159.132 192.168.159.137  </span><br><span class="line">arpspoof -i eth0 -t 192.168.159.137 192.168.159.132  </span><br><span class="line">2. 使用ettercap的dns_spoof插件进行DNS劫持</span><br><span class="line">locate etter.dns </span><br><span class="line">vim /usr/local/share/ettercap/etter.dns</span><br><span class="line">添加一个你需要劫持的URL的IP记录</span><br><span class="line">www.jnrain.com   A    192.168.159.254</span><br><span class="line">www.jnrain.com   PTR  192.168.159.254</span><br><span class="line">启动ettercap插件</span><br><span class="line">ettercap -i eth0 -T -P dns_spoof  </span><br><span class="line">3. 客户端访问指定URL，返回的是攻击者指定的IP，达到DNS劫持的目的</span><br></pre></td></tr></table></figure>
+<p>相关链接：<a href="https://www.freebuf.com/articles/system/5265.html" target="_blank" rel="external">https://www.freebuf.com/articles/system/5265.html</a></p>
+<h3 id="0x05-基于DNS劫持的SET社会工程钓鱼攻击"><a href="#0x05-基于DNS劫持的SET社会工程钓鱼攻击" class="headerlink" title="0x05 基于DNS劫持的SET社会工程钓鱼攻击"></a>0x05 基于DNS劫持的SET社会工程钓鱼攻击</h3><p>在完成DNS劫持之后，作为攻击者我们可以控制用户访问某个URL时实际访问的IP地址。我们可以以此为基础进行钓鱼攻击。</p>
+<p>攻击思路：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 发送中间人攻击，劫持目标客户端流量</span><br><span class="line">2. 进行DNS劫持，将&quot;http://www.jnrain.com&quot;这个URL劫持到攻击者所在的本机上</span><br><span class="line">3. 目标客户端在访问&quot;http://www.jnrain.com&quot;的时候实际访问的是攻击者所在的服务器</span><br><span class="line">4. 攻击者在本机服务器上搭建一个钓鱼页面，对&quot;http://www.jnrain.com&quot;进行高度仿真，并加入记录密码的代码</span><br><span class="line">5. 通过钓鱼页面直接获取目标客户端的帐号、密码</span><br></pre></td></tr></table></figure></p>
+<p>SET工具套件提供了一个基础的社工平台，它提供了一些基本功能，例如”网页克隆”、”钓鱼邮件发送”等<br><a href="https://github.com/trustedsec/social-engineer-toolkit/" target="_blank" rel="external">https://github.com/trustedsec/social-engineer-toolkit/</a><br><a href="http://www.freebuf.com/tools/7841.html" target="_blank" rel="external">http://www.freebuf.com/tools/7841.html</a></p>
+<p>一个内网下的钓鱼案例：<a href="https://mp.weixin.qq.com/s/J7h4pB2r1BmbgQqBOS28IQ" target="_blank" rel="external">https://mp.weixin.qq.com/s/J7h4pB2r1BmbgQqBOS28IQ</a></p>
+<h3 id="0x06-基于中间人攻击的会话劫持攻击-Session-Hajacking"><a href="#0x06-基于中间人攻击的会话劫持攻击-Session-Hajacking" class="headerlink" title="0x06 基于中间人攻击的会话劫持攻击(Session Hajacking)"></a>0x06 基于中间人攻击的会话劫持攻击(Session Hajacking)</h3><p>发送这种攻击方式的一个根本原因是”当前的HTTP环境采用Cookie当作一种连接状态的标识符”，即服务端根据Cookie来识别当前登录用户的身份，基本上来说，我们在访问一个购物网站的时候，浏览器和服务器的交互过程是这样的</p>
+<ol>
+<li>用户第一次访问这个网站，网站服务端产生一个session，并将这个session的ID值保存在cookie值中，写入客户端</li>
+<li>客户端在之后的每次访问这个网站的同一个域下的页面时都会带上这个cookie值，</li>
+<li>服务端根据cookie中的sessionID来映射对应的session，从而得到当前用户的登录状态</li>
+<li>这样，借助cookie的机制，HTTP协议从某种程度上来说，就成为了一个有状态的协议</li>
+</ol>
+<p>对攻击者来说，如果能获取到这个Cookie值，等于也就获取了对应用户的”身份令牌”，即可以不需要帐号、密码就以目标用户的身份合法的登录网站(XSS攻击也是这个目的)</p>
+<p>“基于中间人攻击的会话劫持”属于前面说的”数据包流量嗅探”类别，它的思路如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 攻击者对目标客户端发送中间人攻击，劫持流量</span><br><span class="line">2. 使用ferret抓取WEB通信流量包</span><br><span class="line">3. 使用hamster对抓取的数据包进行重组、分析，得出包含cookie信息的HTTP包</span><br><span class="line">4. 攻击者使用hamster组合出的HTTP包进行重放，以目标用户的身份登录目标网站，达到会话劫持</span><br></pre></td></tr></table></figure>
+<h2 id="案例拓展"><a href="#案例拓展" class="headerlink" title="案例拓展"></a>案例拓展</h2><p><a href="https://xz.aliyun.com/t/3596" target="_blank" rel="external">利用域名碰撞实现从任何地方发起中间人攻击</a><br><a href="https://www.freebuf.com/articles/wireless/188383.html" target="_blank" rel="external">如何通过中间人攻击嗅探SIM卡的流量通信</a><br><a href="https://www.t00ls.net/articles-26723.html" target="_blank" rel="external">BT5 + wireshark玩wifi捕获和中间人攻击</a><br><a href="https://xz.aliyun.com/t/217" target="_blank" rel="external">基于MitM的RDP降级攻击</a><br><a href="https://www.4hou.com/info/news/5223.html" target="_blank" rel="external">WSUS MITM远程攻击实战全过程详解</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.freebuf.com/articles/system/5265.html" target="_blank" rel="external">中间人攻击-DNS欺骗</a><br><a href="https://www.anquanke.com/post/id/151762#h2-18" target="_blank" rel="external">浅谈Arp攻击和利用Arp欺骗进行MITM</a><br><a href="https://elliotsomething.github.io/2016/12/22/HTTPS%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB%E5%8F%8A%E9%98%B2%E5%BE%A1/" target="_blank" rel="external">HTTPS中间人攻击及防御</a><br><a href="https://www.freebuf.com/column/205786.html" target="_blank" rel="external">MITM——SSL篇</a><br><a href="https://blog.csdn.net/emaste_r/article/details/17241567" target="_blank" rel="external">初探MITM-中间人攻击</a><br><a href="https://www.cnblogs.com/littlehann/p/3735602.html#_lab2_1_0" target="_blank" rel="external">中间人攻击(MITM)姿势总结</a></p>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p>我们常常提到HTTPS使用了SSL/TLS加密协议，是一种非常安全的WEB通信机制，这句话从某种角度来说是对的。我觉得更准备地应该说是针对传统的明文嗅探进行了有效的防御。但同时，我们应该认识到，安全技术、攻击方式往往在不同的场景、组合不同的技术可以形成多种多样的业务架构，而安全问题往往就发生在这些新出现的业务架构中。在一些特定的前提、特定的触发条件下，一些看似传统的攻击方式能够形成新的攻击向量。</p>
+<h3 id="几种防御技术"><a href="#几种防御技术" class="headerlink" title="几种防御技术"></a>几种防御技术</h3><ol>
+<li>公钥基础建设PKI：在PKI方案中，主要防御中间人攻击的方案就是PKI的相互认证的机制。使用这样的机制并由应用程序验证用户，用户设备验证应用程序。但在某些流氓应用的情况下，这不是很有用，所以需要注意对流氓软件应与正规软件进行区分。</li>
+<li>更强力的相互认证</li>
+</ol>
+<ul>
+<li>密钥（通常是高信息熵的密钥，从而更安全）</li>
+<li>密码（通常是低的信息熵的密钥，从而降低安全性）</li>
+</ul>
+<ol start="3">
+<li>延迟测试：例如使用复杂加密哈希函数进行计算以造成数十秒的延迟；如果双方通常情况下都要花费20秒来计算，并且整个通讯花费了60秒计算才到达对方，这就能表明存在第三方中间人。</li>
+<li>使用其他形式的密钥交换形式</li>
+</ol>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者: <a href="https://www.twosmi1e.com">two_smi1e</a>
+            <p>原文链接: <a href="https://www.twosmi1e.com/2019/11/12/中间人攻击/">https://www.twosmi1e.com/2019/11/12/中间人攻击/</a>
+            <p>发表日期: <a href="https://www.twosmi1e.com/2019/11/12/中间人攻击/">November 12th 2019, 10:14:46 am</a>
+            <p>版权声明: 本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/11/05/同源策略那些事/" title= 同源策略那些事 >
+                    <div class="prevTitle">同源策略那些事</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC和WAP自适应版-->
+
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:377746574@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/twosmi1e" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#攻击方式"><span class="toc-number">2.</span> <span class="toc-text">攻击方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#攻击场景"><span class="toc-number">3.</span> <span class="toc-text">攻击场景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-ARP投毒"><span class="toc-number">3.1.</span> <span class="toc-text">0x00 ARP投毒</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Arp协议"><span class="toc-number">3.1.1.</span> <span class="toc-text">Arp协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ARP欺骗的三种方式"><span class="toc-number">3.1.2.</span> <span class="toc-text">ARP欺骗的三种方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-主机C冒充网关欺骗主机B"><span class="toc-number">3.1.3.</span> <span class="toc-text">1.主机C冒充网关欺骗主机B</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-攻击者仅仅欺骗被攻击主机、同时在本地进行Iptable-NAT转发-双向"><span class="toc-number">3.1.4.</span> <span class="toc-text">2. 攻击者仅仅欺骗被攻击主机、同时在本地进行Iptable NAT转发(双向)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-攻击者同时欺骗被攻击主机和网关-双向"><span class="toc-number">3.1.5.</span> <span class="toc-text">3. 攻击者同时欺骗被攻击主机和网关(双向)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#疑问"><span class="toc-number">3.1.6.</span> <span class="toc-text">疑问</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-number">3.1.7.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-SSL证书伪造"><span class="toc-number">3.2.</span> <span class="toc-text">0x01 SSL证书伪造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-SSL卸载攻击"><span class="toc-number">3.3.</span> <span class="toc-text">0x02 SSL卸载攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-基于中间人攻击的SSL-BEAST攻击"><span class="toc-number">3.4.</span> <span class="toc-text">0x03 基于中间人攻击的SSL BEAST攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-基于中间人攻击的DNS劫持"><span class="toc-number">3.5.</span> <span class="toc-text">0x04 基于中间人攻击的DNS劫持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-基于DNS劫持的SET社会工程钓鱼攻击"><span class="toc-number">3.6.</span> <span class="toc-text">0x05 基于DNS劫持的SET社会工程钓鱼攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x06-基于中间人攻击的会话劫持攻击-Session-Hajacking"><span class="toc-number">3.7.</span> <span class="toc-text">0x06 基于中间人攻击的会话劫持攻击(Session Hajacking)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#案例拓展"><span class="toc-number">4.</span> <span class="toc-text">案例拓展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结-1"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#几种防御技术"><span class="toc-number">6.1.</span> <span class="toc-text">几种防御技术</span></a></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 28
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/12</span><a class="archive-post-title" href= "/2019/11/12/中间人攻击/" >中间人攻击</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/05</span><a class="archive-post-title" href= "/2019/11/05/同源策略那些事/" >同源策略那些事</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href= "/2019/11/04/WEB基础漏洞/" >WEB基础漏洞</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/25</span><a class="archive-post-title" href= "/2019/10/25/thinkCMF任意内容包含漏洞分析/" >thinkCMF任意内容包含漏洞分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/23</span><a class="archive-post-title" href= "/2019/10/23/DC-4渗透报告/" >DC-4渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/21</span><a class="archive-post-title" href= "/2019/10/21/DC-3渗透报告/" >DC-3渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/17</span><a class="archive-post-title" href= "/2019/10/17/DC-2渗透报告/" >DC-2渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/20</span><a class="archive-post-title" href= "/2018/12/20/PHP反序列化/" >PHP反序列化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/30</span><a class="archive-post-title" href= "/2018/11/30/汇编基础/" >汇编基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/26</span><a class="archive-post-title" href= "/2018/11/26/安洵杯writewp/" >安洵杯writewp</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/20</span><a class="archive-post-title" href= "/2018/11/20/Linux网络编程基础/" >Linux网络编程基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href= "/2018/11/07/CTF中的常见PHP漏洞/" >CTF中的常见PHP漏洞</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href= "/2018/11/07/计算机网络/" >计算机网络</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/01</span><a class="archive-post-title" href= "/2018/11/01/uint8-t-uint16-t-uint32-t-uint64-t数据类型详解/" >uint8_t / uint16_t / uint32_t /uint64_t数据类型详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/11</span><a class="archive-post-title" href= "/2018/10/11/phpmyadmin-getshell姿势/" >phpmyadmin getshell姿势</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href= "/2018/10/04/WampServer多端口配置/" >WampServer多端口配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/06</span><a class="archive-post-title" href= "/2018/09/06/密码学/" >密码学</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href= "/2018/08/18/Crypto中RSA题目总结/" >Crypto中RSA题目总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/03</span><a class="archive-post-title" href= "/2018/08/03/CTF中遇到的隐写术总结/" >CTF中遇到的隐写术总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/15</span><a class="archive-post-title" href= "/2018/07/15/SCTF-writeup/" >SCTF writeup</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href= "/2018/07/01/ISCC-writeup/" >ISCC writeup</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/10</span><a class="archive-post-title" href= "/2018/02/10/Mysql写入文件小技巧/" >Mysql写入文件小技巧</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/02</span><a class="archive-post-title" href= "/2018/02/02/Python高级特性/" >Python高级特性</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span><a class="archive-post-title" href= "/2017/10/28/纪念我逝去的青春/" >纪念我逝去的青春</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
+    
+        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞复现"><span class="iconfont-archer">&#xe606;</span>漏洞复现</span>
+    
+        <span class="sidebar-tag-name" data-tags="靶机渗透"><span class="iconfont-archer">&#xe606;</span>靶机渗透</span>
+    
+        <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
+    
+        <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞分析"><span class="iconfont-archer">&#xe606;</span>漏洞分析</span>
+    
+        <span class="sidebar-tag-name" data-tags="web安全"><span class="iconfont-archer">&#xe606;</span>web安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="中间人攻击"><span class="iconfont-archer">&#xe606;</span>中间人攻击</span>
+    
+        <span class="sidebar-tag-name" data-tags="同源策略"><span class="iconfont-archer">&#xe606;</span>同源策略</span>
+    
+        <span class="sidebar-tag-name" data-tags="前端安全"><span class="iconfont-archer">&#xe606;</span>前端安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
+    
+        <span class="sidebar-tag-name" data-tags="总结"><span class="iconfont-archer">&#xe606;</span>总结</span>
+    
+        <span class="sidebar-tag-name" data-tags="OWASP10"><span class="iconfont-archer">&#xe606;</span>OWASP10</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "two_smi1e"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/miku.model.json"},"display":{"position":"right","width":120,"height":200},"mobile":{"show":false,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
+
+
