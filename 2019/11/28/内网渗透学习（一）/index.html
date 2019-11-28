@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html>
+    <!-- title -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="two_smi1e">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="two_smi1e">
+    <meta name="keywords" content="Two_smi1e | two_smi1e">
+    <meta name="description" content="">
+    <meta name="Cache-Control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>内网渗透学习（一） · Twosmi1e&#39;s Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s 1;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= /css/style.css?v=20180721 as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= /css/mobile.css?v=20180721 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Twosmi1e&#39;s Blog.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">内网渗透学习（一）</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Twosmi1e's Blog.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style=
+
+
+
+
+
+
+
+
+height:50vh;
+
+>
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            内网渗透学习（一）
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "web安全">web安全</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "内网">内网</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count">3,952</span> / Reading time: <span class="post-count">14 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/11/28</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h3 id="内网概述"><a href="#内网概述" class="headerlink" title="内网概述"></a>内网概述</h3><p>内网也指局域网（Local Area Network，LAN）是指在某一区域内由多台计算机互联成的计算机组。一般是方圆几千米以内。局域网可以实现文件管理、应用软件共享、打印机共享、工作组内的历程安排、电子邮件和传真通信服务等功能。<br>内网是封闭型的，它可以由办公室内的两台计算机组成，也可以由一个公司内的上千台计算机组成。列如银行、学校、企业工厂、政府机关、网吧、单位办公网等都属于此类。</p>
+<h3 id="工作组"><a href="#工作组" class="headerlink" title="工作组"></a>工作组</h3><p>工作组（Work Group），在一个大的单位内，可能有成百上千台电脑互相连接组成局域网，它们都会列在“网络（网上邻居）”内，如果这些电脑不分组，可想而知有多么混乱，要找一台电脑很困难。为了解决这一问题，就有了“工作组”这个概念，将不同的电脑一般按功能（或部门）分别列入不同的工作组中，如技术部的电脑都列入“技术部”工作组中，行政部的电脑都列入“行政部”工作组中。你要访问某个部门的资源，就在“网络”里找到那个部门的工作组名，双击就可以看到那个部门的所有电脑了。相比不分组的情况就有序的多了，尤其是对于大型局域网络来说。</p>
+<p><img src="/2019/11/28/内网渗透学习（一）/1574857979516.png" alt="Alt text"></p>
+<h4 id="加入或创建工作组"><a href="#加入或创建工作组" class="headerlink" title="加入或创建工作组"></a>加入或创建工作组</h4><p>在计算机-&gt;属性-&gt;更改设置里进行更改<br><img src="/2019/11/28/内网渗透学习（一）/1574859030693.png" alt="Alt text"></p>
+<p>工作组与域不同，域中有域控和域用户，而工作组中所有计算机都是对等的,也就是没有服务器和客户机之分的。</p>
+<h3 id="域"><a href="#域" class="headerlink" title="域"></a>域</h3><p><strong>域(Domain)</strong>是一个有安全边界的计算机集合（安全边界意思是在两个域中，一个域中的用户无法访问另一个域中的资源），可以简单的把域理解成升级版的“工作组”，相比工作组而言,它有一个更加严格的安全管理控制机制,如果你想访问域内的资源,必须拥有一个合法的身份登陆到该域中,而你对该域内的资源拥有什么样的权限,还需要取决于你在该域中的用户身份。</p>
+<p><strong>域控制器（Domain Controller，简写为DC）</strong>是一个域中的一台类似管理服务器的计算机，相当于一个单位的门卫一样，它负责每一台联入的电脑和用户的验证工作，域内电脑如果想互相访问首先都是经过它的审核。<br><img src="/2019/11/28/内网渗透学习（一）/1574859658430.png" alt="安全域划分"></p>
+<h3 id="域的分类"><a href="#域的分类" class="headerlink" title="域的分类"></a>域的分类</h3><ul>
+<li>单域</li>
+<li>父域、子域</li>
+<li>域树<code>tree</code></li>
+<li>域森林<code>forest</code></li>
+<li>DNS域名服务器</li>
+</ul>
+<h4 id="单域"><a href="#单域" class="headerlink" title="单域"></a>单域</h4><ul>
+<li>在一般的具有固定地理位置的小公司里，建立一个域就可以满足所需。</li>
+<li>一般在一个域内要建立至少两个域服务器，一个作为DC，一个是备份DC。如果没有第二个备份DC，那么一旦DC瘫痪了，则域内的其他用户就不能登陆该域了，因为活动目录的数据库（包括用户的帐号信息）是存储在DC中的。而有一台备份域控制器（BDC），则至少该域还能正常使用，期间把瘫痪的DC恢复了就行了。</li>
+</ul>
+<h4 id="父域"><a href="#父域" class="headerlink" title="父域"></a>父域</h4><ul>
+<li>出于管理及其他一些需求，需要在网络中划分多个域，第一个域称为<strong>父域</strong>，各分部的域称为该域的<strong>子域</strong>。</li>
+<li>比如一个大公司，它的不同分公司在不同的地理位置，则需父域及子域这样的结构。</li>
+<li>如果把不同地理位置的分公司放在同一个域内，那么他们之间信息交互（包括同步，复制等）所花费的时间会比较长，而且占用的带宽也比较大。（因为在同一个域内，信息交互的条目是很多的，而且不压缩；而在域和域之间，信息交互的条目相对较少，而且压缩。）</li>
+<li>还有一个好处，就是子公司可以通过自己的域来管理自己的资源。</li>
+<li>还有一种情况，就是出于安全策略的考虑，因为每个域都有自己独有的安全策略。比如一个公司的财务部门希望能使用特定的安全策略（包括帐号密码策略等），那么可以将财务部门做成一个子域来单独管理。</li>
+</ul>
+<h4 id="域树"><a href="#域树" class="headerlink" title="域树"></a>域树</h4><ul>
+<li>域树指若干个域通过建立信任关系组成的集合。一个域管理员只能管理本域的内部，不能访问或者管理其他的域，二个域之间相互访问则需要建立信任关系(Trust Relation)。</li>
+<li><p>信任关系是连接在域与域之间的桥梁。域树内的父域与子域之间不但可以按需要相互进行管理，还可以跨网分配文件和打印机等设备资源，使不同的域之间实现网络资源的共享与管理，以及相互通信和数据传输。</p>
+</li>
+<li><p>在一个域树中，父域可以包含很多子域，子域是相对父域来说的，指域名中的每一个段。子域只能使用父域作为域名的后缀，也就是说在一个域树中，域的名字是连续的。<br><img src="/2019/11/28/内网渗透学习（一）/1574907055359.png" alt="Alt text"></p>
+</li>
+</ul>
+<h4 id="域森林"><a href="#域森林" class="headerlink" title="域森林"></a>域森林</h4><p>域森林指若干个域树通过建立信任关系组成的集合。可以通过域树之间建立的信任关系来管理和使用整个森林中的资源，从而又保持了原有域自身原有的特性。</p>
+<p><img src="/2019/11/28/内网渗透学习（一）/1574907804996.png" alt="Alt text"></p>
+<h4 id="DNS域名服务器-Domain-Name-Server"><a href="#DNS域名服务器-Domain-Name-Server" class="headerlink" title="DNS域名服务器(Domain Name Server)"></a>DNS域名服务器(Domain Name Server)</h4><ul>
+<li>DNS域名服务器是进行域名(domain name)和与之相对应的IP地址(IPaddress)转换的服务器。</li>
+<li>在域树的介绍中，可以看到域树中的域的名字和DNS域的名字非常相似，实际上域的名字就是DNS域的名字，因为域中的计算机使用DNS来定位域控制器和服务器以及其他计算机、网络服务等。</li>
+<li>一般情况下,我们在内网渗透时就通过寻找DNS服务器来定位域控制器，因为通常DNS服务器和域控制器会处在同一台机器上。</li>
+</ul>
+<h4 id="活动目录-AD"><a href="#活动目录-AD" class="headerlink" title="活动目录(AD)"></a>活动目录(AD)</h4><ul>
+<li>活动目录（Active Directory）是域环境中提供目录服务的组件。</li>
+<li>目录是什么？目录就是存储有关网络对象（如用户、组、计算机、共享资源、打印机和联系人等）的信息。目录服务是帮助用户快速准确的从目录中查找到他所需要的信息的服务。</li>
+<li>如果将企业的内网看成是一本字典，那么内网里的资源就是字典的内容，活动目录就相当于字典的索引。即活动目录存储的是网络中所有资源的快捷方式，用户通过寻找快捷方式而定位资源。</li>
+</ul>
+<h5 id="活动目录的主要功能"><a href="#活动目录的主要功能" class="headerlink" title="活动目录的主要功能"></a>活动目录的主要功能</h5><ul>
+<li>帐号集中管理，所有帐号均存在服务器上,方便对帐号的重命令/重置密码。</li>
+<li>软件集中管理，统一推送软件，统一安装网络打印机等。利用软件发布策略分发软件,可以让用户自由选择安装软件。</li>
+<li>环境集中管理，利用AD可以统一客户端桌面,IE,TCP/IP等设置。</li>
+<li>增强安全性，统一部署杀毒软件和扫毒任务，集中化管理用户的计算机权限、统一制订用户密码策略等，可监控网络，资料统一管理。</li>
+<li>更可靠，更少的宕机时间。如：利用AD控制用户访问权限，利用群集、负载均衡等技术对文件服务器进行容灾设定，更可靠，宕机时间更少。</li>
+<li>活动目录为Microsoft统一管理的基础平台，其它isa,exchange,sms等服务都依赖于这个基础平台。</li>
+</ul>
+<h5 id="AD和DC的区别"><a href="#AD和DC的区别" class="headerlink" title="AD和DC的区别"></a>AD和DC的区别</h5><ul>
+<li>如果网络规模较大，我们就会考虑把网络中的众多对象：计算机、用户、用户组、打印机、共享文件等，分门别类、井然有序地放在一个大仓库中，并做好检索信息，以利于查找、管理和使用这些对象（资源）。这个有层次结构的数据库，就是活动目录数据库，简称AD库。</li>
+<li>那么我们应该把这个数据库放在哪台计算机上呢？规定是这样的，我们把存放有活动目录数据库的计算机就称为DC(Domain Controller)。所以说我们要实现域环境，其实就是要安装AD，当内网中的一台计算机安装了AD后，它就变成了DC。</li>
+</ul>
+<h4 id="逻辑结构"><a href="#逻辑结构" class="headerlink" title="逻辑结构"></a>逻辑结构</h4><ul>
+<li>在活动目录中，管理员可以完全忽略被管理对象的具体地理位置，而将这些对象按照一定的方式放置在不同的容器中。由于这种组织对象的做法不考虑被管理对象的具体地理位置，这种组织框架称为“逻辑结构”。</li>
+<li>活动目录的逻辑结构就包括上面讲到的组织<strong>单元（OU）</strong>、<strong>域树（domain）</strong>、<strong>（tree）</strong>、<strong>域森林（forest）</strong>。在域树内的所有域共享一个活动目录，这个活动目录内的数据分散地存储在各个域内，且每一个域只存储该域内的数据。</li>
+</ul>
+<p><img src="/2019/11/28/内网渗透学习（一）/1574908618499.png" alt="Alt text"></p>
+<h3 id="安全域划分"><a href="#安全域划分" class="headerlink" title="安全域划分"></a>安全域划分</h3><p>安全域划分的目的是将一组安全等级相同的计算机划入同一个网段内，这一网段内的计算机拥有相同的网络边界，在网络边界上采用防火墙部署来实现对其他安全域的NACL（网络访问控制策略），允许哪些IP访问此域、不允许哪些访问此域；允许此域访问哪些IP/网段、不允许访问哪些IP/网段。使得其风险最小化，当发生攻击时可以将威胁最大化的隔离，减少对域内计算机的影响。</p>
+<p><img src="/2019/11/28/内网渗透学习（一）/1574909540036.png" alt="Alt text"></p>
+<h4 id="DMZ-demilitarzed-zone"><a href="#DMZ-demilitarzed-zone" class="headerlink" title="DMZ(demilitarzed zone)"></a>DMZ(demilitarzed zone)</h4><ul>
+<li>DMZ称为“隔离区”，也称“非军事化区”。是为了解决安装防火墙后外部网络不能访问内部网络服务器的问题，而设立的一个非安全系统与安全系统之间的缓冲区。</li>
+<li>这个缓冲区位于企业内部网络和外部网络之间的小网络区域内，在这个小网络区域内可以放置一些必须公开的服务器设施，如企业Web服务器、FTP服务器和论坛等。</li>
+<li>另一方面，通过这样一个DMZ区域，更加有效地保护了内部网络，因为这种网络部署，比起一般的防火墙方案，对攻击者来说又多了一道关卡。</li>
+</ul>
+<h5 id="DMZ功能"><a href="#DMZ功能" class="headerlink" title="DMZ功能"></a>DMZ功能</h5><ol>
+<li>内网可以访问外网</li>
+</ol>
+<ul>
+<li>内网的用户需要自由地访问外网。在这一策略中，防火墙需要执行NAT。</li>
+</ul>
+<ol start="2">
+<li>内网可以访问DMZ</li>
+</ol>
+<ul>
+<li>此策略使内网用户可以使用或者管理DMZ中的服务器。</li>
+</ul>
+<ol start="3">
+<li>外网不能访问内网</li>
+</ol>
+<ul>
+<li>这是防火墙的基本策略了，内网中存放的是公司内部数据，显然这些数据是不允许外网的用户进行访问的。如果要访问，就要通过VPN方式来进行。</li>
+</ul>
+<ol start="4">
+<li>外网可以访问DMZ</li>
+</ol>
+<ul>
+<li>DMZ中的服务器需要为外界提供服务，所以外网必须可以访问DMZ。同时，外网访问DMZ需要由防火墙完成对外地址到服务器实际地址的转换。</li>
+</ul>
+<ol start="5">
+<li>DMZ不能访问内网</li>
+</ol>
+<ul>
+<li>如不执行此策略，则当入侵者攻陷DMZ时，内部网络将不会受保护。</li>
+</ul>
+<ol start="6">
+<li>DMZ不能访问外网</li>
+</ol>
+<ul>
+<li>此条策略也有例外，比如我们的例子中，在DMZ中放置邮件服务器时，就需要访问外网，否则将不能正常工作。</li>
+</ul>
+<h3 id="域中计算机分类"><a href="#域中计算机分类" class="headerlink" title="域中计算机分类"></a>域中计算机分类</h3><ul>
+<li>域控制器(DC)</li>
+<li>成员服务器</li>
+<li>客户机</li>
+<li><p>独立服务器</p>
+</li>
+<li><p>域控制器是存放活动目录数据库的，是域中必须要有的，而其他三种则不是必须的，也就是说最简单的域可以只包含一台计算机，这台计算机就是该域的域控制器。</p>
+</li>
+<li>域中各个服务器的角色也是可以改变的，例如域服务器在删除活动目录时，如果是域中最后一个域控制器，则该域服务器会成为独立服务器，如果不是域中唯一的域控制器，则将使该服务器成为成员服务器。同时独立服务器既可以转换为域控制器，也可以加入到某个域成为成员服务器。</li>
+</ul>
+<h3 id="域内权限"><a href="#域内权限" class="headerlink" title="域内权限"></a>域内权限</h3><ul>
+<li>组<ul>
+<li><strong>组（Group）</strong>是用户帐号的集合。通过向一组用户分配权限从而不必向每个用户分配权限，管理员在日常工作中不必要去为单个用户帐号设置自己独特的访问权限，而是将用户帐号加入到相对应的安全组中。管理员通过给相对的安全组访问权限就可以了，这样所有加入到安全组的用户帐号都将有同样的权限。使用安全组而不是单个的用户帐号可以方便，简化网络的维护和管理工作。</li>
+</ul>
+</li>
+<li><p>本地组</p>
+</li>
+<li><p>域本地组</p>
+<ul>
+<li><strong>域本地组</strong>，多域用户访问单域资源（访问同一个域）。可以从任何域添加用户账户、通用组和全局组，只能在其所在域内指派权限。域本地组不能嵌套于其他组中。它主要是用于授予位于本域资源的访问权限。</li>
+</ul>
+</li>
+<li>全局组<ul>
+<li><strong>全局组</strong>，单域用户访问多域资源（必须是同一个域里面的用户）。只能在创建该全局组的域上进行添加用户和全局组，可以在域林中的任何域中指派权限，全局组可以嵌套在其他组中。</li>
+</ul>
+</li>
+<li>通用组<ul>
+<li><strong>通用组</strong>，通用组成员来自域林中任何域中的用户账户、全局组和其他的通用组，可以在该域林中的任何域中指派权限，可以嵌套于其他域组中。非常适于域林中的跨域访问。</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>域本地组</th>
+<th>来自全林用于本域</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>全局组</strong></td>
+<td><strong>来自本域作用于全林</strong></td>
+</tr>
+<tr>
+<td><strong>通用组</strong></td>
+<td><strong>来自全林用于全林</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="A-G-DL-P策略"><a href="#A-G-DL-P策略" class="headerlink" title="A-G-DL-P策略"></a>A-G-DL-P策略</h3><ul>
+<li>A(account)，表示用户账号</li>
+<li>G(Global group)，表示全局组</li>
+<li>U(Universal group)，表示通用组</li>
+<li>DL(Domain local group)，表示域本地组</li>
+<li>P(Permission 许可)，表示资源权限。</li>
+<li>A-G-DL-P策略是将用户账号添加到全局组中，将全局组添加到域本地组中，然后为域本地组分配资源权限。按照AGDLP的原则对用户进行组织和管理起来更容易。</li>
+<li>在AGDLP形成以后当给一个用户某一个权限的时候,只要把这个用户加入到某一个本地域组就可以了。</li>
+</ul>
+<h4 id="内置组权限"><a href="#内置组权限" class="headerlink" title="内置组权限"></a>内置组权限</h4><p><img src="/2019/11/28/内网渗透学习（一）/1574910907058.png" alt="Alt text"><br><img src="/2019/11/28/内网渗透学习（一）/1574910911019.png" alt="Alt text"></p>
+<h4 id="本地域组的权限"><a href="#本地域组的权限" class="headerlink" title="本地域组的权限"></a>本地域组的权限</h4><ul>
+<li>Administrators（管理员组）</li>
+<li>Remote Desktop Users(远程登录组)</li>
+<li>Print Operators（打印机操作员组）</li>
+<li>Account Operators（帐号操作员组）</li>
+<li>Server Operaters（服务器操作员组）</li>
+<li>Backup Operators（备份操作员组）</li>
+</ul>
+<h4 id="全局组、通用组的权限"><a href="#全局组、通用组的权限" class="headerlink" title="全局组、通用组的权限"></a>全局组、通用组的权限</h4><ul>
+<li>Domain Admins（域管理员组）</li>
+<li>Enterprise Admins（企业系统管理员组）</li>
+<li>Schema Admins（架构管理员组）</li>
+<li>Domain Users（域用户组）</li>
+</ul>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者: <a href="https://www.twosmi1e.com">two_smi1e</a>
+            <p>原文链接: <a href="https://www.twosmi1e.com/2019/11/28/内网渗透学习（一）/">https://www.twosmi1e.com/2019/11/28/内网渗透学习（一）/</a>
+            <p>发表日期: <a href="https://www.twosmi1e.com/2019/11/28/内网渗透学习（一）/">November 28th 2019, 11:25:28 am</a>
+            <p>版权声明: 本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/11/12/中间人攻击/" title= 中间人攻击 >
+                    <div class="prevTitle">中间人攻击</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC和WAP自适应版-->
+
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:377746574@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/twosmi1e" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础知识"><span class="toc-number">1.</span> <span class="toc-text">基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#内网概述"><span class="toc-number">1.1.</span> <span class="toc-text">内网概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工作组"><span class="toc-number">1.2.</span> <span class="toc-text">工作组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#加入或创建工作组"><span class="toc-number">1.2.1.</span> <span class="toc-text">加入或创建工作组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#域"><span class="toc-number">1.3.</span> <span class="toc-text">域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#域的分类"><span class="toc-number">1.4.</span> <span class="toc-text">域的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#单域"><span class="toc-number">1.4.1.</span> <span class="toc-text">单域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#父域"><span class="toc-number">1.4.2.</span> <span class="toc-text">父域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#域树"><span class="toc-number">1.4.3.</span> <span class="toc-text">域树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#域森林"><span class="toc-number">1.4.4.</span> <span class="toc-text">域森林</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS域名服务器-Domain-Name-Server"><span class="toc-number">1.4.5.</span> <span class="toc-text">DNS域名服务器(Domain Name Server)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#活动目录-AD"><span class="toc-number">1.4.6.</span> <span class="toc-text">活动目录(AD)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#活动目录的主要功能"><span class="toc-number">1.4.6.1.</span> <span class="toc-text">活动目录的主要功能</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#AD和DC的区别"><span class="toc-number">1.4.6.2.</span> <span class="toc-text">AD和DC的区别</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#逻辑结构"><span class="toc-number">1.4.7.</span> <span class="toc-text">逻辑结构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安全域划分"><span class="toc-number">1.5.</span> <span class="toc-text">安全域划分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DMZ-demilitarzed-zone"><span class="toc-number">1.5.1.</span> <span class="toc-text">DMZ(demilitarzed zone)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DMZ功能"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">DMZ功能</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#域中计算机分类"><span class="toc-number">1.6.</span> <span class="toc-text">域中计算机分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#域内权限"><span class="toc-number">1.7.</span> <span class="toc-text">域内权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A-G-DL-P策略"><span class="toc-number">1.8.</span> <span class="toc-text">A-G-DL-P策略</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#内置组权限"><span class="toc-number">1.8.1.</span> <span class="toc-text">内置组权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#本地域组的权限"><span class="toc-number">1.8.2.</span> <span class="toc-text">本地域组的权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#全局组、通用组的权限"><span class="toc-number">1.8.3.</span> <span class="toc-text">全局组、通用组的权限</span></a></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 29
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href= "/2019/11/28/内网渗透学习（一）/" >内网渗透学习（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/12</span><a class="archive-post-title" href= "/2019/11/12/中间人攻击/" >中间人攻击</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/05</span><a class="archive-post-title" href= "/2019/11/05/同源策略那些事/" >同源策略那些事</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href= "/2019/11/04/WEB基础漏洞/" >WEB基础漏洞</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/25</span><a class="archive-post-title" href= "/2019/10/25/thinkCMF任意内容包含漏洞分析/" >thinkCMF任意内容包含漏洞分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/23</span><a class="archive-post-title" href= "/2019/10/23/DC-4渗透报告/" >DC-4渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/21</span><a class="archive-post-title" href= "/2019/10/21/DC-3渗透报告/" >DC-3渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/17</span><a class="archive-post-title" href= "/2019/10/17/DC-2渗透报告/" >DC-2渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/20</span><a class="archive-post-title" href= "/2018/12/20/PHP反序列化/" >PHP反序列化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/30</span><a class="archive-post-title" href= "/2018/11/30/汇编基础/" >汇编基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/26</span><a class="archive-post-title" href= "/2018/11/26/安洵杯writewp/" >安洵杯writewp</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/20</span><a class="archive-post-title" href= "/2018/11/20/Linux网络编程基础/" >Linux网络编程基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href= "/2018/11/07/CTF中的常见PHP漏洞/" >CTF中的常见PHP漏洞</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href= "/2018/11/07/计算机网络/" >计算机网络</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/01</span><a class="archive-post-title" href= "/2018/11/01/uint8-t-uint16-t-uint32-t-uint64-t数据类型详解/" >uint8_t / uint16_t / uint32_t /uint64_t数据类型详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/11</span><a class="archive-post-title" href= "/2018/10/11/phpmyadmin-getshell姿势/" >phpmyadmin getshell姿势</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href= "/2018/10/04/WampServer多端口配置/" >WampServer多端口配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/06</span><a class="archive-post-title" href= "/2018/09/06/密码学/" >密码学</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href= "/2018/08/18/Crypto中RSA题目总结/" >Crypto中RSA题目总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/03</span><a class="archive-post-title" href= "/2018/08/03/CTF中遇到的隐写术总结/" >CTF中遇到的隐写术总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/15</span><a class="archive-post-title" href= "/2018/07/15/SCTF-writeup/" >SCTF writeup</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href= "/2018/07/01/ISCC-writeup/" >ISCC writeup</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/10</span><a class="archive-post-title" href= "/2018/02/10/Mysql写入文件小技巧/" >Mysql写入文件小技巧</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/02</span><a class="archive-post-title" href= "/2018/02/02/Python高级特性/" >Python高级特性</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span><a class="archive-post-title" href= "/2017/10/28/纪念我逝去的青春/" >纪念我逝去的青春</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
+    
+        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞复现"><span class="iconfont-archer">&#xe606;</span>漏洞复现</span>
+    
+        <span class="sidebar-tag-name" data-tags="靶机渗透"><span class="iconfont-archer">&#xe606;</span>靶机渗透</span>
+    
+        <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
+    
+        <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="web安全"><span class="iconfont-archer">&#xe606;</span>web安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="总结"><span class="iconfont-archer">&#xe606;</span>总结</span>
+    
+        <span class="sidebar-tag-name" data-tags="OWASP10"><span class="iconfont-archer">&#xe606;</span>OWASP10</span>
+    
+        <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞分析"><span class="iconfont-archer">&#xe606;</span>漏洞分析</span>
+    
+        <span class="sidebar-tag-name" data-tags="中间人攻击"><span class="iconfont-archer">&#xe606;</span>中间人攻击</span>
+    
+        <span class="sidebar-tag-name" data-tags="内网"><span class="iconfont-archer">&#xe606;</span>内网</span>
+    
+        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
+    
+        <span class="sidebar-tag-name" data-tags="同源策略"><span class="iconfont-archer">&#xe606;</span>同源策略</span>
+    
+        <span class="sidebar-tag-name" data-tags="前端安全"><span class="iconfont-archer">&#xe606;</span>前端安全</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "two_smi1e"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/miku.model.json"},"display":{"position":"right","width":120,"height":200},"mobile":{"show":false,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
+
+
