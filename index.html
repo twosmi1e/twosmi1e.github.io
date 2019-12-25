@@ -354,6 +354,132 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/12/25/Django踩坑记录/" >
+            
+                <span>Django踩坑记录</span>
+        </a>
+        <div class="abstract-content">
+            前言记几个坑和常用的代码段
+AdminLTE的侧边栏问题点击后侧边栏会自动收回，加入js代码使其在页面刷新后仍保持原有状态。12345678910111213141516171819&lt;script&gt;    $(function()&#123;    $('.sidebar-menu li:not(.treeview) &gt; a').on('click', function()&#123;        var $parent = $(this).parent().addClass('active');        $parent.siblings('.treeview....
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/25</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Django">Django</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "安全开发">安全开发</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/12/25/url跳转漏洞/" >
+            
+                <span>url跳转漏洞</span>
+        </a>
+        <div class="abstract-content">
+            概念及危害现在web应用越来越多的需要和其他第三方应用交互，以及在自身应用内部根据不同的逻辑引向不同的页面。例如一个典型的场景就是：web站点可以使用第三方账号（如qq,微博等）进行登录，在登录时就会发生跳转，如果在这个过程中没有做好安全策略就会产生安全漏洞。例如可以利用恶意的URL跳转进行钓鱼等。
+攻击方式
+恶意用户借助URL跳转构造钓鱼页面欺骗其他用户，以及获取敏感信息等，在有在线业务的站点危害较大。
+借助URL跳转突破一些基于白名单的安全机制。如：传统的IM对URL的传播进行安全校验，但对于大站点的域名及URL直接允许通过并显示可信的URL，如果该URL中包含恶意跳转可能会导致安全...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/25</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "web安全">web安全</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/12/25/堆叠注入/" >
+            
+                <span>堆叠注入</span>
+        </a>
+        <div class="abstract-content">
+            
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/25</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/12/25/Django的默认用户认证系统/" >
+            
+                <span>Django的默认用户认证系统</span>
+        </a>
+        <div class="abstract-content">
+            前言Django 用户认证系统提供了一个内置的 User 对象，用于记录用户的用户名，密码等个人信息。对于 Django 内置的 User 模型， 仅包含以下一些主要的属性：
+
+username，即用户名
+password，密码
+email，邮箱
+first_name，名
+last_name，姓
+
+对于一些网站来说，用户可能还包含有昵称、头像、个性签名等等其它属性，因此仅仅使用 Django 内置的 User 模型是不够。好在 Django 用户系统遵循可拓展的设计原则，我们可以方便地拓展 User 模型。12345678910111213141516171819202122232425...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/25</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Django">Django</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "安全开发">安全开发</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/11/28/内网渗透学习（一）/" >
             
                 <span>内网渗透学习（一）</span>
@@ -380,189 +506,10 @@ height:50vh;
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/11/12/中间人攻击/" >
-            
-                <span>中间人攻击</span>
-        </a>
-        <div class="abstract-content">
-            概述中间人攻击(man-in-the-middle attack, abbreviated to MITM)，简单的讲，就是黑客悄悄的躲在通信双方之间，窃听甚至篡改通信信息。而通信双方并不知道消息已经被截获甚至篡改了。
-举个例子，小明用微信发一条消息给小红，这条消息会从小明的手机发送到微信的服务器，再由微信服务器转发给小红，理论上讲，微信服务器是可以查看或者修改小明发送的信息的。这个时候，微信服务器就可以是实施攻击的中间人。
-wiki百科上也有一个生动的例子：
-
-假设爱丽丝（Alice）希望与鲍伯（Bob）通信。同时，马洛里（Mallory）希望拦截窃会话以进行窃听并可能在某些时候传送给...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web安全">web安全</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "中间人攻击">中间人攻击</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/11/05/同源策略那些事/" >
-            
-                <span>同源策略那些事</span>
-        </a>
-        <div class="abstract-content">
-            本文首发于先知社区,转载请注明来源。
-同源策略什么是同源策略 同源策略(Same Origin Policy)是一种约定，是浏览器最基本也是最核心的安全功能。可以说Web是构建在同源策略的一种实现。
-浏览器的同源策略，限制了来自不同源的“document”或脚本，对当前“document”读取或设置某些属性。SOP影响范围包括：普通的HTTP请求、XMLHttpRequest、XSLT、XBL。
-判断是否同源影响源的因素：
-
-HOST
-域名或IP地址
-子域名
-端口
-协议
-
-文件所在域不重要，重要的是文件解析加载所在的域。
-
-
-
-URL
-Outcome
-Reason
-
-
-
-
-http://...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/05</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web安全">web安全</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "同源策略">同源策略</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "前端安全">前端安全</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/11/04/WEB基础漏洞/" >
-            
-                <span>WEB基础漏洞</span>
-        </a>
-        <div class="abstract-content">
-            
-前言对所学知识的一些概括性总结吧，持续更新
-XSSCross-Site Scripting（跨站脚本攻击）简称 XSS，是一种代码注入攻击。攻击者通过在目标网站上注入恶意脚本，使之在用户的浏览器上运行。利用这些恶意脚本，攻击者可获取用户的敏感信息如 Cookie、SessionID 等，进而危害数据安全。
-XSS 的本质是：恶意代码未经过滤，与网站正常的代码混在一起；浏览器无法分辨哪些脚本是可信的，导致恶意脚本被执行。
-输入来源
-来自用户的 UGC 信息
-第三方链接
-URL参数
-POST参数
-Referer
-Cookie
-
-分类
-
-
-类型
-存储区
-插入点
-
-
-
-
-反射型
-URL
-HTM...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web安全">web安全</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "总结">总结</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "OWASP10">OWASP10</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/10/25/thinkCMF任意内容包含漏洞分析/" >
-            
-                <span>thinkCMF任意内容包含漏洞分析</span>
-        </a>
-        <div class="abstract-content">
-            项目简介ThinkCMF是一款基于PHP+MYSQL开发的中文内容管理框架。ThinkCMF提出灵活的应用机制，框架自身提供基础的管理功能，而开发者可以根据自身的需求以应用的形式进行扩展。每个应用都能独立的完成自己的任务，也可通过系统调用其他应用进行协同工作。在这种运行机制下，开发商场应用的用户无需关心开发SNS应用时如何工作的，但他们之间又可通过系统本身进行协调，大大的降低了开发成本和沟通成本。 官网:http://www.thinkcmf.com 文档:http://www.thinkcmf.com/document
-github地址：https://github.com/think...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "漏洞复现">漏洞复现</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "漏洞分析">漏洞分析</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">NEXT &#62;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -1146,9 +1093,69 @@ github地址：https://github.com/think...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 29
+        Total : 33
         </div>
         <!-- search  -->
         
@@ -1161,6 +1168,26 @@ github地址：https://github.com/think...
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/Django踩坑记录/" >Django踩坑记录</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/Django的默认用户认证系统/" >Django的默认用户认证系统</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/堆叠注入/" >堆叠注入</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/url跳转漏洞/" >url跳转漏洞</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1189,12 +1216,12 @@ github地址：https://github.com/think...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
         </li>
     
     
@@ -1214,12 +1241,12 @@ github地址：https://github.com/think...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
         </li>
     
     
@@ -1340,6 +1367,10 @@ github地址：https://github.com/think...
     
         <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
     
+        <span class="sidebar-tag-name" data-tags="Django"><span class="iconfont-archer">&#xe606;</span>Django</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全开发"><span class="iconfont-archer">&#xe606;</span>安全开发</span>
+    
         <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
     
         <span class="sidebar-tag-name" data-tags="web安全"><span class="iconfont-archer">&#xe606;</span>web安全</span>
@@ -1348,19 +1379,19 @@ github地址：https://github.com/think...
     
         <span class="sidebar-tag-name" data-tags="OWASP10"><span class="iconfont-archer">&#xe606;</span>OWASP10</span>
     
-        <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
-    
-        <span class="sidebar-tag-name" data-tags="漏洞分析"><span class="iconfont-archer">&#xe606;</span>漏洞分析</span>
-    
         <span class="sidebar-tag-name" data-tags="中间人攻击"><span class="iconfont-archer">&#xe606;</span>中间人攻击</span>
     
         <span class="sidebar-tag-name" data-tags="内网"><span class="iconfont-archer">&#xe606;</span>内网</span>
     
-        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
-    
         <span class="sidebar-tag-name" data-tags="同源策略"><span class="iconfont-archer">&#xe606;</span>同源策略</span>
     
         <span class="sidebar-tag-name" data-tags="前端安全"><span class="iconfont-archer">&#xe606;</span>前端安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
+    
+        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞分析"><span class="iconfont-archer">&#xe606;</span>漏洞分析</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

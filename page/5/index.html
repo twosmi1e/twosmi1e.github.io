@@ -354,6 +354,166 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2018/11/07/CTF中的常见PHP漏洞/" >
+            
+                <span>CTF中的常见PHP漏洞</span>
+        </a>
+        <div class="abstract-content">
+            文章首发于先知社区，转载请注明来源。
+在做ctf题的时候经常会遇到一些PHP代码审计的题目，这里将我遇到过的常见漏洞做一个小结。
+md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。常见的payload有1234567891011QNKCDZO240610708s878926199as155964671as214587387as214587387a sha1(str)sha1('aaroZ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2018/11/07/计算机网络/" >
+            
+                <span>计算机网络</span>
+        </a>
+        <div class="abstract-content">
+            概述因特网发展的三个阶段
+从单个网络APRANET向互联网发展
+建成了三级结构的因特网(主干网，地区网，校园网)
+形成了多层次ISP(Internet Service Provider)的结构的因特网
+
+传统三网电信网、有线电视网、计算机网络
+因特网的组成
+边缘部分(用户直接使用的)
+客户-服务器方式(Client/Server)：客户是服务的请求方，服务器是服务的提供方
+对等方式(Peer-to-Peer)：不区分
+
+
+核心部分(为边缘部分提供服务的)
+电路交换：在通话时间内，两个用户始终占用端到端的通信资源，线路传输效率很低。
+分组交换：采用存储转发技术。
+基于标记
+无连接
+由节点交...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2018/11/01/uint8-t-uint16-t-uint32-t-uint64-t数据类型详解/" >
+            
+                <span>uint8_t / uint16_t / uint32_t /uint64_t数据类型详解</span>
+        </a>
+        <div class="abstract-content">
+            在linux下的C语言编程中会出现题目中这些数据类型。初学的时候不知道是什么类型，只知道int，char这种。其实就是以前基本类型的别名，为了方便跨平台而使用。
+C语言基本数据类型在C语言中有6种基本数据类型：short、int、long、float、double、char
+
+数值类型
+
+
+整型：short、int、long
+浮点型：float、double
+
+
+字符类型：charuint*_t数据类型
+
+1、这些类型的来源：这些数据类型中都带有_t, _t 表示这些数据类型是通过typedef定义的，而不是新的数据类型。也就是说，它们其实是我们已知的类型的别名。
+2、使用这些类型的原因...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/01</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "编程相关">编程相关</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2018/10/11/phpmyadmin-getshell姿势/" >
+            
+                <span>phpmyadmin getshell姿势</span>
+        </a>
+        <div class="abstract-content">
+            本文首发于先知社区,转载请注明来源
+phpmyadmin常被用来管理mysql数据库。在ctf比赛和实战中都可能会遇到phpmyadmin弱口令或者空密码的情况，这个时候就需要从phpmyadmin来getshell了，这里总结一下getshell的姿势。
+0x00 前言此次是在虚拟机中用wampserver搭了一个实验环境，然后在本机上执行操作。
+
+靶机：Windows7 x64    IP 192.168.129.129
+攻击机： Windows10 x64
+PHP版本：5.6
+Mysql版本：5.7
+Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
+
+0x0...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/11</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2018/10/04/WampServer多端口配置/" >
             
                 <span>WampServer多端口配置</span>
@@ -382,157 +542,10 @@ height:50vh;
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/09/06/密码学/" >
-            
-                <span>密码学</span>
-        </a>
-        <div class="abstract-content">
-            密码学第一章密码学体制1.明文空间M（全体明文的集合）2.密文空间C（全体密文的集合）3.密钥空间K（全体密钥的集合）4.加密器或加密变换（算法）E5.揭秘其或解密变换（算法）D&#123;M，C，K，E，D&#125;称为一个密码体制
-分类按执行的操作方式不同可分为替换密码体制和换位密码体制按收发双方使用的密钥是否相同可分为对称密码和非对称密码分组密码和序列密码单项变换密码体制和双向变换密码体制确定型密码体制和概率密码体制
-攻击方式
-唯密文攻击：已知一些密文和加密算法
-已知明文攻击：已知一些密文和加密算法以及对应的明文
-选择明文攻击：已知加密算法，选择明文得到相应密文，也可选择被加密的...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/09/06</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/08/18/Crypto中RSA题目总结/" >
-            
-                <span>Crypto中RSA题目总结</span>
-        </a>
-        <div class="abstract-content">
-            0x00 RSA算法简述
-密钥的产生① 选择两个满足需要的大素数p和q，计算n=p×q,φ(n)= (p-1)×(q-1)，其中φ(n)是n的欧拉函数值。② 选一个整数e,满足1&lt;e&lt;φ(n)，且gcd(φ(n),e)=1。通过d×e≡1modφ(n)，计算出d。③ 以{e,n}为公开密钥，{d,n}为秘密密钥。假设Alice是秘密消息的接收方，则只有Alice知道秘密密钥{d,n}，所有人都可以知道公开密钥{e,n}。
-加密如果想发送消息m给Alice，就选择Alice的公钥{e,n}，然后计算：$c≡m^e mod n$，然后把c发送给Alice。
-解密接收方Alice收...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/08/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/08/03/CTF中遇到的隐写术总结/" >
-            
-                <span>CTF中遇到的隐写术总结</span>
-        </a>
-        <div class="abstract-content">
-            图片隐写F5隐写
-安恒杯月赛
-
-题目提示浏览图片的时候能不能F5刷新呢？
-
-GitHub上的现成工具：git clone https://github.com/matthewgao/F5-steganography
-进入F5_steganography目录 java Extract 图片文件路径 -p password
-
-然后会出现一个flag.txt但是打开为乱码看文件头是zip 看后缀名解压拿flagflag{96efd0a2037d06f34199e921079778ee}
-xor隐写
-巅峰极客 loli
-
-hint:0xFF 想到用0xFF异或整个文件1234567891011#...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/08/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/07/15/SCTF-writeup/" >
-            
-                <span>SCTF writeup</span>
-        </a>
-        <div class="abstract-content">
-            misc签到侧信道初探根据提示用侧信道简单能量分析攻击 SPA 就可以从芯片的功耗曲线中可以读出十六进制的关键数据。因为不知道哪个是0哪个是1 然后试了一下
-SCTF{0110111010}
-神奇的Modbusmodbus协议
-按照网上一道类似题的分析，找TCP/IP协议502,102端口追踪TCP流
-SCTF{Easy_Mdbus}
-神秘的交易百度找到看雪的一篇分析文章logicdata拖进Logic里面,分析嗅探得到的波形图1230x33 0x01 s10x33 0x02 s20x33 0x03 s3
-读出s1, s2, s3
-
-SCTF{403110}
-肥宅快乐题用爱奇艺可以拖fl...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/07/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/page/4/">&#60; PREV</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">NEXT &#62;</a>
+        <a class="extend prev" rel="prev" href="/page/4/">&#60; PREV</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -1116,9 +1129,69 @@ SCTF{403110}
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 29
+        Total : 33
         </div>
         <!-- search  -->
         
@@ -1131,6 +1204,26 @@ SCTF{403110}
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/Django踩坑记录/" >Django踩坑记录</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/Django的默认用户认证系统/" >Django的默认用户认证系统</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/堆叠注入/" >堆叠注入</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/url跳转漏洞/" >url跳转漏洞</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1159,12 +1252,12 @@ SCTF{403110}
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
         </li>
     
     
@@ -1184,12 +1277,12 @@ SCTF{403110}
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
         </li>
     
     
@@ -1310,6 +1403,10 @@ SCTF{403110}
     
         <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
     
+        <span class="sidebar-tag-name" data-tags="Django"><span class="iconfont-archer">&#xe606;</span>Django</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全开发"><span class="iconfont-archer">&#xe606;</span>安全开发</span>
+    
         <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
     
         <span class="sidebar-tag-name" data-tags="web安全"><span class="iconfont-archer">&#xe606;</span>web安全</span>
@@ -1318,19 +1415,19 @@ SCTF{403110}
     
         <span class="sidebar-tag-name" data-tags="OWASP10"><span class="iconfont-archer">&#xe606;</span>OWASP10</span>
     
-        <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
-    
-        <span class="sidebar-tag-name" data-tags="漏洞分析"><span class="iconfont-archer">&#xe606;</span>漏洞分析</span>
-    
         <span class="sidebar-tag-name" data-tags="中间人攻击"><span class="iconfont-archer">&#xe606;</span>中间人攻击</span>
     
         <span class="sidebar-tag-name" data-tags="内网"><span class="iconfont-archer">&#xe606;</span>内网</span>
     
-        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
-    
         <span class="sidebar-tag-name" data-tags="同源策略"><span class="iconfont-archer">&#xe606;</span>同源策略</span>
     
         <span class="sidebar-tag-name" data-tags="前端安全"><span class="iconfont-archer">&#xe606;</span>前端安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
+    
+        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞分析"><span class="iconfont-archer">&#xe606;</span>漏洞分析</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

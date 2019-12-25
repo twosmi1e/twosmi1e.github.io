@@ -1,3 +1,7 @@
+https://www.twosmi1e.com/2019/12/25/Django踩坑记录/
+https://www.twosmi1e.com/2019/12/25/url跳转漏洞/
+https://www.twosmi1e.com/2019/12/25/堆叠注入/
+https://www.twosmi1e.com/2019/12/25/Django的默认用户认证系统/
 https://www.twosmi1e.com/2019/11/28/内网渗透学习（一）/
 https://www.twosmi1e.com/2019/11/12/中间人攻击/
 https://www.twosmi1e.com/2019/11/05/同源策略那些事/

@@ -354,6 +354,143 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >
+            
+                <span>CVE-2019-10392：Jenkins Git client插件RCE复现</span>
+        </a>
+        <div class="abstract-content">
+            漏洞描述https://jenkins.io/security/advisory/2019-09-12/Git客户端插件接受用户指定的值作为git ls-remote调用的参数，以验证指定URL处是否存在Git存储库。 这种方式允许具有Job / Configure权限的攻击者，以运行Jenkins进程的OS用户的权限在Jenkins主服务器上执行任意系统命令。当以root权限运行Jenkins时，攻击者将会通过攻击得到root权限。
+影响范围Git client Plugin &lt;= 2.8.4
+环境搭建使用docker搭建1234docker search jenkinsdock...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/16</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "漏洞复现">漏洞复现</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2018/12/20/PHP反序列化/" >
+            
+                <span>PHP反序列化</span>
+        </a>
+        <div class="abstract-content">
+            从浅至深来记录一下PHP反序列化的知识。本文首发于先知社区,转载请注明来源
+0x00 PHP序列化是什么两个函数12serialize()    	//将一个对象转换成一个字符串unserialize()	//将字符串还原成一个对象
+通过序列化与反序列化我们可以很方便的在PHP中进行对象的传递。本质上反序列化是没有危害的。但是如果用户对数据可控那就可以利用反序列化构造payload攻击。
+示例序列化123456789101112&lt;?php 	class test	&#123;		private $flag = "flag&#123;233&#125;";		public $a = ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/12/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2018/11/30/汇编基础/" >
+            
+                <span>汇编基础</span>
+        </a>
+        <div class="abstract-content">
+            0x00 IA32处理器体系结构微机的基本结构
+指令执行周期当指令使用了内存操作数时还需要两个额外的步骤：取操作数和存储输出操作数。机器指令的执行;
+
+取指令
+解码
+执行
+
+操作模式保护模式：处理器的基本模式。虚拟8086模式：多任务环境中执行是地址模式的软件。实地址模式：用于运行那些需要直接访问系统内存和硬件设备的MS-DOS程序。系统管理模式：实现电源管理和系统安全等功能的机制。
+基本执行环境基本寄存器寄存器中数据在内存中存放数据遵循高高低低的原则
+8个通用寄存器
+
+EAX EBX ECX EDXEBP ESP ESI EDI
+
+
+6个段寄存器
+一个处理器状态标志寄存器(EFLAGS...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/30</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2018/11/26/安洵杯writewp/" >
+            
+                <span>安洵杯writewp</span>
+        </a>
+        <div class="abstract-content">
+            MISCCRC第一个压缩包，提示CRC爆破结果是纯数字，直接爆破里面三个文件，看了一下大概是要先解压password然后运行.py计算flag.zip的解压密码。然后crc32碰撞，直接爆破password.txt的内容123456import zlibfor i in xrange(0,100000000):	buf = str(i).rjust(8,'0')	#print buf    if zlib.crc32(buf) &amp; 0xffffffff == 0x0cd95dac:		print '',buf
+然后再用.py跑12345678910import base64imp...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/26</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2018/11/20/Linux网络编程基础/" >
             
                 <span>Linux网络编程基础</span>
@@ -384,170 +521,10 @@ SOCK_RAW：原始套接字，常用于检测新的协议。套接字地址结构
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/11/07/CTF中的常见PHP漏洞/" >
-            
-                <span>CTF中的常见PHP漏洞</span>
-        </a>
-        <div class="abstract-content">
-            文章首发于先知社区，转载请注明来源。
-在做ctf题的时候经常会遇到一些PHP代码审计的题目，这里将我遇到过的常见漏洞做一个小结。
-md5()漏洞&nbsp;&nbsp;PHP在处理哈希字符串时，会利用”!=”或”==”来对哈希值进行比较，它把每一个以”0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以”0E”开头的，那么PHP将会认为他们相同，都是0。常见的payload有1234567891011QNKCDZO240610708s878926199as155964671as214587387as214587387a sha1(str)sha1('aaroZ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "php">php</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/11/07/计算机网络/" >
-            
-                <span>计算机网络</span>
-        </a>
-        <div class="abstract-content">
-            概述因特网发展的三个阶段
-从单个网络APRANET向互联网发展
-建成了三级结构的因特网(主干网，地区网，校园网)
-形成了多层次ISP(Internet Service Provider)的结构的因特网
-
-传统三网电信网、有线电视网、计算机网络
-因特网的组成
-边缘部分(用户直接使用的)
-客户-服务器方式(Client/Server)：客户是服务的请求方，服务器是服务的提供方
-对等方式(Peer-to-Peer)：不区分
-
-
-核心部分(为边缘部分提供服务的)
-电路交换：在通话时间内，两个用户始终占用端到端的通信资源，线路传输效率很低。
-分组交换：采用存储转发技术。
-基于标记
-无连接
-由节点交...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/11/01/uint8-t-uint16-t-uint32-t-uint64-t数据类型详解/" >
-            
-                <span>uint8_t / uint16_t / uint32_t /uint64_t数据类型详解</span>
-        </a>
-        <div class="abstract-content">
-            在linux下的C语言编程中会出现题目中这些数据类型。初学的时候不知道是什么类型，只知道int，char这种。其实就是以前基本类型的别名，为了方便跨平台而使用。
-C语言基本数据类型在C语言中有6种基本数据类型：short、int、long、float、double、char
-
-数值类型
-
-
-整型：short、int、long
-浮点型：float、double
-
-
-字符类型：charuint*_t数据类型
-
-1、这些类型的来源：这些数据类型中都带有_t, _t 表示这些数据类型是通过typedef定义的，而不是新的数据类型。也就是说，它们其实是我们已知的类型的别名。
-2、使用这些类型的原因...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "编程相关">编程相关</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/10/11/phpmyadmin-getshell姿势/" >
-            
-                <span>phpmyadmin getshell姿势</span>
-        </a>
-        <div class="abstract-content">
-            本文首发于先知社区,转载请注明来源
-phpmyadmin常被用来管理mysql数据库。在ctf比赛和实战中都可能会遇到phpmyadmin弱口令或者空密码的情况，这个时候就需要从phpmyadmin来getshell了，这里总结一下getshell的姿势。
-0x00 前言此次是在虚拟机中用wampserver搭了一个实验环境，然后在本机上执行操作。
-
-靶机：Windows7 x64    IP 192.168.129.129
-攻击机： Windows10 x64
-PHP版本：5.6
-Mysql版本：5.7
-Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
-
-0x0...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/11</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ctf">ctf</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/page/3/">&#60; PREV</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">NEXT &#62;</a>
+        <a class="extend prev" rel="prev" href="/page/3/">&#60; PREV</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -1131,9 +1108,69 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 29
+        Total : 33
         </div>
         <!-- search  -->
         
@@ -1146,6 +1183,26 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/Django踩坑记录/" >Django踩坑记录</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/Django的默认用户认证系统/" >Django的默认用户认证系统</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/堆叠注入/" >堆叠注入</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/url跳转漏洞/" >url跳转漏洞</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1174,12 +1231,12 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
         </li>
     
     
@@ -1199,12 +1256,12 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
         </li>
     
     
@@ -1325,6 +1382,10 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
     
         <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
     
+        <span class="sidebar-tag-name" data-tags="Django"><span class="iconfont-archer">&#xe606;</span>Django</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全开发"><span class="iconfont-archer">&#xe606;</span>安全开发</span>
+    
         <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
     
         <span class="sidebar-tag-name" data-tags="web安全"><span class="iconfont-archer">&#xe606;</span>web安全</span>
@@ -1333,19 +1394,19 @@ Apache版本：2.4mysql密码为弱密码root，已爆破得到密码。
     
         <span class="sidebar-tag-name" data-tags="OWASP10"><span class="iconfont-archer">&#xe606;</span>OWASP10</span>
     
-        <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
-    
-        <span class="sidebar-tag-name" data-tags="漏洞分析"><span class="iconfont-archer">&#xe606;</span>漏洞分析</span>
-    
         <span class="sidebar-tag-name" data-tags="中间人攻击"><span class="iconfont-archer">&#xe606;</span>中间人攻击</span>
     
         <span class="sidebar-tag-name" data-tags="内网"><span class="iconfont-archer">&#xe606;</span>内网</span>
     
-        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
-    
         <span class="sidebar-tag-name" data-tags="同源策略"><span class="iconfont-archer">&#xe606;</span>同源策略</span>
     
         <span class="sidebar-tag-name" data-tags="前端安全"><span class="iconfont-archer">&#xe606;</span>前端安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
+    
+        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞分析"><span class="iconfont-archer">&#xe606;</span>漏洞分析</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
