@@ -408,7 +408,8 @@ AdminLTE的侧边栏问题点击后侧边栏会自动收回，加入js代码使�
                 <span>堆叠注入</span>
         </a>
         <div class="abstract-content">
-            
+            定义 Stacked injections(堆叠注入)从名词的含义就可以看到应该是一堆 sql 语句(多条)一起执行。而在真实的运用中也是这样的, 我们知道在 mysql 中, 主要是命令行中, 每一条语句结尾加; 表示语句结束。这样我们就想到了是不是可以多句一起使用。这个叫做 stacked  injection。
+使用条件堆叠注入的使用条件十分有限，其可能受到API或者数据库引擎，又或者权限的限制只有当调用数据库函数支持执行多条sql语句时才能够使用，利用mysqli_multi_query()函数就支持多条sql语句同时执行，但实际情况中，如PHP为了防止sql注入机制，往往使用调...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -416,6 +417,14 @@ AdminLTE的侧边栏问题点击后侧边栏会自动收回，加入js代码使�
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/25</span>
             </div>
             <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "web安全">web安全</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "SQL注入">SQL注入</a>
+    
+</div>
             
         </div>
     </article>
@@ -1251,6 +1260,8 @@ last_name，姓
         <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
     
         <span class="sidebar-tag-name" data-tags="漏洞分析"><span class="iconfont-archer">&#xe606;</span>漏洞分析</span>
+    
+        <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

@@ -194,10 +194,8 @@
 </head>
 
     
-        <body class="home-body">
     
-    
-<header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
@@ -215,34 +213,21 @@
 
 
 
-height:50vh;
-
 >
     
     <!-- 主页  -->
-    
-    
-    <!-- 文章页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Twosmi1e's Blog.
-            <!-- 文章页  -->
-            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
-            
-            
-                世の中、不利な状况に陥るのは、全て当事者の不十分によるものである
-            
-            <!-- 文章页  -->
             
         </p>
         <!-- 文章页meta -->
@@ -354,70 +339,6 @@ height:50vh;
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/12/25/Django踩坑记录/" >
-            
-                <span>Django踩坑记录</span>
-        </a>
-        <div class="abstract-content">
-            前言记几个坑和常用的代码段
-AdminLTE的侧边栏问题点击后侧边栏会自动收回，加入js代码使其在页面刷新后仍保持原有状态。12345678910111213141516171819&lt;script&gt;    $(function()&#123;    $('.sidebar-menu li:not(.treeview) &gt; a').on('click', function()&#123;        var $parent = $(this).parent().addClass('active');        $parent.siblings('.treeview....
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Django">Django</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "安全开发">安全开发</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/12/25/url跳转漏洞/" >
-            
-                <span>url跳转漏洞</span>
-        </a>
-        <div class="abstract-content">
-            概念及危害现在web应用越来越多的需要和其他第三方应用交互，以及在自身应用内部根据不同的逻辑引向不同的页面。例如一个典型的场景就是：web站点可以使用第三方账号（如qq,微博等）进行登录，在登录时就会发生跳转，如果在这个过程中没有做好安全策略就会产生安全漏洞。例如可以利用恶意的URL跳转进行钓鱼等。
-攻击方式
-恶意用户借助URL跳转构造钓鱼页面欺骗其他用户，以及获取敏感信息等，在有在线业务的站点危害较大。
-借助URL跳转突破一些基于白名单的安全机制。如：传统的IM对URL的传播进行安全校验，但对于大站点的域名及URL直接允许通过并显示可信的URL，如果该URL中包含恶意跳转可能会导致安全...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web安全">web安全</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
         <a class="abstract-title" href = "/2019/12/25/堆叠注入/" >
             
                 <span>堆叠注入</span>
@@ -444,175 +365,10 @@ AdminLTE的侧边栏问题点击后侧边栏会自动收回，加入js代码使�
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/12/25/Django的默认用户认证系统/" >
-            
-                <span>Django的默认用户认证系统</span>
-        </a>
-        <div class="abstract-content">
-            前言Django 用户认证系统提供了一个内置的 User 对象，用于记录用户的用户名，密码等个人信息。对于 Django 内置的 User 模型， 仅包含以下一些主要的属性：
-
-username，即用户名
-password，密码
-email，邮箱
-first_name，名
-last_name，姓
-
-对于一些网站来说，用户可能还包含有昵称、头像、个性签名等等其它属性，因此仅仅使用 Django 内置的 User 模型是不够。好在 Django 用户系统遵循可拓展的设计原则，我们可以方便地拓展 User 模型。12345678910111213141516171819202122232425...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/12/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Django">Django</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "安全开发">安全开发</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/11/28/内网渗透学习（一）/" >
-            
-                <span>内网渗透学习（一）</span>
-        </a>
-        <div class="abstract-content">
-            基础知识内网概述内网也指局域网（Local Area Network，LAN）是指在某一区域内由多台计算机互联成的计算机组。一般是方圆几千米以内。局域网可以实现文件管理、应用软件共享、打印机共享、工作组内的历程安排、电子邮件和传真通信服务等功能。内网是封闭型的，它可以由办公室内的两台计算机组成，也可以由一个公司内的上千台计算机组成。列如银行、学校、企业工厂、政府机关、网吧、单位办公网等都属于此类。
-工作组工作组（Work Group），在一个大的单位内，可能有成百上千台电脑互相连接组成局域网，它们都会列在“网络（网上邻居）”内，如果这些电脑不分组，可想而知有多么混乱，要找一台电脑很困难。...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web安全">web安全</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "内网">内网</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">NEXT &#62;</a>
-    </nav>
     
 </main>
             <!-- profile -->
-            
-            <div class="profile">
-    <img class="profile-avatar" src= /avatar/kongshen.jpg >
-    <div class="profile-name">Twosmi1e</div>
-    
-    <div class="profile-signature">
-        write the code, change the world
-    </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
-            
-                <a href="mailto:377746574@qq.com" class="iconfont-archer email" title=email ></a>
-            
-        
-    
-        
-            
-                <a href="//github.com/twosmi1e" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-    </div>
-    
-    
-        <div class="friends">
-            <div>FRIENDS</div>
-            
-                
-                    <span>
-                        <a href= //www.baidu.com target="_black">Baidu</a>
-                    </span>
-                
-            
-                
-                    <span>
-                        <a href= //www.google.com target="_black">Google</a>
-                    </span>
-                
-            
-                
-                    <span>
-                        <a href= http://mang0.me target="_black">Mang0</a>
-                    </span>
-                
-            
-        </div>
-    
-    
-        <div class="about-me">
-            <a href = "/about" >ABOUT ME</a>
-        </div>
-    
-</div>
             
         </div>
         <footer class="footer footer-unloaded">

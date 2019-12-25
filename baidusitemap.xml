@@ -4,6 +4,25 @@
 
     
   <url>
+    <loc>https://www.twosmi1e.com/2019/12/25/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5/</loc>
+    <lastmod>2019-12-25T15:03:10.071Z</lastmod>
+    <data>
+        <display>
+        <title>堆叠注入</title>
+        <pubTime>2019-12-25T14:43:23.000Z</pubTime>
+        
+        <tag>web安全</tag>
+         
+        <tag>SQL注入</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://www.twosmi1e.com/2019/12/25/url%E8%B7%B3%E8%BD%AC%E6%BC%8F%E6%B4%9E/</loc>
     <lastmod>2019-12-25T14:57:45.620Z</lastmod>
     <data>
@@ -51,21 +70,6 @@
          
         <tag>安全开发</tag>
          
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://www.twosmi1e.com/2019/12/25/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5/</loc>
-    <lastmod>2019-12-25T14:43:23.730Z</lastmod>
-    <data>
-        <display>
-        <title>堆叠注入</title>
-        <pubTime>2019-12-25T14:43:23.000Z</pubTime>
-        
          
            
         </display>

