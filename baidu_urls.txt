@@ -1,3 +1,4 @@
+https://www.twosmi1e.com/2019/12/29/总结2019/
 https://www.twosmi1e.com/2019/12/25/Django踩坑记录/
 https://www.twosmi1e.com/2019/12/25/url跳转漏洞/
 https://www.twosmi1e.com/2019/12/25/堆叠注入/
