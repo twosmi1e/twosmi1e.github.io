@@ -1,0 +1,1739 @@
+<!DOCTYPE html>
+<html>
+    <!-- title -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="two_smi1e">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="two_smi1e">
+    <meta name="keywords" content="Two_smi1e | two_smi1e">
+    <meta name="description" content="">
+    <meta name="Cache-Control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>信息收集一些tips · Twosmi1e&#39;s Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s 1;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= /css/style.css?v=20180721 as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= /css/mobile.css?v=20180721 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Twosmi1e&#39;s Blog.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">信息收集一些tips</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Twosmi1e's Blog.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style=
+
+
+
+
+
+
+
+
+height:50vh;
+
+>
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            信息收集一些tips
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "web安全">web安全</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count">3,233</span> / Reading time: <span class="post-count">12 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/01/12</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="信息收集中的一些问题总结"><a href="#信息收集中的一些问题总结" class="headerlink" title="信息收集中的一些问题总结"></a>信息收集中的一些问题总结</h1><p>@(web安全)</p>
+<h2 id="真实IP"><a href="#真实IP" class="headerlink" title="真实IP"></a>真实IP</h2><p>意义：找到准确目标，确定IP段。找到真实IP可以绕过一些云waf</p>
+<h3 id="CDN概念"><a href="#CDN概念" class="headerlink" title="CDN概念"></a>CDN概念</h3><p>内容分发网络(content delivery network或content distribution network，缩写作CDN)指一种通过互联网互相连接的电脑网络系统，利用最靠近每位用户的服务器，更快、更可靠地将音乐、图片、视频、应用程序及其他文件发送给用户，来提供高性能、可扩展性及低成本的网络内容传递给用户。</p>
+<p>主要就是通过多个不同节点加快网站的访问速度。<br><img src="/2020/01/12/信息收集一些tips/1577087781961.png" alt="Alt text"></p>
+<h3 id="判断是否真实IP"><a href="#判断是否真实IP" class="headerlink" title="判断是否真实IP"></a>判断是否真实IP</h3><h4 id="nslookup"><a href="#nslookup" class="headerlink" title="nslookup"></a>nslookup</h4><p>用了CDN的会返回多个IP地址<br><img src="/2020/01/12/信息收集一些tips/1577087963017.png" alt="Alt text"></p>
+<h4 id="多地ping"><a href="#多地ping" class="headerlink" title="多地ping"></a>多地ping</h4><p>看IP是否一致<br>在线工具：</p>
+<blockquote>
+<p><a href="http://ping.chinaz.com/" target="_blank" rel="external">http://ping.chinaz.com/</a><br><a href="http://ping.aizhan.com/" target="_blank" rel="external">http://ping.aizhan.com/</a><br><a href="http://ce.cloud.360.cn/" target="_blank" rel="external">http://ce.cloud.360.cn/</a></p>
+</blockquote>
+<h4 id="IP反查"><a href="#IP反查" class="headerlink" title="IP反查"></a>IP反查</h4><p>反查IP有多个域名，那IP多半不是真实IP</p>
+<h3 id="绕CDN找真实IP"><a href="#绕CDN找真实IP" class="headerlink" title="绕CDN找真实IP"></a>绕CDN找真实IP</h3><h4 id="子域名"><a href="#子域名" class="headerlink" title="子域名"></a>子域名</h4><p>一般主站会有CDN，主站下子域名基本都是真实IP，收集子域名看IP就可以知道网站真实IP的C段了。<br>常用工具：<br>subdomainbrute<br>oneforall</p>
+<h4 id="历史DNS记录"><a href="#历史DNS记录" class="headerlink" title="历史DNS记录"></a>历史DNS记录</h4><p>查询未使用CDN前的DNS服务器解析记录</p>
+<blockquote>
+<p><a href="https://dnsdb.io/zh-cn/" target="_blank" rel="external">https://dnsdb.io/zh-cn/</a> ###DNS查询<br><a href="https://x.threatbook.cn/" target="_blank" rel="external">https://x.threatbook.cn/</a> ###微步在线<br><a href="http://toolbar.netcraft.com/site_report?url=" target="_blank" rel="external">http://toolbar.netcraft.com/site_report?url=</a> ###在线域名信息查询<br><a href="http://viewdns.info/" target="_blank" rel="external">http://viewdns.info/</a> ###DNS、IP等查询<br><a href="https://tools.ipip.net/cdn.php" target="_blank" rel="external">https://tools.ipip.net/cdn.php</a> ###CDN查询IP</p>
+</blockquote>
+<h4 id="邮件服务器"><a href="#邮件服务器" class="headerlink" title="邮件服务器"></a>邮件服务器</h4><p>大部分网站会有注册，订阅，找回密码的功能会发送邮件，邮件头信息中会有真实IP<br><img src="/2020/01/12/信息收集一些tips/1577089610905.png" alt="Alt text"></p>
+<h4 id="信息泄漏"><a href="#信息泄漏" class="headerlink" title="信息泄漏"></a>信息泄漏</h4><p>有些网站会有phpinfo页面，一些debug模式不关等信息泄漏问题<br>上面会有真实IP</p>
+<h4 id="搜索引擎"><a href="#搜索引擎" class="headerlink" title="搜索引擎"></a>搜索引擎</h4><p><img src="/2020/01/12/信息收集一些tips/1577089870184.png" alt="Alt text"></p>
+<h4 id="LTM解码法"><a href="#LTM解码法" class="headerlink" title="LTM解码法"></a>LTM解码法</h4><p>当服务器使用F5 LTM做负载均衡时，通过对set-cookie关键字的解码真实ip也可被获取，例如：<code>Set-Cookie: BIGipServerpool_8.29_8030=487098378.24095.0000</code>，先把第一小节的十进制数即487098378取出来，然后将其转为十六进制数1d08880a，接着从后至前，以此取四位数出来，也就是0a.88.08.1d，最后依次把他们转为十进制数10.136.8.29，也就是最后的真实ip。</p>
+<h2 id="子域名收集"><a href="#子域名收集" class="headerlink" title="子域名收集"></a>子域名收集</h2><p>常用工具，除了在线工具外<br>oneforall算是很好用的，其次subdomainbrute</p>
+<h3 id="爆破"><a href="#爆破" class="headerlink" title="爆破"></a>爆破</h3><p>也算是效果最好的办法<br>利用字典枚举子域名然后向DNS服务器查询是否存在记录</p>
+<p>比如说，向114.114.114.114定向请求<a href="http://www.qq.com的记录，返回了一条A记录指向182.254.34.74，就说明存在这个域名；相应的请求wooyun.qq.com并没有相应的记录返回，这就说明没有这个域名存在。" target="_blank" rel="external">www.qq.com的记录，返回了一条A记录指向182.254.34.74，就说明存在这个域名；相应的请求wooyun.qq.com并没有相应的记录返回，这就说明没有这个域名存在。</a></p>
+<p>注：一般只使用同一套主、副DNS，即8.8.8.8和8.8.4.4，DNS服务器不宜混搭，否则容易出现大量误报</p>
+<p>发包可以用第三方库，比如说subDomainBrute使用了dnspython这个包。使用第三方包的确好，但是免不了一层封装和不能很好地理解DNS报文协议，也可能会降低一定的效率。</p>
+<h4 id="泛解析问题"><a href="#泛解析问题" class="headerlink" title="泛解析问题"></a>泛解析问题</h4><p>域名泛解析是对抗子域名收集的一个方法。<br>泛解析这个问题的解决方法很简单，向DNS请求<code>*</code>记录，然后把枚举子域名回来的记录和<code>*</code>的记录比对，如果相同则直接排除。</p>
+<p>DNS包的解析：<a href="https://www.davex.pw/2016/07/01/How-To-Fuzz-Sub-Domain/" target="_blank" rel="external">https://www.davex.pw/2016/07/01/How-To-Fuzz-Sub-Domain/</a></p>
+<h3 id="域传送漏洞"><a href="#域传送漏洞" class="headerlink" title="域传送漏洞"></a>域传送漏洞</h3><p>快速判断出某个特定区域的所有主机，获取域信息，如网络拓扑结构、服务器ip地址，为攻击者的入侵提供大量敏感信息。</p>
+<h4 id="常用DNS记录"><a href="#常用DNS记录" class="headerlink" title="常用DNS记录"></a>常用DNS记录</h4><ul>
+<li>主机记录(<code>A</code>记录): A记录是用于名称解析的重要记录，它将特定的主机名映射到对应主机的IP地址上。</li>
+<li>IPv6主机记录(<code>AAAA</code>记录): 与A记录对应，用于将特定的主机名映射到一个主机的IPv6地址。 </li>
+<li>别名(<code>CNAME</code>记录): CNAME记录用于将某个别名指向到某个A记录上，这样就不需要再为某个新名字另外创建一条新的A记录。</li>
+<li>电子邮件交换记录（<code>MX</code>记录): 记录一个邮件域名对应的IP地址</li>
+<li>域名服务器记录 (<code>NS</code>记录): 记录该域名由哪台域名服务器解析</li>
+<li>反向记录(<code>PTR</code>记录): 也即从IP地址到域名的一条记录</li>
+<li><code>TXT</code>记录：记录域名的相关文本信息</li>
+</ul>
+<h4 id="DNS区域传送"><a href="#DNS区域传送" class="headerlink" title="DNS区域传送"></a>DNS区域传送</h4><p>DNS服务器分为主服务器、备份服务器和缓存服务器。而域传送指的是一台备用服务器使用来自主服务器的数据更新自己的域（zone）数据库。这为运行中的DNS服务提供了一定的冗余度，其目的是为了防止主的域名服务器因意外故障变得不可用时影响到整个域名的解析。</p>
+<h4 id="域传送漏洞-1"><a href="#域传送漏洞-1" class="headerlink" title="域传送漏洞"></a>域传送漏洞</h4><p>DNS区域传送(DNS transfer)指后备DNS服务器从主服务器获取数据，以更新自己的zone数据库。这可以防止因主DNS服务器故障造成的业务中断，为DNS服务提供了冗余备份。但是许多DNS服务器却被错误配置成只要收到AXFR请求，就向对方进行域传送。</p>
+<p>当存在这种错误配置时，攻击者就可以获取整个域的所有记录，造成整个网络架构泄露。正确的配置包括<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">allow-transfer &#123;ipaddress;&#125;; 通过ip限制可进行域传送的服务器</span><br><span class="line"></span><br><span class="line">allow-transfer &#123; key transfer; &#125;; 通过key限制可进行域传送的服务器</span><br></pre></td></tr></table></figure></p>
+<h4 id="检测"><a href="#检测" class="headerlink" title="检测"></a>检测</h4><h5 id="nmap脚本扫描"><a href="#nmap脚本扫描" class="headerlink" title="nmap脚本扫描"></a>nmap脚本扫描</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap –script dns-zone-transfer –script-args dns-zone-transfer.domain=targetdomain -p 53 -Pn dns.xxx</span><br></pre></td></tr></table></figure>
+<h5 id="dig命令"><a href="#dig命令" class="headerlink" title="dig命令"></a>dig命令</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dig @114.114.114.114 twosmi1e.com axfr</span><br></pre></td></tr></table></figure>
+<p><code>@</code>指定DNS服务器， 后面指定域名，axfr为域传送请求</p>
+<h5 id="nslookup-1"><a href="#nslookup-1" class="headerlink" title="nslookup"></a>nslookup</h5><p>1) 输入nslookup命令进入交互式shell界面;<br>2) server 命令参数设定查询将要使用的DNS服务器;针对某个域名可先输入域名获取dns信息。<br>3) ls命令列出某个域中的所有域名;如果太长不适合查看可定向保存至文件夹中。<br>4) exit命令退出<br><img src="/2020/01/12/信息收集一些tips/1577674506742.png" alt="Alt text"></p>
+<h3 id="HTTPS证书"><a href="#HTTPS证书" class="headerlink" title="HTTPS证书"></a>HTTPS证书</h3><p>证书透明日志<br><a href="https://crt.sh/" target="_blank" rel="external">https://crt.sh/</a><br><a href="https://censys.io/" target="_blank" rel="external">https://censys.io/</a><br><a href="https://developers.facebook.com/tools/ct/" target="_blank" rel="external">https://developers.facebook.com/tools/ct/</a><br><a href="https://google.com/transparencyreport/https/ct/" target="_blank" rel="external">https://google.com/transparencyreport/https/ct/</a></p>
+<h3 id="自身泄漏"><a href="#自身泄漏" class="headerlink" title="自身泄漏"></a>自身泄漏</h3><ul>
+<li>robots.txt</li>
+<li>crossdomain.xml(跨域策略文件cdx)</li>
+<li>从流量中分析提取</li>
+<li>Github泄露</li>
+</ul>
+<h2 id="端口探测"><a href="#端口探测" class="headerlink" title="端口探测"></a>端口探测</h2><h3 id="端口List"><a href="#端口List" class="headerlink" title="端口List"></a>端口List</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">端口号</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">服务名</th>
+<th style="text-align:left">可能存在的漏洞/利用方式</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">21</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">FTP</td>
+<td style="text-align:left">1）远程溢出<br>2）暴力破解<br>3）匿名访问—未授权访问<br>4）配置不当，直接 cd / &amp;&amp; dir<br>5）使用明文传输技术-嗅探<br>6）后门技术<br>7）跳转攻击</td>
+<td style="text-align:center">20数据端口<br>21控制端口<br>数据端口可变</td>
+</tr>
+<tr>
+<td style="text-align:center">22</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">SSH</td>
+<td style="text-align:left">1）爆破密码<br>2）防火墙SSH后门<br>3）ms12-020</td>
+<td style="text-align:center">ms12-020好像只能打蓝屏</td>
+</tr>
+<tr>
+<td style="text-align:center">23</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">telnet</td>
+<td style="text-align:left">1）爆破<br>2）嗅探</td>
+<td style="text-align:center">telnet明文传输用户名密码</td>
+</tr>
+<tr>
+<td style="text-align:center">25</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">SMTP邮件服务</td>
+<td style="text-align:left">邮件伪造</td>
+<td style="text-align:center">邮件发送协议</td>
+</tr>
+<tr>
+<td style="text-align:center">53</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">DNS</td>
+<td style="text-align:left">1）远程溢出<br>2）域传送<br>3）DNS欺骗<br>4）缓存投毒<br>5）DNS劫持<br>6）DNS DDoS</td>
+<td style="text-align:center">域名解析服务</td>
+</tr>
+<tr>
+<td style="text-align:center">67/68</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">DHCP</td>
+<td style="text-align:left">1）劫持<br>2）欺骗</td>
+<td style="text-align:center">IP分配</td>
+</tr>
+<tr>
+<td style="text-align:center">80/443</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">http/https</td>
+<td style="text-align:left">1）web应用漏洞<br>2）心脏滴血</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">81</td>
+<td style="text-align:center">其他</td>
+<td style="text-align:center">ipcam</td>
+<td style="text-align:left">1）暴力破解<br>2）可以基于NTP的反射和放大攻击<br>3）NTP反射型DDos攻击</td>
+<td style="text-align:center">监控，网络摄像头</td>
+</tr>
+<tr>
+<td style="text-align:center">110</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">POP3</td>
+<td style="text-align:left">1）爆破<br>2）嗅探</td>
+<td style="text-align:center">接收邮件服务</td>
+</tr>
+<tr>
+<td style="text-align:center">135</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">RPC(远程过程调用)服务</td>
+<td style="text-align:left">1）利用RPC漏洞攻击计算机<br>2）病毒入口</td>
+<td style="text-align:center">RPC是一种通过网络从远程计算机程序上请求服务，而不需要了解底层网络技术的协议</td>
+</tr>
+<tr>
+<td style="text-align:center">139</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">Samba</td>
+<td style="text-align:left">1）IPC$共享后的空链接漏洞<br>2）病毒入口</td>
+<td style="text-align:center">文件和打印共享</td>
+</tr>
+<tr>
+<td style="text-align:center">143</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">IMAP</td>
+<td style="text-align:left">爆破</td>
+<td style="text-align:center">邮件接收协议</td>
+</tr>
+<tr>
+<td style="text-align:center">161</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">SNMP</td>
+<td style="text-align:left">1）未授权<br>2）搜集内网信息</td>
+<td style="text-align:center">简单网络管理协议</td>
+</tr>
+<tr>
+<td style="text-align:center">389</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">LDAP</td>
+<td style="text-align:left">1）注入<br>2）未授权<br>3）弱口令</td>
+<td style="text-align:center">目录访问协议</td>
+</tr>
+<tr>
+<td style="text-align:center">445</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">SMB</td>
+<td style="text-align:left">1）MS17-010漏洞2）MS06-040漏洞</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">512/513/514</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">Linux Rexec</td>
+<td style="text-align:left">1）爆破<br>2）Rlogin登陆</td>
+<td style="text-align:center"><a href="https://www.cnblogs.com/lsdb/p/6604203.html" target="_blank" rel="external">https://www.cnblogs.com/lsdb/p/6604203.html</a></td>
+</tr>
+<tr>
+<td style="text-align:center">873</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">Rsync服务</td>
+<td style="text-align:left">1）文件上传<br>2）未授权访问<br>3)RCE</td>
+<td style="text-align:center">rsync 是一个用于增量文件传输的开源工具</td>
+</tr>
+<tr>
+<td style="text-align:center">1080</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">socket</td>
+<td style="text-align:left">爆破</td>
+<td style="text-align:center">通信协议</td>
+</tr>
+<tr>
+<td style="text-align:center">1352</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">Lotus domino</td>
+<td style="text-align:left">1）爆破2<br>）信息泄漏</td>
+<td style="text-align:center">邮件服务</td>
+</tr>
+<tr>
+<td style="text-align:center">1433</td>
+<td style="text-align:center">数据库</td>
+<td style="text-align:center">mssql</td>
+<td style="text-align:left">1）爆破<br>2）注入<br>3）SA弱口令</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">1521</td>
+<td style="text-align:center">数据库</td>
+<td style="text-align:center">oracle</td>
+<td style="text-align:left">1）爆破<br>2）注入<br>3）TNS爆破<br>4）反弹shell</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">2049</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">Nfs</td>
+<td style="text-align:left">配置不当</td>
+<td style="text-align:center">网络文件系统，文件共享</td>
+</tr>
+<tr>
+<td style="text-align:center">2181</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">zookeeper</td>
+<td style="text-align:left">未授权访问</td>
+<td style="text-align:center">分布式协调服务</td>
+</tr>
+<tr>
+<td style="text-align:center">2375</td>
+<td style="text-align:center">中间件</td>
+<td style="text-align:center">docker remote api</td>
+<td style="text-align:left">未授权访问</td>
+</tr>
+<tr>
+<td style="text-align:center">3306</td>
+<td style="text-align:center">数据库</td>
+<td style="text-align:center">mysql</td>
+<td style="text-align:left">1）爆破<br>2）注入<br>3）UDF</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">3389</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">RDP</td>
+<td style="text-align:left">1）爆破<br>2）shift后门</td>
+<td style="text-align:center">远程桌面</td>
+</tr>
+<tr>
+<td style="text-align:center">4848</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">GlassFish控制台</td>
+<td style="text-align:left">1）爆破<br>2）认证绕过</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">4899</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">radmini</td>
+<td style="text-align:left">1）弱口令<br>2）RCE</td>
+<td style="text-align:center">远程控制软件</td>
+</tr>
+<tr>
+<td style="text-align:center">5000</td>
+<td style="text-align:center">数据库</td>
+<td style="text-align:center">sybase/DB2数据库</td>
+<td style="text-align:left">1）爆破<br>2）注入<br>3）提权</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">5432</td>
+<td style="text-align:center">数据库</td>
+<td style="text-align:center">postgresql</td>
+<td style="text-align:left">1）爆破<br>2）注入<br>3）缓冲区溢出</td>
+<td style="text-align:center">对象–关系型数据库管理系统</td>
+</tr>
+<tr>
+<td style="text-align:center">5632</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">pcanywhere服务</td>
+<td style="text-align:left">1）抓密码<br>2）代码执行</td>
+<td style="text-align:center">远程桌面控制</td>
+</tr>
+<tr>
+<td style="text-align:center">5900</td>
+<td style="text-align:center">服务类</td>
+<td style="text-align:center">vnc</td>
+<td style="text-align:left">1）爆破<br>2）认证绕过</td>
+<td style="text-align:center">远程桌面共享</td>
+</tr>
+<tr>
+<td style="text-align:center">6379</td>
+<td style="text-align:center">中间件</td>
+<td style="text-align:center">Redis</td>
+<td style="text-align:left">1）未授权访问<br>2）爆破</td>
+<td style="text-align:center">计划任务，写SSHkey</td>
+</tr>
+<tr>
+<td style="text-align:center">7001/7002</td>
+<td style="text-align:center">中间件</td>
+<td style="text-align:center">weblogic</td>
+<td style="text-align:left">1）java反序列化<br>2）控制台弱口令<br>3）ssrf</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">8069</td>
+<td style="text-align:center">中间件</td>
+<td style="text-align:center">zabbix服务</td>
+<td style="text-align:left">1）远程命令执行<br>2）注入</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">8161</td>
+<td style="text-align:center">中间件</td>
+<td style="text-align:center">activemq</td>
+<td style="text-align:left">1）弱口令<br>2）写文件</td>
+<td style="text-align:center">消息队列</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">8080/8089</td>
+<td style="text-align:center">中间件</td>
+<td style="text-align:center">Jboss/Tomcat/Resin</td>
+<td style="text-align:left">1）爆破<br>2）PUT文件上传<br>3）反序列化</td>
+<td style="text-align:center"><a href="https://www.freebuf.com/column/159200.html" target="_blank" rel="external">Tomcat远程代码执行漏洞</a> <br><a href="http://liehu.tass.com.cn/archives/836" target="_blank" rel="external">Tomcat任意文件上传</a><br><a href="https://paper.seebug.org/399/" target="_blank" rel="external">Tomcat远程代码执行&amp;信息泄露</a><br><a href="http://mobile.www.cnblogs.com/Safe3/archive/2010/01/08/1642371.html" target="_blank" rel="external">Jboss远程代码执行</a><br><a href="https://www.zybuluo.com/websec007/note/838374" target="_blank" rel="external">Jboss反序列化漏洞</a><br><a href="https://blog.csdn.net/u011215939/article/details/79141624" target="_blank" rel="external">Jboss漏洞利用</a></td>
+</tr>
+<tr>
+<td style="text-align:center">8083/8086</td>
+<td style="text-align:center">数据库</td>
+<td style="text-align:center">influxDB</td>
+<td style="text-align:left">未授权访问</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">9000</td>
+<td style="text-align:center">中间件</td>
+<td style="text-align:center">fastcgi</td>
+<td style="text-align:left">远程命令执行</td>
+<td style="text-align:center">快速通用网关接口</td>
+</tr>
+<tr>
+<td style="text-align:center">9090</td>
+<td style="text-align:center">其他</td>
+<td style="text-align:center">Websphere控制台</td>
+<td style="text-align:left">1）爆破<br>2）java反序列化<br>3）弱口令</td>
+</tr>
+<tr>
+<td style="text-align:center">9200/9300</td>
+<td style="text-align:center">其他</td>
+<td style="text-align:center">elasticsearch</td>
+<td style="text-align:left">远程代码执行</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">11211</td>
+<td style="text-align:center">其他</td>
+<td style="text-align:center">memcached</td>
+<td style="text-align:left">未授权访问</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">27017/27018</td>
+<td style="text-align:center">数据库</td>
+<td style="text-align:center">mongodb</td>
+<td style="text-align:left">1）未授权访问<br>2）爆破</td>
+<td style="text-align:center">NoSQL数据库</td>
+</tr>
+</tbody>
+</table>
+<h3 id="NMAP端口扫描原理"><a href="#NMAP端口扫描原理" class="headerlink" title="NMAP端口扫描原理"></a>NMAP端口扫描原理</h3><h4 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h4><p><img src="/2020/01/12/信息收集一些tips/1577687632568.png" alt="Alt text"></p>
+<h4 id="TCP-SYN-scanning"><a href="#TCP-SYN-scanning" class="headerlink" title="TCP SYN scanning"></a>TCP SYN scanning</h4><p>这是Nmap默认的扫描方式，通常被称作半开放扫描（Half-open scanning）。该方式发送SYN到目标端口，如果收到SYN/ACK回复，那么判断端口是开放的；如果收到RST包，说明该端口是关闭的。如果没有收到回复，那么判断该端口被屏蔽（Filtered）。因为该方式仅发送SYN包对目标主机的特定端口，但不建立的完整的TCP连接，所以相对比较隐蔽，而且效率比较高，适用范围广。</p>
+<p>TCP SYN探测到端口关闭：<br><img src="/2020/01/12/信息收集一些tips/1577689697538.png" alt="Alt text"><br>TCP SYN探测到端口开启：<br><img src="/2020/01/12/信息收集一些tips/1577689714221.png" alt="Alt text"></p>
+<h4 id="TCP-connect-scanning"><a href="#TCP-connect-scanning" class="headerlink" title="TCP connect scanning"></a>TCP connect scanning</h4><p>TCP connect方式使用系统网络API connect向目标主机的端口发起连接，如果无法连接，说明该端口关闭。该方式扫描速度比较慢，而且由于建立完整的TCP连接会在目标机上留下记录信息，不够隐蔽。所以，TCP connect是TCP SYN无法使用才考虑选择的方式。</p>
+<p>TCP connect探测到端口关闭：<br><img src="/2020/01/12/信息收集一些tips/1577689862904.png" alt="Alt text"><br>TCP connect探测到端口开放：<br><img src="/2020/01/12/信息收集一些tips/1577689878939.png" alt="Alt text"></p>
+<h4 id="TCP-ACK-scanning"><a href="#TCP-ACK-scanning" class="headerlink" title="TCP ACK scanning"></a>TCP ACK scanning</h4><p>向目标主机的端口发送ACK包，如果收到RST包，说明该端口没有被防火墙屏蔽；没有收到RST包，说明被屏蔽。该方式只能用于确定防火墙是否屏蔽某个端口，可以辅助TCP SYN的方式来判断目标主机防火墙的状况。</p>
+<p>TCP ACK探测到端口被屏蔽：<br><img src="/2020/01/12/信息收集一些tips/1577689912686.png" alt="Alt text"><br>TCP ACK探测到端口未被屏蔽：<br><img src="/2020/01/12/信息收集一些tips/1577689926180.png" alt="Alt text"></p>
+<h4 id="TCP-FIN-Xmas-NULL-scanning"><a href="#TCP-FIN-Xmas-NULL-scanning" class="headerlink" title="TCP FIN/Xmas/NULL scanning"></a>TCP FIN/Xmas/NULL scanning</h4><p>这三种扫描方式被称为秘密扫描（Stealthy Scan），因为相对比较隐蔽。FIN扫描向目标主机的端口发送的TCP FIN包或Xmas tree包/Null包，如果收到对方RST回复包，那么说明该端口是关闭的；没有收到RST包说明端口可能是开放的或被屏蔽的（open|filtered）。</p>
+<p>其中Xmas tree包是指flags中FIN URG PUSH被置为1的TCP包；NULL包是指所有flags都为0的TCP包。</p>
+<p>TCP FIN探测到主机端口是关闭的：<br><img src="/2020/01/12/信息收集一些tips/1577689993599.png" alt="Alt text"><br>TCP FIN探测到主机端口是开放或屏蔽的：<br><img src="/2020/01/12/信息收集一些tips/1577690004945.png" alt="Alt text"></p>
+<h4 id="UDP-scanning"><a href="#UDP-scanning" class="headerlink" title="UDP scanning"></a>UDP scanning</h4><p>UDP扫描方式用于判断UDP端口的情况。向目标主机的UDP端口发送探测包，如果收到回复“ICMP port unreachable”就说明该端口是关闭的；如果没有收到回复，那说明UDP端口可能是开放的或屏蔽的。因此，通过反向排除法的方式来断定哪些UDP端口是可能出于开放状态。</p>
+<p>UDP端口关闭：<br><img src="/2020/01/12/信息收集一些tips/1577690048727.png" alt="Alt text"><br>UDP端口开放或被屏蔽：<br><img src="/2020/01/12/信息收集一些tips/1577690063761.png" alt="Alt text"></p>
+<h4 id="其他方式"><a href="#其他方式" class="headerlink" title="其他方式"></a>其他方式</h4><p>更多方式及详细原理<a href="http://nmap.org/book/idlescan.html" target="_blank" rel="external">http://nmap.org/book/idlescan.html</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.davex.pw/2016/07/01/How-To-Fuzz-Sub-Domain/" target="_blank" rel="external">https://www.davex.pw/2016/07/01/How-To-Fuzz-Sub-Domain/</a><br><a href="https://blog.csdn.net/AspirationFlow/article/details/7694274" target="_blank" rel="external">https://blog.csdn.net/AspirationFlow/article/details/7694274</a></p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者: <a href="https://www.twosmi1e.com">two_smi1e</a>
+            <p>原文链接: <a href="https://www.twosmi1e.com/2020/01/12/信息收集一些tips/">https://www.twosmi1e.com/2020/01/12/信息收集一些tips/</a>
+            <p>发表日期: <a href="https://www.twosmi1e.com/2020/01/12/信息收集一些tips/">January 12th 2020, 11:52:57 pm</a>
+            <p>版权声明: 本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/12/29/总结2019/" title= 总结2019 >
+                    <div class="prevTitle">总结2019</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC和WAP自适应版-->
+
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:377746574@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/twosmi1e" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#信息收集中的一些问题总结"><span class="toc-number">1.</span> <span class="toc-text">信息收集中的一些问题总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#真实IP"><span class="toc-number">1.1.</span> <span class="toc-text">真实IP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CDN概念"><span class="toc-number">1.1.1.</span> <span class="toc-text">CDN概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判断是否真实IP"><span class="toc-number">1.1.2.</span> <span class="toc-text">判断是否真实IP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#nslookup"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">nslookup</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多地ping"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">多地ping</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IP反查"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">IP反查</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绕CDN找真实IP"><span class="toc-number">1.1.3.</span> <span class="toc-text">绕CDN找真实IP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#子域名"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">子域名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#历史DNS记录"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">历史DNS记录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#邮件服务器"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">邮件服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#信息泄漏"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">信息泄漏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#搜索引擎"><span class="toc-number">1.1.3.5.</span> <span class="toc-text">搜索引擎</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LTM解码法"><span class="toc-number">1.1.3.6.</span> <span class="toc-text">LTM解码法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子域名收集"><span class="toc-number">1.2.</span> <span class="toc-text">子域名收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#爆破"><span class="toc-number">1.2.1.</span> <span class="toc-text">爆破</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#泛解析问题"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">泛解析问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#域传送漏洞"><span class="toc-number">1.2.2.</span> <span class="toc-text">域传送漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常用DNS记录"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">常用DNS记录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS区域传送"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">DNS区域传送</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#域传送漏洞-1"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">域传送漏洞</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#检测"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">检测</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#nmap脚本扫描"><span class="toc-number">1.2.2.4.1.</span> <span class="toc-text">nmap脚本扫描</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#dig命令"><span class="toc-number">1.2.2.4.2.</span> <span class="toc-text">dig命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#nslookup-1"><span class="toc-number">1.2.2.4.3.</span> <span class="toc-text">nslookup</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTPS证书"><span class="toc-number">1.2.3.</span> <span class="toc-text">HTTPS证书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自身泄漏"><span class="toc-number">1.2.4.</span> <span class="toc-text">自身泄漏</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#端口探测"><span class="toc-number">1.3.</span> <span class="toc-text">端口探测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#端口List"><span class="toc-number">1.3.1.</span> <span class="toc-text">端口List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NMAP端口扫描原理"><span class="toc-number">1.3.2.</span> <span class="toc-text">NMAP端口扫描原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#三次握手"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">三次握手</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-SYN-scanning"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">TCP SYN scanning</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-connect-scanning"><span class="toc-number">1.3.2.3.</span> <span class="toc-text">TCP connect scanning</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-ACK-scanning"><span class="toc-number">1.3.2.4.</span> <span class="toc-text">TCP ACK scanning</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-FIN-Xmas-NULL-scanning"><span class="toc-number">1.3.2.5.</span> <span class="toc-text">TCP FIN/Xmas/NULL scanning</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#UDP-scanning"><span class="toc-number">1.3.2.6.</span> <span class="toc-text">UDP scanning</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他方式"><span class="toc-number">1.3.2.7.</span> <span class="toc-text">其他方式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">1.4.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 35
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/12</span><a class="archive-post-title" href= "/2020/01/12/信息收集一些tips/" >信息收集一些tips</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/29</span><a class="archive-post-title" href= "/2019/12/29/总结2019/" >总结2019</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/Django踩坑记录/" >Django踩坑记录</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/Django的默认用户认证系统/" >Django的默认用户认证系统</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/堆叠注入/" >堆叠注入</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/url跳转漏洞/" >url跳转漏洞</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href= "/2019/11/28/内网渗透学习（一）/" >内网渗透学习（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/12</span><a class="archive-post-title" href= "/2019/11/12/中间人攻击/" >中间人攻击</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/05</span><a class="archive-post-title" href= "/2019/11/05/同源策略那些事/" >同源策略那些事</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href= "/2019/11/04/WEB基础漏洞/" >WEB基础漏洞</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/25</span><a class="archive-post-title" href= "/2019/10/25/thinkCMF任意内容包含漏洞分析/" >thinkCMF任意内容包含漏洞分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/23</span><a class="archive-post-title" href= "/2019/10/23/DC-4渗透报告/" >DC-4渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/21</span><a class="archive-post-title" href= "/2019/10/21/DC-3渗透报告/" >DC-3渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/17</span><a class="archive-post-title" href= "/2019/10/17/DC-2渗透报告/" >DC-2渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/20</span><a class="archive-post-title" href= "/2018/12/20/PHP反序列化/" >PHP反序列化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/30</span><a class="archive-post-title" href= "/2018/11/30/汇编基础/" >汇编基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/26</span><a class="archive-post-title" href= "/2018/11/26/安洵杯writewp/" >安洵杯writewp</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/20</span><a class="archive-post-title" href= "/2018/11/20/Linux网络编程基础/" >Linux网络编程基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href= "/2018/11/07/CTF中的常见PHP漏洞/" >CTF中的常见PHP漏洞</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href= "/2018/11/07/计算机网络/" >计算机网络</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/01</span><a class="archive-post-title" href= "/2018/11/01/uint8-t-uint16-t-uint32-t-uint64-t数据类型详解/" >uint8_t / uint16_t / uint32_t /uint64_t数据类型详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/11</span><a class="archive-post-title" href= "/2018/10/11/phpmyadmin-getshell姿势/" >phpmyadmin getshell姿势</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href= "/2018/10/04/WampServer多端口配置/" >WampServer多端口配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/06</span><a class="archive-post-title" href= "/2018/09/06/密码学/" >密码学</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href= "/2018/08/18/Crypto中RSA题目总结/" >Crypto中RSA题目总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/03</span><a class="archive-post-title" href= "/2018/08/03/CTF中遇到的隐写术总结/" >CTF中遇到的隐写术总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/15</span><a class="archive-post-title" href= "/2018/07/15/SCTF-writeup/" >SCTF writeup</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href= "/2018/07/01/ISCC-writeup/" >ISCC writeup</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/10</span><a class="archive-post-title" href= "/2018/02/10/Mysql写入文件小技巧/" >Mysql写入文件小技巧</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/02</span><a class="archive-post-title" href= "/2018/02/02/Python高级特性/" >Python高级特性</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span><a class="archive-post-title" href= "/2017/10/28/纪念我逝去的青春/" >纪念我逝去的青春</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
+    
+        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞复现"><span class="iconfont-archer">&#xe606;</span>漏洞复现</span>
+    
+        <span class="sidebar-tag-name" data-tags="靶机渗透"><span class="iconfont-archer">&#xe606;</span>靶机渗透</span>
+    
+        <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
+    
+        <span class="sidebar-tag-name" data-tags="Django"><span class="iconfont-archer">&#xe606;</span>Django</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全开发"><span class="iconfont-archer">&#xe606;</span>安全开发</span>
+    
+        <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="web安全"><span class="iconfont-archer">&#xe606;</span>web安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="总结"><span class="iconfont-archer">&#xe606;</span>总结</span>
+    
+        <span class="sidebar-tag-name" data-tags="OWASP10"><span class="iconfont-archer">&#xe606;</span>OWASP10</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞分析"><span class="iconfont-archer">&#xe606;</span>漏洞分析</span>
+    
+        <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
+    
+        <span class="sidebar-tag-name" data-tags="中间人攻击"><span class="iconfont-archer">&#xe606;</span>中间人攻击</span>
+    
+        <span class="sidebar-tag-name" data-tags="内网"><span class="iconfont-archer">&#xe606;</span>内网</span>
+    
+        <span class="sidebar-tag-name" data-tags="同源策略"><span class="iconfont-archer">&#xe606;</span>同源策略</span>
+    
+        <span class="sidebar-tag-name" data-tags="前端安全"><span class="iconfont-archer">&#xe606;</span>前端安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
+    
+        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "two_smi1e"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/miku.model.json"},"display":{"position":"right","width":120,"height":200},"mobile":{"show":false,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
+
+
