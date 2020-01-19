@@ -354,6 +354,47 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/21/DC-3渗透报告/" >
+            
+                <span>DC-3渗透报告</span>
+        </a>
+        <div class="abstract-content">
+            扫一下IP找到DC-3IP
+信息收集
+nmap1nmap -A 192.168.61.144 -p 1-65535
+
+
+80web服务 Joomla
+
+whatweb1whatweb http://192.168.61.144/
+
+
+1http://192.168.61.144 [200 OK] Apache[2.4.18], Cookies[460ada11b31d3c5e5ca6e58fd5d3de27], Country[RESERVED][ZZ], HTML5, HTTPServer[Ubuntu Linux][Apache/2.4.18 (Ubuntu)], HttpOnly[...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/21</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "靶机渗透">靶机渗透</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "wp">wp</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/10/17/DC-2渗透报告/" >
             
                 <span>DC-2渗透报告</span>
@@ -486,54 +527,10 @@ web渗透用msf开始搜一下drupal漏洞选一个漏洞设置远程IP地址开
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/11/30/汇编基础/" >
-            
-                <span>汇编基础</span>
-        </a>
-        <div class="abstract-content">
-            0x00 IA32处理器体系结构微机的基本结构
-指令执行周期当指令使用了内存操作数时还需要两个额外的步骤：取操作数和存储输出操作数。机器指令的执行;
-
-取指令
-解码
-执行
-
-操作模式保护模式：处理器的基本模式。虚拟8086模式：多任务环境中执行是地址模式的软件。实地址模式：用于运行那些需要直接访问系统内存和硬件设备的MS-DOS程序。系统管理模式：实现电源管理和系统安全等功能的机制。
-基本执行环境基本寄存器寄存器中数据在内存中存放数据遵循高高低低的原则
-8个通用寄存器
-
-EAX EBX ECX EDXEBP ESP ESI EDI
-
-
-6个段寄存器
-一个处理器状态标志寄存器(EFLAGS...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/30</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "学习笔记">学习笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/page/3/">&#60; PREV</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">NEXT &#62;</a>
+        <a class="extend prev" rel="prev" href="/page/3/">&#60; PREV</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -1197,9 +1194,42 @@ EAX EBX ECX EDXEBP ESP ESI EDI
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 35
+        Total : 36
         </div>
         <!-- search  -->
         
@@ -1212,6 +1242,11 @@ EAX EBX ECX EDXEBP ESP ESI EDI
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/19</span><a class="archive-post-title" href= "/2020/01/19/redis未授权总结/" >redis未授权总结</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1234,22 +1269,22 @@ EAX EBX ECX EDXEBP ESP ESI EDI
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/Django踩坑记录/" >Django踩坑记录</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/Django的默认用户认证系统/" >Django的默认用户认证系统</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/堆叠注入/" >堆叠注入</a>
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/Django踩坑记录/" >Django踩坑记录</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/url跳转漏洞/" >url跳转漏洞</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2019/12/25/堆叠注入/" >堆叠注入</a>
         </li>
     
     
@@ -1279,12 +1314,12 @@ EAX EBX ECX EDXEBP ESP ESI EDI
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-5渗透报告/" >DC-5渗透报告</a>
+            <span class="archive-post-date">10/24</span><a class="archive-post-title" href= "/2019/10/24/DC-6渗透报告/" >DC-6渗透报告</a>
         </li>
     
     
@@ -1304,12 +1339,12 @@ EAX EBX ECX EDXEBP ESP ESI EDI
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/DC-1渗透报告/" >DC-1渗透报告</a>
+            <span class="archive-post-date">10/16</span><a class="archive-post-title" href= "/2019/10/16/CVE-2019-10392：Jenkins-Git-client插件RCE复现/" >CVE-2019-10392：Jenkins Git client插件RCE复现</a>
         </li>
     
     
@@ -1442,11 +1477,11 @@ EAX EBX ECX EDXEBP ESP ESI EDI
     
         <span class="sidebar-tag-name" data-tags="OWASP10"><span class="iconfont-archer">&#xe606;</span>OWASP10</span>
     
-        <span class="sidebar-tag-name" data-tags="漏洞分析"><span class="iconfont-archer">&#xe606;</span>漏洞分析</span>
-    
         <span class="sidebar-tag-name" data-tags="编程相关"><span class="iconfont-archer">&#xe606;</span>编程相关</span>
     
         <span class="sidebar-tag-name" data-tags="中间人攻击"><span class="iconfont-archer">&#xe606;</span>中间人攻击</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞分析"><span class="iconfont-archer">&#xe606;</span>漏洞分析</span>
     
         <span class="sidebar-tag-name" data-tags="内网"><span class="iconfont-archer">&#xe606;</span>内网</span>
     
